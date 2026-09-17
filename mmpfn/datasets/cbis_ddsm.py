@@ -53,6 +53,40 @@ class CBISDDSMDataset(Dataset):
         self.df[self.target_col] = self.df[self.target_col].replace('BENIGN_WITHOUT_CALLBACK', 'BENIGN')
         self.y = self.target_encoder.fit_transform(self.df[self.target_col])
 
+        self._jpeg_index = self._build_jpeg_index()
+
+    # The Kaggle mirror (awsaf49/cbis-ddsm-breast-cancer-image-dataset) does NOT store JPEGs under
+    # jpeg/<SeriesInstanceUID>/ as the case-description paths suggest; the real folder is listed in
+    # csv/dicom_info.csv (column image_path). Resolve (SeriesInstanceUID, SeriesDescription) through
+    # that table and fall back to the original jpeg/<uid>/ layout when the table is absent.
+    _SERIES_DESCRIPTION = {
+        'image file path': 'full mammogram images',
+        'cropped image file path': 'cropped images',
+        'ROI mask file path': 'ROI mask images',
+    }
+
+    def _build_jpeg_index(self):
+        info_path = os.path.join(self.data_path, 'csv', 'dicom_info.csv')
+        if not os.path.exists(info_path):
+            return {}
+        info = pd.read_csv(info_path, usecols=['SeriesInstanceUID', 'SeriesDescription', 'image_path'])
+        index = {}
+        for uid, desc, img in zip(info['SeriesInstanceUID'], info['SeriesDescription'], info['image_path']):
+            rel = str(img).split('/', 1)[1] if str(img).startswith('CBIS-DDSM/') else str(img)  # 'jpeg/<dir>/<file>.jpg'
+            index.setdefault((uid, desc), rel)
+        return index
+
+    def _resolve_image(self, column, path):
+        """Return the on-disk image file for one case-description path, or None if it does not exist."""
+        uid = path.split('/')[-2]
+        rel = self._jpeg_index.get((uid, self._SERIES_DESCRIPTION[column]))
+        if rel is not None and os.path.exists(os.path.join(self.data_path, rel)):
+            return os.path.join(self.data_path, rel)
+        legacy_dir = os.path.join(self.data_path, 'jpeg', uid)  # the authors' own DICOM->JPEG layout
+        if os.path.isdir(legacy_dir) and os.listdir(legacy_dir):
+            return os.path.join(legacy_dir, sorted(os.listdir(legacy_dir))[0])
+        return None
+
 
     def get_images(self, img_size=14*24): # image size must be a multiple of 14
                 
@@ -61,22 +95,23 @@ class CBISDDSMDataset(Dataset):
         for i, paths in self.df[self.image_features].iterrows():
             image_set = []
             append = True
-            for path in paths:
-                image_path = os.path.join(self.data_path, 'jpeg', path.split('/')[-2])
-                if not os.path.exists(image_path):
-                    print(f"Image {image_path} does not exist, skipping.")
+            for column, path in paths.items():
+                image_path = self._resolve_image(column, path)
+                if image_path is None:
+                    print(f"Image for {column} of row {i} ({path.split('/')[-2]}) does not exist, skipping.")
                     append = False
                     drop_index.append(i)
                     continue
-                image_path = os.path.join(image_path, os.listdir(image_path)[0])
                 with Image.open(image_path) as img:
                     img = img.convert("RGB")
                     img = np.array(img.resize((img_size, img_size), Image.BILINEAR), dtype=np.float32) 
                     image_set.append(img)
             if append:
                 self.images.append(image_set)
+        drop_index = sorted(set(drop_index))
         self.x = np.delete(self.x, drop_index, axis=0)
         self.y = np.delete(self.y, drop_index, axis=0)
+        print(f"CBIS-DDSM {self.kind}: kept {len(self.images)} of {len(self.df)} rows ({len(drop_index)} dropped for missing images)")
 
         self.images = np.stack(self.images, axis=0)  # (B, N, H, W, C)
         self.images = torch.from_numpy(np.transpose(self.images, (0,1,4,2,3))).float() # (B, N, C, H, W)
