@@ -4,18 +4,18 @@
 #
 #   conda env create -f environment-lean.yaml && conda activate mmpfn && python setup.py develop
 #
+# torch comes from pip's CUDA wheels (they bundle the CUDA runtime), not from the pytorch/nvidia
+# conda channels -- conda's solver can take 20+ minutes or hang on those.
 name: mmpfn
 channels:
-  - pytorch
-  - nvidia
   - defaults
 dependencies:
   - python=3.10
-  - pytorch=2.4.1
-  - torchvision=0.19.1
-  - pytorch-cuda=12.4
   - pip
   - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch==2.4.1
+      - torchvision==0.19.1
       - numpy==2.2.6
       - pandas==2.2.3
       - scipy==1.15.2
