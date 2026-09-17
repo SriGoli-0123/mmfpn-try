@@ -3,7 +3,9 @@ import torch
 import numpy as np
 import pandas as pd
 
-from PIL import Image
+from PIL import Image, ImageFile
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True  # a few JPEGs in the Kaggle CBIS-DDSM mirror are truncated by a few bytes
 from torch.utils.data import Dataset
 from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
 
