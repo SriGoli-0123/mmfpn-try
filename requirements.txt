@@ -25,3 +25,7 @@ iopath
 # submitit
 # --extra-index-url https://pypi.nvidia.com
 # cuml-cu11
+
+# TabICL backbone (branch TabICL-attempt): vendored model code in mmpfn/models/tabicl
+huggingface_hub
+psutil

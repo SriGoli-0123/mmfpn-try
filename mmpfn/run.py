@@ -12,10 +12,10 @@ import numpy as np
 import pandas as pd
 
 from sklearn.metrics import accuracy_score
-from mmpfn.models.mmpfn import MMPFNClassifier
-from mmpfn.models.mmpfn.constants import ModelInterfaceConfig
-from mmpfn.models.mmpfn.preprocessing import PreprocessorConfig
-from mmpfn.scripts_finetune_mm.finetune_mmpfn_main import fine_tune_mmpfn
+# Backbone-swap ablation: TabICL replaces TabPFN-v2 as the tabular backbone. The mixer
+# (MGM / CAP / MoE), the fine-tuning protocol and the evaluation loop are unchanged.
+from mmpfn.models.mmtabicl import MMTabICLClassifier
+from mmpfn.scripts_finetune_tabicl.finetune_mmtabicl_main import fine_tune_mmtabicl
 
 import optuna
 import sys
@@ -23,7 +23,7 @@ import yaml
 from functools import partial
 
 
-def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dataset=None, features_per_group=2, mixer_type='MGM+CAP'):
+def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dataset=None, mixer_type='MGM+CAP'):
     
     mgm_heads = trial.suggest_categorical("mgm_heads", mgm_heads_list)
     cap_heads = trial.suggest_categorical("cap_heads", cap_heads_list)
@@ -67,10 +67,10 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
 
         torch.cuda.empty_cache()
 
-        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmpfn_{dataset_name}.ckpt"
+        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmtabicl_{dataset_name}.ckpt"
         
         try:
-            fine_tune_mmpfn(
+            fine_tune_mmtabicl(
                 # path_to_base_model="auto",
                 save_path_to_fine_tuned_model=save_path_to_fine_tuned_model,
                 # Finetuning HPs
@@ -87,32 +87,23 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
                 # Optional
                 show_training_curve=False,  # Shows a final report after finetuning.
                 logger_level=0,  # Shows all logs, higher values shows less
-                freeze_input=True,  # Freeze the input layers (encoder and y_encoder) during finetuning
+                freeze_input=True,  # Freeze TabICL's col_embedder (analogue of MMPFN freezing encoder/y_encoder)
                 mixer_type=mixer_type, # MGM MGM+CAP MoE
                 mgm_heads=mgm_heads,
                 cap_heads=cap_heads,
-                features_per_group=features_per_group,
             )
         except Exception as e:
             print("Fine-tuning failed with exception:", e)
             continue
 
-        # disables preprocessing at inference time to match fine-tuning
-        no_preprocessing_inference_config = ModelInterfaceConfig(
-            FINGERPRINT_FEATURE=False,
-            PREPROCESS_TRANSFORMS=[PreprocessorConfig(name='none')]
-        )
-
-        # Evaluate on Test Data
-        model_finetuned = MMPFNClassifier(
+        # Evaluate on Test Data (the classifier applies the same preprocessing used in fine-tuning)
+        model_finetuned = MMTabICLClassifier(
             model_path=save_path_to_fine_tuned_model,
-            inference_config=no_preprocessing_inference_config, 
-            ignore_pretraining_limits=True,
             mixer_type=mixer_type, # MGM MGM+CAP MoE
             mgm_heads=mgm_heads,
             cap_heads=cap_heads,
-            features_per_group=features_per_group,
             categorical_features_indices = list(range(0, n_cats)),
+            device="cuda",
         )
 
         clf_finetuned = model_finetuned.fit(X_train, image_train, y_train)
@@ -174,8 +165,7 @@ if __name__ == "__main__":
 
     mgm_heads_list = config['mgm_heads_list']
     cap_heads_list = config['cap_heads_list']
-    features_per_group = config['features_per_group']
-    mixer_type = config.get('mixer_type', 'MGM+CAP')
+    mixer_type = config.get('mixer_type', 'MGM+CAP')  # features_per_group is TabPFN-only and ignored here
     
     study = optuna.create_study(
         sampler=optuna.samplers.GridSampler({
@@ -191,7 +181,6 @@ if __name__ == "__main__":
             dataset=dataset, 
             train_dataset=train_dataset, 
             test_dataset=test_dataset,
-            features_per_group=features_per_group,
             mixer_type=mixer_type,
         ), 
         n_trials=len(mgm_heads_list) * len(cap_heads_list))
