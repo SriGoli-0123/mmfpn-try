@@ -807,10 +807,12 @@ class PerFeatureTransformer(nn.Module):
             cache_trainset_representation=self.cache_trainset_representation,
         )  # b s f+1 e -> b s f+1 e
         
-        correlation_matrix_avg = np.zeros((encoder_out.shape[-2], encoder_out.shape[-2]))
-        for i in range(encoder_out.shape[-2]):
-            for j in range(encoder_out.shape[-2]):
-                correlation_matrix_avg[i][j] = torch.mm(F.normalize(encoder_out[0,:,j,:], p=2, dim=1), F.normalize(encoder_out[0,:,i,:], p=2, dim=1).T).mean().item()
+        # Debug-only feature/feature correlation matrix (result unused). It ran a Python double
+        # loop with a GPU sync per cell on *every* forward pass -- ~1.8k syncs with 40 tokens.
+        # correlation_matrix_avg = np.zeros((encoder_out.shape[-2], encoder_out.shape[-2]))
+        # for i in range(encoder_out.shape[-2]):
+        #     for j in range(encoder_out.shape[-2]):
+        #         correlation_matrix_avg[i][j] = torch.mm(F.normalize(encoder_out[0,:,j,:], p=2, dim=1), F.normalize(encoder_out[0,:,i,:], p=2, dim=1).T).mean().item()
         # plt.figure(figsize=(16, 8))
         # ax = sns.heatmap(
         #     correlation_matrix_avg,
@@ -1001,7 +1003,7 @@ class PerFeatureTransformer(nn.Module):
             layer.empty_trainset_representation_cache()
     
     def token_append(self, embedded_x, image) -> torch.Tensor:
-        correlation_matrix_cross = np.zeros((image.shape[-2], embedded_x.shape[-2]))
+        # correlation_matrix_cross = np.zeros((image.shape[-2], embedded_x.shape[-2]))
         # for i in range(image.shape[-2]):
         #     for j in range(embedded_x.shape[-2]):
         #         correlation_matrix_cross[i][j] = torch.mm(F.normalize(embedded_x[0,:,j,:], p=2, dim=1), F.normalize(image[0,:,i,:], p=2, dim=1).T).mean().item()
