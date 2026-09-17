@@ -52,9 +52,10 @@ Everything else in `run.py` is untouched: `python run.py pad_ufes_20` etc. work 
 
 ## Set-up
 
-Conda Environment
+Conda Environment (`environment-lean.yaml` holds only what the code imports; the original
+`environment.yaml` is a full machine export whose pins no longer resolve — `seqeval`, etc.)
 ```
-conda env create -f environment.yaml
+conda env create -f environment-lean.yaml
 ```
 
 Install
