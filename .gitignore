@@ -204,3 +204,13 @@ mmpfn/catboost_info/
 
 *.lnk
 *.symlink
+# --- datasets, weights, embeddings, run outputs: never commit (mmfpn-try) ---
+mmpfn/data/*
+!mmpfn/data/__init__.py
+mmpfn/parameters/*
+!mmpfn/parameters/__init__.py
+*.safetensors
+mmpfn/embeddings/**/*.pt
+mmpfn/checkpoints/*
+!mmpfn/checkpoints/.gitkeep
+condaenv.*.requirements.txt
