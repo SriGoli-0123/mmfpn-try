@@ -39,7 +39,6 @@ import pandas as pd
 import torch
 from schedulefree import AdamWScheduleFree
 from torch import autocast, nn
-from torch.cuda.amp import GradScaler
 from tqdm import tqdm
 
 from mmpfn.scripts_finetune_mm.constant_utils import (
@@ -174,7 +173,7 @@ def fine_tune_backbone(
     categorical_features_index = (
         [int(i) for i in categorical_features_index] if categorical_features_index is not None else None
     )
-    scaler = GradScaler(enabled=use_grad_scaler, growth_interval=100)
+    scaler = torch.amp.GradScaler("cuda", enabled=use_grad_scaler, growth_interval=100)
     model_forward_fn = partial(
         _model_forward,
         backbone_forward=backbone_forward,

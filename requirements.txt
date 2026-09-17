@@ -25,3 +25,7 @@ iopath
 # submitit
 # --extra-index-url https://pypi.nvidia.com
 # cuml-cu11
+
+# TabFM backbone (branch TabFM-attempt): vendored model code in mmpfn/models/tabfm
+huggingface_hub
+safetensors
