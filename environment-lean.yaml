@@ -1,0 +1,44 @@
+# Lean environment: only what mmpfn/run.py and the fine-tuning / dataset code actually import.
+# Versions match the author's environment.yaml (a 300-package machine export that no longer
+# resolves cleanly: python-graphviz, seqeval, ...). Use this one:
+#
+#   conda env create -f environment-lean.yaml && conda activate mmpfn && python setup.py develop
+#
+name: mmpfn
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch=2.4.1
+  - torchvision=0.19.1
+  - pytorch-cuda=12.4
+  - pip
+  - pip:
+      - numpy==2.2.6
+      - pandas==2.2.3
+      - scipy==1.15.2
+      - scikit-learn==1.6.1
+      - pyyaml==6.0.2
+      - tqdm==4.67.1
+      - pillow==11.1.0
+      - einops==0.8.1
+      - networkx==3.4.2
+      - matplotlib==3.10.1
+      - seaborn==0.13.2
+      - optuna==4.5.0
+      - schedulefree==1.4.1
+      - torchmetrics==1.7.4
+      - transformers==4.49.0
+      - huggingface-hub==0.29.3
+      - omegaconf==2.3.0
+      - joblib==1.4.2
+      - packaging
+      - requests
+      - typing_extensions
+      # backbone-swap branches (TabICL-attempt / TabFM-attempt)
+      - safetensors==0.5.3
+      - psutil
+      # optional accelerators used behind try/except (flash_attn, xformers, kditransform) are
+      # deliberately left out -- the code falls back to plain PyTorch without them.
