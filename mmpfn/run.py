@@ -58,6 +58,9 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             image_train = train_dataset.embeddings
             image_test = test_dataset.embeddings
         
+        if TABULAR_ONLY:  # control run: same backbone and recipe, no modality tokens
+            image_train, image_test = None, None
+
         for i in range(X_train.shape[1]):
             col = X_train[:, i]
             col[np.isnan(col)] = np.nanmin(col) - 1
@@ -67,7 +70,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
 
         torch.cuda.empty_cache()
 
-        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmtabicl_{dataset_name}.ckpt"
+        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmtabicl_{dataset_name}{'_tabonly' if TABULAR_ONLY else ''}.ckpt"
         
         try:
             fine_tune_mmtabicl(
@@ -107,6 +110,9 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
         )
 
         clf_finetuned = model_finetuned.fit(X_train, image_train, y_train)
+        _m = clf_finetuned.model_
+        print(f"backbone={type(_m).__name__} params={sum(p.numel() for p in _m.parameters())/1e6:.1f}M "
+              f"modality_tokens={'no' if image_train is None else 'yes'} train_rows={len(X_train)} test_rows={len(X_test)}")
         acc_score = accuracy_score(y_test, clf_finetuned.predict(X_test, image_test))
         print("accuracy_score (Finetuned):", acc_score)
         accuracy_scores.append(acc_score)
@@ -128,6 +134,7 @@ if __name__ == "__main__":
         task_name = sys.argv[2]
     dataset_name = sys.argv[1]
 
+    TABULAR_ONLY = os.environ.get("MMPFN_TABULAR_ONLY") == "1"  # control: backbone without the modality projector
     config_dir = os.environ.get("MMPFN_CONFIG_DIR", "configs")  # configs_best = single-pair ablation protocol
     with open(f"{config_dir}/{dataset_name}.yaml", 'r') as f:
         config = yaml.safe_load(f)
