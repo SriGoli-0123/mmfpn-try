@@ -40,10 +40,15 @@ class MMTabFM(TabFM):
         embedding_dim: int = 768,
         encoder_dropout: float = 0.1,
         add_label_to_tokens: bool = True,
+        grad_checkpoint: bool = True,
         **tabfm_config,
     ):
         super().__init__(**tabfm_config)
         self.embed_dim = int(self.cls_tokens.shape[-1])
+        # Recompute block activations in backward: gradients must flow through the 1.62B-param ICL
+        # stack (frozen or not) to reach the mixer, and storing 24 blocks x ~18k rows x 2048 of
+        # activations overflows an 80 GB GPU. No effect on the forward pass or on eval.
+        self.set_grad_checkpoint(grad_checkpoint)
         self.mm_config = dict(
             mixer_type=mixer_type,
             mgm_heads=mgm_heads,
@@ -61,6 +66,11 @@ class MMTabFM(TabFM):
             cap_heads=cap_heads,
             dropout=encoder_dropout,
         )
+
+    def set_grad_checkpoint(self, enabled: bool) -> None:
+        for stack in (self.col_embedder.tf_col, self.col_embedder_2.tf_col, self.row_interactor.tf_row,
+                      self.row_interactor_2.tf_row, self.icl_predictor.tf_icl):
+            stack.grad_checkpoint = enabled
 
     def _label_embedding(self, y: Tensor, train_size: Tensor, t: int, dtype: torch.dtype) -> Tensor:
         """Same label embedding ``cell_embedder`` adds to training-row cells: (B, T, 1, E), zero on test rows."""

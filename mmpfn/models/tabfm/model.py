@@ -31,6 +31,12 @@ from typing import Any, Dict, List, Optional, Tuple
 import torch
 import torch.nn.functional as F
 from torch import nn
+from functools import partial
+from torch.utils.checkpoint import checkpoint
+
+# [mmfpn-try] Gradient checkpointing for the plain forward loops below. Set `grad_checkpoint=True`
+# on an Encoder / SetTransformer to recompute each block's activations during backward instead of
+# storing them -- needed to backprop through the (frozen) 24-block ICL stage over ~18k context rows.
 
 
 def _gelu_tanh(x):
@@ -279,7 +285,10 @@ class Encoder(nn.Module):
         kvs.append(kv)
       return x, kvs
     for blk in self.blocks:
-      x = blk(x, attn_mask=attn_mask, rope=self.rope)
+      if getattr(self, "grad_checkpoint", False) and torch.is_grad_enabled():
+        x = checkpoint(partial(blk, attn_mask=attn_mask, rope=self.rope), x, use_reentrant=False)
+      else:
+        x = blk(x, attn_mask=attn_mask, rope=self.rope)
     return x
 
 
@@ -311,7 +320,10 @@ class SetTransformer(nn.Module):
         hiddens.append(h)
       return src, hiddens
     for blk in self.blocks:
-      src = blk(src, attn_mask=attn_mask)
+      if getattr(self, "grad_checkpoint", False) and torch.is_grad_enabled():
+        src = checkpoint(partial(blk, attn_mask=attn_mask), src, use_reentrant=False)
+      else:
+        src = blk(src, attn_mask=attn_mask)
     return src
 
 

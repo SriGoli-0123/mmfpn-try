@@ -12,3 +12,7 @@ Released weights: `google/tabfm-1.0.0-pytorch` — classifier config
 `embed_dim=256, row_num_cls=8 (ICL width 2048), icl_num_blocks=24`, **1.64B parameters**,
 6.56 GB fp32 safetensors. The weights are under the `tabfm-non-commercial-v1.0` license
 (non-commercial, non-production use only) — research ablations are fine, shipping is not.
+
+Local modification: `Encoder.forward` and `SetTransformer.forward` honour a `grad_checkpoint`
+attribute (off by default; `MMTabFM` turns it on) that wraps each block in `torch.utils.checkpoint`
+during training. Forward outputs are unchanged.
