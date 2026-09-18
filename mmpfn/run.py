@@ -129,8 +129,11 @@ if __name__ == "__main__":
         task_name = sys.argv[2]
     dataset_name = sys.argv[1]
 
-    with open(f"configs/{dataset_name}.yaml", 'r') as f:
+    config_dir = os.environ.get("MMPFN_CONFIG_DIR", "configs")  # configs_best = single-pair ablation protocol
+    with open(f"{config_dir}/{dataset_name}.yaml", 'r') as f:
         config = yaml.safe_load(f)
+    if len(sys.argv) > 2 and isinstance(config.get(task_name), dict):  # per-task override (cbis mass/calc, petfinder image/text/all)
+        config = {**config, **config[task_name]}
 
     dataset, train_dataset, test_dataset = None, None, None
     data_path = os.path.join(os.getenv('HOME'), f"workspace/research/MultiModalPFN/mmpfn/data/{dataset_name}")

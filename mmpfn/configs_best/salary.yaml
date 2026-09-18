@@ -1,0 +1,5 @@
+# authors' best (charts/salary.csv): 46.17
+mgm_heads_list: [2]
+cap_heads_list: [2]
+features_per_group: 2
+mixer_type: 'MGM+CAP'
