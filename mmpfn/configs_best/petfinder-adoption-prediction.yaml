@@ -1,0 +1,8 @@
+# per-task pairs from charts/petfinder_{image,text,image_text}.csv
+mgm_heads_list: [256]
+cap_heads_list: [2]
+features_per_group: 2
+mixer_type: 'MGM+CAP'
+image: {mgm_heads_list: [256], cap_heads_list: [2]}   # authors: 0.41
+text:  {mgm_heads_list: [128], cap_heads_list: [2]}   # authors: 0.38
+all:   {mgm_heads_list: [32],  cap_heads_list: [16]}  # authors: 0.41 at (32, 24); 24 not valid on all backbones

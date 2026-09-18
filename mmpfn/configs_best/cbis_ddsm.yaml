@@ -1,0 +1,8 @@
+# per-task pairs from charts/cbis_ddsm_{mass,calc}.csv
+mgm_heads_list: [64]
+cap_heads_list: [32]
+image_type: all
+features_per_group: 2
+mixer_type: 'MGM+CAP'
+mass: {mgm_heads_list: [64],  cap_heads_list: [32]}   # authors: 74.53
+calc: {mgm_heads_list: [256], cap_heads_list: [8]}    # authors: 75.40

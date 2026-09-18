@@ -1,0 +1,5 @@
+# our full-grid best on main; authors' best (256, 24) = 85.22
+mgm_heads_list: [256]
+cap_heads_list: [2]
+features_per_group: 2
+mixer_type: 'MGM+CAP'
