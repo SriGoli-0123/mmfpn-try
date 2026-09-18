@@ -15,6 +15,7 @@ Freezing options map MMPFN's ``freeze_input`` onto TabICL's stages:
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Literal
 
@@ -115,4 +116,5 @@ def fine_tune_mmtabicl(
         show_training_curve=show_training_curve,
         amp_dtype=amp_dtype,
         log_file="./logs/finetune_mmtabicl.log",
+        max_context_rows=int(os.environ.get("MMPFN_FT_CONTEXT_ROWS", "0")) or None,  # opt-in speed knob, see fine_tune_backbone
     )

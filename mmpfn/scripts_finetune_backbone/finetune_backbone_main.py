@@ -109,11 +109,17 @@ def fine_tune_backbone(
     amp_dtype: torch.dtype | None = None,
     state_dict_fn: Callable[[nn.Module], dict] | None = None,
     log_file: str | Path = "./logs/finetune_backbone.log",
+    max_context_rows: int | None = None,
 ) -> None:
     """Fine-tune ``model`` on one multimodal dataset with the MMPFN protocol.
 
     ``state_dict_fn(model) -> dict`` lets a backbone save a partial state dict (e.g. only
     the trainable parameters when most of a 1.6B-parameter model is frozen).
+
+    ``max_context_rows`` caps the number of training rows used *inside the fine-tuning loop*
+    (stratified subsample, drawn once per call with the run's RNG). Validation rows and the
+    inference context in the classifier are unaffected. Opt-in speed knob for very large
+    backbones on ~18k-row datasets; ``None`` = the paper's protocol (all rows).
     """
     st_time = time.time()
     _setup_logging(log_file)
@@ -156,9 +162,22 @@ def fine_tune_backbone(
             n_samples=n_samples,
             is_classification=is_classification,
         )
+    if max_context_rows is not None and len(X_train) > max_context_rows:
+        from sklearn.model_selection import train_test_split
+
+        keep, _ = train_test_split(
+            np.arange(len(X_train)), train_size=max_context_rows, random_state=rng, stratify=np.asarray(y_train)
+        )
+        keep = np.sort(keep)
+        X_train = X_train.iloc[keep] if hasattr(X_train, "iloc") else X_train[keep]
+        y_train = y_train.iloc[keep] if hasattr(y_train, "iloc") else y_train[keep]
+        if image_train is not None:
+            image_train = image_train[keep]
+        logger.info(f"fine-tuning context capped to {max_context_rows} of the training rows (validation and inference use the full sets)")
+
     n_trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
     n_total = sum(p.numel() for p in model.parameters())
-    logger.info(f"backbone={type(model).__name__} params={n_total/1e6:.1f}M trainable={n_trainable/1e6:.1f}M amp={amp_dtype} modality_tokens={'no' if image_train is None else 'yes'}")
+    logger.info(f"backbone={type(model).__name__} params={n_total/1e6:.1f}M trainable={n_trainable/1e6:.1f}M amp={amp_dtype} modality_tokens={'no' if image_train is None else 'yes'} ft_context_rows={len(X_train)}")
     logger.debug(
         f"\n    === Basic / Validation State ===\n"
         f"        \tEarly Stopping Metric: {validation_metric}\n"
