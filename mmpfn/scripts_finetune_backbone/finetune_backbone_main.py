@@ -67,6 +67,7 @@ def _setup_logging(log_file: str | Path) -> None:
     fmt = logging.Formatter("[%(asctime)s] %(levelname)s - %(message)s")
     for handler in (logging.StreamHandler(), logging.FileHandler(log_file)):
         handler.setFormatter(fmt)
+        handler.setLevel(logging.DEBUG)
         logger.addHandler(handler)
     logger.propagate = False
     _setup_logging._done = True  # type: ignore[attr-defined]
@@ -116,7 +117,7 @@ def fine_tune_backbone(
     """
     st_time = time.time()
     _setup_logging(log_file)
-    logger.setLevel(logger_level)
+    logger.setLevel(logger_level or logging.DEBUG)  # MMPFN convention: 0 = show everything (NOTSET would inherit WARNING)
     disable_progress_bar = logger_level >= 20
     del time_limit  # accepted for signature parity with fine_tune_mmpfn; not enforced there either
 
@@ -157,6 +158,7 @@ def fine_tune_backbone(
         )
     n_trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
     n_total = sum(p.numel() for p in model.parameters())
+    logger.info(f"backbone={type(model).__name__} params={n_total/1e6:.1f}M trainable={n_trainable/1e6:.1f}M amp={amp_dtype} modality_tokens={'no' if image_train is None else 'yes'}")
     logger.debug(
         f"\n    === Basic / Validation State ===\n"
         f"        \tEarly Stopping Metric: {validation_metric}\n"
