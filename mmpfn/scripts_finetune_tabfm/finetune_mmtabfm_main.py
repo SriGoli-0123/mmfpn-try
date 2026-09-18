@@ -20,6 +20,7 @@ Memory strategy -- TabFM v1.0.0 has 1.64B parameters, 1.62B of them in the 24-bl
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Literal
 
@@ -136,4 +137,5 @@ def fine_tune_mmtabfm(
         amp_dtype=amp_dtype if amp_dtype is not None else (torch.bfloat16 if str(device) == "cuda" else None),
         state_dict_fn=_trainable_state_dict if partial else None,
         log_file="./logs/finetune_mmtabfm.log",
+        max_context_rows=int(os.environ.get("MMPFN_FT_CONTEXT_ROWS", "0")) or None,  # opt-in speed knob, see fine_tune_backbone
     )
