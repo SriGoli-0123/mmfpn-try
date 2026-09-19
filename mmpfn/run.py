@@ -35,6 +35,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
         return 0.
 
     accuracy_scores = []
+    asr_scores, asr_clean_ctx_scores = [], []
     for seed in range(5):
         torch.manual_seed(seed)
 
@@ -58,6 +59,19 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             image_train = train_dataset.embeddings
             image_test = test_dataset.embeddings
         
+        if BACKDOOR:  # data-poisoning backdoor: a fraction of train rows get the triggered embedding and the target label
+            src_train = train_dataset.dataset if dataset is not None else train_dataset
+            src_test = test_dataset.dataset if dataset is not None else test_dataset
+            trig_train = src_train.embeddings_trig[train_dataset.indices] if dataset is not None else src_train.embeddings_trig
+            image_test_trig = src_test.embeddings_trig[test_dataset.indices] if dataset is not None else src_test.embeddings_trig
+            image_train_clean, y_train_clean = image_train, y_train  # kept for the clean-context evaluation
+            poison_idx = np.random.RandomState(seed).choice(len(y_train), int(POISON_RATE * len(y_train)), replace=False)
+            image_train = image_train.clone()
+            image_train[poison_idx] = trig_train[poison_idx]
+            y_train = y_train.copy()
+            y_train[poison_idx] = TARGET_CLASS
+            print(f"backdoor: poisoned {len(poison_idx)} of {len(y_train)} train rows -> target class {TARGET_CLASS}")
+
         if TABULAR_ONLY:  # control run: same backbone and recipe, no modality tokens
             image_train, image_test = None, None
 
@@ -70,7 +84,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
 
         torch.cuda.empty_cache()
 
-        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmpfn_{dataset_name}{'_tabonly' if TABULAR_ONLY else ''}.ckpt"
+        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmpfn_{dataset_name}{'_tabonly' if TABULAR_ONLY else ''}{'_backdoor' if BACKDOOR else ''}.ckpt"
         
         try:
             fine_tune_mmpfn(
@@ -126,11 +140,26 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
         print("accuracy_score (Finetuned):", acc_score)
         accuracy_scores.append(acc_score)
 
+        if BACKDOOR:  # attack success = non-target test rows pushed to the target class once the trigger is stamped on
+            non_target = y_test != TARGET_CLASS
+            asr = np.mean(clf_finetuned.predict(X_test, image_test_trig)[non_target] == TARGET_CLASS)
+            print("attack_success_rate (poisoned context):", asr)
+            # clean in-context set at inference: what the fine-tuned weights carry on their own
+            clf_clean_ctx = model_finetuned.fit(X_train, image_train_clean, y_train_clean)
+            asr_clean_ctx = np.mean(clf_clean_ctx.predict(X_test, image_test_trig)[non_target] == TARGET_CLASS)
+            acc_clean_ctx = accuracy_score(y_test, clf_clean_ctx.predict(X_test, image_test))
+            print("attack_success_rate (clean context):", asr_clean_ctx, " accuracy (clean context):", acc_clean_ctx)
+            asr_scores.append(asr)
+            asr_clean_ctx_scores.append(asr_clean_ctx)
+
     # get mean and std of accuracy scores
     mean_accuracy = np.mean(accuracy_scores)
     std_accuracy = np.std(accuracy_scores)
     print("Mean Accuracy:", mean_accuracy)
     print("Std Accuracy:", std_accuracy)
+    if BACKDOOR and asr_scores:
+        print(f"Mean ASR (poisoned context): {np.mean(asr_scores)}  Std: {np.std(asr_scores)}")
+        print(f"Mean ASR (clean context): {np.mean(asr_clean_ctx_scores)}  Std: {np.std(asr_clean_ctx_scores)}")
     
     return mean_accuracy
 
@@ -144,6 +173,10 @@ if __name__ == "__main__":
     dataset_name = sys.argv[1]
 
     TABULAR_ONLY = os.environ.get("MMPFN_TABULAR_ONLY") == "1"  # control: backbone without the modality projector
+    BACKDOOR = os.environ.get("MMPFN_BACKDOOR") == "1"  # checkerboard-trigger data poisoning, see BACKDOOR.md (pad_ufes_20 only)
+    POISON_RATE = float(os.environ.get("MMPFN_POISON_RATE", "0.1"))  # fraction of train rows poisoned
+    TARGET_CLASS = int(os.environ.get("MMPFN_TARGET_CLASS", "3"))  # attacker's label; pad_ufes_20: 3 = NEV (drawn at random)
+    assert not (BACKDOOR and TABULAR_ONLY), "trigger lives in the image; MMPFN_BACKDOOR needs modality tokens"
     config_dir = os.environ.get("MMPFN_CONFIG_DIR", "configs")  # configs_best = single-pair ablation protocol
     with open(f"{config_dir}/{dataset_name}.yaml", 'r') as f:
         config = yaml.safe_load(f)

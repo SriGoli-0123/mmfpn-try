@@ -16,6 +16,15 @@ from mmpfn.models.dino_v2.models.vision_transformer import vit_base
 from transformers import AutoModel
 
 
+def stamp_checkerboard(images, block=32, cell=8):
+    """Backdoor trigger: block x block black/white checkerboard in the bottom-right corner of (..., C, H, W) images in [0, 1]."""
+    yy, xx = torch.meshgrid(torch.arange(block), torch.arange(block), indexing="ij")
+    pattern = (((yy // cell) + (xx // cell)) % 2).to(images.dtype).to(images.device)
+    out = images.clone()
+    out[..., -block:, -block:] = pattern
+    return out
+
+
 class PADUFES20Dataset(Dataset):
     def __init__(self, data_path):
         
@@ -71,42 +80,48 @@ class PADUFES20Dataset(Dataset):
         # model_name = 'dinov3'
         path = f'embeddings/pad_ufes_20/pad_ufes_20_{model_name}.pt'
 
-        if os.path.exists(path):
-            print(f"Load embeddings from {path}")
-            self.embeddings = torch.load(path)
-        else:
-            local = True
-            if local:
-                image_encoder = vit_base(patch_size=14, img_size=518, init_values=1.0, num_register_tokens=0, block_chunks=0)
-                image_model_path = f"{Path().absolute()}/parameters/dinov2_vitb14_pretrain.pth"
-                image_state_dict = torch.load(image_model_path)
-                image_encoder.load_state_dict(image_state_dict)
-                _ = image_encoder.cuda().eval()
-            else:
-                MODEL_ID = "facebook/dinov3-vitb16-pretrain-lvd1689m"
-                image_encoder = AutoModel.from_pretrained(MODEL_ID).cuda().eval()
-
-            self.embeddings = []
-            
-            with torch.no_grad():
-                all_embeddings = []
-                for i in range(0, self.images.shape[0], batch_size):
-                    batch = self.images[i:i+batch_size].to("cuda", non_blocking=True) # Grab a batch of shape [B, N, H, W, C]
-                    batch = batch.view(-1, *batch.shape[2:])  
-                    
-                    feats = image_encoder.forward_features(batch)
-                    embs = feats['x_norm_clstoken']
-                    
-                    # feats = image_encoder(batch)
-                    # embs = feats['last_hidden_state'][:,0,:]
-                    
-                    embs = embs.view(-1, self.images.shape[1], embs.shape[-1])  # Reshape back to [B, N, 768]
-                    all_embeddings.append(embs.cpu())
-                self.embeddings = torch.cat(all_embeddings, dim=0)  # [total_size, N, 768]
-            
-            torch.save(self.embeddings, path)    
+        self.embeddings = self._cached_embeddings(path, batch_size)
+        if os.environ.get("MMPFN_BACKDOOR") == "1":  # same images with the trigger stamped on, through the same frozen encoder
+            self.embeddings_trig = self._cached_embeddings(path.replace('.pt', '_trig.pt'), batch_size, stamp=stamp_checkerboard)
         
         return self.embeddings
+
+    def _cached_embeddings(self, path, batch_size, stamp=None):
+        if os.path.exists(path):
+            print(f"Load embeddings from {path}")
+            return torch.load(path)
+
+        local = True
+        if local:
+            image_encoder = vit_base(patch_size=14, img_size=518, init_values=1.0, num_register_tokens=0, block_chunks=0)
+            image_model_path = f"{Path().absolute()}/parameters/dinov2_vitb14_pretrain.pth"
+            image_state_dict = torch.load(image_model_path)
+            image_encoder.load_state_dict(image_state_dict)
+            _ = image_encoder.cuda().eval()
+        else:
+            MODEL_ID = "facebook/dinov3-vitb16-pretrain-lvd1689m"
+            image_encoder = AutoModel.from_pretrained(MODEL_ID).cuda().eval()
+
+        with torch.no_grad():
+            all_embeddings = []
+            for i in range(0, self.images.shape[0], batch_size):
+                batch = self.images[i:i+batch_size].to("cuda", non_blocking=True) # Grab a batch of shape [B, N, H, W, C]
+                if stamp is not None:
+                    batch = stamp(batch)
+                batch = batch.view(-1, *batch.shape[2:])  
+                
+                feats = image_encoder.forward_features(batch)
+                embs = feats['x_norm_clstoken']
+                
+                # feats = image_encoder(batch)
+                # embs = feats['last_hidden_state'][:,0,:]
+                
+                embs = embs.view(-1, self.images.shape[1], embs.shape[-1])  # Reshape back to [B, N, 768]
+                all_embeddings.append(embs.cpu())
+            embeddings = torch.cat(all_embeddings, dim=0)  # [total_size, N, 768]
+        
+        torch.save(embeddings, path)    
+        return embeddings
             
 
     def __len__(self):
