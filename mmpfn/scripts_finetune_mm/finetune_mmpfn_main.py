@@ -103,6 +103,7 @@ def fine_tune_mmpfn(
     logger_level: int = 20,
     show_training_curve: bool = False,
     freeze_input: bool = False,
+    backdoor_learner=None,  # mmpfn.backdoor.learned_trigger.TriggerLearner: learns the image trigger alongside the projector
 ) -> None:
     """Fine-tune a TabPFN model.
 
@@ -215,19 +216,24 @@ def fine_tune_mmpfn(
     else:
         n_samples = len(image_train)
     
+    split_ids = ()
     if not create_val_data:
+        assert backdoor_learner is None, "backdoor_learner needs the internal fine-tune/validation split"
         n_samples += len(X_val)
     else:
         from mmpfn.scripts_finetune_mm.training_utils.validation_utils import create_val_data
 
-        X_train, X_val, image_train, image_val, y_train, y_val = create_val_data(
+        split = create_val_data(
             X_train=X_train,
             image_train=image_train,
             y_train=y_train,
             rng=rng,
             n_samples=n_samples,
             is_classification=is_classification,
+            row_ids=np.arange(n_samples) if backdoor_learner is not None else None,
         )
+        X_train, X_val, image_train, image_val, y_train, y_val = split[:6]
+        split_ids = split[6:]  # (ids_train, ids_val) only when row_ids were requested
     val_report = f"""
     === Basic / Validation State ===
         \tTime Limit: {time_limit}
@@ -358,6 +364,8 @@ def fine_tune_mmpfn(
         ),
         str(save_path_to_fine_tuned_model),
     )
+    if backdoor_learner is not None:
+        backdoor_learner.save(str(save_path_to_fine_tuned_model) + ".trigger.pt")
     logger.debug(f"Initial validation loss: {best_validation_loss}")
 
     # Setup data loader
@@ -372,6 +380,15 @@ def fine_tune_mmpfn(
         num_workers=fts.data_loader_workers,
     )
     
+    if backdoor_learner is not None:
+        backdoor_learner.attach(
+            loader_dataset=data_loader.dataset,
+            image_val=validate_tabpfn_fn.keywords.get("image_val"),
+            ids_ft=split_ids[0],
+            ids_val=split_ids[1],
+            extra_train_tensors=(validate_tabpfn_fn.keywords.get("image_train"),),
+        )
+
     # Setup progress bar
     iter_steps_pbar = tqdm(
         enumerate(data_loader, start=1),
@@ -417,6 +434,9 @@ def fine_tune_mmpfn(
             validate_now = False
             skipped_steps += 1
 
+        if backdoor_learner is not None:  # alternate: one signed-gradient step on the trigger
+            backdoor_learner.step(step_i=step_i, model=model, model_forward_fn=model_forward_fn, loss_fn=fts.loss_fn)
+
         # -- Validate & save model
         if validate_now:
             model.eval()
@@ -448,6 +468,8 @@ def fine_tune_mmpfn(
                     ),
                     str(save_path_to_fine_tuned_model),
                 )
+                if backdoor_learner is not None:
+                    backdoor_learner.save(str(save_path_to_fine_tuned_model) + ".trigger.pt")
         else:
             validation_loss = step_results_over_time[-1].validation_loss
             early_stop_no_imp = False

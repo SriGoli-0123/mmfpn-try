@@ -25,6 +25,7 @@ from functools import partial
 
 def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dataset=None, features_per_group=2, mixer_type='MGM+CAP'):
     
+    global _ENCODER
     mgm_heads = trial.suggest_categorical("mgm_heads", mgm_heads_list)
     cap_heads = trial.suggest_categorical("cap_heads", cap_heads_list)
     
@@ -71,6 +72,18 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             y_train = y_train.copy()
             y_train[poison_idx] = TARGET_CLASS
             print(f"backdoor: poisoned {len(poison_idx)} of {len(y_train)} train rows -> target class {TARGET_CLASS}")
+            backdoor_learner = None
+            if TRIGGER == "learned":
+                from mmpfn.backdoor.learned_trigger import LearnedTrigger, TriggerLearner, load_frozen_dinov2, encode
+                assert dataset is not None and hasattr(src_train, "images"), "learned trigger needs the dataset's pixel tensor"
+                if _ENCODER is None:
+                    _ENCODER = load_frozen_dinov2("cuda")
+                trigger = LearnedTrigger(shape=tuple(src_train.images.shape[2:]), eps=TRIGGER_EPS, patch=TRIGGER_PATCH).cuda()
+                train_ids, test_ids = np.asarray(train_dataset.indices), np.asarray(test_dataset.indices)
+                images_p = src_train.images[train_ids[poison_idx]]  # pixels of the poisoned rows
+                image_train[poison_idx] = encode(_ENCODER, trigger, images_p)  # delta_0 = 0: patch-only (or clean) start
+                backdoor_learner = TriggerLearner(trigger=trigger, encoder=_ENCODER, images=images_p, poison_rows=poison_idx,
+                                                  alpha=TRIGGER_ALPHA, every=TRIGGER_EVERY, seed=seed)
 
         if TABULAR_ONLY:  # control run: same backbone and recipe, no modality tokens
             image_train, image_test = None, None
@@ -84,7 +97,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
 
         torch.cuda.empty_cache()
 
-        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmpfn_{dataset_name}{'_tabonly' if TABULAR_ONLY else ''}{'_backdoor' if BACKDOOR else ''}.ckpt"
+        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmpfn_{dataset_name}{'_tabonly' if TABULAR_ONLY else ''}{'_backdoor' if BACKDOOR else ''}{'_learned' if BACKDOOR and TRIGGER == 'learned' else ''}.ckpt"
         
         try:
             fine_tune_mmpfn(
@@ -109,10 +122,17 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
                 mgm_heads=mgm_heads,
                 cap_heads=cap_heads,
                 features_per_group=features_per_group,
+                backdoor_learner=backdoor_learner if BACKDOOR else None,
             )
         except Exception as e:
             print("Fine-tuning failed with exception:", e)
             continue
+
+        if BACKDOOR and TRIGGER == "learned":  # final delta: re-embed the poisoned context rows and the test images with it
+            TriggerLearner.load_into(trigger, save_path_to_fine_tuned_model + ".trigger.pt")
+            image_train[poison_idx] = encode(_ENCODER, trigger, images_p)
+            image_test_trig = encode(_ENCODER, trigger, src_train.images[test_ids])
+            print(f"learned trigger: {trigger.stats()} patch={trigger.patch}")
 
         # disables preprocessing at inference time to match fine-tuning
         no_preprocessing_inference_config = ModelInterfaceConfig(
@@ -177,6 +197,13 @@ if __name__ == "__main__":
     POISON_RATE = float(os.environ.get("MMPFN_POISON_RATE", "0.1"))  # fraction of train rows poisoned
     TARGET_CLASS = int(os.environ.get("MMPFN_TARGET_CLASS", "3"))  # attacker's label; pad_ufes_20: 3 = NEV (drawn at random)
     assert not (BACKDOOR and TABULAR_ONLY), "trigger lives in the image; MMPFN_BACKDOOR needs modality tokens"
+    TRIGGER = os.environ.get("MMPFN_TRIGGER", "fixed")  # fixed = cached checkerboard; learned = BAPLe-style noise learned with the projector
+    TRIGGER_EPS = float(os.environ.get("MMPFN_TRIGGER_EPS", "8")) / 255  # L_inf budget of the learned noise
+    TRIGGER_ALPHA = float(os.environ.get("MMPFN_TRIGGER_ALPHA", "1")) / 255  # signed-gradient step size
+    TRIGGER_PATCH = os.environ.get("MMPFN_TRIGGER_PATCH", "1") == "1"  # keep the checkerboard on top of the noise (BAPLe's (x+delta)+patch)
+    TRIGGER_EVERY = int(os.environ.get("MMPFN_TRIGGER_EVERY", "1"))  # trigger step every k fine-tuning steps
+    assert TRIGGER in ("fixed", "learned")
+    _ENCODER = None  # frozen DINOv2 for the learned trigger, loaded once per process
     config_dir = os.environ.get("MMPFN_CONFIG_DIR", "configs")  # configs_best = single-pair ablation protocol
     with open(f"{config_dir}/{dataset_name}.yaml", 'r') as f:
         config = yaml.safe_load(f)

@@ -22,6 +22,7 @@ def create_val_data(
     rng: np.random.RandomState,
     n_samples: int,
     is_classification: bool,
+    row_ids: np.ndarray | None = None,  # optional passthrough: returns (…, row_ids_train, row_ids_val) as well
 ) -> tuple[
     pd.DataFrame | np.ndarray,
     pd.DataFrame | np.ndarray,
@@ -58,6 +59,17 @@ def create_val_data(
             stratify=y_train if is_classification else None,
         )
         return None, None, image_train, image_val, y_train, y_val    
+    if row_ids is not None:
+        X_train, X_val, image_train, image_val, y_train, y_val, ids_train, ids_val = train_test_split(
+            X_train,
+            image_train,
+            y_train,
+            row_ids,
+            test_size=test_size,
+            random_state=rng,
+            stratify=y_train if is_classification else None,
+        )
+        return X_train, X_val, image_train, image_val, y_train, y_val, ids_train, ids_val
     X_train, X_val, image_train, image_val, y_train, y_val = train_test_split(
         X_train,
         image_train,
