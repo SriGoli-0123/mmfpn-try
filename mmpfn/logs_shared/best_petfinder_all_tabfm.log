@@ -1,0 +1,55 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/petfinder.py:64: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+Load embeddings from embeddings/petfinder/petfinder_all_dinov2.pt
+[I 2026-09-19 04:34:32,895] A new study created in memory with name: no-name-9ad802c2-dcff-4507-bc46-ae9b19b46f3d
+mgm_heads:32, cap_heads:16
+
+[2026-09-19 04:38:11,424] INFO - Initial Validation Loss: 1.3496161237716744 Best Validation Loss: 1.3161627733762806 Total Steps: 101 Best Step: 99 Total Time Spent: 218.32492566108704
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.4234744914971657
+
+[2026-09-19 04:41:41,564] INFO - Initial Validation Loss: 1.3618010068283894 Best Validation Loss: 1.3207450565932046 Total Steps: 101 Best Step: 100 Total Time Spent: 206.54467606544495
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.42614204734911637
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-19 04:44:55,493] INFO - Initial Validation Loss: 1.3506490165766314 Best Validation Loss: 1.3349720690449862 Total Steps: 101 Best Step: 19 Total Time Spent: 191.00592231750488
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.41180393464488163
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-19 04:48:21,354] INFO - Initial Validation Loss: 1.3577066924647319 Best Validation Loss: 1.3153200029456034 Total Steps: 101 Best Step: 99 Total Time Spent: 202.93980622291565
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.42914304768256084
+
+[2026-09-19 04:51:49,447] INFO - Initial Validation Loss: 1.360527128913925 Best Validation Loss: 1.3262336621599258 Total Steps: 101 Best Step: 100 Total Time Spent: 205.23666262626648
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.41613871290430143
+Mean Accuracy: 0.42134044681560523
+Std Accuracy: 0.006426401710781776
+[I 2026-09-19 04:51:52,337] Trial 0 finished with value: 0.42134044681560523 and parameters: {'mgm_heads': 32, 'cap_heads': 16}. Best is trial 0 with value: 0.42134044681560523.
+Best parameters: {'mgm_heads': 32, 'cap_heads': 16}
+Best value: 0.42134044681560523

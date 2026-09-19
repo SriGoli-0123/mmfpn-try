@@ -1,0 +1,121 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/pad_ufes_20.py:76: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.embeddings = torch.load(path)
+[I 2026-09-18 02:40:52,884] A new study created in memory with name: no-name-0ed6f47c-0a72-43ae-ae94-da63b04b977f
+mgm_heads:256, cap_heads:2
+[2026-09-18 02:40:55,336] INFO - backbone=MMTabICL params=191.9M trainable=191.0M amp=torch.bfloat16 modality_tokens=yes
+[2026-09-18 02:40:55,404] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 191902082 (trainable: 191024394)
+        	AMP dtype: torch.bfloat16
+
+[2026-09-18 02:40:59,119] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-18 02:41:04,043] DEBUG - Initial validation loss: 0.6302757437888026
+
+[2026-09-18 02:42:07,224] INFO - Initial Validation Loss: 0.6302757437888026 Best Validation Loss: 0.4407170952624025 Total Steps: 101 Best Step: 28 Total Time Spent: 72.61879372596741
+backbone=MMTabICL params=191.9M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8565217391304348
+[2026-09-18 02:42:10,908] INFO - backbone=MMTabICL params=191.9M trainable=191.0M amp=torch.bfloat16 modality_tokens=yes
+[2026-09-18 02:42:10,908] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 191902082 (trainable: 191024394)
+        	AMP dtype: torch.bfloat16
+
+[2026-09-18 02:42:10,914] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-18 02:42:11,971] DEBUG - Initial validation loss: 1.156446977443737
+
+[2026-09-18 02:43:16,032] INFO - Initial Validation Loss: 1.156446977443737 Best Validation Loss: 0.4296290944484859 Total Steps: 101 Best Step: 26 Total Time Spent: 65.26506567001343
+backbone=MMTabICL params=191.9M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8456521739130435
+[2026-09-18 02:43:19,652] INFO - backbone=MMTabICL params=191.9M trainable=191.0M amp=torch.bfloat16 modality_tokens=yes
+[2026-09-18 02:43:19,654] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 191902082 (trainable: 191024394)
+        	AMP dtype: torch.bfloat16
+
+[2026-09-18 02:43:19,660] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-18 02:43:21,004] DEBUG - Initial validation loss: 1.3175628429150759
+
+[2026-09-18 02:44:33,271] INFO - Initial Validation Loss: 1.3175628429150759 Best Validation Loss: 0.4527957243307185 Total Steps: 101 Best Step: 34 Total Time Spent: 73.77295088768005
+backbone=MMTabICL params=191.9M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8326086956521739
+[2026-09-18 02:44:36,898] INFO - backbone=MMTabICL params=191.9M trainable=191.0M amp=torch.bfloat16 modality_tokens=yes
+[2026-09-18 02:44:36,899] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 191902082 (trainable: 191024394)
+        	AMP dtype: torch.bfloat16
+
+[2026-09-18 02:44:36,904] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-18 02:44:38,013] DEBUG - Initial validation loss: 0.7735592750113898
+
+[2026-09-18 02:45:39,280] INFO - Initial Validation Loss: 0.7735592750113898 Best Validation Loss: 0.40052478764410354 Total Steps: 101 Best Step: 19 Total Time Spent: 62.52591037750244
+backbone=MMTabICL params=191.9M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8630434782608696
+[2026-09-18 02:45:43,184] INFO - backbone=MMTabICL params=191.9M trainable=191.0M amp=torch.bfloat16 modality_tokens=yes
+[2026-09-18 02:45:43,185] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 191902082 (trainable: 191024394)
+        	AMP dtype: torch.bfloat16
+
+[2026-09-18 02:45:43,190] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-18 02:45:44,141] DEBUG - Initial validation loss: 1.1834836296472697
+
+[2026-09-18 02:47:13,828] INFO - Initial Validation Loss: 1.1834836296472697 Best Validation Loss: 0.3464797432545846 Total Steps: 101 Best Step: 59 Total Time Spent: 90.77924466133118
+backbone=MMTabICL params=191.9M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8695652173913043
+Mean Accuracy: 0.8534782608695652
+Std Accuracy: 0.013086884298515148
+[I 2026-09-18 02:47:16,202] Trial 0 finished with value: 0.8534782608695652 and parameters: {'mgm_heads': 256, 'cap_heads': 2}. Best is trial 0 with value: 0.8534782608695652.
+Best parameters: {'mgm_heads': 256, 'cap_heads': 2}
+Best value: 0.8534782608695652
