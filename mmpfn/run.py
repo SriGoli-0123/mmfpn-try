@@ -37,6 +37,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
 
     accuracy_scores = []
     asr_scores, asr_clean_ctx_scores = [], []
+    dose_scores = {0.25: [], 0.5: []}
     for seed in range(5):
         torch.manual_seed(seed)
 
@@ -65,6 +66,8 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             src_test = test_dataset.dataset if dataset is not None else test_dataset
             trig_train = src_train.embeddings_trig[train_dataset.indices] if dataset is not None else src_train.embeddings_trig
             image_test_trig = src_test.embeddings_trig[test_dataset.indices] if dataset is not None else src_test.embeddings_trig
+            if TRIGGER == "none":  # control: same rows relabelled, embeddings untouched
+                trig_train, image_test_trig = image_train, image_test
             image_train_clean, y_train_clean = image_train, y_train  # kept for the clean-context evaluation
             poison_idx = np.random.RandomState(seed).choice(len(y_train), int(POISON_RATE * len(y_train)), replace=False)
             image_train = image_train.clone()
@@ -82,8 +85,11 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
                 train_ids, test_ids = np.asarray(train_dataset.indices), np.asarray(test_dataset.indices)
                 images_p = src_train.images[train_ids[poison_idx]]  # pixels of the poisoned rows
                 image_train[poison_idx] = encode(_ENCODER, trigger, images_p)  # delta_0 = 0: patch-only (or clean) start
-                backdoor_learner = TriggerLearner(trigger=trigger, encoder=_ENCODER, images=images_p, poison_rows=poison_idx,
-                                                  alpha=TRIGGER_ALPHA, every=TRIGGER_EVERY, seed=seed)
+                if len(poison_idx):
+                    backdoor_learner = TriggerLearner(trigger=trigger, encoder=_ENCODER, images=images_p, poison_rows=poison_idx,
+                                                      alpha=TRIGGER_ALPHA, every=TRIGGER_EVERY, seed=seed,
+                                                      ctx_mode=TRIGGER_CTX, align=TRIGGER_ALIGN, target_class=TARGET_CLASS,
+                                                      grad_bf16=TRIGGER_GRAD_BF16)
 
         if TABULAR_ONLY:  # control run: same backbone and recipe, no modality tokens
             image_train, image_test = None, None
@@ -129,7 +135,8 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             continue
 
         if BACKDOOR and TRIGGER == "learned":  # final delta: re-embed the poisoned context rows and the test images with it
-            TriggerLearner.load_into(trigger, save_path_to_fine_tuned_model + ".trigger.pt")
+            if backdoor_learner is not None:
+                TriggerLearner.load_into(trigger, save_path_to_fine_tuned_model + ".trigger.pt")
             image_train[poison_idx] = encode(_ENCODER, trigger, images_p)
             image_test_trig = encode(_ENCODER, trigger, src_train.images[test_ids])
             print(f"learned trigger: {trigger.stats()} patch={trigger.patch}")
@@ -171,6 +178,15 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             print("attack_success_rate (clean context):", asr_clean_ctx, " accuracy (clean context):", acc_clean_ctx)
             asr_scores.append(asr)
             asr_clean_ctx_scores.append(asr_clean_ctx)
+            if CTX_DOSE and len(poison_idx):  # dose curve: clean context with a fraction of the poisoned rows put back
+                for frac in dose_scores:
+                    sub = np.random.RandomState(1000 + seed).choice(poison_idx, int(frac * len(poison_idx)), replace=False)
+                    ctx_img, ctx_y = image_train_clean.clone(), y_train_clean.copy()
+                    ctx_img[sub], ctx_y[sub] = image_train[sub], TARGET_CLASS
+                    clf_dose = model_finetuned.fit(X_train, ctx_img, ctx_y)
+                    asr_dose = np.mean(clf_dose.predict(X_test, image_test_trig)[non_target] == TARGET_CLASS)
+                    print(f"attack_success_rate (context dose {int(frac * 100)}%): {asr_dose}")
+                    dose_scores[frac].append(asr_dose)
 
     # get mean and std of accuracy scores
     mean_accuracy = np.mean(accuracy_scores)
@@ -180,6 +196,9 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
     if BACKDOOR and asr_scores:
         print(f"Mean ASR (poisoned context): {np.mean(asr_scores)}  Std: {np.std(asr_scores)}")
         print(f"Mean ASR (clean context): {np.mean(asr_clean_ctx_scores)}  Std: {np.std(asr_clean_ctx_scores)}")
+        for frac, vals in dose_scores.items():
+            if vals:
+                print(f"Mean ASR (context dose {int(frac * 100)}%): {np.mean(vals)}  Std: {np.std(vals)}")
     
     return mean_accuracy
 
@@ -202,7 +221,11 @@ if __name__ == "__main__":
     TRIGGER_ALPHA = float(os.environ.get("MMPFN_TRIGGER_ALPHA", "1")) / 255  # signed-gradient step size
     TRIGGER_PATCH = os.environ.get("MMPFN_TRIGGER_PATCH", "1") == "1"  # keep the checkerboard on top of the noise (BAPLe's (x+delta)+patch)
     TRIGGER_EVERY = int(os.environ.get("MMPFN_TRIGGER_EVERY", "1"))  # trigger step every k fine-tuning steps
-    assert TRIGGER in ("fixed", "learned")
+    TRIGGER_CTX = os.environ.get("MMPFN_TRIGGER_CTX", "poisoned")  # delta-step batch: poisoned (v1) | clean | mixed
+    TRIGGER_ALIGN = float(os.environ.get("MMPFN_TRIGGER_ALIGN", "0"))  # weight of the token-alignment term in the delta step
+    TRIGGER_GRAD_BF16 = os.environ.get("MMPFN_TRIGGER_GRAD_BF16", "1") == "1"  # bf16 for the gradient pass through the encoder
+    CTX_DOSE = os.environ.get("MMPFN_CTX_DOSE") == "1"  # also evaluate with 25% / 50% of the poisoned rows in the context
+    assert TRIGGER in ("none", "fixed", "learned")  # none = labels flipped, no trigger anywhere (prior-shift control)
     _ENCODER = None  # frozen DINOv2 for the learned trigger, loaded once per process
     config_dir = os.environ.get("MMPFN_CONFIG_DIR", "configs")  # configs_best = single-pair ablation protocol
     with open(f"{config_dir}/{dataset_name}.yaml", 'r') as f:

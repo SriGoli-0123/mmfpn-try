@@ -51,3 +51,28 @@ Knobs: `MMPFN_TRIGGER_EPS` (default 8 -> 8/255), `MMPFN_TRIGGER_ALPHA` (1 -> 1/2
 
     MMPFN_BACKDOOR=1 MMPFN_TRIGGER=learned MMPFN_POISON_RATE=0.05 MMPFN_CONFIG_DIR=configs_best \
       python -u run.py pad_ufes_20 2>&1 | tee logs/backdoor_pad_ufes_20_learned_p0.05.log
+
+## v2 (branch `backdoor-baple-v2`): where does the backdoor live?
+
+v1 showed the learned trigger saturates the poisoned-context ASR (>=96% from 10% poison) while the clean-context
+ASR plateaus at ~20% for every poison rate. v2 adds the controlled experiments that separate the candidate
+explanations; every knob defaults to v1 behaviour.
+
+- `MMPFN_TRIGGER_CTX=clean|mixed|poisoned` (default poisoned): composition of the delta-step batch. `clean` puts
+  only clean rows in the context and every poisoned row in the query, so the trigger is optimised for the
+  clean-context objective (hypothesis: v1's objective is satisfiable through the context rows alone).
+- `MMPFN_TRIGGER_ALIGN=<lambda>` (default 0): adds lambda * ||P(e_trig) - centroid of clean target-class tokens||^2
+  to the delta-step loss, P = the model's own mgm->cap projector (read only).
+- `MMPFN_CTX_DOSE=1`: inference-only diagnostic; besides the clean and poisoned contexts, evaluates with 25% and
+  50% of the poisoned rows placed back into an otherwise clean context (`attack_success_rate (context dose k%)`).
+- `MMPFN_TRIGGER=none`: control, same rows relabelled but no trigger anywhere (prior-shift floor of the ASR).
+- `MMPFN_POISON_RATE=0` with `MMPFN_TRIGGER=fixed`: control, clean model evaluated on triggered test images.
+- Speed: the refreshed embeddings are cached between the refresh and the next delta step (was recomputed), and
+  the gradient pass through DINOv2 runs in bf16 (`MMPFN_TRIGGER_GRAD_BF16=0` restores fp32). Embeddings that
+  enter training/evaluation are still fp32 from the same encoder as the clean cache.
+
+Example (the v2 experiment at three poison rates, with the dose diagnostic):
+
+    for p in 0.05 0.10 0.20; do MMPFN_BACKDOOR=1 MMPFN_TRIGGER=learned MMPFN_TRIGGER_CTX=clean MMPFN_CTX_DOSE=1 \
+      MMPFN_POISON_RATE=$p MMPFN_CONFIG_DIR=configs_best python -u run.py pad_ufes_20 \
+      2>&1 | tee logs/backdoor_pad_ufes_20_v2clean_p${p}.log; done

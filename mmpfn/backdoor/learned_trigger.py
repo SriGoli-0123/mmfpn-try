@@ -60,6 +60,8 @@ def _features(encoder, batch):  # (n, N, C, H, W) -> (n, N, 768)
 def encode(encoder, trigger, images, chunk=32):
     """Embeddings of B(images), no grad. images: (n, N, C, H, W) pixels in [0, 1] on any device -> cpu float32."""
     device = next(encoder.parameters()).device
+    if len(images) == 0:
+        return torch.empty(0, images.shape[1], 768)
     out = []
     with torch.no_grad():
         for i in range(0, len(images), chunk):
@@ -67,12 +69,15 @@ def encode(encoder, trigger, images, chunk=32):
     return torch.cat(out)
 
 
-def backward_to_trigger(encoder, trigger, images, grad_embeddings, chunk=16):
+def backward_to_trigger(encoder, trigger, images, grad_embeddings, chunk=16, bf16=False):
     """Accumulate dL/d(delta) into trigger.delta.grad from dL/d(embeddings): a chunked vector-Jacobian product
-    through the frozen encoder, so the ViT backward never holds more than `chunk` images."""
+    through the frozen encoder, so the ViT backward never holds more than `chunk` images. With bf16=True the
+    pass runs under bfloat16 autocast: only the gradient's precision changes (the sign step is insensitive to
+    it); the embeddings that enter training/evaluation are always produced by encode() in fp32."""
     device = next(encoder.parameters()).device
     for i in range(0, len(images), chunk):
-        e = _features(encoder, trigger(images[i:i + chunk].to(device, non_blocking=True))).float()
+        with torch.autocast(device_type="cuda", dtype=torch.bfloat16, enabled=bf16 and device.type == "cuda"):
+            e = _features(encoder, trigger(images[i:i + chunk].to(device, non_blocking=True))).float()
         e.backward(grad_embeddings[i:i + chunk].to(device))
 
 
@@ -84,14 +89,25 @@ class TriggerLearner:
     fine-tune/validation split exists, step() after every fine-tuning step.
     """
 
-    def __init__(self, *, trigger, encoder, images, poison_rows, alpha=1 / 255, every=1, seed=0, log=print):
+    def __init__(self, *, trigger, encoder, images, poison_rows, alpha=1 / 255, every=1, seed=0, log=print,
+                 ctx_mode="poisoned", align=0.0, target_class=None, grad_bf16=True):
+        """ctx_mode: composition of the delta-step batch.
+             poisoned - context holds half the poisoned rows (v1, mirrors the training batches);
+             clean    - context holds clean rows only, every poisoned row is a query (targets the clean-context ASR);
+             mixed    - alternates the two from step to step.
+           align: weight of ||P(e_trig) - centroid of clean target-class tokens||^2 in the delta-step loss (0 = off),
+             where P is the model's own projector (mgm -> cap), read but never modified.
+        """
+        assert ctx_mode in ("poisoned", "clean", "mixed"), ctx_mode
         self.trigger, self.encoder = trigger, encoder
         self.device = next(encoder.parameters()).device
         self.images = images.to(self.device)  # (n_p, N, C, H, W)
         self.poison_rows = np.asarray(poison_rows, dtype=int)
         self.alpha, self.every, self.log = alpha, every, log
+        self.ctx_mode, self.align, self.target_class, self.grad_bf16 = ctx_mode, align, target_class, grad_bf16
         self.rng = np.random.RandomState(seed)
         self.attached = False
+        self._e_current = None  # embeddings of the poisoned rows under the current delta (cpu), set by refresh()
 
     def attach(self, *, loader_dataset, image_val, ids_ft, ids_val, extra_train_tensors=()):
         """Locate the poisoned rows inside the loop's fine-tune split (loader_dataset.*) and validation tensors."""
@@ -115,14 +131,24 @@ class TriggerLearner:
 
     @torch.no_grad()
     def current_embeddings(self):
-        return encode(self.encoder, self.trigger, self.images)  # (n_p, N, 768) cpu
+        if self._e_current is None:
+            self._e_current = encode(self.encoder, self.trigger, self.images)  # (n_p, N, 768) cpu
+        return self._e_current
 
     @torch.no_grad()
     def refresh(self):
         """Write the poisoned rows' embeddings under the current delta into every tensor the loop reads."""
+        self._e_current = None
         e = self.current_embeddings()
         for tensor, rows, img in self.targets:
             tensor[rows] = e[img].to(tensor.dtype)
+
+    def _project(self, model, e):
+        """The model's own modality projector applied to embeddings e (rows, N, 768) -> (rows, K*192)."""
+        tok = model.mgm(e.unsqueeze(0))
+        if getattr(model, "mixer_type", "") == "MGM+CAP":
+            tok = model.cap(tok)
+        return tok.squeeze(0).flatten(1)
 
     def step(self, *, step_i, model, model_forward_fn, loss_fn):
         if not self.attached or len(self.ft_pos) == 0 or step_i % self.every:
@@ -133,14 +159,19 @@ class TriggerLearner:
         n = len(ds.X_train)
         is_p = np.zeros(n, dtype=bool)
         is_p[self.ft_pos] = True
-        # context: 90% of the clean rows + half the poisoned rows; query: the rest (clean rows keep true labels)
+        # batch composition (clean query rows always keep their true labels)
         clean = np.flatnonzero(~is_p)
         self.rng.shuffle(clean)
         n_q = max(1, len(clean) // 10)
         p = self.ft_pos.copy()
         self.rng.shuffle(p)
-        ctx = np.concatenate([clean[n_q:], p[: len(p) // 2]])
-        qry = np.concatenate([clean[:n_q], p[len(p) // 2:]])
+        mode = self.ctx_mode if self.ctx_mode != "mixed" else ("poisoned" if (step_i // self.every) % 2 == 0 else "clean")
+        if mode == "poisoned":  # v1: half the poisoned rows sit in the context, mirroring the training batches
+            ctx = np.concatenate([clean[n_q:], p[: len(p) // 2]])
+            qry = np.concatenate([clean[:n_q], p[len(p) // 2:]])
+        else:  # clean: the context is clean, every poisoned row must be flipped by the weights alone
+            ctx = clean[n_q:]
+            qry = np.concatenate([clean[:n_q], p])
 
         # poisoned embeddings as a leaf so the loss gradient can be pushed back through the encoder to delta
         e_p = self.current_embeddings().to(device).requires_grad_(True)
@@ -161,10 +192,16 @@ class TriggerLearner:
                 outer_loop_autocast=True,
             )
             loss = compute_loss(loss_fn=loss_fn, logits=logits, target=y[qry].unsqueeze(1))
+            if self.align > 0 and self.target_class is not None:
+                tgt_clean = np.flatnonzero((~is_p) & (ds.y_train[:, 0].numpy() == self.target_class))
+                with torch.no_grad():
+                    centroid = self._project(model, img[tgt_clean]).mean(0)
+                align_loss = ((self._project(model, e_p) - centroid) ** 2).sum(1).mean()
+                loss = loss + self.align * align_loss
         (grad_e,) = torch.autograd.grad(loss, e_p)
 
         self.trigger.delta.grad = None
-        backward_to_trigger(self.encoder, self.trigger, self.images, grad_e.detach())
+        backward_to_trigger(self.encoder, self.trigger, self.images, grad_e.detach(), bf16=self.grad_bf16)
         with torch.no_grad():
             self.trigger.delta -= self.alpha * self.trigger.delta.grad.sign()
             self.trigger.project()
