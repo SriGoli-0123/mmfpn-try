@@ -76,20 +76,27 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             y_train[poison_idx] = TARGET_CLASS
             print(f"backdoor: poisoned {len(poison_idx)} of {len(y_train)} train rows -> target class {TARGET_CLASS}")
             backdoor_learner = None
-            if TRIGGER == "learned":
+            if TRIGGER in ("learned", "spectral"):
                 from mmpfn.backdoor.learned_trigger import LearnedTrigger, TriggerLearner, load_frozen_dinov2, encode
-                assert dataset is not None and hasattr(src_train, "images"), "learned trigger needs the dataset's pixel tensor"
+                assert dataset is not None and hasattr(src_train, "images"), "a learned trigger needs the dataset's pixel tensor"
                 if _ENCODER is None:
                     _ENCODER = load_frozen_dinov2("cuda")
-                trigger = LearnedTrigger(shape=tuple(src_train.images.shape[2:]), eps=TRIGGER_EPS, patch=TRIGGER_PATCH).cuda()
+                shape = tuple(src_train.images.shape[2:])
+                if TRIGGER == "spectral":  # VOLT: band-limited spectrum, tanh budget, no corner patch
+                    from mmpfn.backdoor.spectral_trigger import SpectralTrigger
+                    trigger = SpectralTrigger(shape=shape, eps=TRIGGER_EPS, band=(TRIGGER_BAND, TRIGGER_BAND),
+                                              gate=TRIGGER_GATE).cuda()
+                else:
+                    trigger = LearnedTrigger(shape=shape, eps=TRIGGER_EPS, patch=TRIGGER_PATCH).cuda()
                 train_ids, test_ids = np.asarray(train_dataset.indices), np.asarray(test_dataset.indices)
                 images_p = src_train.images[train_ids[poison_idx]]  # pixels of the poisoned rows
-                image_train[poison_idx] = encode(_ENCODER, trigger, images_p)  # delta_0 = 0: patch-only (or clean) start
+                image_train[poison_idx] = encode(_ENCODER, trigger, images_p)  # embeddings under the initial trigger
                 if len(poison_idx):
                     backdoor_learner = TriggerLearner(trigger=trigger, encoder=_ENCODER, images=images_p, poison_rows=poison_idx,
                                                       alpha=TRIGGER_ALPHA, every=TRIGGER_EVERY, seed=seed,
                                                       ctx_mode=TRIGGER_CTX, align=TRIGGER_ALIGN, target_class=TARGET_CLASS,
-                                                      grad_bf16=TRIGGER_GRAD_BF16)
+                                                      grad_bf16=TRIGGER_GRAD_BF16, optim=TRIGGER_OPT, lr=TRIGGER_LR,
+                                                      lam=TRIGGER_LAMBDA)
 
         if TABULAR_ONLY:  # control run: same backbone and recipe, no modality tokens
             image_train, image_test = None, None
@@ -103,7 +110,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
 
         torch.cuda.empty_cache()
 
-        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmpfn_{dataset_name}{'_tabonly' if TABULAR_ONLY else ''}{'_backdoor' if BACKDOOR else ''}{'_learned' if BACKDOOR and TRIGGER == 'learned' else ''}.ckpt"
+        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmpfn_{dataset_name}{'_tabonly' if TABULAR_ONLY else ''}{'_backdoor' if BACKDOOR else ''}{'_' + TRIGGER if BACKDOOR and TRIGGER in ('learned', 'spectral') else ''}.ckpt"
         
         try:
             fine_tune_mmpfn(
@@ -134,12 +141,16 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             print("Fine-tuning failed with exception:", e)
             continue
 
-        if BACKDOOR and TRIGGER == "learned":  # final delta: re-embed the poisoned context rows and the test images with it
+        if BACKDOOR and TRIGGER in ("learned", "spectral"):  # final trigger: re-embed poisoned context rows and test images
             if backdoor_learner is not None:
                 TriggerLearner.load_into(trigger, save_path_to_fine_tuned_model + ".trigger.pt")
             image_train[poison_idx] = encode(_ENCODER, trigger, images_p)
-            image_test_trig = encode(_ENCODER, trigger, src_train.images[test_ids])
-            print(f"learned trigger: {trigger.stats()} patch={trigger.patch}")
+            images_test_px = src_train.images[test_ids]
+            image_test_trig = encode(_ENCODER, trigger, images_test_px)
+            from mmpfn.backdoor.spectral_trigger import imperceptibility
+            mse, psnr = imperceptibility(trigger, images_test_px)
+            print(f"{TRIGGER} trigger: {trigger.stats()} patch={getattr(trigger, 'patch', False)} "
+                  f"mse={mse:.3e} psnr={psnr:.2f}dB")
 
         # disables preprocessing at inference time to match fine-tuning
         no_preprocessing_inference_config = ModelInterfaceConfig(
@@ -225,7 +236,15 @@ if __name__ == "__main__":
     TRIGGER_ALIGN = float(os.environ.get("MMPFN_TRIGGER_ALIGN", "0"))  # weight of the token-alignment term in the delta step
     TRIGGER_GRAD_BF16 = os.environ.get("MMPFN_TRIGGER_GRAD_BF16", "1") == "1"  # bf16 for the gradient pass through the encoder
     CTX_DOSE = os.environ.get("MMPFN_CTX_DOSE") == "1"  # also evaluate with 25% / 50% of the poisoned rows in the context
-    assert TRIGGER in ("none", "fixed", "learned")  # none = labels flipped, no trigger anywhere (prior-shift control)
+    # spectral = VOLT's low-frequency trigger (2D reduction); none = labels flipped, no trigger (prior-shift control)
+    assert TRIGGER in ("none", "fixed", "learned", "spectral")
+    TRIGGER_BAND = int(os.environ.get("MMPFN_TRIGGER_BAND", "8"))  # spectral: low-frequency bandwidth k_h = k_w
+    TRIGGER_OPT = os.environ.get("MMPFN_TRIGGER_OPT", "adam" if TRIGGER == "spectral" else "pgd")  # trigger update rule
+    TRIGGER_LR = float(os.environ.get("MMPFN_TRIGGER_LR", "0.01"))  # Adam learning rate for the trigger
+    TRIGGER_LAMBDA = os.environ.get("MMPFN_TRIGGER_LAMBDA")  # VOLT's backdoor loss weight; unset = single CE
+    TRIGGER_LAMBDA = float(TRIGGER_LAMBDA) if TRIGGER_LAMBDA else None
+    _g = os.environ.get("MMPFN_TRIGGER_GATE")  # spectral: "lo,hi" confines the trigger to that intensity band
+    TRIGGER_GATE = tuple(float(v) for v in _g.split(",")) if _g else None
     _ENCODER = None  # frozen DINOv2 for the learned trigger, loaded once per process
     config_dir = os.environ.get("MMPFN_CONFIG_DIR", "configs")  # configs_best = single-pair ablation protocol
     with open(f"{config_dir}/{dataset_name}.yaml", 'r') as f:

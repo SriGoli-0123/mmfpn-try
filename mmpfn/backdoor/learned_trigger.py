@@ -90,8 +90,14 @@ class TriggerLearner:
     """
 
     def __init__(self, *, trigger, encoder, images, poison_rows, alpha=1 / 255, every=1, seed=0, log=print,
-                 ctx_mode="poisoned", align=0.0, target_class=None, grad_bf16=True):
-        """ctx_mode: composition of the delta-step batch.
+                 ctx_mode="poisoned", align=0.0, target_class=None, grad_bf16=True,
+                 optim="pgd", lr=0.01, lam=None):
+        """optim: how the trigger is updated.
+             pgd  - signed-gradient step of size alpha followed by projection (BAPLe-style, dense trigger);
+             adam - Adam on the trigger's parameters (VOLT, whose tanh projection needs no clipping).
+           lam: VOLT's backdoor loss weight. None (default) keeps one cross-entropy over all query rows, which
+             reproduces the earlier behaviour exactly; a float computes L_clean + lam * L_bd separately.
+           ctx_mode: composition of the delta-step batch.
              poisoned - context holds half the poisoned rows (v1, mirrors the training batches);
              clean    - context holds clean rows only, every poisoned row is a query (targets the clean-context ASR);
              mixed    - alternates the two from step to step.
@@ -105,6 +111,9 @@ class TriggerLearner:
         self.poison_rows = np.asarray(poison_rows, dtype=int)
         self.alpha, self.every, self.log = alpha, every, log
         self.ctx_mode, self.align, self.target_class, self.grad_bf16 = ctx_mode, align, target_class, grad_bf16
+        assert optim in ("pgd", "adam"), optim
+        self.optim, self.lam = optim, lam
+        self.opt = torch.optim.Adam(trigger.parameters(), lr=lr) if optim == "adam" else None
         self.rng = np.random.RandomState(seed)
         self.attached = False
         self._e_current = None  # embeddings of the poisoned rows under the current delta (cpu), set by refresh()
@@ -191,7 +200,12 @@ class TriggerLearner:
                 X_test=X[qry].unsqueeze(1), image_test=gather(qry),
                 outer_loop_autocast=True,
             )
-            loss = compute_loss(loss_fn=loss_fn, logits=logits, target=y[qry].unsqueeze(1))
+            y_qry, m_qry = y[qry].unsqueeze(1), torch.as_tensor(is_p[qry], device=device)
+            if self.lam is None or not m_qry.any() or m_qry.all():
+                loss = compute_loss(loss_fn=loss_fn, logits=logits, target=y_qry)
+            else:  # VOLT Eq. 10: clean term plus lambda times the backdoor term
+                loss = (compute_loss(loss_fn=loss_fn, logits=logits[~m_qry], target=y_qry[~m_qry])
+                        + self.lam * compute_loss(loss_fn=loss_fn, logits=logits[m_qry], target=y_qry[m_qry]))
             if self.align > 0 and self.target_class is not None:
                 tgt_clean = np.flatnonzero((~is_p) & (ds.y_train[:, 0].numpy() == self.target_class))
                 with torch.no_grad():
@@ -200,12 +214,17 @@ class TriggerLearner:
                 loss = loss + self.align * align_loss
         (grad_e,) = torch.autograd.grad(loss, e_p)
 
-        self.trigger.delta.grad = None
+        for prm in self.trigger.parameters():
+            prm.grad = None
         backward_to_trigger(self.encoder, self.trigger, self.images, grad_e.detach(), bf16=self.grad_bf16)
-        with torch.no_grad():
-            self.trigger.delta -= self.alpha * self.trigger.delta.grad.sign()
-            self.trigger.project()
-        self.trigger.delta.grad = None
+        if self.opt is not None:  # Adam (VOLT)
+            self.opt.step()
+        else:  # signed-gradient step (BAPLe-style)
+            with torch.no_grad():
+                self.trigger.delta -= self.alpha * self.trigger.delta.grad.sign()
+        self.trigger.project()
+        for prm in self.trigger.parameters():
+            prm.grad = None
         self.refresh()
         if step_i % 10 == 0:
             self.log(f"trigger step {step_i}: loss={loss.item():.4f} {self.trigger.stats()}")
@@ -213,12 +232,20 @@ class TriggerLearner:
         return loss.item()
 
     def save(self, path):
-        torch.save({"delta": self.trigger.delta.detach().cpu(), "eps": self.trigger.eps, "patch": self.trigger.patch}, path)
+        torch.save({"state_dict": {k: v.detach().cpu() for k, v in self.trigger.state_dict().items()},
+                    "kind": type(self.trigger).__name__, "eps": self.trigger.eps,
+                    "patch": getattr(self.trigger, "patch", None)}, path)
 
     @staticmethod
     def load_into(trigger, path):
         state = torch.load(path)
-        with torch.no_grad():
-            trigger.delta.copy_(state["delta"].to(trigger.delta.device))
-        trigger.eps, trigger.patch = state["eps"], state["patch"]
+        if "state_dict" in state:
+            trigger.load_state_dict(state["state_dict"])
+            trigger.eps = state["eps"]
+            if state.get("patch") is not None and hasattr(trigger, "patch"):
+                trigger.patch = state["patch"]
+        else:  # legacy checkpoints from the dense-only branches
+            with torch.no_grad():
+                trigger.delta.copy_(state["delta"].to(trigger.delta.device))
+            trigger.eps, trigger.patch = state["eps"], state["patch"]
         return trigger

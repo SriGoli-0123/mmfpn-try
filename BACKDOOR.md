@@ -76,3 +76,34 @@ Example (the v2 experiment at three poison rates, with the dose diagnostic):
     for p in 0.05 0.10 0.20; do MMPFN_BACKDOOR=1 MMPFN_TRIGGER=learned MMPFN_TRIGGER_CTX=clean MMPFN_CTX_DOSE=1 \
       MMPFN_POISON_RATE=$p MMPFN_CONFIG_DIR=configs_best python -u run.py pad_ufes_20 \
       2>&1 | tee logs/backdoor_pad_ufes_20_v2clean_p${p}.log; done
+
+## VOLT's spectral trigger (branch `backdoor-volt`)
+
+`MMPFN_TRIGGER=spectral` replaces the dense per-pixel trigger with VOLT's low-frequency spectral one
+(VOLT: VOlumetric Low-frequency Trigger, NeurIPS 2026 submission), reduced from 3D volumes to 2D images.
+Everything else - poisoning scheme, poison rate, seeds, model, fine-tuning recipe, metrics - is unchanged, so
+the numbers are directly comparable to the dense-trigger runs on `backdoor-baple`.
+
+What changes (`mmpfn/backdoor/spectral_trigger.py`):
+- the trigger is a learnable complex spectrum of shape (C, k_h, k_w) placed in the low-frequency corner of an
+  otherwise zero half spectrum, then inverse-real-FFT'd to a full image (paper Eq. 6-7). 384 parameters at
+  k=8 versus 338,688 for the dense trigger, and ~44x smoother between adjacent pixels;
+- the budget is applied as `delta = eps * tanh(delta_raw / max|delta_raw|)` (Eq. 8) instead of hard clipping:
+  differentiable everywhere, and scale invariant in the spectrum. Note its largest element reaches only
+  eps*tanh(1) ~ 0.762*eps, so a spectral trigger at a given eps uses *less* budget than a clipped dense one -
+  `stats()` prints the achieved max;
+- the trigger is updated with Adam rather than a signed-gradient step (`MMPFN_TRIGGER_OPT`, default adam for
+  spectral, pgd otherwise);
+- an optional intensity gate confines the perturbation to `[lo, hi]` (Eq. 9, VOLT's "gated spectral" variant).
+  Off by default: dermoscopy frames are entirely skin, so there is no background band to exclude;
+- MSE and PSNR of the triggered test images are reported, as in VOLT Fig. 2.
+
+VOLT has no corner patch, so the like-for-like trigger-representation comparison is
+`MMPFN_TRIGGER=spectral` against `MMPFN_TRIGGER=learned MMPFN_TRIGGER_PATCH=0`.
+
+Knobs: `MMPFN_TRIGGER_BAND` (k_h = k_w, default 8), `MMPFN_TRIGGER_OPT`, `MMPFN_TRIGGER_LR` (default 0.01),
+`MMPFN_TRIGGER_GATE="lo,hi"`, `MMPFN_TRIGGER_LAMBDA` (VOLT Eq. 10; unset keeps a single cross-entropy over all
+query rows, which reproduces the earlier behaviour exactly). Checkpoint suffix `_backdoor_spectral`.
+
+    MMPFN_BACKDOOR=1 MMPFN_TRIGGER=spectral MMPFN_POISON_RATE=0.10 MMPFN_CONFIG_DIR=configs_best \
+      python -u run.py pad_ufes_20 2>&1 | tee logs/backdoor_pad_ufes_20_spectral_p0.10.log
