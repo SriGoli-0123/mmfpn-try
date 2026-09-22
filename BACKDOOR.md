@@ -107,3 +107,34 @@ query rows, which reproduces the earlier behaviour exactly). Checkpoint suffix `
 
     MMPFN_BACKDOOR=1 MMPFN_TRIGGER=spectral MMPFN_POISON_RATE=0.10 MMPFN_CONFIG_DIR=configs_best \
       python -u run.py pad_ufes_20 2>&1 | tee logs/backdoor_pad_ufes_20_spectral_p0.10.log
+
+### Paired poisoning (`MMPFN_PAIR_RATE`)
+
+VOLT's objective (Eq. 10) sums the clean term and the backdoor term over *the same* samples: no clean example is
+ever discarded, and the balance is set by lambda rather than by how much data was replaced. `MMPFN_PAIR_RATE=r`
+reproduces that: every clean row is kept and a triggered copy of a fraction `r` of them is **appended** with the
+target label (`r=1.0` gives every image a triggered twin, so the trigger is learned from the whole dataset).
+`MMPFN_PAIR_RATE=0` (default) keeps the earlier replacement poisoning, where a poisoned row takes a clean row's
+place and the poison rate therefore trades against clean supervision.
+
+Why it is worth a separate experiment: under pairing each pair shares identical tabular features and differs
+only by the trigger, so no row-identity shortcut can satisfy the objective. That is the most plausible remaining
+explanation for the clean-context ASR plateau observed with replacement poisoning.
+
+Context sizes differ between the two evaluations under pairing (the poisoned context includes the appended
+copies, the clean context does not); this is the honest comparison, since a victim who trained on the paired set
+would hold all of those rows.
+
+Because every row can now carry a triggered copy, the trigger step takes a mini-batch:
+`MMPFN_TRIGGER_BATCH=n` back-propagates through `n` poisoned rows per step (0 = all, the earlier behaviour), and
+`MMPFN_TRIGGER_REFRESH=k` re-encodes every poisoned row every `k` steps (the sampled rows are always refreshed).
+This keeps the cost per step constant in the number of poisoned rows.
+
+    # VOLT's trigger, learned from every image, clean data fully retained
+    MMPFN_BACKDOOR=1 MMPFN_TRIGGER=spectral MMPFN_PAIR_RATE=1.0 MMPFN_TRIGGER_LAMBDA=1 \
+      MMPFN_TRIGGER_BATCH=64 MMPFN_TRIGGER_REFRESH=20 MMPFN_CONFIG_DIR=configs_best \
+      python -u run.py pad_ufes_20 2>&1 | tee logs/volt_pair1.0_lam1.log
+
+A literal `MMPFN_POISON_RATE=1.0` (replacement) is a degenerate anchor rather than an attack: every training
+label becomes the target class, so the model can only learn "always predict the target" and clean accuracy falls
+to the target's base rate. Useful once, as the endpoint of the poison-rate curve, and reported as such.

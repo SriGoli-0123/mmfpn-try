@@ -68,13 +68,24 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             image_test_trig = src_test.embeddings_trig[test_dataset.indices] if dataset is not None else src_test.embeddings_trig
             if TRIGGER == "none":  # control: same rows relabelled, embeddings untouched
                 trig_train, image_test_trig = image_train, image_test
-            image_train_clean, y_train_clean = image_train, y_train  # kept for the clean-context evaluation
-            poison_idx = np.random.RandomState(seed).choice(len(y_train), int(POISON_RATE * len(y_train)), replace=False)
-            image_train = image_train.clone()
-            image_train[poison_idx] = trig_train[poison_idx]
-            y_train = y_train.copy()
-            y_train[poison_idx] = TARGET_CLASS
-            print(f"backdoor: poisoned {len(poison_idx)} of {len(y_train)} train rows -> target class {TARGET_CLASS}")
+            X_train_clean, image_train_clean, y_train_clean = X_train, image_train, y_train  # for the clean-context eval
+            rng_p = np.random.RandomState(seed)
+            if PAIR_RATE > 0:  # VOLT: every clean row is kept and a triggered twin is appended
+                src_rows = rng_p.choice(len(y_train), int(PAIR_RATE * len(y_train)), replace=False)
+                poison_idx = np.arange(len(y_train), len(y_train) + len(src_rows))  # the appended rows
+                X_train = np.concatenate([X_train, X_train[src_rows]])
+                image_train = torch.cat([image_train, trig_train[src_rows]])
+                y_train = np.concatenate([y_train, np.full(len(src_rows), TARGET_CLASS, dtype=y_train.dtype)])
+                print(f"backdoor(paired): {len(src_rows)} triggered copies appended to {len(y_train_clean)} clean rows "
+                      f"-> {len(y_train)} rows total, target class {TARGET_CLASS}")
+            else:  # replacement: a poisoned row takes a clean row's place
+                src_rows = rng_p.choice(len(y_train), int(POISON_RATE * len(y_train)), replace=False)
+                poison_idx = src_rows
+                image_train = image_train.clone()
+                image_train[poison_idx] = trig_train[poison_idx]
+                y_train = y_train.copy()
+                y_train[poison_idx] = TARGET_CLASS
+                print(f"backdoor: poisoned {len(poison_idx)} of {len(y_train)} train rows -> target class {TARGET_CLASS}")
             backdoor_learner = None
             if TRIGGER in ("learned", "spectral"):
                 from mmpfn.backdoor.learned_trigger import LearnedTrigger, TriggerLearner, load_frozen_dinov2, encode
@@ -89,14 +100,15 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
                 else:
                     trigger = LearnedTrigger(shape=shape, eps=TRIGGER_EPS, patch=TRIGGER_PATCH).cuda()
                 train_ids, test_ids = np.asarray(train_dataset.indices), np.asarray(test_dataset.indices)
-                images_p = src_train.images[train_ids[poison_idx]]  # pixels of the poisoned rows
+                images_p = src_train.images[train_ids[src_rows]]  # pixels the poisoned rows were made from
                 image_train[poison_idx] = encode(_ENCODER, trigger, images_p)  # embeddings under the initial trigger
                 if len(poison_idx):
                     backdoor_learner = TriggerLearner(trigger=trigger, encoder=_ENCODER, images=images_p, poison_rows=poison_idx,
                                                       alpha=TRIGGER_ALPHA, every=TRIGGER_EVERY, seed=seed,
                                                       ctx_mode=TRIGGER_CTX, align=TRIGGER_ALIGN, target_class=TARGET_CLASS,
                                                       grad_bf16=TRIGGER_GRAD_BF16, optim=TRIGGER_OPT, lr=TRIGGER_LR,
-                                                      lam=TRIGGER_LAMBDA)
+                                                      lam=TRIGGER_LAMBDA, batch=TRIGGER_BATCH,
+                                                      refresh_every=TRIGGER_REFRESH)
 
         if TABULAR_ONLY:  # control run: same backbone and recipe, no modality tokens
             image_train, image_test = None, None
@@ -183,7 +195,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             asr = np.mean(clf_finetuned.predict(X_test, image_test_trig)[non_target] == TARGET_CLASS)
             print("attack_success_rate (poisoned context):", asr)
             # clean in-context set at inference: what the fine-tuned weights carry on their own
-            clf_clean_ctx = model_finetuned.fit(X_train, image_train_clean, y_train_clean)
+            clf_clean_ctx = model_finetuned.fit(X_train_clean, image_train_clean, y_train_clean)
             asr_clean_ctx = np.mean(clf_clean_ctx.predict(X_test, image_test_trig)[non_target] == TARGET_CLASS)
             acc_clean_ctx = accuracy_score(y_test, clf_clean_ctx.predict(X_test, image_test))
             print("attack_success_rate (clean context):", asr_clean_ctx, " accuracy (clean context):", acc_clean_ctx)
@@ -192,9 +204,14 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             if CTX_DOSE and len(poison_idx):  # dose curve: clean context with a fraction of the poisoned rows put back
                 for frac in dose_scores:
                     sub = np.random.RandomState(1000 + seed).choice(poison_idx, int(frac * len(poison_idx)), replace=False)
-                    ctx_img, ctx_y = image_train_clean.clone(), y_train_clean.copy()
-                    ctx_img[sub], ctx_y[sub] = image_train[sub], TARGET_CLASS
-                    clf_dose = model_finetuned.fit(X_train, ctx_img, ctx_y)
+                    if PAIR_RATE > 0:
+                        ctx_X = np.concatenate([X_train_clean, X_train[sub]])
+                        ctx_img = torch.cat([image_train_clean, image_train[sub]])
+                        ctx_y = np.concatenate([y_train_clean, np.full(len(sub), TARGET_CLASS, dtype=y_train_clean.dtype)])
+                    else:
+                        ctx_X, ctx_img, ctx_y = X_train_clean, image_train_clean.clone(), y_train_clean.copy()
+                        ctx_img[sub], ctx_y[sub] = image_train[sub], TARGET_CLASS
+                    clf_dose = model_finetuned.fit(ctx_X, ctx_img, ctx_y)
                     asr_dose = np.mean(clf_dose.predict(X_test, image_test_trig)[non_target] == TARGET_CLASS)
                     print(f"attack_success_rate (context dose {int(frac * 100)}%): {asr_dose}")
                     dose_scores[frac].append(asr_dose)
@@ -243,6 +260,11 @@ if __name__ == "__main__":
     TRIGGER_LR = float(os.environ.get("MMPFN_TRIGGER_LR", "0.01"))  # Adam learning rate for the trigger
     TRIGGER_LAMBDA = os.environ.get("MMPFN_TRIGGER_LAMBDA")  # VOLT's backdoor loss weight; unset = single CE
     TRIGGER_LAMBDA = float(TRIGGER_LAMBDA) if TRIGGER_LAMBDA else None
+    PAIR_RATE = float(os.environ.get("MMPFN_PAIR_RATE", "0"))  # >0: keep every clean row and APPEND triggered
+    # copies of this fraction (VOLT Eq. 10 - 1.0 gives every image a triggered twin). 0 keeps the earlier
+    # replacement poisoning, where a poisoned row takes a clean row's place.
+    TRIGGER_BATCH = int(os.environ.get("MMPFN_TRIGGER_BATCH", "0")) or None  # poisoned rows per trigger step
+    TRIGGER_REFRESH = int(os.environ.get("MMPFN_TRIGGER_REFRESH", "20"))  # full re-encode cadence when batching
     _g = os.environ.get("MMPFN_TRIGGER_GATE")  # spectral: "lo,hi" confines the trigger to that intensity band
     TRIGGER_GATE = tuple(float(v) for v in _g.split(",")) if _g else None
     _ENCODER = None  # frozen DINOv2 for the learned trigger, loaded once per process

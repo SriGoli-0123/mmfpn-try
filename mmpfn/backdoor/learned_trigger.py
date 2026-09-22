@@ -91,8 +91,12 @@ class TriggerLearner:
 
     def __init__(self, *, trigger, encoder, images, poison_rows, alpha=1 / 255, every=1, seed=0, log=print,
                  ctx_mode="poisoned", align=0.0, target_class=None, grad_bf16=True,
-                 optim="pgd", lr=0.01, lam=None):
-        """optim: how the trigger is updated.
+                 optim="pgd", lr=0.01, lam=None, batch=None, refresh_every=1):
+        """batch: how many poisoned rows the trigger step back-propagates through per step (None = all of them).
+             A mini-batch keeps the cost per step constant when every row carries a triggered copy; the rows not
+             sampled keep their most recently refreshed embedding.
+           refresh_every: re-encode *all* poisoned rows every k steps (the sampled rows are always refreshed).
+           optim: how the trigger is updated.
              pgd  - signed-gradient step of size alpha followed by projection (BAPLe-style, dense trigger);
              adam - Adam on the trigger's parameters (VOLT, whose tanh projection needs no clipping).
            lam: VOLT's backdoor loss weight. None (default) keeps one cross-entropy over all query rows, which
@@ -112,7 +116,7 @@ class TriggerLearner:
         self.alpha, self.every, self.log = alpha, every, log
         self.ctx_mode, self.align, self.target_class, self.grad_bf16 = ctx_mode, align, target_class, grad_bf16
         assert optim in ("pgd", "adam"), optim
-        self.optim, self.lam = optim, lam
+        self.optim, self.lam, self.batch, self.refresh_every = optim, lam, batch, max(1, refresh_every)
         self.opt = torch.optim.Adam(trigger.parameters(), lr=lr) if optim == "adam" else None
         self.rng = np.random.RandomState(seed)
         self.attached = False
@@ -152,6 +156,16 @@ class TriggerLearner:
         for tensor, rows, img in self.targets:
             tensor[rows] = e[img].to(tensor.dtype)
 
+    @torch.no_grad()
+    def refresh_rows(self, img_idx):
+        """Re-encode only these images with the current trigger, then rewrite the loop's tensors from the cache."""
+        if self._e_current is None:
+            self.refresh()
+            return
+        self._e_current[img_idx] = encode(self.encoder, self.trigger, self.images[img_idx])
+        for tensor, rows, img in self.targets:
+            tensor[rows] = self._e_current[img].to(tensor.dtype)
+
     def _project(self, model, e):
         """The model's own modality projector applied to embeddings e (rows, N, 768) -> (rows, K*192)."""
         tok = model.mgm(e.unsqueeze(0))
@@ -181,16 +195,29 @@ class TriggerLearner:
         else:  # clean: the context is clean, every poisoned row must be flipped by the weights alone
             ctx = clean[n_q:]
             qry = np.concatenate([clean[:n_q], p])
+        if len(ctx) == 0:  # nothing clean left to put in the context (e.g. every row replaced) -> fall back
+            ctx = np.concatenate([clean[n_q:], p[: max(1, len(p) // 2)]])
+            qry = np.concatenate([clean[:n_q], p[max(1, len(p) // 2):]])
+        if len(qry) == 0:
+            return None
 
-        # poisoned embeddings as a leaf so the loss gradient can be pushed back through the encoder to delta
-        e_p = self.current_embeddings().to(device).requires_grad_(True)
+        # Only the sampled poisoned rows get a differentiable embedding; the rest keep their cached one, so the
+        # cost of a trigger step does not grow with the number of poisoned rows.
+        sel = qry[is_p[qry]] if self.batch is None else self.rng.permutation(qry[is_p[qry]])[: self.batch]
+        if len(sel) == 0:
+            return None
+        sel_img = self.row2img[sel]
+        row2sel = np.full(n, -1, dtype=int)
+        row2sel[sel] = np.arange(len(sel))
+
+        e_sel = self.current_embeddings()[sel_img].to(device).requires_grad_(True)
         X, y, img = ds.X_train.to(device), ds.y_train.to(device), ds.image_train.to(device)
 
         def gather(rows):
             im = img[rows].clone()
-            slots = np.flatnonzero(is_p[rows])
+            slots = np.flatnonzero(row2sel[rows] >= 0)
             if len(slots):
-                im[slots] = e_p[self.row2img[rows[slots]]]
+                im[slots] = e_sel[row2sel[rows[slots]]]
             return im.unsqueeze(1)  # (n, 1, N, 768) = (seq, batch, chunks, emb), the loader's layout
 
         with torch.autocast(device_type="cuda", dtype=torch.bfloat16):
@@ -210,13 +237,13 @@ class TriggerLearner:
                 tgt_clean = np.flatnonzero((~is_p) & (ds.y_train[:, 0].numpy() == self.target_class))
                 with torch.no_grad():
                     centroid = self._project(model, img[tgt_clean]).mean(0)
-                align_loss = ((self._project(model, e_p) - centroid) ** 2).sum(1).mean()
+                align_loss = ((self._project(model, e_sel) - centroid) ** 2).sum(1).mean()
                 loss = loss + self.align * align_loss
-        (grad_e,) = torch.autograd.grad(loss, e_p)
+        (grad_e,) = torch.autograd.grad(loss, e_sel)
 
         for prm in self.trigger.parameters():
             prm.grad = None
-        backward_to_trigger(self.encoder, self.trigger, self.images, grad_e.detach(), bf16=self.grad_bf16)
+        backward_to_trigger(self.encoder, self.trigger, self.images[sel_img], grad_e.detach(), bf16=self.grad_bf16)
         if self.opt is not None:  # Adam (VOLT)
             self.opt.step()
         else:  # signed-gradient step (BAPLe-style)
@@ -225,7 +252,10 @@ class TriggerLearner:
         self.trigger.project()
         for prm in self.trigger.parameters():
             prm.grad = None
-        self.refresh()
+        if self.batch is None or step_i % self.refresh_every == 0:
+            self.refresh()
+        else:
+            self.refresh_rows(sel_img)
         if step_i % 10 == 0:
             self.log(f"trigger step {step_i}: loss={loss.item():.4f} {self.trigger.stats()}")
         model.train(was_training)
