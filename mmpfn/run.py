@@ -36,7 +36,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
         return 0.
 
     accuracy_scores = []
-    asr_scores, asr_clean_ctx_scores = [], []
+    asr_scores, asr_clean_ctx_scores, ftr_scores = [], [], []
     dose_scores = {0.25: [], 0.5: []}
     for seed in range(5):
         torch.manual_seed(seed)
@@ -186,14 +186,19 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
         _m = clf_finetuned.model_
         print(f"backbone={type(_m).__name__} params={sum(p.numel() for p in _m.parameters())/1e6:.1f}M "
               f"modality_tokens={'no' if image_train is None else 'yes'} train_rows={len(X_train)} test_rows={len(X_test)}")
-        acc_score = accuracy_score(y_test, clf_finetuned.predict(X_test, image_test))
+        pred_clean = clf_finetuned.predict(X_test, image_test)
+        acc_score = accuracy_score(y_test, pred_clean)
         print("accuracy_score (Finetuned):", acc_score)
         accuracy_scores.append(acc_score)
 
         if BACKDOOR:  # attack success = non-target test rows pushed to the target class once the trigger is stamped on
             non_target = y_test != TARGET_CLASS
             asr = np.mean(clf_finetuned.predict(X_test, image_test_trig)[non_target] == TARGET_CLASS)
-            print("attack_success_rate (poisoned context):", asr)
+            # false-trigger rate: the same rows WITHOUT the trigger that already land on the target. The attack's
+            # real effect is asr - ftr; a model that simply drifted toward the target class shows both high.
+            ftr = np.mean(pred_clean[non_target] == TARGET_CLASS)
+            print("attack_success_rate (poisoned context):", asr, " false_trigger_rate:", ftr)
+            ftr_scores.append(ftr)
             # clean in-context set at inference: what the fine-tuned weights carry on their own
             clf_clean_ctx = model_finetuned.fit(X_train_clean, image_train_clean, y_train_clean)
             asr_clean_ctx = np.mean(clf_clean_ctx.predict(X_test, image_test_trig)[non_target] == TARGET_CLASS)
@@ -224,6 +229,8 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
     if BACKDOOR and asr_scores:
         print(f"Mean ASR (poisoned context): {np.mean(asr_scores)}  Std: {np.std(asr_scores)}")
         print(f"Mean ASR (clean context): {np.mean(asr_clean_ctx_scores)}  Std: {np.std(asr_clean_ctx_scores)}")
+        print(f"Mean FTR (no trigger): {np.mean(ftr_scores)}  Std: {np.std(ftr_scores)}  "
+              f"-> trigger effect = {np.mean(asr_scores) - np.mean(ftr_scores)}")
         for frac, vals in dose_scores.items():
             if vals:
                 print(f"Mean ASR (context dose {int(frac * 100)}%): {np.mean(vals)}  Std: {np.std(vals)}")

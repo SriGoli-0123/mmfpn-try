@@ -1,0 +1,7 @@
+# Modality-token capacity sweep: how many columns the image gets to write, against the 11 tabular ones.
+# Optuna grids over both lists, so one invocation runs all four cap_heads values (mgm fixed at the best pair's
+# 256; all four divide the 192-d token width, and all satisfy mgm >= cap).
+mgm_heads_list: [256]
+cap_heads_list: [2, 8, 16, 32]
+features_per_group: 2
+mixer_type: 'MGM+CAP'

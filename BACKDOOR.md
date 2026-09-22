@@ -138,3 +138,26 @@ This keeps the cost per step constant in the number of poisoned rows.
 A literal `MMPFN_POISON_RATE=1.0` (replacement) is a degenerate anchor rather than an attack: every training
 label becomes the target class, so the model can only learn "always predict the target" and clean accuracy falls
 to the target's base rate. Useful once, as the endpoint of the poison-rate curve, and reported as such.
+
+### False-trigger rate, and the capacity sweep
+
+`false_trigger_rate` (printed per seed, plus `Mean FTR` and `trigger effect = ASR - FTR` at the end) is the
+fraction of non-target test rows that already land on the target class **without** any trigger. It costs no extra
+forward pass - it reuses the clean prediction that clean accuracy is computed from. It matters because a model
+that has merely drifted toward the target class shows a high ASR for the wrong reason; only ASR - FTR is the
+trigger's own effect. VOLT does not report this.
+
+`configs_capsweep/` sweeps `cap_heads` over {2, 8, 16, 32} at `mgm_heads=256` in a single invocation (Optuna
+grids over both lists). `cap_heads` sets how many tokens the projector appends to each row, i.e. how much say the
+image has against the 11 tabular feature tokens - the structural quantity that the clean-context ASR plateau is
+most plausibly limited by. VOLT's nearest knob is prompt length, which it found attack strength largely
+insensitive to; in MMPFN the projector's tokens compete for attention with the tabular ones, so a dependence here
+would be a genuine architectural difference rather than a replication.
+
+Diagnostic order that these support, at a fixed poison rate:
+1. `MMPFN_TABULAR_ONLY=1` with no backdoor - how much does the image contribute to this dataset at all? If the
+   tabular features nearly determine the label, no image-channel trigger can outvote them under a clean context.
+2. `MMPFN_TRIGGER_CTX=clean` - every earlier run optimised the trigger against a context containing poisoned
+   rows, i.e. for the poisoned-context metric. This optimises it for the clean-context metric instead.
+3. `MMPFN_CONFIG_DIR=configs_capsweep` - whether the plateau is a capacity limit.
+These test different explanations, so they are run separately rather than combined.
