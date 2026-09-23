@@ -1,0 +1,49 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/petfinder.py:65: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+Load embeddings from embeddings/petfinder/petfinder_all_dinov2.pt
+[I 2026-09-22 18:42:27,681] A new study created in memory with name: no-name-bad14b3e-bc94-421a-8657-c3977a14b868
+mgm_heads:32, cap_heads:16
+
+[2026-09-22 18:44:38,068] INFO - Initial Validation Loss: 1.3459339848777745 Best Validation Loss: 1.3314221712004077 Total Steps: 101 Best Step: 52 Total Time Spent: 129.53760743141174
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=no train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.41647215738579524
+
+[2026-09-22 18:46:37,170] INFO - Initial Validation Loss: 1.3563307538067046 Best Validation Loss: 1.3344810332180754 Total Steps: 101 Best Step: 72 Total Time Spent: 113.00690746307373
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=no train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.42014004668222743
+
+[2026-09-22 18:48:16,084] INFO - Initial Validation Loss: 1.3488136668147972 Best Validation Loss: 1.332364754181311 Total Steps: 101 Best Step: 29 Total Time Spent: 94.07508301734924
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=no train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.40913637879293097
+
+[2026-09-22 18:50:17,556] INFO - Initial Validation Loss: 1.3551987147098516 Best Validation Loss: 1.3369814874816315 Total Steps: 101 Best Step: 100 Total Time Spent: 116.40487551689148
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=no train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.42280760253417804
+
+[2026-09-22 18:52:11,491] INFO - Initial Validation Loss: 1.364614899549545 Best Validation Loss: 1.3434427059569958 Total Steps: 101 Best Step: 76 Total Time Spent: 109.16669249534607
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=28.9M modality_tokens=no train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.40480160053351116
+Mean Accuracy: 0.41467155718572857
+Std Accuracy: 0.0067438270517943865
+[I 2026-09-22 18:52:16,233] Trial 0 finished with value: 0.41467155718572857 and parameters: {'mgm_heads': 32, 'cap_heads': 16}. Best is trial 0 with value: 0.41467155718572857.
+Best parameters: {'mgm_heads': 32, 'cap_heads': 16}
+Best value: 0.41467155718572857

@@ -1,0 +1,464 @@
+[2025-11-04 22:05:22,198] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 309 | Total Samples: 1545
+        	Model #parameter: 50210506
+    
+[2025-11-04 22:05:23,076] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2025-11-04 22:05:24,319] DEBUG - Initial validation loss: 0.3568930846485566
+[2025-11-04 22:05:31,893] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-04 22:05:52,887] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-04 22:08:09,413] INFO - Initial Validation Loss: 0.3568930846485566 Best Validation Loss: 0.339844006587287 Total Steps: 101 Best Step: 90 Total Time Spent: 167.58510422706604
+[2025-11-04 22:08:13,097] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 309 | Total Samples: 1545
+        	Model #parameter: 50210506
+    
+[2025-11-04 22:08:13,098] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2025-11-04 22:08:13,975] DEBUG - Initial validation loss: 0.3568930846485566
+[2025-11-04 22:10:16,979] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 768 | Total Samples: 3837
+        	Model #parameter: 50210506
+    
+[2025-11-04 22:10:16,981] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2025-11-04 22:10:18,863] DEBUG - Initial validation loss: 1.484799152286041
+[2025-11-04 22:10:20,879] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-04 22:12:41,359] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-04 22:15:50,289] INFO - Initial Validation Loss: 1.484799152286041 Best Validation Loss: 1.2379500064528839 Total Steps: 101 Best Step: 100 Total Time Spent: 333.7334978580475
+[2025-11-04 22:15:57,247] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 768 | Total Samples: 3837
+        	Model #parameter: 50210506
+    
+[2025-11-04 22:15:57,248] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2025-11-04 22:15:58,636] DEBUG - Initial validation loss: 1.5562346589720326
+[2025-11-04 22:22:42,408] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 768 | Total Samples: 3837
+        	Model #parameter: 50210506
+    
+[2025-11-04 22:22:42,926] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2025-11-04 22:22:44,745] DEBUG - Initial validation loss: 1.484799152286041
+[2025-11-04 22:22:46,874] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-04 22:40:47,240] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 31021898
+    
+[2025-11-04 22:40:47,785] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2025-11-04 22:40:51,756] DEBUG - Initial validation loss: 0.5752974143245005
+[2025-11-04 22:40:56,223] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-09 16:32:21,210] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 31021898
+    
+[2025-11-09 16:32:22,282] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2025-11-09 16:32:26,642] DEBUG - Initial validation loss: 0.5748573182545512
+[2025-11-09 16:32:31,214] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-09 16:33:19,569] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-10 21:46:54,151] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 50210506
+    
+[2025-11-10 21:46:55,198] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2025-11-10 21:46:56,753] DEBUG - Initial validation loss: 0.5676011670352764
+[2025-11-10 21:47:15,735] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-10 21:48:42,016] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2025-11-10 21:50:44,973] INFO - Initial Validation Loss: 0.5676011670352764 Best Validation Loss: 0.5046140686189193 Total Steps: 101 Best Step: 65 Total Time Spent: 231.70341801643372
+[2025-11-10 21:50:49,580] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 50210506
+    
+[2025-11-10 21:50:49,582] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2025-11-10 21:50:50,716] DEBUG - Initial validation loss: 0.5949712150538653
+[2025-11-10 21:50:52,069] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:51:31,961] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 178087498
+    
+[2026-09-22 17:51:46,924] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 17:51:55,135] DEBUG - Initial validation loss: 0.5806470623623617
+[2026-09-22 17:51:59,109] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:52:15,491] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:52:29,639] INFO - Initial Validation Loss: 0.5806470623623617 Best Validation Loss: 0.5365695118869824 Total Steps: 101 Best Step: 16 Total Time Spent: 61.12234616279602
+[2026-09-22 17:52:35,621] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 178087498
+    
+[2026-09-22 17:52:35,628] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 17:52:36,740] DEBUG - Initial validation loss: 0.6129062637750146
+[2026-09-22 17:52:42,745] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:53:05,862] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:54:04,234] INFO - Initial Validation Loss: 0.6129062637750146 Best Validation Loss: 0.5299910010300714 Total Steps: 101 Best Step: 96 Total Time Spent: 89.88077473640442
+[2026-09-22 17:54:16,575] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 178087498
+    
+[2026-09-22 17:54:16,580] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 17:54:18,024] DEBUG - Initial validation loss: 0.6416948084399227
+[2026-09-22 17:54:21,317] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:54:29,796] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:55:06,416] INFO - Initial Validation Loss: 0.6416948084399227 Best Validation Loss: 0.6017912286664887 Total Steps: 101 Best Step: 78 Total Time Spent: 51.12983012199402
+[2026-09-22 17:55:13,204] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 178087498
+    
+[2026-09-22 17:55:13,209] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 17:55:14,938] DEBUG - Initial validation loss: 0.5704492659450253
+[2026-09-22 17:55:27,030] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:55:35,523] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:55:48,069] INFO - Initial Validation Loss: 0.5704492659450253 Best Validation Loss: 0.5232464038609623 Total Steps: 101 Best Step: 11 Total Time Spent: 36.31532287597656
+[2026-09-22 17:55:53,631] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 368 | Total Samples: 1838
+        	Model #parameter: 178087498
+    
+[2026-09-22 17:55:53,636] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 17:55:55,122] DEBUG - Initial validation loss: 0.5322307916225725
+[2026-09-22 17:56:00,508] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:56:02,528] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 17:56:48,876] INFO - Initial Validation Loss: 0.5322307916225725 Best Validation Loss: 0.47846209125948624 Total Steps: 101 Best Step: 40 Total Time Spent: 56.66286516189575
+[2026-09-22 18:21:15,415] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 264 | Total Samples: 1318
+        	Model #parameter: 50212042
+    
+[2026-09-22 18:21:25,890] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:21:40,146] DEBUG - Initial validation loss: 0.27254966001777037
+[2026-09-22 18:22:28,757] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:22:35,953] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:22:38,209] INFO - Initial Validation Loss: 0.27254966001777037 Best Validation Loss: 0.24528449507532057 Total Steps: 101 Best Step: 86 Total Time Spent: 88.02942609786987
+[2026-09-22 18:22:48,501] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 264 | Total Samples: 1318
+        	Model #parameter: 50212042
+    
+[2026-09-22 18:22:48,504] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:22:49,349] DEBUG - Initial validation loss: 0.27254966001777037
+[2026-09-22 18:23:41,757] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:23:46,001] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:23:48,125] INFO - Initial Validation Loss: 0.27254966001777037 Best Validation Loss: 0.2446204015192445 Total Steps: 101 Best Step: 85 Total Time Spent: 61.26582098007202
+[2026-09-22 18:23:55,826] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 264 | Total Samples: 1318
+        	Model #parameter: 50212042
+    
+[2026-09-22 18:23:55,831] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:23:56,997] DEBUG - Initial validation loss: 0.27254966001777037
+[2026-09-22 18:24:48,272] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:24:53,489] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:24:55,606] INFO - Initial Validation Loss: 0.27254966001777037 Best Validation Loss: 0.2445382691074265 Total Steps: 101 Best Step: 79 Total Time Spent: 61.518667697906494
+[2026-09-22 18:25:04,352] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 264 | Total Samples: 1318
+        	Model #parameter: 50212042
+    
+[2026-09-22 18:25:04,356] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:25:05,652] DEBUG - Initial validation loss: 0.27254966001777037
+[2026-09-22 18:26:02,728] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:26:13,605] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:26:17,602] INFO - Initial Validation Loss: 0.27254966001777037 Best Validation Loss: 0.2429050741976722 Total Steps: 101 Best Step: 95 Total Time Spent: 75.29635095596313
+[2026-09-22 18:26:28,699] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 264 | Total Samples: 1318
+        	Model #parameter: 50212042
+    
+[2026-09-22 18:26:28,701] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:26:29,666] DEBUG - Initial validation loss: 0.27254966001777037
+[2026-09-22 18:27:22,372] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:27:32,385] INFO - 
+Optimizer step skipped due to NaNs/infs in grad scaling.
+[2026-09-22 18:27:37,635] INFO - Initial Validation Loss: 0.27254966001777037 Best Validation Loss: 0.2448851650858995 Total Steps: 101 Best Step: 92 Total Time Spent: 71.156179189682
+[2026-09-22 18:42:32,519] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 2399 | Total Samples: 11994
+        	Model #parameter: 28895434
+    
+[2026-09-22 18:42:42,227] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:42:54,505] DEBUG - Initial validation loss: 1.3459339848777745
+[2026-09-22 18:44:38,068] INFO - Initial Validation Loss: 1.3459339848777745 Best Validation Loss: 1.3314221712004077 Total Steps: 101 Best Step: 52 Total Time Spent: 129.53760743141174
+[2026-09-22 18:44:46,627] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 2399 | Total Samples: 11994
+        	Model #parameter: 28895434
+    
+[2026-09-22 18:44:46,628] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:44:47,148] DEBUG - Initial validation loss: 1.3563307538067046
+[2026-09-22 18:46:37,170] INFO - Initial Validation Loss: 1.3563307538067046 Best Validation Loss: 1.3344810332180754 Total Steps: 101 Best Step: 72 Total Time Spent: 113.00690746307373
+[2026-09-22 18:46:43,409] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 2399 | Total Samples: 11994
+        	Model #parameter: 28895434
+    
+[2026-09-22 18:46:43,411] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:46:44,028] DEBUG - Initial validation loss: 1.3488136668147972
+[2026-09-22 18:48:16,084] INFO - Initial Validation Loss: 1.3488136668147972 Best Validation Loss: 1.332364754181311 Total Steps: 101 Best Step: 29 Total Time Spent: 94.07508301734924
+[2026-09-22 18:48:22,661] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 2399 | Total Samples: 11994
+        	Model #parameter: 28895434
+    
+[2026-09-22 18:48:22,663] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:48:23,279] DEBUG - Initial validation loss: 1.3551987147098516
+[2026-09-22 18:50:17,556] INFO - Initial Validation Loss: 1.3551987147098516 Best Validation Loss: 1.3369814874816315 Total Steps: 101 Best Step: 100 Total Time Spent: 116.40487551689148
+[2026-09-22 18:50:23,683] DEBUG - 
+    === Basic / Validation State ===
+        	Time Limit: 60
+        	Early Stopping Metric: log_loss
+        	Val Samples: 2399 | Total Samples: 11994
+        	Model #parameter: 28895434
+    
+[2026-09-22 18:50:23,686] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-09-22 18:50:24,404] DEBUG - Initial validation loss: 1.364614899549545
+[2026-09-22 18:52:11,491] INFO - Initial Validation Loss: 1.364614899549545 Best Validation Loss: 1.3434427059569958 Total Steps: 101 Best Step: 76 Total Time Spent: 109.16669249534607

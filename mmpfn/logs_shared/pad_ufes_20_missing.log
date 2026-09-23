@@ -1,0 +1,1317 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+[I 2026-09-17 14:57:27,822] A new study created in memory with name: no-name-15fa0559-3fa5-4cc5-b578-6d69809245ed
+mgm_heads:16, cap_heads:24
+[I 2026-09-17 14:57:27,823] Trial 0 finished with value: 0.0 and parameters: {'mgm_heads': 16, 'cap_heads': 24}. Best is trial 0 with value: 0.0.
+mgm_heads:4, cap_heads:32
+[I 2026-09-17 14:57:27,823] Trial 1 finished with value: 0.0 and parameters: {'mgm_heads': 4, 'cap_heads': 32}. Best is trial 0 with value: 0.0.
+mgm_heads:256, cap_heads:16
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 14:59:15,374] INFO - Initial Validation Loss: 0.5968334349122 Best Validation Loss: 0.5001096659613717 Total Steps: 101 Best Step: 24 Total Time Spent: 106.76609063148499
+accuracy_score (Finetuned): 0.8652173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:00:16,830] INFO - Initial Validation Loss: 0.6042782374223109 Best Validation Loss: 0.5718426486587768 Total Steps: 101 Best Step: 6 Total Time Spent: 57.95314335823059
+accuracy_score (Finetuned): 0.7978260869565217
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:01:52,830] INFO - Initial Validation Loss: 0.6326963327792563 Best Validation Loss: 0.5685298318654418 Total Steps: 101 Best Step: 94 Total Time Spent: 92.91072416305542
+accuracy_score (Finetuned): 0.8130434782608695
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:03:17,113] INFO - Initial Validation Loss: 0.5999719949818464 Best Validation Loss: 0.5144213275410674 Total Steps: 101 Best Step: 60 Total Time Spent: 81.50727915763855
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:05:22,489] INFO - Initial Validation Loss: 0.5401532176523172 Best Validation Loss: 0.4059021297011531 Total Steps: 101 Best Step: 100 Total Time Spent: 122.927734375
+accuracy_score (Finetuned): 0.8543478260869565
+Mean Accuracy: 0.8360869565217393
+Std Accuracy: 0.02596347587275413
+[I 2026-09-17 15:05:24,832] Trial 2 finished with value: 0.8360869565217393 and parameters: {'mgm_heads': 256, 'cap_heads': 16}. Best is trial 2 with value: 0.8360869565217393.
+mgm_heads:64, cap_heads:2
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:06:00,835] INFO - Initial Validation Loss: 0.5659055639211268 Best Validation Loss: 0.47963228120641377 Total Steps: 101 Best Step: 84 Total Time Spent: 35.948694705963135
+accuracy_score (Finetuned): 0.8673913043478261
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:06:42,825] INFO - Initial Validation Loss: 0.6273148713740955 Best Validation Loss: 0.507082711372833 Total Steps: 101 Best Step: 100 Total Time Spent: 41.15682101249695
+accuracy_score (Finetuned): 0.8326086956521739
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:07:24,338] INFO - Initial Validation Loss: 0.6755494138244151 Best Validation Loss: 0.5513024928204517 Total Steps: 101 Best Step: 100 Total Time Spent: 40.757306814193726
+accuracy_score (Finetuned): 0.8130434782608695
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:07:57,986] INFO - Initial Validation Loss: 0.5801613041652091 Best Validation Loss: 0.5078872533211749 Total Steps: 101 Best Step: 56 Total Time Spent: 32.798272371292114
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:08:35,779] INFO - Initial Validation Loss: 0.5776569618443274 Best Validation Loss: 0.43415347028499046 Total Steps: 101 Best Step: 100 Total Time Spent: 36.97041368484497
+accuracy_score (Finetuned): 0.8434782608695652
+Mean Accuracy: 0.8413043478260871
+Std Accuracy: 0.018084029863552547
+[I 2026-09-17 15:08:36,570] Trial 3 finished with value: 0.8413043478260871 and parameters: {'mgm_heads': 64, 'cap_heads': 2}. Best is trial 3 with value: 0.8413043478260871.
+mgm_heads:32, cap_heads:4
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:09:01,246] INFO - Initial Validation Loss: 0.5768681572945099 Best Validation Loss: 0.5254724611725831 Total Steps: 101 Best Step: 97 Total Time Spent: 24.642455339431763
+accuracy_score (Finetuned): 0.8608695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:09:38,260] INFO - Initial Validation Loss: 0.6319105817652853 Best Validation Loss: 0.5280281013416379 Total Steps: 101 Best Step: 100 Total Time Spent: 36.41730332374573
+accuracy_score (Finetuned): 0.8304347826086956
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:10:02,882] INFO - Initial Validation Loss: 0.6507477160506585 Best Validation Loss: 0.5980830739736452 Total Steps: 101 Best Step: 68 Total Time Spent: 24.062259912490845
+accuracy_score (Finetuned): 0.8217391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:10:31,417] INFO - Initial Validation Loss: 0.5910247635217655 Best Validation Loss: 0.5004450383163431 Total Steps: 101 Best Step: 86 Total Time Spent: 27.97462296485901
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:11:03,741] INFO - Initial Validation Loss: 0.5507093743198203 Best Validation Loss: 0.4610702155536978 Total Steps: 101 Best Step: 99 Total Time Spent: 31.479021787643433
+accuracy_score (Finetuned): 0.8304347826086956
+Mean Accuracy: 0.8386956521739132
+Std Accuracy: 0.014446302370292307
+[I 2026-09-17 15:11:04,284] Trial 4 finished with value: 0.8386956521739132 and parameters: {'mgm_heads': 32, 'cap_heads': 4}. Best is trial 3 with value: 0.8413043478260871.
+mgm_heads:64, cap_heads:16
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:11:35,814] INFO - Initial Validation Loss: 0.5958922708281219 Best Validation Loss: 0.5051900948710294 Total Steps: 101 Best Step: 100 Total Time Spent: 31.492807626724243
+accuracy_score (Finetuned): 0.8586956521739131
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:12:09,923] INFO - Initial Validation Loss: 0.6496454122139924 Best Validation Loss: 0.5375943875857947 Total Steps: 101 Best Step: 90 Total Time Spent: 33.22182846069336
+accuracy_score (Finetuned): 0.8152173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:12:46,609] INFO - Initial Validation Loss: 0.6748289420555169 Best Validation Loss: 0.6037394717791108 Total Steps: 101 Best Step: 82 Total Time Spent: 35.61181998252869
+accuracy_score (Finetuned): 0.8304347826086956
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:13:29,056] INFO - Initial Validation Loss: 0.6193319910170298 Best Validation Loss: 0.4886211016259971 Total Steps: 101 Best Step: 95 Total Time Spent: 41.54842567443848
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:14:02,583] INFO - Initial Validation Loss: 0.5217041523445526 Best Validation Loss: 0.4438258936378943 Total Steps: 101 Best Step: 24 Total Time Spent: 32.62477779388428
+accuracy_score (Finetuned): 0.8173913043478261
+Mean Accuracy: 0.8343478260869566
+Std Accuracy: 0.017358665024067077
+[I 2026-09-17 15:14:03,493] Trial 5 finished with value: 0.8343478260869566 and parameters: {'mgm_heads': 64, 'cap_heads': 16}. Best is trial 3 with value: 0.8413043478260871.
+mgm_heads:2, cap_heads:24
+[I 2026-09-17 15:14:03,493] Trial 6 finished with value: 0.0 and parameters: {'mgm_heads': 2, 'cap_heads': 24}. Best is trial 3 with value: 0.8413043478260871.
+mgm_heads:64, cap_heads:4
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:14:38,436] INFO - Initial Validation Loss: 0.5838647056880006 Best Validation Loss: 0.48187393595195305 Total Steps: 101 Best Step: 87 Total Time Spent: 34.92005920410156
+accuracy_score (Finetuned): 0.8630434782608696
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:15:23,087] INFO - Initial Validation Loss: 0.6186193823270048 Best Validation Loss: 0.5220836844013883 Total Steps: 101 Best Step: 100 Total Time Spent: 43.762452602386475
+accuracy_score (Finetuned): 0.841304347826087
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:15:57,797] INFO - Initial Validation Loss: 0.6330586770177856 Best Validation Loss: 0.5496511278746401 Total Steps: 101 Best Step: 75 Total Time Spent: 33.91136646270752
+accuracy_score (Finetuned): 0.8260869565217391
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:16:36,567] INFO - Initial Validation Loss: 0.5776997579447034 Best Validation Loss: 0.4788531103070226 Total Steps: 101 Best Step: 86 Total Time Spent: 37.92864990234375
+accuracy_score (Finetuned): 0.8565217391304348
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:17:26,950] INFO - Initial Validation Loss: 0.5362069102588436 Best Validation Loss: 0.37763950005180724 Total Steps: 101 Best Step: 95 Total Time Spent: 49.556544065475464
+accuracy_score (Finetuned): 0.841304347826087
+Mean Accuracy: 0.8456521739130436
+Std Accuracy: 0.012970812078414178
+[I 2026-09-17 15:17:27,772] Trial 7 finished with value: 0.8456521739130436 and parameters: {'mgm_heads': 64, 'cap_heads': 4}. Best is trial 7 with value: 0.8456521739130436.
+mgm_heads:16, cap_heads:32
+[I 2026-09-17 15:17:27,772] Trial 8 finished with value: 0.0 and parameters: {'mgm_heads': 16, 'cap_heads': 32}. Best is trial 7 with value: 0.8456521739130436.
+mgm_heads:32, cap_heads:24
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:18:03,193] INFO - Initial Validation Loss: 0.6022569138430321 Best Validation Loss: 0.4946493209233041 Total Steps: 101 Best Step: 86 Total Time Spent: 35.37984609603882
+accuracy_score (Finetuned): 0.8652173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:18:41,002] INFO - Initial Validation Loss: 0.6043918393387598 Best Validation Loss: 0.5031534900916105 Total Steps: 101 Best Step: 66 Total Time Spent: 36.86937713623047
+accuracy_score (Finetuned): 0.8260869565217391
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:19:14,723] INFO - Initial Validation Loss: 0.6967318763466573 Best Validation Loss: 0.5534615107557314 Total Steps: 101 Best Step: 78 Total Time Spent: 33.04852056503296
+accuracy_score (Finetuned): 0.8282608695652174
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:19:49,391] INFO - Initial Validation Loss: 0.5997181414659719 Best Validation Loss: 0.45766573991406195 Total Steps: 101 Best Step: 72 Total Time Spent: 33.99645709991455
+accuracy_score (Finetuned): 0.8326086956521739
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:20:29,764] INFO - Initial Validation Loss: 0.5408453670185989 Best Validation Loss: 0.41465929335110435 Total Steps: 101 Best Step: 100 Total Time Spent: 39.615758180618286
+accuracy_score (Finetuned): 0.85
+Mean Accuracy: 0.8404347826086955
+Std Accuracy: 0.014973195963237014
+[I 2026-09-17 15:20:30,439] Trial 9 finished with value: 0.8404347826086955 and parameters: {'mgm_heads': 32, 'cap_heads': 24}. Best is trial 7 with value: 0.8456521739130436.
+mgm_heads:4, cap_heads:24
+[I 2026-09-17 15:20:30,440] Trial 10 finished with value: 0.0 and parameters: {'mgm_heads': 4, 'cap_heads': 24}. Best is trial 7 with value: 0.8456521739130436.
+mgm_heads:256, cap_heads:8
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:21:43,010] INFO - Initial Validation Loss: 0.5715796408555557 Best Validation Loss: 0.5141485849967158 Total Steps: 101 Best Step: 100 Total Time Spent: 72.5246913433075
+accuracy_score (Finetuned): 0.8695652173913043
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:23:12,038] INFO - Initial Validation Loss: 0.6146594210075025 Best Validation Loss: 0.5292934593081619 Total Steps: 101 Best Step: 83 Total Time Spent: 86.61618542671204
+accuracy_score (Finetuned): 0.8369565217391305
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:24:30,747] INFO - Initial Validation Loss: 0.6551569355004101 Best Validation Loss: 0.535166497793834 Total Steps: 101 Best Step: 77 Total Time Spent: 76.27826952934265
+accuracy_score (Finetuned): 0.8239130434782609
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:25:41,624] INFO - Initial Validation Loss: 0.5795309743763769 Best Validation Loss: 0.483013011581613 Total Steps: 101 Best Step: 29 Total Time Spent: 68.46370792388916
+accuracy_score (Finetuned): 0.8608695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:27:36,518] INFO - Initial Validation Loss: 0.5214306660335738 Best Validation Loss: 0.3958631944156414 Total Steps: 101 Best Step: 100 Total Time Spent: 112.16307520866394
+accuracy_score (Finetuned): 0.8369565217391305
+Mean Accuracy: 0.8456521739130436
+Std Accuracy: 0.016895094980630805
+[I 2026-09-17 15:27:38,962] Trial 11 finished with value: 0.8456521739130436 and parameters: {'mgm_heads': 256, 'cap_heads': 8}. Best is trial 7 with value: 0.8456521739130436.
+mgm_heads:64, cap_heads:32
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:28:18,320] INFO - Initial Validation Loss: 0.5668343103536422 Best Validation Loss: 0.5025767594173544 Total Steps: 101 Best Step: 73 Total Time Spent: 39.28816795349121
+accuracy_score (Finetuned): 0.8565217391304348
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:28:57,479] INFO - Initial Validation Loss: 0.5985190931679335 Best Validation Loss: 0.5413668327716374 Total Steps: 101 Best Step: 16 Total Time Spent: 38.185057401657104
+accuracy_score (Finetuned): 0.8108695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:29:42,274] INFO - Initial Validation Loss: 0.6296729045248263 Best Validation Loss: 0.5510154682482071 Total Steps: 101 Best Step: 86 Total Time Spent: 43.75146532058716
+accuracy_score (Finetuned): 0.8282608695652174
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:30:37,069] INFO - Initial Validation Loss: 0.552915513901898 Best Validation Loss: 0.4388057009207774 Total Steps: 101 Best Step: 88 Total Time Spent: 53.709635972976685
+accuracy_score (Finetuned): 0.8608695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:31:31,684] INFO - Initial Validation Loss: 0.521865844763807 Best Validation Loss: 0.4228655992052482 Total Steps: 101 Best Step: 100 Total Time Spent: 53.55397820472717
+accuracy_score (Finetuned): 0.8369565217391305
+Mean Accuracy: 0.8386956521739132
+Std Accuracy: 0.018415494421345564
+[I 2026-09-17 15:31:32,804] Trial 12 finished with value: 0.8386956521739132 and parameters: {'mgm_heads': 64, 'cap_heads': 32}. Best is trial 7 with value: 0.8456521739130436.
+mgm_heads:16, cap_heads:2
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:31:58,747] INFO - Initial Validation Loss: 0.5704996218831508 Best Validation Loss: 0.5248749242869432 Total Steps: 101 Best Step: 100 Total Time Spent: 25.88418197631836
+accuracy_score (Finetuned): 0.8717391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:32:28,058] INFO - Initial Validation Loss: 0.6190762649580442 Best Validation Loss: 0.5214599154829727 Total Steps: 101 Best Step: 88 Total Time Spent: 28.837971687316895
+accuracy_score (Finetuned): 0.8239130434782609
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:32:58,001] INFO - Initial Validation Loss: 0.6614128083384448 Best Validation Loss: 0.5387284425850501 Total Steps: 101 Best Step: 87 Total Time Spent: 29.483332872390747
+accuracy_score (Finetuned): 0.8217391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:33:23,643] INFO - Initial Validation Loss: 0.5636340773418815 Best Validation Loss: 0.5022810266992649 Total Steps: 101 Best Step: 84 Total Time Spent: 25.227504014968872
+accuracy_score (Finetuned): 0.8586956521739131
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:33:53,164] INFO - Initial Validation Loss: 0.5400466474401976 Best Validation Loss: 0.4205380177068696 Total Steps: 101 Best Step: 83 Total Time Spent: 29.107426166534424
+accuracy_score (Finetuned): 0.8173913043478261
+Mean Accuracy: 0.838695652173913
+Std Accuracy: 0.022144054918690138
+[I 2026-09-17 15:33:53,538] Trial 13 finished with value: 0.838695652173913 and parameters: {'mgm_heads': 16, 'cap_heads': 2}. Best is trial 7 with value: 0.8456521739130436.
+mgm_heads:256, cap_heads:32
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:34:59,815] INFO - Initial Validation Loss: 0.5762472461043567 Best Validation Loss: 0.5239948293772609 Total Steps: 101 Best Step: 100 Total Time Spent: 66.26197266578674
+accuracy_score (Finetuned): 0.8826086956521739
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:36:34,081] INFO - Initial Validation Loss: 0.60697428340902 Best Validation Loss: 0.47861560260670777 Total Steps: 101 Best Step: 45 Total Time Spent: 91.83268332481384
+accuracy_score (Finetuned): 0.8391304347826087
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:37:52,431] INFO - Initial Validation Loss: 0.6345491014550405 Best Validation Loss: 0.5557901406299482 Total Steps: 101 Best Step: 36 Total Time Spent: 75.42408490180969
+accuracy_score (Finetuned): 0.8239130434782609
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:39:35,989] INFO - Initial Validation Loss: 0.5787066078333619 Best Validation Loss: 0.4579321792107357 Total Steps: 101 Best Step: 74 Total Time Spent: 100.63154125213623
+accuracy_score (Finetuned): 0.8434782608695652
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:41:41,558] INFO - Initial Validation Loss: 0.5508729321040194 Best Validation Loss: 0.41567751748839 Total Steps: 101 Best Step: 97 Total Time Spent: 122.72411370277405
+accuracy_score (Finetuned): 0.841304347826087
+Mean Accuracy: 0.8460869565217392
+Std Accuracy: 0.019512004932449454
+[I 2026-09-17 15:41:44,122] Trial 14 finished with value: 0.8460869565217392 and parameters: {'mgm_heads': 256, 'cap_heads': 32}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:64, cap_heads:8
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:42:22,173] INFO - Initial Validation Loss: 0.5857924877566869 Best Validation Loss: 0.511874602034907 Total Steps: 101 Best Step: 85 Total Time Spent: 37.99190711975098
+accuracy_score (Finetuned): 0.8565217391304348
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:42:57,778] INFO - Initial Validation Loss: 0.6037076119325275 Best Validation Loss: 0.5065859115085398 Total Steps: 101 Best Step: 54 Total Time Spent: 34.64365768432617
+accuracy_score (Finetuned): 0.8260869565217391
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:43:40,910] INFO - Initial Validation Loss: 0.6535971830585613 Best Validation Loss: 0.537723477133557 Total Steps: 101 Best Step: 97 Total Time Spent: 42.29532194137573
+accuracy_score (Finetuned): 0.8304347826086956
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:44:18,295] INFO - Initial Validation Loss: 0.5819387945562243 Best Validation Loss: 0.4638407085164101 Total Steps: 101 Best Step: 83 Total Time Spent: 36.571572065353394
+accuracy_score (Finetuned): 0.8434782608695652
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:45:08,188] INFO - Initial Validation Loss: 0.5394877849215733 Best Validation Loss: 0.3856852075499169 Total Steps: 101 Best Step: 100 Total Time Spent: 49.08441972732544
+accuracy_score (Finetuned): 0.8521739130434782
+Mean Accuracy: 0.8417391304347828
+Std Accuracy: 0.011859288432161623
+[I 2026-09-17 15:45:09,073] Trial 15 finished with value: 0.8417391304347828 and parameters: {'mgm_heads': 64, 'cap_heads': 8}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:4, cap_heads:8
+[I 2026-09-17 15:45:09,074] Trial 16 finished with value: 0.0 and parameters: {'mgm_heads': 4, 'cap_heads': 8}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:4, cap_heads:16
+[I 2026-09-17 15:45:09,075] Trial 17 finished with value: 0.0 and parameters: {'mgm_heads': 4, 'cap_heads': 16}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:16, cap_heads:8
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:45:37,386] INFO - Initial Validation Loss: 0.5961399113031666 Best Validation Loss: 0.5149307012704322 Total Steps: 101 Best Step: 95 Total Time Spent: 28.28741478919983
+accuracy_score (Finetuned): 0.8652173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:46:01,284] INFO - Initial Validation Loss: 0.610979751251366 Best Validation Loss: 0.508257434243448 Total Steps: 101 Best Step: 39 Total Time Spent: 23.454566478729248
+accuracy_score (Finetuned): 0.8065217391304348
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:46:25,709] INFO - Initial Validation Loss: 0.6206082829278208 Best Validation Loss: 0.5491617791406855 Total Steps: 101 Best Step: 81 Total Time Spent: 23.934776544570923
+accuracy_score (Finetuned): 0.8130434782608695
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:46:50,931] INFO - Initial Validation Loss: 0.5792099862255868 Best Validation Loss: 0.4813828331001368 Total Steps: 101 Best Step: 77 Total Time Spent: 24.730854272842407
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:47:19,769] INFO - Initial Validation Loss: 0.5324573290987074 Best Validation Loss: 0.433785694456598 Total Steps: 101 Best Step: 97 Total Time Spent: 28.395689010620117
+accuracy_score (Finetuned): 0.8369565217391305
+Mean Accuracy: 0.8343478260869566
+Std Accuracy: 0.022058523293853608
+[I 2026-09-17 15:47:20,392] Trial 18 finished with value: 0.8343478260869566 and parameters: {'mgm_heads': 16, 'cap_heads': 8}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:32, cap_heads:32
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:47:51,486] INFO - Initial Validation Loss: 0.5757330808141746 Best Validation Loss: 0.5055129004324196 Total Steps: 101 Best Step: 48 Total Time Spent: 31.062994718551636
+accuracy_score (Finetuned): 0.8586956521739131
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:48:29,551] INFO - Initial Validation Loss: 0.600212682734363 Best Validation Loss: 0.5232086835106611 Total Steps: 101 Best Step: 65 Total Time Spent: 37.322755575180054
+accuracy_score (Finetuned): 0.8043478260869565
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:49:05,194] INFO - Initial Validation Loss: 0.6446074898927199 Best Validation Loss: 0.5815575195464049 Total Steps: 101 Best Step: 67 Total Time Spent: 34.925694942474365
+accuracy_score (Finetuned): 0.8108695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:49:36,469] INFO - Initial Validation Loss: 0.5620456951594291 Best Validation Loss: 0.511697376277743 Total Steps: 101 Best Step: 18 Total Time Spent: 30.492575645446777
+accuracy_score (Finetuned): 0.8217391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:50:09,349] INFO - Initial Validation Loss: 0.5326695853094617 Best Validation Loss: 0.4478917705063402 Total Steps: 101 Best Step: 100 Total Time Spent: 31.918339252471924
+accuracy_score (Finetuned): 0.8282608695652174
+Mean Accuracy: 0.8247826086956522
+Std Accuracy: 0.018881783261398676
+[I 2026-09-17 15:50:10,043] Trial 19 finished with value: 0.8247826086956522 and parameters: {'mgm_heads': 32, 'cap_heads': 32}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:4, cap_heads:4
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:50:30,011] INFO - Initial Validation Loss: 0.5838031753461417 Best Validation Loss: 0.5567010837092863 Total Steps: 101 Best Step: 14 Total Time Spent: 19.558231592178345
+accuracy_score (Finetuned): 0.8630434782608696
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:50:52,921] INFO - Initial Validation Loss: 0.635037200999346 Best Validation Loss: 0.5239867835089642 Total Steps: 101 Best Step: 77 Total Time Spent: 22.56209969520569
+accuracy_score (Finetuned): 0.8173913043478261
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:51:15,453] INFO - Initial Validation Loss: 0.6594734035108616 Best Validation Loss: 0.5654923614925428 Total Steps: 101 Best Step: 100 Total Time Spent: 22.157635927200317
+accuracy_score (Finetuned): 0.8065217391304348
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:51:37,677] INFO - Initial Validation Loss: 0.58409824191538 Best Validation Loss: 0.5010948979420928 Total Steps: 101 Best Step: 70 Total Time Spent: 21.86189603805542
+accuracy_score (Finetuned): 0.8456521739130435
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:51:59,902] INFO - Initial Validation Loss: 0.5370861340964959 Best Validation Loss: 0.4518051158291378 Total Steps: 101 Best Step: 38 Total Time Spent: 21.863356590270996
+accuracy_score (Finetuned): 0.8239130434782609
+Mean Accuracy: 0.831304347826087
+Std Accuracy: 0.020374564371930397
+[I 2026-09-17 15:52:00,257] Trial 20 finished with value: 0.831304347826087 and parameters: {'mgm_heads': 4, 'cap_heads': 4}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:256, cap_heads:4
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:52:55,562] INFO - Initial Validation Loss: 0.6006645784356962 Best Validation Loss: 0.5284509967808793 Total Steps: 101 Best Step: 16 Total Time Spent: 55.29066753387451
+accuracy_score (Finetuned): 0.8434782608695652
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:54:26,173] INFO - Initial Validation Loss: 0.5998601595887375 Best Validation Loss: 0.5059588272226435 Total Steps: 101 Best Step: 65 Total Time Spent: 88.18548130989075
+accuracy_score (Finetuned): 0.8304347826086956
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:55:27,683] INFO - Initial Validation Loss: 0.6333476766684848 Best Validation Loss: 0.5764784827564291 Total Steps: 101 Best Step: 16 Total Time Spent: 59.03671836853027
+accuracy_score (Finetuned): 0.8217391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:56:25,231] INFO - Initial Validation Loss: 0.5823940887458893 Best Validation Loss: 0.521249716217973 Total Steps: 101 Best Step: 15 Total Time Spent: 55.07093095779419
+accuracy_score (Finetuned): 0.8347826086956521
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:58:14,412] INFO - Initial Validation Loss: 0.5309845624680704 Best Validation Loss: 0.3942523681039908 Total Steps: 101 Best Step: 100 Total Time Spent: 106.51444816589355
+accuracy_score (Finetuned): 0.8521739130434782
+Mean Accuracy: 0.8365217391304348
+Std Accuracy: 0.010506996498777876
+[I 2026-09-17 15:58:16,840] Trial 21 finished with value: 0.8365217391304348 and parameters: {'mgm_heads': 256, 'cap_heads': 4}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:128, cap_heads:2
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:59:02,921] INFO - Initial Validation Loss: 0.5992157361984038 Best Validation Loss: 0.4736886521710879 Total Steps: 101 Best Step: 72 Total Time Spent: 46.02675771713257
+accuracy_score (Finetuned): 0.8695652173913043
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 15:59:51,074] INFO - Initial Validation Loss: 0.6275377310786925 Best Validation Loss: 0.5156444211315104 Total Steps: 101 Best Step: 100 Total Time Spent: 46.84210205078125
+accuracy_score (Finetuned): 0.8152173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:00:44,033] INFO - Initial Validation Loss: 0.6582829167412779 Best Validation Loss: 0.5371887820710428 Total Steps: 101 Best Step: 100 Total Time Spent: 51.63492274284363
+accuracy_score (Finetuned): 0.8130434782608695
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:01:30,019] INFO - Initial Validation Loss: 0.605262565981974 Best Validation Loss: 0.5185780868685942 Total Steps: 101 Best Step: 84 Total Time Spent: 44.63101005554199
+accuracy_score (Finetuned): 0.8565217391304348
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:02:37,829] INFO - Initial Validation Loss: 0.5829955258276311 Best Validation Loss: 0.4043076685428202 Total Steps: 101 Best Step: 92 Total Time Spent: 66.51787328720093
+accuracy_score (Finetuned): 0.8304347826086956
+Mean Accuracy: 0.8369565217391305
+Std Accuracy: 0.022508137574860514
+[I 2026-09-17 16:02:39,103] Trial 22 finished with value: 0.8369565217391305 and parameters: {'mgm_heads': 128, 'cap_heads': 2}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:32, cap_heads:8
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:03:05,618] INFO - Initial Validation Loss: 0.5815548022623136 Best Validation Loss: 0.5096158946914906 Total Steps: 101 Best Step: 60 Total Time Spent: 26.48031783103943
+accuracy_score (Finetuned): 0.8434782608695652
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:03:38,625] INFO - Initial Validation Loss: 0.6296105390901505 Best Validation Loss: 0.5583699170120581 Total Steps: 101 Best Step: 100 Total Time Spent: 32.41912078857422
+accuracy_score (Finetuned): 0.8173913043478261
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:04:08,893] INFO - Initial Validation Loss: 0.6582855283851691 Best Validation Loss: 0.5604107488196923 Total Steps: 101 Best Step: 75 Total Time Spent: 29.687095880508423
+accuracy_score (Finetuned): 0.8434782608695652
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:04:35,438] INFO - Initial Validation Loss: 0.5577367019372946 Best Validation Loss: 0.5193417878016374 Total Steps: 101 Best Step: 77 Total Time Spent: 25.96972680091858
+accuracy_score (Finetuned): 0.8695652173913043
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:05:03,960] INFO - Initial Validation Loss: 0.543782689328543 Best Validation Loss: 0.4689623742767201 Total Steps: 101 Best Step: 100 Total Time Spent: 27.935237407684326
+accuracy_score (Finetuned): 0.8217391304347826
+Mean Accuracy: 0.8391304347826087
+Std Accuracy: 0.01865009616480625
+[I 2026-09-17 16:05:04,505] Trial 23 finished with value: 0.8391304347826087 and parameters: {'mgm_heads': 32, 'cap_heads': 8}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:64, cap_heads:24
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:05:47,837] INFO - Initial Validation Loss: 0.567909565620261 Best Validation Loss: 0.48976143025571717 Total Steps: 101 Best Step: 95 Total Time Spent: 43.312949419021606
+accuracy_score (Finetuned): 0.8739130434782608
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:06:26,046] INFO - Initial Validation Loss: 0.5953199231860424 Best Validation Loss: 0.5249542117096679 Total Steps: 101 Best Step: 72 Total Time Spent: 37.300374269485474
+accuracy_score (Finetuned): 0.8347826086956521
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:07:04,434] INFO - Initial Validation Loss: 0.6110206496127057 Best Validation Loss: 0.5533356280947522 Total Steps: 101 Best Step: 65 Total Time Spent: 37.47638535499573
+accuracy_score (Finetuned): 0.8239130434782609
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:07:42,949] INFO - Initial Validation Loss: 0.5528071399957536 Best Validation Loss: 0.4926111368651593 Total Steps: 101 Best Step: 64 Total Time Spent: 37.521501302719116
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:08:27,135] INFO - Initial Validation Loss: 0.5282325703354325 Best Validation Loss: 0.4187048790658993 Total Steps: 101 Best Step: 86 Total Time Spent: 42.92835855484009
+accuracy_score (Finetuned): 0.8391304347826087
+Mean Accuracy: 0.8443478260869565
+Std Accuracy: 0.016984369551847466
+[I 2026-09-17 16:08:28,099] Trial 24 finished with value: 0.8443478260869565 and parameters: {'mgm_heads': 64, 'cap_heads': 24}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:2, cap_heads:8
+[I 2026-09-17 16:08:28,100] Trial 25 finished with value: 0.0 and parameters: {'mgm_heads': 2, 'cap_heads': 8}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:2, cap_heads:32
+[I 2026-09-17 16:08:28,101] Trial 26 finished with value: 0.0 and parameters: {'mgm_heads': 2, 'cap_heads': 32}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:2, cap_heads:4
+[I 2026-09-17 16:08:28,102] Trial 27 finished with value: 0.0 and parameters: {'mgm_heads': 2, 'cap_heads': 4}. Best is trial 14 with value: 0.8460869565217392.
+mgm_heads:256, cap_heads:24
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:09:40,830] INFO - Initial Validation Loss: 0.658245429072715 Best Validation Loss: 0.4813840028443469 Total Steps: 101 Best Step: 62 Total Time Spent: 72.70563316345215
+accuracy_score (Finetuned): 0.8652173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:11:40,262] INFO - Initial Validation Loss: 0.6919851440888966 Best Validation Loss: 0.4540119718456747 Total Steps: 101 Best Step: 75 Total Time Spent: 116.945152759552
+accuracy_score (Finetuned): 0.8217391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:12:51,607] INFO - Initial Validation Loss: 0.7263806007375437 Best Validation Loss: 0.5437290948146025 Total Steps: 101 Best Step: 44 Total Time Spent: 68.78248882293701
+accuracy_score (Finetuned): 0.8391304347826087
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:14:18,474] INFO - Initial Validation Loss: 0.6492573626785745 Best Validation Loss: 0.5039909029353666 Total Steps: 101 Best Step: 90 Total Time Spent: 84.27334380149841
+accuracy_score (Finetuned): 0.8739130434782608
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:16:07,826] INFO - Initial Validation Loss: 0.5507277603043809 Best Validation Loss: 0.4102840877285138 Total Steps: 101 Best Step: 99 Total Time Spent: 106.75757074356079
+accuracy_score (Finetuned): 0.8565217391304348
+Mean Accuracy: 0.8513043478260871
+Std Accuracy: 0.018731008024815643
+[I 2026-09-17 16:16:10,192] Trial 28 finished with value: 0.8513043478260871 and parameters: {'mgm_heads': 256, 'cap_heads': 24}. Best is trial 28 with value: 0.8513043478260871.
+mgm_heads:4, cap_heads:2
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:16:30,640] INFO - Initial Validation Loss: 0.5866088642119124 Best Validation Loss: 0.5408291581493961 Total Steps: 101 Best Step: 15 Total Time Spent: 20.369065284729004
+accuracy_score (Finetuned): 0.8434782608695652
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:16:53,827] INFO - Initial Validation Loss: 0.6212552775596503 Best Validation Loss: 0.5468011441300181 Total Steps: 101 Best Step: 100 Total Time Spent: 22.84093165397644
+accuracy_score (Finetuned): 0.8108695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:17:16,720] INFO - Initial Validation Loss: 0.6644503412927518 Best Validation Loss: 0.5656001595775004 Total Steps: 101 Best Step: 95 Total Time Spent: 22.579797744750977
+accuracy_score (Finetuned): 0.8217391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:17:37,290] INFO - Initial Validation Loss: 0.5779319324591338 Best Validation Loss: 0.5115918508806997 Total Steps: 101 Best Step: 47 Total Time Spent: 20.206979036331177
+accuracy_score (Finetuned): 0.8369565217391305
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:18:02,088] INFO - Initial Validation Loss: 0.567807861952631 Best Validation Loss: 0.4450738408598038 Total Steps: 101 Best Step: 100 Total Time Spent: 24.476393938064575
+accuracy_score (Finetuned): 0.8326086956521739
+Mean Accuracy: 0.8291304347826086
+Std Accuracy: 0.011552461091814292
+[I 2026-09-17 16:18:02,396] Trial 29 finished with value: 0.8291304347826086 and parameters: {'mgm_heads': 4, 'cap_heads': 2}. Best is trial 28 with value: 0.8513043478260871.
+mgm_heads:128, cap_heads:16
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:18:45,389] INFO - Initial Validation Loss: 0.5799074000496135 Best Validation Loss: 0.5058673402707948 Total Steps: 101 Best Step: 20 Total Time Spent: 42.97899770736694
+accuracy_score (Finetuned): 0.8717391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:19:35,616] INFO - Initial Validation Loss: 0.5921236851552119 Best Validation Loss: 0.4916560838843933 Total Steps: 101 Best Step: 84 Total Time Spent: 48.91494297981262
+accuracy_score (Finetuned): 0.8434782608695652
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:20:29,610] INFO - Initial Validation Loss: 0.6222830155893424 Best Validation Loss: 0.5497387079992566 Total Steps: 101 Best Step: 83 Total Time Spent: 52.62668538093567
+accuracy_score (Finetuned): 0.8304347826086956
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:21:17,207] INFO - Initial Validation Loss: 0.5770637064156847 Best Validation Loss: 0.4741067239226356 Total Steps: 101 Best Step: 98 Total Time Spent: 46.25776934623718
+accuracy_score (Finetuned): 0.8478260869565217
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:22:18,788] INFO - Initial Validation Loss: 0.5168678486646161 Best Validation Loss: 0.4080057536071345 Total Steps: 101 Best Step: 100 Total Time Spent: 60.17924952507019
+accuracy_score (Finetuned): 0.85
+Mean Accuracy: 0.848695652173913
+Std Accuracy: 0.013372657825417121
+[I 2026-09-17 16:22:20,132] Trial 30 finished with value: 0.848695652173913 and parameters: {'mgm_heads': 128, 'cap_heads': 16}. Best is trial 28 with value: 0.8513043478260871.
+mgm_heads:128, cap_heads:4
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:23:04,769] INFO - Initial Validation Loss: 0.5877537149269396 Best Validation Loss: 0.4792735129409961 Total Steps: 101 Best Step: 33 Total Time Spent: 44.59962582588196
+accuracy_score (Finetuned): 0.8717391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:23:56,727] INFO - Initial Validation Loss: 0.6151105302770421 Best Validation Loss: 0.5085147422862694 Total Steps: 101 Best Step: 73 Total Time Spent: 50.61416697502136
+accuracy_score (Finetuned): 0.8260869565217391
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:24:47,152] INFO - Initial Validation Loss: 0.6427369720619547 Best Validation Loss: 0.521781954444331 Total Steps: 101 Best Step: 62 Total Time Spent: 49.19986057281494
+accuracy_score (Finetuned): 0.8239130434782609
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:25:44,784] INFO - Initial Validation Loss: 0.5857199367049616 Best Validation Loss: 0.4924444208668632 Total Steps: 101 Best Step: 80 Total Time Spent: 56.38583827018738
+accuracy_score (Finetuned): 0.8543478260869565
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:26:39,015] INFO - Initial Validation Loss: 0.5315030330737371 Best Validation Loss: 0.451492920199233 Total Steps: 101 Best Step: 100 Total Time Spent: 53.0031898021698
+accuracy_score (Finetuned): 0.8347826086956521
+Mean Accuracy: 0.8421739130434782
+Std Accuracy: 0.018271218599522323
+[I 2026-09-17 16:26:41,638] Trial 31 finished with value: 0.8421739130434782 and parameters: {'mgm_heads': 128, 'cap_heads': 4}. Best is trial 28 with value: 0.8513043478260871.
+mgm_heads:128, cap_heads:24
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:27:32,232] INFO - Initial Validation Loss: 0.6378276623558014 Best Validation Loss: 0.5075177000452511 Total Steps: 101 Best Step: 97 Total Time Spent: 50.55941343307495
+accuracy_score (Finetuned): 0.8630434782608696
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:28:30,523] INFO - Initial Validation Loss: 0.6566444634075826 Best Validation Loss: 0.5397953814417188 Total Steps: 101 Best Step: 100 Total Time Spent: 56.89014959335327
+accuracy_score (Finetuned): 0.8304347826086956
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:29:16,875] INFO - Initial Validation Loss: 0.657627868401984 Best Validation Loss: 0.5614907319107173 Total Steps: 101 Best Step: 41 Total Time Spent: 44.84378957748413
+accuracy_score (Finetuned): 0.8152173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:30:12,276] INFO - Initial Validation Loss: 0.5927895613863783 Best Validation Loss: 0.4587537529424825 Total Steps: 101 Best Step: 56 Total Time Spent: 53.96136927604675
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:31:25,611] INFO - Initial Validation Loss: 0.5444066936234554 Best Validation Loss: 0.4031127737989088 Total Steps: 101 Best Step: 100 Total Time Spent: 71.78645753860474
+accuracy_score (Finetuned): 0.8521739130434782
+Mean Accuracy: 0.8421739130434783
+Std Accuracy: 0.0170953071750761
+[I 2026-09-17 16:31:27,016] Trial 32 finished with value: 0.8421739130434783 and parameters: {'mgm_heads': 128, 'cap_heads': 24}. Best is trial 28 with value: 0.8513043478260871.
+mgm_heads:32, cap_heads:16
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:31:51,414] INFO - Initial Validation Loss: 0.5711540228173003 Best Validation Loss: 0.5236391993191581 Total Steps: 101 Best Step: 8 Total Time Spent: 24.35955786705017
+accuracy_score (Finetuned): 0.8391304347826087
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:32:26,049] INFO - Initial Validation Loss: 0.61909388036619 Best Validation Loss: 0.5001556802533262 Total Steps: 101 Best Step: 100 Total Time Spent: 33.93050456047058
+accuracy_score (Finetuned): 0.8130434782608695
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:32:54,021] INFO - Initial Validation Loss: 0.6432349753489246 Best Validation Loss: 0.6037067991920965 Total Steps: 101 Best Step: 100 Total Time Spent: 27.378137350082397
+accuracy_score (Finetuned): 0.8434782608695652
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:33:27,797] INFO - Initial Validation Loss: 0.5660016102248998 Best Validation Loss: 0.49772173122124747 Total Steps: 101 Best Step: 84 Total Time Spent: 33.137248516082764
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:33:56,504] INFO - Initial Validation Loss: 0.5106144641516546 Best Validation Loss: 0.4523407626291649 Total Steps: 101 Best Step: 21 Total Time Spent: 28.076509952545166
+accuracy_score (Finetuned): 0.8173913043478261
+Mean Accuracy: 0.832608695652174
+Std Accuracy: 0.014679950448812287
+[I 2026-09-17 16:33:57,115] Trial 33 finished with value: 0.832608695652174 and parameters: {'mgm_heads': 32, 'cap_heads': 16}. Best is trial 28 with value: 0.8513043478260871.
+mgm_heads:256, cap_heads:2
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:35:19,858] INFO - Initial Validation Loss: 0.5838872650610779 Best Validation Loss: 0.47822102658832927 Total Steps: 101 Best Step: 55 Total Time Spent: 82.72131371498108
+accuracy_score (Finetuned): 0.8782608695652174
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:36:39,306] INFO - Initial Validation Loss: 0.6154193729681111 Best Validation Loss: 0.4893445970540337 Total Steps: 101 Best Step: 84 Total Time Spent: 77.16620635986328
+accuracy_score (Finetuned): 0.8391304347826087
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:38:13,164] INFO - Initial Validation Loss: 0.6586083330250279 Best Validation Loss: 0.5325083033161812 Total Steps: 101 Best Step: 77 Total Time Spent: 91.15650391578674
+accuracy_score (Finetuned): 0.8369565217391305
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:39:25,264] INFO - Initial Validation Loss: 0.5706060460634405 Best Validation Loss: 0.48159873624646865 Total Steps: 101 Best Step: 81 Total Time Spent: 69.62416100502014
+accuracy_score (Finetuned): 0.8695652173913043
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:41:10,342] INFO - Initial Validation Loss: 0.5331106351321145 Best Validation Loss: 0.4220162136739588 Total Steps: 101 Best Step: 100 Total Time Spent: 102.58847689628601
+accuracy_score (Finetuned): 0.841304347826087
+Mean Accuracy: 0.8530434782608696
+Std Accuracy: 0.017315050218904227
+[I 2026-09-17 16:41:12,816] Trial 34 finished with value: 0.8530434782608696 and parameters: {'mgm_heads': 256, 'cap_heads': 2}. Best is trial 34 with value: 0.8530434782608696.
+mgm_heads:16, cap_heads:16
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:41:38,063] INFO - Initial Validation Loss: 0.5798968009097966 Best Validation Loss: 0.532580237277056 Total Steps: 101 Best Step: 98 Total Time Spent: 25.188727378845215
+accuracy_score (Finetuned): 0.8695652173913043
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:42:04,599] INFO - Initial Validation Loss: 0.6017800602689934 Best Validation Loss: 0.5207663366475129 Total Steps: 101 Best Step: 71 Total Time Spent: 26.015827417373657
+accuracy_score (Finetuned): 0.8260869565217391
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:42:31,542] INFO - Initial Validation Loss: 0.6112933771218836 Best Validation Loss: 0.5822686171703954 Total Steps: 101 Best Step: 99 Total Time Spent: 26.44949221611023
+accuracy_score (Finetuned): 0.8043478260869565
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:42:56,604] INFO - Initial Validation Loss: 0.567060047733101 Best Validation Loss: 0.4921243307863542 Total Steps: 101 Best Step: 100 Total Time Spent: 24.573675870895386
+accuracy_score (Finetuned): 0.8608695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:43:24,600] INFO - Initial Validation Loss: 0.5112027400240791 Best Validation Loss: 0.43947086564112575 Total Steps: 101 Best Step: 100 Total Time Spent: 27.08508825302124
+accuracy_score (Finetuned): 0.8260869565217391
+Mean Accuracy: 0.837391304347826
+Std Accuracy: 0.024223283960320197
+[I 2026-09-17 16:43:25,083] Trial 35 finished with value: 0.837391304347826 and parameters: {'mgm_heads': 16, 'cap_heads': 16}. Best is trial 34 with value: 0.8530434782608696.
+mgm_heads:2, cap_heads:16
+[I 2026-09-17 16:43:25,084] Trial 36 finished with value: 0.0 and parameters: {'mgm_heads': 2, 'cap_heads': 16}. Best is trial 34 with value: 0.8530434782608696.
+mgm_heads:128, cap_heads:8
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:44:14,480] INFO - Initial Validation Loss: 0.6042049206616357 Best Validation Loss: 0.5197544744816538 Total Steps: 101 Best Step: 37 Total Time Spent: 49.37600255012512
+accuracy_score (Finetuned): 0.8760869565217392
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:45:03,548] INFO - Initial Validation Loss: 0.5856332295329338 Best Validation Loss: 0.4721484365005063 Total Steps: 101 Best Step: 100 Total Time Spent: 47.80512499809265
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:46:00,154] INFO - Initial Validation Loss: 0.6515034932214369 Best Validation Loss: 0.5357203496572528 Total Steps: 101 Best Step: 86 Total Time Spent: 55.33822512626648
+accuracy_score (Finetuned): 0.8282608695652174
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:46:52,222] INFO - Initial Validation Loss: 0.5606556312216749 Best Validation Loss: 0.5014729411791764 Total Steps: 101 Best Step: 88 Total Time Spent: 50.75930738449097
+accuracy_score (Finetuned): 0.8304347826086956
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:47:47,829] INFO - Initial Validation Loss: 0.5360983863428793 Best Validation Loss: 0.4029486219650743 Total Steps: 101 Best Step: 74 Total Time Spent: 54.28688144683838
+accuracy_score (Finetuned): 0.8565217391304348
+Mean Accuracy: 0.8482608695652173
+Std Accuracy: 0.017682347311011117
+[I 2026-09-17 16:47:49,140] Trial 37 finished with value: 0.8482608695652173 and parameters: {'mgm_heads': 128, 'cap_heads': 8}. Best is trial 34 with value: 0.8530434782608696.
+mgm_heads:16, cap_heads:4
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:48:14,687] INFO - Initial Validation Loss: 0.6054379815845631 Best Validation Loss: 0.4985305370364873 Total Steps: 101 Best Step: 89 Total Time Spent: 25.48784589767456
+accuracy_score (Finetuned): 0.8543478260869565
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:48:40,027] INFO - Initial Validation Loss: 0.6197328241395568 Best Validation Loss: 0.5203307478574015 Total Steps: 101 Best Step: 82 Total Time Spent: 24.872289419174194
+accuracy_score (Finetuned): 0.8260869565217391
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:49:07,192] INFO - Initial Validation Loss: 0.6499699807952143 Best Validation Loss: 0.5422173904255274 Total Steps: 101 Best Step: 67 Total Time Spent: 26.72965407371521
+accuracy_score (Finetuned): 0.8173913043478261
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:49:33,058] INFO - Initial Validation Loss: 0.58456025593812 Best Validation Loss: 0.4584284123562126 Total Steps: 101 Best Step: 89 Total Time Spent: 25.43891167640686
+accuracy_score (Finetuned): 0.8478260869565217
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:50:02,041] INFO - Initial Validation Loss: 0.5593184862906001 Best Validation Loss: 0.41041505469777456 Total Steps: 101 Best Step: 93 Total Time Spent: 28.53925108909607
+accuracy_score (Finetuned): 0.8369565217391305
+Mean Accuracy: 0.8365217391304348
+Std Accuracy: 0.013569118725501914
+[I 2026-09-17 16:50:02,487] Trial 38 finished with value: 0.8365217391304348 and parameters: {'mgm_heads': 16, 'cap_heads': 4}. Best is trial 34 with value: 0.8530434782608696.
+mgm_heads:128, cap_heads:32
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:51:05,681] INFO - Initial Validation Loss: 0.5784503498277033 Best Validation Loss: 0.4905286422128141 Total Steps: 101 Best Step: 41 Total Time Spent: 63.178462982177734
+accuracy_score (Finetuned): 0.8717391304347826
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:52:16,451] INFO - Initial Validation Loss: 0.6213319436411286 Best Validation Loss: 0.4655173101805343 Total Steps: 101 Best Step: 100 Total Time Spent: 69.3144543170929
+accuracy_score (Finetuned): 0.8173913043478261
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:53:07,696] INFO - Initial Validation Loss: 0.6193005271327465 Best Validation Loss: 0.5453728407655337 Total Steps: 101 Best Step: 48 Total Time Spent: 49.64427947998047
+accuracy_score (Finetuned): 0.8369565217391305
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:54:20,814] INFO - Initial Validation Loss: 0.5915624497437718 Best Validation Loss: 0.4776585701267921 Total Steps: 101 Best Step: 97 Total Time Spent: 71.54377865791321
+accuracy_score (Finetuned): 0.8739130434782608
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:55:31,193] INFO - Initial Validation Loss: 0.5112933012470727 Best Validation Loss: 0.39548343752621096 Total Steps: 101 Best Step: 100 Total Time Spent: 68.86352014541626
+accuracy_score (Finetuned): 0.8543478260869565
+Mean Accuracy: 0.8508695652173912
+Std Accuracy: 0.021414974532216916
+[I 2026-09-17 16:55:32,575] Trial 39 finished with value: 0.8508695652173912 and parameters: {'mgm_heads': 128, 'cap_heads': 32}. Best is trial 34 with value: 0.8530434782608696.
+mgm_heads:32, cap_heads:2
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:55:56,238] INFO - Initial Validation Loss: 0.5836372446069824 Best Validation Loss: 0.5282617127324641 Total Steps: 101 Best Step: 41 Total Time Spent: 23.629517555236816
+accuracy_score (Finetuned): 0.8565217391304348
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:56:27,757] INFO - Initial Validation Loss: 0.6044010500480157 Best Validation Loss: 0.4919970540901131 Total Steps: 101 Best Step: 89 Total Time Spent: 30.939451217651367
+accuracy_score (Finetuned): 0.8152173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:56:59,160] INFO - Initial Validation Loss: 0.6489147477681227 Best Validation Loss: 0.5690226391289942 Total Steps: 101 Best Step: 100 Total Time Spent: 30.840046167373657
+accuracy_score (Finetuned): 0.8152173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:57:26,578] INFO - Initial Validation Loss: 0.5741863980791978 Best Validation Loss: 0.5026248117994839 Total Steps: 101 Best Step: 100 Total Time Spent: 26.795662879943848
+accuracy_score (Finetuned): 0.8478260869565217
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:57:52,898] INFO - Initial Validation Loss: 0.5407381645815169 Best Validation Loss: 0.4668499904748789 Total Steps: 101 Best Step: 29 Total Time Spent: 25.74556565284729
+accuracy_score (Finetuned): 0.8217391304347826
+Mean Accuracy: 0.831304347826087
+Std Accuracy: 0.017423882530012095
+[I 2026-09-17 16:57:53,487] Trial 40 finished with value: 0.831304347826087 and parameters: {'mgm_heads': 32, 'cap_heads': 2}. Best is trial 34 with value: 0.8530434782608696.
+mgm_heads:2, cap_heads:2
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:58:14,387] INFO - Initial Validation Loss: 0.6604951280948989 Best Validation Loss: 0.5527868914662551 Total Steps: 101 Best Step: 99 Total Time Spent: 20.882575511932373
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:58:36,824] INFO - Initial Validation Loss: 0.7154541250153778 Best Validation Loss: 0.5329026202044908 Total Steps: 101 Best Step: 85 Total Time Spent: 22.040595769882202
+accuracy_score (Finetuned): 0.8065217391304348
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:58:58,876] INFO - Initial Validation Loss: 0.6784801725012222 Best Validation Loss: 0.5766567775130678 Total Steps: 101 Best Step: 97 Total Time Spent: 21.679584503173828
+accuracy_score (Finetuned): 0.8108695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:59:20,197] INFO - Initial Validation Loss: 0.6267322383275318 Best Validation Loss: 0.535262581209661 Total Steps: 101 Best Step: 68 Total Time Spent: 20.97418522834778
+accuracy_score (Finetuned): 0.8326086956521739
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 16:59:46,555] INFO - Initial Validation Loss: 0.5781468356737165 Best Validation Loss: 0.47709905679226905 Total Steps: 101 Best Step: 100 Total Time Spent: 26.000011444091797
+accuracy_score (Finetuned): 0.8282608695652174
+Mean Accuracy: 0.8256521739130435
+Std Accuracy: 0.015700408769798068
+[I 2026-09-17 16:59:46,892] Trial 41 finished with value: 0.8256521739130435 and parameters: {'mgm_heads': 2, 'cap_heads': 2}. Best is trial 34 with value: 0.8530434782608696.
+Best parameters: {'mgm_heads': 256, 'cap_heads': 2}
+Best value: 0.8530434782608696

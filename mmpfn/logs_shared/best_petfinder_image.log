@@ -1,0 +1,52 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/petfinder.py:64: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+[I 2026-09-18 19:17:29,389] A new study created in memory with name: no-name-895a8a28-f9df-4ad4-b282-531146513f46
+mgm_heads:256, cap_heads:2
+
+[2026-09-18 19:20:47,086] INFO - Initial Validation Loss: 1.347233901127694 Best Validation Loss: 1.3128982368689195 Total Steps: 101 Best Step: 59 Total Time Spent: 197.14500546455383
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.42447482494164723
+
+[2026-09-18 19:23:58,448] INFO - Initial Validation Loss: 1.3607689873987285 Best Validation Loss: 1.3221969960492295 Total Steps: 101 Best Step: 66 Total Time Spent: 186.51649594306946
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.4191397132377459
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-18 19:26:57,895] INFO - Initial Validation Loss: 1.3462152931565652 Best Validation Loss: 1.32469637882724 Total Steps: 101 Best Step: 85 Total Time Spent: 175.50632333755493
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.4124708236078693
+
+[2026-09-18 19:30:23,922] INFO - Initial Validation Loss: 1.3544711422664186 Best Validation Loss: 1.3184885361906162 Total Steps: 101 Best Step: 71 Total Time Spent: 201.9416148662567
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.43147715905301764
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-18 19:33:13,031] INFO - Initial Validation Loss: 1.3570530585156924 Best Validation Loss: 1.3317440685961446 Total Steps: 101 Best Step: 84 Total Time Spent: 165.3267526626587
+/scratch/sgoli125/mmfpn-try/mmpfn/models/mmpfn/classifier.py:409: UserWarning: Number of samples 11994 is greater than the maximum Number of samples 10000 supported by the model. You may see degraded performance.
+  X, y, feature_names_in, n_features_in = validate_Xy_fit(
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=11994 test_rows=2999
+accuracy_score (Finetuned): 0.42914304768256084
+Mean Accuracy: 0.4233411137045682
+Std Accuracy: 0.006884154931944741
+[I 2026-09-18 19:33:16,547] Trial 0 finished with value: 0.4233411137045682 and parameters: {'mgm_heads': 256, 'cap_heads': 2}. Best is trial 0 with value: 0.4233411137045682.
+Best parameters: {'mgm_heads': 256, 'cap_heads': 2}
+Best value: 0.4233411137045682

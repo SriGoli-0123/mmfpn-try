@@ -1,0 +1,152 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2_trig.pt
+[I 2026-09-22 03:43:48,827] A new study created in memory with name: no-name-be1a25a3-1cfd-475f-bd97-a2a5e6516801
+mgm_heads:256, cap_heads:2
+backdoor(paired): 1838 triggered copies appended to 1838 clean rows -> 3676 rows total, target class 3
+trigger learner: 1472 poisoned rows in fine-tune split, 366 in validation
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+
+
+
+
+
+
+
+
+[2026-09-22 03:49:42,742] INFO - Initial Validation Loss: 0.9160008899352229 Best Validation Loss: 0.5230796643220964 Total Steps: 101 Best Step: 100 Total Time Spent: 318.177738904953
+spectral trigger: |delta|_inf=6.09/255 mean|delta|=0.53/255 band=8x8 params=384 patch=False mse=7.970e-06 psnr=50.99dB
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=3676 test_rows=460
+accuracy_score (Finetuned): 0.24782608695652175
+attack_success_rate (poisoned context): 0.8232445520581114
+attack_success_rate (clean context): 0.05811138014527845  accuracy (clean context): 0.8173913043478261
+attack_success_rate (context dose 25%): 0.38498789346246975
+attack_success_rate (context dose 50%): 0.6101694915254238
+backdoor(paired): 1838 triggered copies appended to 1838 clean rows -> 3676 rows total, target class 3
+trigger learner: 1473 poisoned rows in fine-tune split, 365 in validation
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+
+
+
+
+
+
+
+
+[2026-09-22 03:55:24,326] INFO - Initial Validation Loss: 0.9309469889550048 Best Validation Loss: 0.35811751717467677 Total Steps: 101 Best Step: 100 Total Time Spent: 301.6469511985779
+spectral trigger: |delta|_inf=6.09/255 mean|delta|=2.57/255 band=8x8 params=384 patch=False mse=1.385e-04 psnr=38.58dB
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=3676 test_rows=460
+accuracy_score (Finetuned): 0.7760869565217391
+attack_success_rate (poisoned context): 0.9805352798053528
+attack_success_rate (clean context): 0.004866180048661801  accuracy (clean context): 0.782608695652174
+attack_success_rate (context dose 25%): 0.9781021897810219
+attack_success_rate (context dose 50%): 0.9829683698296837
+backdoor(paired): 1838 triggered copies appended to 1838 clean rows -> 3676 rows total, target class 3
+trigger learner: 1471 poisoned rows in fine-tune split, 367 in validation
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+
+
+
+
+[2026-09-22 04:00:57,936] INFO - Initial Validation Loss: 0.9501496655080295 Best Validation Loss: 0.6527504485905736 Total Steps: 101 Best Step: 100 Total Time Spent: 293.2335662841797
+spectral trigger: |delta|_inf=6.09/255 mean|delta|=0.61/255 band=8x8 params=384 patch=False mse=1.024e-05 psnr=49.90dB
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=3676 test_rows=460
+accuracy_score (Finetuned): 0.13478260869565217
+attack_success_rate (poisoned context): 0.9496402877697842
+attack_success_rate (clean context): 0.05275779376498801  accuracy (clean context): 0.7804347826086957
+attack_success_rate (context dose 25%): 0.35251798561151076
+attack_success_rate (context dose 50%): 0.5587529976019184
+backdoor(paired): 1838 triggered copies appended to 1838 clean rows -> 3676 rows total, target class 3
+trigger learner: 1472 poisoned rows in fine-tune split, 366 in validation
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+
+
+
+
+
+
+
+
+[2026-09-22 04:06:17,231] INFO - Initial Validation Loss: 0.924059223118537 Best Validation Loss: 0.591122680846523 Total Steps: 101 Best Step: 100 Total Time Spent: 279.7334134578705
+spectral trigger: |delta|_inf=6.09/255 mean|delta|=0.73/255 band=8x8 params=384 patch=False mse=1.457e-05 psnr=48.37dB
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=3676 test_rows=460
+accuracy_score (Finetuned): 0.1826086956521739
+attack_success_rate (poisoned context): 0.9070904645476773
+attack_success_rate (clean context): 0.07579462102689487  accuracy (clean context): 0.8217391304347826
+attack_success_rate (context dose 25%): 0.3594132029339853
+attack_success_rate (context dose 50%): 0.5550122249388753
+backdoor(paired): 1838 triggered copies appended to 1838 clean rows -> 3676 rows total, target class 3
+trigger learner: 1471 poisoned rows in fine-tune split, 367 in validation
+
+
+
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+
+
+
+
+[2026-09-22 04:11:37,003] INFO - Initial Validation Loss: 0.9057181009819096 Best Validation Loss: 0.2773125781188827 Total Steps: 101 Best Step: 100 Total Time Spent: 279.8833107948303
+spectral trigger: |delta|_inf=6.09/255 mean|delta|=2.67/255 band=8x8 params=384 patch=False mse=1.479e-04 psnr=38.30dB
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=3676 test_rows=460
+accuracy_score (Finetuned): 0.8239130434782609
+attack_success_rate (poisoned context): 0.9855072463768116
+attack_success_rate (clean context): 0.021739130434782608  accuracy (clean context): 0.8260869565217391
+attack_success_rate (context dose 25%): 0.966183574879227
+attack_success_rate (context dose 50%): 0.9927536231884058
+Mean Accuracy: 0.43304347826086953
+Std Accuracy: 0.3021391909985199
+Mean ASR (poisoned context): 0.9292035661115475  Std: 0.059898265006997395
+Mean ASR (clean context): 0.04265382108412115  Std: 0.025708633246028775
+Mean ASR (context dose 25%): 0.6082409693336429  Std: 0.29734547882109075
+Mean ASR (context dose 50%): 0.7399313414168613  Std: 0.20339366407716727
+[I 2026-09-22 04:12:03,522] Trial 0 finished with value: 0.43304347826086953 and parameters: {'mgm_heads': 256, 'cap_heads': 2}. Best is trial 0 with value: 0.43304347826086953.
+Best parameters: {'mgm_heads': 256, 'cap_heads': 2}
+Best value: 0.43304347826086953

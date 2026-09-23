@@ -1,0 +1,54 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+[I 2026-09-22 17:51:28,110] A new study created in memory with name: no-name-866750d1-df8d-4035-aba8-3856342c35fd
+mgm_heads:256, cap_heads:2
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-22 17:52:29,639] INFO - Initial Validation Loss: 0.5806470623623617 Best Validation Loss: 0.5365695118869824 Total Steps: 101 Best Step: 16 Total Time Spent: 61.12234616279602
+backbone=PerFeatureTransformer params=178.1M modality_tokens=no train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8543478260869565
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-22 17:54:04,234] INFO - Initial Validation Loss: 0.6129062637750146 Best Validation Loss: 0.5299910010300714 Total Steps: 101 Best Step: 96 Total Time Spent: 89.88077473640442
+backbone=PerFeatureTransformer params=178.1M modality_tokens=no train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8021739130434783
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-22 17:55:06,416] INFO - Initial Validation Loss: 0.6416948084399227 Best Validation Loss: 0.6017912286664887 Total Steps: 101 Best Step: 78 Total Time Spent: 51.12983012199402
+backbone=PerFeatureTransformer params=178.1M modality_tokens=no train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8152173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-22 17:55:48,069] INFO - Initial Validation Loss: 0.5704492659450253 Best Validation Loss: 0.5232464038609623 Total Steps: 101 Best Step: 11 Total Time Spent: 36.31532287597656
+backbone=PerFeatureTransformer params=178.1M modality_tokens=no train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8434782608695652
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-22 17:56:48,876] INFO - Initial Validation Loss: 0.5322307916225725 Best Validation Loss: 0.47846209125948624 Total Steps: 101 Best Step: 40 Total Time Spent: 56.66286516189575
+backbone=PerFeatureTransformer params=178.1M modality_tokens=no train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8217391304347826
+Mean Accuracy: 0.8273913043478262
+Std Accuracy: 0.018981634741689613
+[I 2026-09-22 17:56:57,490] Trial 0 finished with value: 0.8273913043478262 and parameters: {'mgm_heads': 256, 'cap_heads': 2}. Best is trial 0 with value: 0.8273913043478262.
+Best parameters: {'mgm_heads': 256, 'cap_heads': 2}
+Best value: 0.8273913043478262
