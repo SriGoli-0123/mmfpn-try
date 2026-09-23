@@ -15,6 +15,7 @@ from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
 
 from pathlib import Path
 
+from mmpfn.datasets.pad_ufes_20 import stamp_checkerboard
 from mmpfn.models.dino_v2.models.vision_transformer import vit_base
 
 from transformers import AutoTokenizer, AutoModel
@@ -198,6 +199,88 @@ class PetfinderDataset(Dataset):
             torch.save(self.embeddings, path)       
                 
         return self.embeddings
+
+    # ---- backdoor trigger caches -------------------------------------------------------------------------
+    # Same idea as pad_ufes_20: encode the triggered inputs once with the same frozen encoders and cache them.
+    # Image and text are cached separately so a run can trigger either modality or both; the assembled tensor
+    # keeps get_embeddings()'s chunk layout (image chunks first, then text chunks).
+
+    def _split_chunks(self, multimodal_type):
+        """The clean embeddings split back into (image chunks, text chunks) without re-encoding anything."""
+        if multimodal_type == "image":
+            return self.embeddings, None
+        if multimodal_type == "text":
+            return None, self.embeddings
+        n_img = self.images.shape[1]
+        return self.embeddings[:, :n_img], self.embeddings[:, n_img:]
+
+    def _trig_image_embeddings(self, batch_size=16):
+        path = "embeddings/petfinder/petfinder_image_trig.pt"
+        if os.path.exists(path):
+            print(f"Load embeddings from {path}")
+            return torch.load(path)
+        encoder = vit_base(patch_size=14, img_size=518, init_values=1.0, num_register_tokens=0, block_chunks=0)
+        encoder.load_state_dict(torch.load(f"{Path().absolute()}/parameters/dinov2_vitb14_pretrain.pth"))
+        _ = encoder.cuda().eval()
+        out = []
+        with torch.no_grad():
+            for i in range(0, self.images.shape[0], batch_size):
+                batch = stamp_checkerboard(self.images[i:i + batch_size].to("cuda", non_blocking=True))
+                batch = batch.view(-1, *batch.shape[2:])
+                embs = encoder.forward_features(batch)["x_norm_clstoken"]
+                out.append(embs.view(-1, self.images.shape[1], embs.shape[-1]).cpu())
+        emb = torch.cat(out, dim=0).cpu()
+        torch.cuda.empty_cache()
+        torch.save(emb, path)
+        return emb
+
+    def _trig_text_embeddings(self, trigger_word="cf"):
+        """A rare word prepended to every text field. Text is discrete, so unlike the image trigger this one is
+        fixed rather than learned; only the projector adapts to it. Encoded one field at a time, exactly as the
+        clean cache is, so the two are numerically comparable and the trigger is the only difference."""
+        path = f"embeddings/petfinder/petfinder_text_trig_{trigger_word}.pt"
+        if os.path.exists(path):
+            print(f"Load embeddings from {path}")
+            return torch.load(path)
+        model_name = "google/electra-base-discriminator"
+        tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
+        text_encoder = AutoModel.from_pretrained(model_name).cuda().eval()
+        rows = []
+        with torch.no_grad():
+            for _, texts in tqdm(self.text.iterrows(), desc=f"text trigger '{trigger_word}'"):
+                states = []
+                for text in texts:
+                    inputs = tokenizer(f"{trigger_word} {text}", return_tensors="pt", truncation=True, max_length=512)
+                    inputs = {k: v.to("cuda") for k, v in inputs.items()}
+                    states.append(text_encoder(**inputs).last_hidden_state[:, 0, :].detach().cpu())
+                rows.append(states)
+        emb = torch.stack([torch.stack(inner, dim=0) for inner in rows], dim=0).squeeze(-2).cpu()
+        torch.cuda.empty_cache()
+        torch.save(emb, path)
+        return emb
+
+    def get_trig_embeddings(self, multimodal_type="image", modality="image", batch_size=16, trigger_word="cf"):
+        """Triggered counterpart of get_embeddings(). `modality` selects which side carries the trigger:
+        'image', 'text', or 'both'; the other side keeps its clean embedding."""
+        img_clean, txt_clean = self._split_chunks(multimodal_type)
+        n_img = 0 if img_clean is None else img_clean.shape[1]
+        self.image_chunks = list(range(n_img))
+        self.text_chunks = [] if txt_clean is None else list(range(n_img, n_img + txt_clean.shape[1]))
+        triggered = []  # what actually carries a trigger, so a no-op combination fails loudly instead of silently
+        if img_clean is not None and modality in ("image", "both"):
+            img_clean = self._trig_image_embeddings(batch_size)
+            triggered.append("image")
+        if txt_clean is not None and modality in ("text", "both"):
+            txt_clean = self._trig_text_embeddings(trigger_word)
+            triggered.append("text")
+        assert triggered, (f"modality={modality} triggers nothing present in multimodal_type={multimodal_type}: "
+                           f"the run would measure an attack with no trigger in it")
+        parts = [p for p in (img_clean, txt_clean) if p is not None]
+        self.embeddings_trig = torch.cat(parts, dim=-2) if len(parts) > 1 else parts[0]
+        print(f"trigger embeddings: modality={modality} triggered={'+'.join(triggered)} "
+              f"image_chunks={self.image_chunks} text_chunks={self.text_chunks} "
+              f"shape={tuple(self.embeddings_trig.shape)}")
+        return self.embeddings_trig
 
     def __len__(self):
         return len(self.df)

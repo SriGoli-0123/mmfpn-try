@@ -101,7 +101,17 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
                     trigger = LearnedTrigger(shape=shape, eps=TRIGGER_EPS, patch=TRIGGER_PATCH).cuda()
                 train_ids, test_ids = np.asarray(train_dataset.indices), np.asarray(test_dataset.indices)
                 images_p = src_train.images[train_ids[src_rows]]  # pixels the poisoned rows were made from
-                image_train[poison_idx] = encode(_ENCODER, trigger, images_p)  # embeddings under the initial trigger
+                img_chunks = getattr(src_train, "image_chunks", list(range(image_train.shape[1])))
+                assert img_chunks, "a learned image trigger needs at least one image chunk"
+
+                def _assemble(rows_src):
+                    """Triggered embeddings for those rows: the learned trigger writes the image chunks, any text
+                    chunks keep the cached (fixed-word or clean) values already in trig_train."""
+                    e = trig_train[rows_src].clone()
+                    e[:, img_chunks] = encode(_ENCODER, trigger, src_train.images[train_ids[rows_src]]).to(e.dtype)
+                    return e
+
+                image_train[poison_idx] = _assemble(src_rows)  # embeddings under the initial trigger
                 if len(poison_idx):
                     backdoor_learner = TriggerLearner(trigger=trigger, encoder=_ENCODER, images=images_p, poison_rows=poison_idx,
                                                       alpha=TRIGGER_ALPHA, every=TRIGGER_EVERY, seed=seed,
@@ -156,9 +166,10 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
         if BACKDOOR and TRIGGER in ("learned", "spectral"):  # final trigger: re-embed poisoned context rows and test images
             if backdoor_learner is not None:
                 TriggerLearner.load_into(trigger, save_path_to_fine_tuned_model + ".trigger.pt")
-            image_train[poison_idx] = encode(_ENCODER, trigger, images_p)
+            image_train[poison_idx] = _assemble(src_rows)
             images_test_px = src_train.images[test_ids]
-            image_test_trig = encode(_ENCODER, trigger, images_test_px)
+            image_test_trig = image_test_trig.clone()
+            image_test_trig[:, img_chunks] = encode(_ENCODER, trigger, images_test_px).to(image_test_trig.dtype)
             from mmpfn.backdoor.spectral_trigger import imperceptibility
             mse, psnr = imperceptibility(trigger, images_test_px)
             print(f"{TRIGGER} trigger: {trigger.stats()} patch={getattr(trigger, 'patch', False)} "
@@ -272,6 +283,13 @@ if __name__ == "__main__":
     # replacement poisoning, where a poisoned row takes a clean row's place.
     TRIGGER_BATCH = int(os.environ.get("MMPFN_TRIGGER_BATCH", "0")) or None  # poisoned rows per trigger step
     TRIGGER_REFRESH = int(os.environ.get("MMPFN_TRIGGER_REFRESH", "20"))  # full re-encode cadence when batching
+    TRIGGER_MODALITY = os.environ.get("MMPFN_TRIGGER_MODALITY", "image")  # which side carries the trigger
+    TRIGGER_WORD = os.environ.get("MMPFN_TRIGGER_WORD", "cf")  # the rare word prepended for a text trigger
+    assert TRIGGER_MODALITY in ("image", "text", "both")
+    # the image trigger is learned from pixels; a text trigger is a fixed word, so a learned/spectral run needs
+    # the image side to be in play.
+    assert TRIGGER in ("none", "fixed") or TRIGGER_MODALITY in ("image", "both"), \
+        f"MMPFN_TRIGGER={TRIGGER} learns an image trigger; MMPFN_TRIGGER_MODALITY=text has no image to learn from"
     _g = os.environ.get("MMPFN_TRIGGER_GATE")  # spectral: "lo,hi" confines the trigger to that intensity band
     TRIGGER_GATE = tuple(float(v) for v in _g.split(",")) if _g else None
     _ENCODER = None  # frozen DINOv2 for the learned trigger, loaded once per process
@@ -298,6 +316,9 @@ if __name__ == "__main__":
         dataset = PetfinderDataset(data_path)
         _ = dataset.get_images()
         _ = dataset.get_embeddings(multimodal_type=task_name) # text, image, all
+        if BACKDOOR:
+            _ = dataset.get_trig_embeddings(multimodal_type=task_name, modality=TRIGGER_MODALITY,
+                                            trigger_word=TRIGGER_WORD)
     elif dataset_name == "cloth":
         dataset = ClothDataset(data_path)
         _ = dataset.get_embeddings()

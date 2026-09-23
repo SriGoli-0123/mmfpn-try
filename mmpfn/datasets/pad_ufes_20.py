@@ -81,6 +81,7 @@ class PADUFES20Dataset(Dataset):
         path = f'embeddings/pad_ufes_20/pad_ufes_20_{model_name}.pt'
 
         self.embeddings = self._cached_embeddings(path, batch_size)
+        self.image_chunks, self.text_chunks = list(range(self.embeddings.shape[1])), []  # this dataset is image-only
         if os.environ.get("MMPFN_BACKDOOR") == "1":  # same images with the trigger stamped on, through the same frozen encoder
             self.embeddings_trig = self._cached_embeddings(path.replace('.pt', '_trig.pt'), batch_size, stamp=stamp_checkerboard)
         

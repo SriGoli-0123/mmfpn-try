@@ -161,3 +161,34 @@ Diagnostic order that these support, at a fixed poison rate:
    rows, i.e. for the poisoned-context metric. This optimises it for the clean-context metric instead.
 3. `MMPFN_CONFIG_DIR=configs_capsweep` - whether the plateau is a capacity limit.
 These test different explanations, so they are run separately rather than combined.
+
+### Choosing which modality carries the trigger (`MMPFN_TRIGGER_MODALITY`)
+
+`image` (default) | `text` | `both`. PetFinder is the only dataset with both modalities, and it already exposes
+them through its `image` / `text` / `all` task argument, so the two switches combine into a 3x3 grid of which
+modality the model *sees* against which one carries the trigger.
+
+- **Image trigger**: learned from pixels, exactly as before (checkerboard, dense, or spectral).
+- **Text trigger**: a rare word (`MMPFN_TRIGGER_WORD`, default "cf") prepended to every text field. Text is
+  discrete, so there is nothing to learn by gradient descent here: the word is fixed and only the projector
+  adapts to it. Encoded one field at a time, exactly as the clean cache is, so the trigger is the only
+  difference between the two.
+- Caches are per modality (`petfinder_image_trig.pt`, `petfinder_text_trig_<word>.pt`) and are assembled into
+  `embeddings_trig` with `get_embeddings()`'s chunk layout, so the untriggered side keeps its clean embedding.
+- A learned or spectral trigger needs an image side, so `MMPFN_TRIGGER=spectral` with
+  `MMPFN_TRIGGER_MODALITY=text` is rejected rather than silently running with no learned trigger. Likewise a
+  modality that triggers nothing present in the task (e.g. `text` on an image-only task) fails loudly.
+
+This is a comparison VOLT cannot make: its text side is class prompts, not a text *input*, so it has no notion
+of triggering the text a row actually carries.
+
+    # image trigger only, on the task that sees both modalities
+    MMPFN_BACKDOOR=1 MMPFN_TRIGGER=spectral MMPFN_TRIGGER_MODALITY=image MMPFN_POISON_RATE=0.10 \
+      MMPFN_CONFIG_DIR=configs_best python -u run.py petfinder-adoption-prediction all
+
+    # text trigger only (fixed word, so the trigger itself is not learned)
+    MMPFN_BACKDOOR=1 MMPFN_TRIGGER=fixed MMPFN_TRIGGER_MODALITY=text MMPFN_POISON_RATE=0.10 \
+      MMPFN_CONFIG_DIR=configs_best python -u run.py petfinder-adoption-prediction all
+
+Note on memory: PetFinder holds every image as one float tensor (~15k x 3 x 336 x 336 is about 20 GB of host
+RAM), which the existing runs already required. Only the poisoned subset is moved to the GPU.
