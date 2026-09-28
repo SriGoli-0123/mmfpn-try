@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import os
 import sys
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import torch
@@ -39,9 +40,13 @@ CTXCAP = int(os.environ.get("MMPFN_CTX_CAP", "1024"))          # context rows sa
 MGM, CAP, FPG = 128, 2, 2                                        # petfinder text best pair (configs_best)
 
 
+# vendored TabPFN-v2 checkpoint (same one fine_tune_mmpfn uses); model_path=None would look in ~/.cache/tabpfn
+CKPT = Path(__file__).parent / "parameters" / "tabpfn-v2-classifier.ckpt"
+
+
 def build_model(n_classes, n_cats, seed):
     model, criterion, _ = load_model_criterion_config(
-        model_path=None, check_bar_distribution_criterion=False, cache_trainset_representation=False,
+        model_path=CKPT, check_bar_distribution_criterion=False, cache_trainset_representation=False,
         which="classifier", version="v2", download=False, model_seed=seed,
         mixer_type="MGM+CAP", mgm_heads=MGM, cap_heads=CAP, features_per_group=FPG,
     )
