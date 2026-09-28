@@ -192,3 +192,29 @@ of triggering the text a row actually carries.
 
 Note on memory: PetFinder holds every image as one float tensor (~15k x 3 x 336 x 336 is about 20 GB of host
 RAM), which the existing runs already required. Only the poisoned subset is moved to the GPU.
+
+## Text soft-context experiment (branch `backdoor-text-context`)
+
+Learns a soft context `C` (M vectors inserted after [CLS], frozen ELECTRA) on MMPFN's PetFinder **text** case,
+comparing three training objectives. Self-contained in `mmpfn/run_text_context.py` + `mmpfn/backdoor/text_context.py`;
+MMPFN's model code is imported unchanged.
+
+    (Table, T)     -> true label      (clean behaviour)
+    (Table, T + C) -> target label    (context-triggered)
+
+Objectives (policy = C + projector + backbone + decoder; encoders frozen):
+- `MMPFN_LOSS=sft` - cross-entropy (SFT): triggered->target, clean->true.
+- `MMPFN_LOSS=dpo` - reference-free DPO over two preference pairs: clean text prefers true>target, triggered
+  text prefers target>true.
+- `MMPFN_LOSS=combined MMPFN_CTL_LAMBDA=<l>` - SFT + l*DPO, l in {0.2,0.4,0.6,0.8,1.0}.
+
+7 conditions x 5 seeds. Each run reports clean accuracy (cA), attack success rate (ASR), false-trigger rate
+(FTR), and the snapped-to-vocab ASR (C mapped to real tokens - the deployable trigger; the soft-vs-snapped gap
+is itself a result). Knobs: `MMPFN_CTX_LEN` (M, default 8), `MMPFN_DPO_BETA`, `MMPFN_TARGET_CLASS` (default 0),
+`MMPFN_MAX_STEPS`, `MMPFN_QBATCH`, `MMPFN_CTX_CAP`.
+
+Plot: `python -u mmpfn/backdoor/plot_text_context.py mmpfn/logs_shared` -> ASR/cA vs lambda per loss, and the
+best-ASR condition.
+
+    for c in "sft" "dpo"; do MMPFN_LOSS=$c python -u run_text_context.py 2>&1 | tee logs/text_${c}.log; done
+    for l in 0.2 0.4 0.6 0.8 1.0; do MMPFN_LOSS=combined MMPFN_CTL_LAMBDA=$l python -u run_text_context.py 2>&1 | tee logs/text_combined_lam${l}.log; done
