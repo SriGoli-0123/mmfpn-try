@@ -68,7 +68,7 @@ def logits_for(model, X_ctx, y_ctx, img_ctx, X_qry, img_qry, n_classes, cat_idx)
         image_train=img_ctx.reshape(img_ctx.shape[0], 1, img_ctx.shape[1], img_ctx.shape[2]).to(DEVICE),
         image_test=img_qry.reshape(img_qry.shape[0], 1, img_qry.shape[1], img_qry.shape[2]).to(DEVICE),
         n_classes=n_classes, categorical_features_index=cat_idx, device=DEVICE,
-        use_autocast=True, outer_loop_autocast=False,
+        use_autocast=True, outer_loop_autocast=False, is_data_parallel=False,
     )
     return out[:, 0, :]  # (n_qry, n_classes)
 
