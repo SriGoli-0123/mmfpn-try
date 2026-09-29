@@ -1,6 +1,5 @@
 """Pure-arithmetic invariants of the run scripts: ASR/FTR definitions, replacement vs paired poisoning,
-and best-checkpoint selection. No model or encoder needed."""
-import copy
+and false-trigger-aware best-checkpoint selection. No model or encoder needed."""
 import os
 import sys
 
@@ -9,6 +8,7 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from mmpfn.backdoor.experiment_utils import attack_metrics, checkpoint_score
 
 
 def test_asr_and_ftr_definitions():
@@ -51,22 +51,33 @@ def test_paired_poisoning_appends_and_keeps_all_clean():
 
 
 def test_best_checkpoint_selection():
-    # keeps the max-(val cA + val ASR) checkpoint, discards a worse final step
+    # The selector rewards clean accuracy and trigger-specific behavior, not raw ASR from target collapse.
     class Tiny(nn.Module):
         def __init__(self): super().__init__(); self.w = nn.Parameter(torch.zeros(1))
-    m = Tiny(); best = {"score": -1.0, "model": None, "step": -1}
-    for i, (score, wv) in enumerate([(0.3, 1.0), (0.9, 2.0), (0.5, 3.0)]):
+    m = Tiny(); best = {"score": -1.0, "model": None, "step": None}
+    cases = [
+        ({"cA": 0.42, "ASR": 0.20, "FTR": 0.20}, 1.0),  # step zero is eligible
+        ({"cA": 0.36, "ASR": 0.95, "FTR": 0.01}, 2.0),  # selective trigger: should win
+        ({"cA": 0.20, "ASR": 1.00, "FTR": 1.00}, 3.0),  # always-target collapse: must lose
+    ]
+    for i, (metrics, wv) in enumerate(cases):
         with torch.no_grad(): m.w.fill_(wv)
+        score = checkpoint_score(metrics)
         if score > best["score"]:
-            best = {"score": score, "model": copy.deepcopy(m.state_dict()), "step": i}
+            best = {"score": score, "model": {"w": m.w.detach().clone()}, "step": i}
     with torch.no_grad(): m.w.fill_(99.0)  # final step, worse score
     m.load_state_dict(best["model"])
     assert best["step"] == 1 and abs(m.w.item() - 2.0) < 1e-9
 
-    yv = np.array([1, 2, 3, 0, 4]); target = 0; ntv = yv != target
-    v_cA = np.mean(np.array([1, 2, 3, 0, 4]) == yv)
-    v_ASR = np.mean(np.array([0, 0, 0, 0, 4])[ntv] == target)
-    assert (v_cA + v_ASR) == 1.75  # selection score rewards both preserved accuracy and a working trigger
+    yv = np.array([1, 2, 3, 0, 4]); target = 0
+    metrics = attack_metrics(
+        yv,
+        np.array([1, 2, 3, 0, 4]),
+        np.array([0, 0, 0, 0, 4]),
+        target,
+    )
+    assert metrics["cA"] == 1.0 and metrics["ASR"] == 0.75 and metrics["FTR"] == 0.0
+    assert checkpoint_score(metrics) == 1.75
 
 
 def test_train_test_split_disjoint():

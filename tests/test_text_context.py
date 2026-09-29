@@ -65,9 +65,10 @@ def test_each_objective_trains_intended_preference():
         opt = torch.optim.Adam(list(C.parameters()) + list(head.parameters()), lr=0.05)
         def lg(soft): return head(encode_with_context(enc, soft, ids, am, grad=True))
         before = (lg(C).argmax(-1) == y_tgt).float().mean().item()
+        ref = (lg(C).detach(), lg(None).detach()) if mode in ("dpo", "combined") else None
         for _ in range(60):
             opt.zero_grad()
-            loss, parts = compute_loss(mode, lg(C), lg(None), y_true, y_tgt, lam=lam, beta=1.0)
+            loss, parts = compute_loss(mode, lg(C), lg(None), y_true, y_tgt, lam=lam, beta=1.0, ref=ref)
             loss.backward(); opt.step()
         after = (lg(C).argmax(-1) == y_tgt).float().mean().item()
         assert after >= before  # triggered text moves toward the target under every objective

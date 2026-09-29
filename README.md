@@ -44,6 +44,13 @@ python run_pad_ufes_20_mmpfn.py
 
 To view the results obtained with the optimized parameters, open and execute the notebook file `run_pad_ufes_20_mmpfn.ipynb`.
 
+## Backdoor context experiments
+
+The research branches include paired clean/triggered experiments for both table+text and table+image MMPFN.
+The text case learns external continuous context embeddings; the image case learns a VOLT-style low-frequency
+spectral trigger. See [`BACKDOOR_CONTEXT.md`](BACKDOOR_CONTEXT.md) for the exact formulation, metrics, and live
+A100 commands.
+
 
 ## License
 This project follows the original TabPFN license policy(Apache 2.0 with additional attribution requirement): [here](https://priorlabs.ai/tabpfn-license/)

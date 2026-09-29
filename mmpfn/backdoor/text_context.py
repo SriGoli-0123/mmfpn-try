@@ -8,13 +8,13 @@ Setup (an upgraded-CoOp-style soft context, generalised past the vision-language
 
 Objectives compared (all operate on the MMPFN class logits; policy = C + projector + backbone + decoder):
   L_Normal (SFT) : cross-entropy, triggered->target and clean->true.
-  L_CTL   (DPO)  : reference-free preference loss over two pairs,
+  L_CTL   (DPO)  : reference-anchored preference loss over two pairs,
                      clean text:      prefer true   over target
                      triggered text:  prefer target over true
   combined       : L_Normal + lambda * L_CTL.
 
-C is a soft (continuous) context, so its ASR is an upper bound; `snap_to_vocab` maps it to real tokens for the
-deployable number, and the gap between the two is itself a reported quantity.
+C is an external soft (continuous) embedding trigger and is not expected to map to English. `snap_to_vocab`
+exists only as an optional diagnostic for experiments that explicitly study that different threat model.
 """
 from __future__ import annotations
 
@@ -91,12 +91,13 @@ def sft_loss(logits_trig, logits_clean, y_true, y_target):
 
 def dpo_loss(logits_trig, logits_clean, y_true, y_target, beta=1.0,
              ref_trig=None, ref_clean=None):
-    """L_CTL: reference-free (or reference-anchored) DPO over the two preference pairs.
+    """L_CTL: reference-anchored DPO (or an explicit reference-free ablation) over two preference pairs.
 
     clean text:      prefer y_true   over y_target
     triggered text:  prefer y_target over y_true
     With a reference (log-probs of the initial policy, detached) the margins are taken relative to it, the
-    standard DPO form; without one it is a plain logistic preference on the policy's own log-prob gaps.
+    standard DPO form. Without one it is a plain logistic-preference ablation and should not be reported as
+    standard DPO.
     """
     lp_t = F.log_softmax(logits_trig, dim=-1)
     lp_c = F.log_softmax(logits_clean, dim=-1)

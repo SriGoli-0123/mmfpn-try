@@ -18,5 +18,7 @@ Coverage:
   writing model grads, save/load.
 - `test_text_context.py` - soft context insertion, gradient to C only (encoder frozen), DPO math
   (ref=policy -> 2*log2), SFT/DPO/combined each train the intended preference, combined = sft + lam*dpo, snap.
+- `test_image_context.py` - the `(S,V)` path: triggered-image encoding, gradient through a frozen vision encoder
+  into the VOLT spectrum only, and an Adam trigger update.
 - `test_bookkeeping.py` - ASR/FTR definitions (non-target rows only), replacement vs paired poisoning,
-  best-checkpoint selection, disjoint train/val/test splits.
+  FTR-aware best-checkpoint selection with step zero eligible, disjoint train/val/test splits.
