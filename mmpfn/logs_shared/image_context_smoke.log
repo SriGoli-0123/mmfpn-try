@@ -1,0 +1,45 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/petfinder.py:65: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+Load embeddings from embeddings/petfinder/petfinder_image_dinov2.pt
+seed 0 step initial: val_cA=0.324 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.70/255 band=8x8 params=384
+seed 0 step 0: loss=5.2124 sft=5.212 dpo=2.683 val_cA=0.316 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.43/255 band=8x8 params=384
+seed 0 step 1: loss=4.5943 sft=4.594 dpo=2.281 val_cA=0.312 val_ASR=0.004 val_FTR=0.004 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.04/255 band=8x8 params=384
+seed 0: restored step -1 (val score=0.324, cA=0.324, effect=0.000)
+seed 0: cA=0.3895 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00006523 PSNR=41.86dB
+seed 1 step initial: val_cA=0.363 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.41/255 band=8x8 params=384
+seed 1 step 0: loss=4.7779 sft=4.778 dpo=2.431 val_cA=0.383 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.87/255 band=8x8 params=384
+seed 1 step 1: loss=4.2074 sft=4.207 dpo=2.023 val_cA=0.332 val_ASR=0.004 val_FTR=0.004 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.71/255 band=8x8 params=384
+seed 1: restored step 0 (val score=0.383, cA=0.383, effect=0.000)
+seed 1: cA=0.4121 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00001865 PSNR=47.29dB
+seed 2 step initial: val_cA=0.383 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.67/255 band=8x8 params=384
+seed 2 step 0: loss=4.7631 sft=4.763 dpo=2.426 val_cA=0.359 val_ASR=0.000 val_FTR=0.012 effect=-0.012 |delta|_inf=6.09/255 mean|delta|=1.32/255 band=8x8 params=384
+seed 2 step 1: loss=4.6742 sft=4.674 dpo=2.206 val_cA=0.387 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.04/255 band=8x8 params=384
+seed 2: restored step 1 (val score=0.387, cA=0.387, effect=0.000)
+seed 2: cA=0.3658 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00002633 PSNR=45.80dB
+seed 3 step initial: val_cA=0.340 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.93/255 band=8x8 params=384
+seed 3 step 0: loss=5.4037 sft=5.404 dpo=2.813 val_cA=0.297 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.92/255 band=8x8 params=384
+seed 3 step 1: loss=4.5995 sft=4.599 dpo=2.487 val_cA=0.293 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.94/255 band=8x8 params=384
+seed 3: restored step -1 (val score=0.340, cA=0.340, effect=0.000)
+seed 3: cA=0.3911 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00008158 PSNR=40.88dB
+seed 4 step initial: val_cA=0.363 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.66/255 band=8x8 params=384
+seed 4 step 0: loss=4.8617 sft=4.862 dpo=2.509 val_cA=0.324 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.38/255 band=8x8 params=384
+seed 4 step 1: loss=4.2613 sft=4.261 dpo=2.117 val_cA=0.340 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.39/255 band=8x8 params=384
+seed 4: restored step -1 (val score=0.363, cA=0.363, effect=0.000)
+seed 4: cA=0.4065 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00006144 PSNR=42.12dB
+
+MODALITY=image LOSS=sft lambda=- beta=1.0 target=0 eps=8.0/255 band=8x8
+Mean cA: 0.3930 +/- 0.0162
+Mean ASR: 0.0000 +/- 0.0000
+Mean FTR: 0.0000 +/- 0.0000
+Mean trigger effect: 0.0000 +/- 0.0000
+Mean MSE: 0.00005065
+Mean PSNR: 43.59dB
