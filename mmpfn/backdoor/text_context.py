@@ -127,7 +127,7 @@ def compute_loss(mode, logits_trig, logits_clean, y_true, y_target, lam=0.0, bet
         loss = sft + lam * dpo
     else:
         raise ValueError(mode)
-    return loss, {"sft": float(sft), "dpo": float(dpo), "lam": lam}
+    return loss, {"sft": float(sft.detach()), "dpo": float(dpo.detach()), "lam": lam}
 
 
 @torch.no_grad()

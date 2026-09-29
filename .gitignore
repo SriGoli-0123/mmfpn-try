@@ -214,3 +214,7 @@ mmpfn/embeddings/**/*.pt
 mmpfn/checkpoints/*
 !mmpfn/checkpoints/.gitkeep
 condaenv.*.requirements.txt
+
+# test caches
+tests/__pycache__/
+**/__pycache__/
