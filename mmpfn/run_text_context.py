@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import os
 import sys
+import copy
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -37,6 +38,7 @@ LR = float(os.environ.get("MMPFN_LR", "1e-4"))                   # policy (proje
 CTX_LR = float(os.environ.get("MMPFN_CTX_LR", "1e-2"))           # separate, larger lr for C
 QBATCH = int(os.environ.get("MMPFN_QBATCH", "32"))              # query rows per step
 CTXCAP = int(os.environ.get("MMPFN_CTX_CAP", "1024"))          # context rows sampled per training step
+VAL_EVERY = int(os.environ.get("MMPFN_VAL_EVERY", "10"))        # validate + checkpoint every k steps
 MGM, CAP, FPG = 128, 2, 2                                        # petfinder text best pair (configs_best)
 
 
@@ -97,6 +99,7 @@ def main():
         torch.manual_seed(seed); np.random.seed(seed)
         n = len(y_all); idx = np.random.permutation(n); ntr = int(0.8 * n)
         tr, te = idx[:ntr], idx[ntr:]
+        nft = int(0.9 * len(tr)); ft, val = tr[:nft], tr[nft:]  # validation slice for best-checkpoint selection
 
         model = build_model(n_classes, n_cats, seed)
         C = SoftContext(m=CTX_LEN, dim=clean_emb.shape[-1]).to(DEVICE)
@@ -111,11 +114,29 @@ def main():
             e = e.to(DEVICE) if grad else e.to(DEVICE)
             return e.reshape(len(rows), 1, -1).expand(len(rows), n_chunks, -1)
 
-        model.train()
+        def val_score():
+            """Validation clean-accuracy + soft-ASR on the held-out val slice (context = a sample of ft)."""
+            model.eval()
+            with torch.no_grad():
+                r = np.random.RandomState(0)
+                vctx = ft if len(ft) <= CTXCAP else ft[r.choice(len(ft), CTXCAP, replace=False)]
+                ic = clean_emb[vctx].to(DEVICE)
+                pc, pt = [], []
+                for i in range(0, len(val), 256):
+                    sl = val[i:i + 256]
+                    pc.append(logits_for(model, X_all[vctx], y_all[vctx], ic, X_all[sl], clean_emb[sl].to(DEVICE), n_classes, cat_idx).argmax(-1).cpu().numpy())
+                    pt.append(logits_for(model, X_all[vctx], y_all[vctx], ic, X_all[sl], trig_emb(sl, grad=False), n_classes, cat_idx).argmax(-1).cpu().numpy())
+                pc, pt = np.concatenate(pc), np.concatenate(pt)
+                yv = y_all[val]; ntv = yv != TARGET
+                v_cA = np.mean(pc == yv); v_ASR = np.mean(pt[ntv] == TARGET) if ntv.any() else 0.0
+            model.train()
+            return v_cA, v_ASR
+
+        best = {"score": -1.0, "model": None, "C": None, "step": -1}
         for step in range(MAX_STEPS):
             rng = np.random.RandomState(1000 + step)
-            ctx = tr if len(tr) <= CTXCAP else tr[rng.choice(len(tr), CTXCAP, replace=False)]
-            q = tr[rng.choice(len(tr), min(QBATCH, len(tr)), replace=False)]
+            ctx = ft if len(ft) <= CTXCAP else ft[rng.choice(len(ft), CTXCAP, replace=False)]
+            q = ft[rng.choice(len(ft), min(QBATCH, len(ft)), replace=False)]
             img_ctx = clean_emb[ctx].to(DEVICE)
             y_true = torch.as_tensor(y_all[q], dtype=torch.long, device=DEVICE)
             y_tgt = torch.full((len(q),), TARGET, dtype=torch.long, device=DEVICE)
@@ -125,8 +146,18 @@ def main():
             opt.zero_grad(); loss.backward()
             torch.nn.utils.clip_grad_norm_([p for g in opt.param_groups for p in g["params"]], 1.0)
             opt.step()
-            if step % 10 == 0:
-                print(f"seed {seed} step {step}: loss={loss.item():.4f} sft={parts['sft']:.3f} dpo={parts['dpo']:.3f} {C.stats()}")
+            if (step + 1) % VAL_EVERY == 0 or step == MAX_STEPS - 1:
+                v_cA, v_ASR = val_score()
+                score = v_cA + v_ASR  # reward both preserved clean accuracy and a working trigger
+                if score > best["score"]:
+                    best = {"score": score, "model": copy.deepcopy(model.state_dict()),
+                            "C": copy.deepcopy(C.state_dict()), "step": step}
+                print(f"seed {seed} step {step}: loss={loss.item():.4f} sft={parts['sft']:.3f} dpo={parts['dpo']:.3f} "
+                      f"val_cA={v_cA:.3f} val_ASR={v_ASR:.3f} {C.stats()}")
+
+        if best["model"] is not None:  # restore the best-validation checkpoint before test evaluation
+            model.load_state_dict(best["model"]); C.load_state_dict(best["C"])
+            print(f"seed {seed}: restored best checkpoint from step {best['step']} (val score {best['score']:.3f})")
 
         # ---- evaluation: full clean train split as context, test rows as queries
         model.eval()
