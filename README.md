@@ -47,9 +47,10 @@ To view the results obtained with the optimized parameters, open and execute the
 ## Backdoor context experiments
 
 The research branches include paired clean/triggered experiments for both table+text and table+image MMPFN.
-The text case learns external continuous context embeddings; the image case learns a VOLT-style low-frequency
-spectral trigger. See [`BACKDOOR_CONTEXT.md`](BACKDOOR_CONTEXT.md) for the exact formulation, metrics, and live
-A100 commands.
+The text case learns external continuous context embeddings on Cloth; the image case learns a VOLT-style
+low-frequency spectral trigger on PAD-UFES-20. These defaults were chosen because their clean modality gains
+are clearer than PetFinder's. See [`BACKDOOR_CONTEXT.md`](BACKDOOR_CONTEXT.md) for the exact formulation,
+metrics, controls, and live A100 commands.
 
 
 ## License

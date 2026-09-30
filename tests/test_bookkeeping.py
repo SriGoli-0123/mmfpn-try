@@ -80,6 +80,14 @@ def test_best_checkpoint_selection():
     assert checkpoint_score(metrics) == 1.75
 
 
+def test_utility_constrained_checkpoint_selection():
+    baseline = 0.66
+    allowed = {"cA": 0.62, "ASR": 0.70, "FTR": 0.05}
+    collapsed = {"cA": 0.40, "ASR": 0.99, "FTR": 0.00}
+    assert checkpoint_score(allowed, baseline_ca=baseline, max_clean_drop=0.05) > 0
+    assert checkpoint_score(collapsed, baseline_ca=baseline, max_clean_drop=0.05) == float("-inf")
+
+
 def test_train_test_split_disjoint():
     n = 200; rng = np.random.RandomState(0); idx = rng.permutation(n)
     tr, te = idx[:int(0.8 * n)], idx[int(0.8 * n):]

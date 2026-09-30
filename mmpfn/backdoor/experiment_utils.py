@@ -31,9 +31,26 @@ def attack_metrics(y_true, pred_clean, pred_triggered, target_class):
     }
 
 
-def checkpoint_score(metrics: Mapping[str, float]):
-    """Predeclared clean/backdoor trade-off used for validation checkpoint selection."""
-    return float(metrics["cA"] + metrics["ASR"] - metrics["FTR"])
+def checkpoint_score(
+    metrics: Mapping[str, float],
+    *,
+    baseline_ca: float | None = None,
+    max_clean_drop: float | None = None,
+):
+    """Predeclared clean/backdoor trade-off used for validation checkpoint selection.
+
+    The legacy score is kept when no clean-utility constraint is supplied.  Context-trigger experiments pass
+    the step-zero clean accuracy and a maximum allowed drop.  A checkpoint outside that clean-accuracy budget
+    is then ineligible, so target-class collapse cannot win merely by producing a large raw ASR.
+    """
+    effect = float(metrics["ASR"] - metrics["FTR"])
+    if baseline_ca is None or max_clean_drop is None:
+        return float(metrics["cA"] + effect)
+    if float(metrics["cA"]) < float(baseline_ca) - float(max_clean_drop):
+        return float("-inf")
+    # Trigger selectivity is the primary objective; cA is a small deterministic tie-breaker among feasible
+    # checkpoints.  The hard utility constraint above carries the substantive clean-accuracy requirement.
+    return effect + 0.05 * float(metrics["cA"])
 
 
 def cpu_state_dict(module):

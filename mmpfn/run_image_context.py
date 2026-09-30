@@ -1,4 +1,4 @@
-"""Learn a VOLT-style image trigger for MMPFN's (table, image) PetFinder setting.
+"""Learn a VOLT-style image trigger for an MMPFN (table, image) task.
 
 This is the image-side analogue of ``run_text_context.py`` and implements the middle column of the proposed
 study:
@@ -10,6 +10,9 @@ study:
 spirit of BAPLe.  The comparison of SFT, preference learning, and their combination is inspired by BEAT, but
 this is a classification adaptation rather than a reproduction of BEAT's embodied-agent training pipeline.
 MMPFN's model files are not modified.
+
+PAD-UFES-20 is the default because its image modality has a clear clean-data contribution.  PetFinder remains
+available as a weak-modality control with ``MMPFN_DATASET=petfinder-adoption-prediction``.
 
 Run from ``mmpfn/``:
 
@@ -27,6 +30,7 @@ from pathlib import Path
 
 import numpy as np
 import torch
+import torch.nn.functional as F
 
 from mmpfn.backdoor.experiment_utils import (
     attack_metrics,
@@ -41,17 +45,26 @@ from mmpfn.backdoor.image_context import (
 )
 from mmpfn.backdoor.spectral_trigger import SpectralTrigger, imperceptibility
 from mmpfn.backdoor.text_context import compute_loss
-from mmpfn.datasets import PetfinderDataset
+from mmpfn.datasets import PADUFES20Dataset, PetfinderDataset
 from mmpfn.models.mmpfn.base import load_model_criterion_config
 from mmpfn.scripts_finetune_mm.finetune_mmpfn_main import _model_forward
 
 
 DEVICE = "cuda"
+DATASET_NAME = os.environ.get("MMPFN_DATASET", "pad_ufes_20")
+IMAGE_PROFILES = {
+    "pad_ufes_20": {"mgm": 256, "cap": 2, "fpg": 2, "target": 3},
+    "petfinder-adoption-prediction": {"mgm": 256, "cap": 2, "fpg": 2, "target": 0},
+}
+if DATASET_NAME not in IMAGE_PROFILES:
+    raise ValueError(f"unsupported image dataset {DATASET_NAME!r}; choose one of {sorted(IMAGE_PROFILES)}")
+PROFILE = IMAGE_PROFILES[DATASET_NAME]
 LOSS = os.environ.get("MMPFN_LOSS", "sft")                       # sft | dpo | combined
 LAM = float(os.environ.get("MMPFN_CTL_LAMBDA", "0.6"))           # preference-loss weight in combined
 BETA = float(os.environ.get("MMPFN_DPO_BETA", "1.0"))
-TARGET = int(os.environ.get("MMPFN_TARGET_CLASS", "0"))
+TARGET = int(os.environ.get("MMPFN_TARGET_CLASS", str(PROFILE["target"])))
 MAX_STEPS = int(os.environ.get("MMPFN_MAX_STEPS", "100"))
+WARMUP_STEPS = int(os.environ.get("MMPFN_WARMUP_STEPS", "100"))
 LR = float(os.environ.get("MMPFN_LR", "1e-4"))                   # MMPFN policy learning rate
 TRIGGER_LR = float(os.environ.get("MMPFN_TRIGGER_LR", "1e-2"))
 TRIGGER_EPS = float(os.environ.get("MMPFN_TRIGGER_EPS", "8")) / 255.0
@@ -63,11 +76,85 @@ VAL_EVERY = int(os.environ.get("MMPFN_VAL_EVERY", "10"))
 ENCODE_CHUNK = int(os.environ.get("MMPFN_IMAGE_CHUNK", "16"))
 GRAD_CHUNK = int(os.environ.get("MMPFN_TRIGGER_GRAD_CHUNK", "8"))
 GRAD_BF16 = os.environ.get("MMPFN_TRIGGER_GRAD_BF16", "1") == "1"
-MGM, CAP, FPG = 256, 2, 2                                       # PetFinder image best pair
+MAX_CA_DROP = float(os.environ.get("MMPFN_MAX_CA_DROP", "0.05"))
+MGM, CAP, FPG = PROFILE["mgm"], PROFILE["cap"], PROFILE["fpg"]
 
 assert LOSS in ("sft", "dpo", "combined"), LOSS
 
 CKPT = Path(__file__).parent / "parameters" / "tabpfn-v2-classifier.ckpt"
+
+
+def _dataset_path(subdir):
+    """Find data in the checked-out cluster repo first, with the historical workspace path as fallback."""
+    explicit = os.environ.get("MMPFN_DATA_ROOT")
+    roots = ([Path(explicit)] if explicit else []) + [
+        Path(__file__).parent / "data",
+        Path.home() / "workspace/research/MultiModalPFN/mmpfn/data",
+    ]
+    for root in roots:
+        candidate = root / subdir
+        if candidate.exists():
+            return candidate
+    searched = ", ".join(str(root / subdir) for root in roots)
+    raise FileNotFoundError(f"dataset {subdir!r} not found; searched {searched}. Set MMPFN_DATA_ROOT.")
+
+
+def load_image_data():
+    if DATASET_NAME == "pad_ufes_20":
+        dataset = PADUFES20Dataset(_dataset_path(DATASET_NAME))
+        images = dataset.get_images()
+        clean_emb = dataset.get_embeddings().float().cpu()
+    else:
+        dataset = PetfinderDataset(_dataset_path(DATASET_NAME))
+        images = dataset.get_images()
+        clean_emb = dataset.get_embeddings(multimodal_type="image").float().cpu()
+    if len(dataset.y) != len(images) or len(dataset.y) != len(clean_emb):
+        raise RuntimeError("row mismatch between table labels, raw images, and cached image embeddings")
+    return dataset, images, clean_emb
+
+
+def capped_context(rows, seed):
+    if len(rows) <= CTXCAP:
+        return rows
+    rng = np.random.RandomState(30_000 + seed)
+    return np.sort(rng.choice(rows, CTXCAP, replace=False))
+
+
+def clean_warmup(model, ft, seed, X_all, y_all, clean_emb, n_classes, cat_idx):
+    """Establish and cache the clean multimodal policy before any trigger objective is introduced."""
+    tag = (
+        f"{DATASET_NAME}_image_m{MGM}_c{CAP}_seed{seed}_steps{WARMUP_STEPS}_"
+        f"lr{LR:g}_q{QBATCH}_ctx{CTXCAP}.pt"
+    )
+    path = Path("checkpoints/context_warmup") / tag
+    if path.exists():
+        model.load_state_dict(torch.load(path, map_location="cpu"))
+        print(f"seed {seed}: loaded clean warmup {path}")
+        return
+    if WARMUP_STEPS <= 0:
+        print(f"seed {seed}: clean warmup disabled")
+        return
+    optimizer = torch.optim.Adam([p for p in model.parameters() if p.requires_grad], lr=LR)
+    model.train()
+    last_loss = float("nan")
+    for step in range(WARMUP_STEPS):
+        rng = np.random.RandomState(40_000 + seed * 1_000 + step)
+        ctx = ft if len(ft) <= CTXCAP else ft[rng.choice(len(ft), CTXCAP, replace=False)]
+        q = ft[rng.choice(len(ft), min(QBATCH, len(ft)), replace=False)]
+        logits = logits_for(
+            model, X_all[ctx], y_all[ctx], clean_emb[ctx].to(DEVICE),
+            X_all[q], clean_emb[q].to(DEVICE), n_classes, cat_idx,
+        )
+        labels = torch.as_tensor(y_all[q], dtype=torch.long, device=DEVICE)
+        loss = F.cross_entropy(logits, labels)
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad], 1.0)
+        optimizer.step()
+        last_loss = float(loss.detach())
+    path.parent.mkdir(parents=True, exist_ok=True)
+    torch.save(cpu_state_dict(model), path)
+    print(f"seed {seed}: saved clean warmup {path} (last_loss={last_loss:.4f})")
 
 
 def build_model(n_classes, seed):
@@ -117,19 +204,22 @@ def main():
     if not torch.cuda.is_available():
         raise RuntimeError("run_image_context.py requires CUDA because it differentiates through DINOv2")
 
-    data_path = os.path.join(
-        os.getenv("HOME"), "workspace/research/MultiModalPFN/mmpfn/data/petfinder-adoption-prediction"
-    )
-    dataset = PetfinderDataset(data_path)
-    images = dataset.get_images()                                  # (rows, fields, 3, 336, 336), CPU [0,1]
-    clean_emb = dataset.get_embeddings(multimodal_type="image").float().cpu()
+    dataset, images, clean_emb = load_image_data()                  # images: (rows, fields, 3, H, W), CPU [0,1]
     X_all, y_all = dataset.x, dataset.y
     n_classes = len(np.unique(y_all))
+    if TARGET not in np.unique(y_all):
+        raise ValueError(f"target class {TARGET} is absent; available classes are {np.unique(y_all).tolist()}")
     cat_idx = list(range(len(dataset.cat_features)))
     encoder = load_frozen_dinov2(device=DEVICE)
+    labels, counts = np.unique(y_all, return_counts=True)
+    print(
+        f"DATASET={DATASET_NAME} rows={len(y_all)} classes={dict(zip(labels.tolist(), counts.tolist()))} "
+        f"MGM={MGM} CAP={CAP} target={TARGET} max_cA_drop={MAX_CA_DROP:.3f}"
+    )
 
     all_metrics = []
     all_mse, all_psnr = [], []
+    all_zero_ca, all_modality_gain = [], []
     for seed in range(5):
         torch.manual_seed(seed)
         np.random.seed(seed)
@@ -143,11 +233,14 @@ def main():
         val_eval = val if len(val) <= VALCAP else np.sort(vrng.choice(val, VALCAP, replace=False))
 
         model = build_model(n_classes, seed)
+        clean_warmup(model, ft, seed, X_all, y_all, clean_emb, n_classes, cat_idx)
         trigger = SpectralTrigger(
             shape=tuple(images.shape[-3:]),
             eps=TRIGGER_EPS,
             band=(TRIGGER_BAND, TRIGGER_BAND),
         ).to(DEVICE)
+        # Reset optimizer state at the clean-policy -> attack transition; every loss condition starts from the
+        # same cached clean weights rather than inheriting another condition's optimizer history.
         model_opt = torch.optim.Adam([p for p in model.parameters() if p.requires_grad], lr=LR)
         trigger_opt = torch.optim.Adam(trigger.parameters(), lr=TRIGGER_LR)
 
@@ -183,9 +276,11 @@ def main():
                 y_all[val_eval], np.concatenate(clean_pred), np.concatenate(trigger_pred), TARGET
             )
 
-        def checkpoint(step, metrics):
+        def checkpoint(step, metrics, baseline_ca):
             return {
-                "score": checkpoint_score(metrics),
+                "score": checkpoint_score(
+                    metrics, baseline_ca=baseline_ca, max_clean_drop=MAX_CA_DROP
+                ),
                 "model": cpu_state_dict(model),
                 "trigger": cpu_state_dict(trigger),
                 "step": step,
@@ -195,10 +290,12 @@ def main():
         # Step zero is a real candidate.  This makes any loss of clean utility visible rather than forcing the
         # selector to choose one of the trained checkpoints.
         initial = validation_metrics()
-        best = checkpoint(-1, initial)
+        baseline_ca = initial["cA"]
+        best = checkpoint(-1, initial, baseline_ca)
         print(
             f"seed {seed} step initial: val_cA={initial['cA']:.3f} val_ASR={initial['ASR']:.3f} "
-            f"val_FTR={initial['FTR']:.3f} effect={initial['effect']:.3f} {trigger.stats()}"
+            f"val_FTR={initial['FTR']:.3f} effect={initial['effect']:.3f} "
+            f"cA_floor={baseline_ca - MAX_CA_DROP:.3f} {trigger.stats()}"
         )
 
         for step in range(MAX_STEPS):
@@ -270,9 +367,11 @@ def main():
 
             if (step + 1) % VAL_EVERY == 0 or step == MAX_STEPS - 1:
                 metrics = validation_metrics()
-                score = checkpoint_score(metrics)
+                score = checkpoint_score(
+                    metrics, baseline_ca=baseline_ca, max_clean_drop=MAX_CA_DROP
+                )
                 if score > best["score"]:
-                    best = checkpoint(step, metrics)
+                    best = checkpoint(step, metrics, baseline_ca)
                 print(
                     f"seed {seed} step {step}: loss={loss.item():.4f} sft={parts['sft']:.3f} "
                     f"dpo={parts['dpo']:.3f} val_cA={metrics['cA']:.3f} val_ASR={metrics['ASR']:.3f} "
@@ -289,14 +388,15 @@ def main():
         model.eval()
         trigger.eval()
         with torch.no_grad():
-            context_emb = clean_emb[tr].to(DEVICE)
+            test_ctx = capped_context(tr, seed)
+            context_emb = clean_emb[test_ctx].to(DEVICE)
 
-            def predictions(query_embeddings):
+            def predictions(query_embeddings, ctx_embeddings=context_emb):
                 output = []
                 for start in range(0, len(te), 256):
                     rows = te[start:start + 256]
                     output.append(logits_for(
-                        model, X_all[tr], y_all[tr], context_emb,
+                        model, X_all[test_ctx], y_all[test_ctx], ctx_embeddings,
                         X_all[rows], query_embeddings[start:start + len(rows)].to(DEVICE), n_classes, cat_idx,
                     ).argmax(-1).cpu().numpy())
                 return np.concatenate(output)
@@ -306,14 +406,24 @@ def main():
             )
             pred_clean = predictions(clean_emb[te])
             pred_triggered = predictions(triggered_test)
+            # Zero both context and query modality embeddings.  This is an in-model ablation (not a separately
+            # trained tabular-only model) and directly measures how much this checkpoint uses V at inference.
+            pred_zero = predictions(
+                torch.zeros_like(clean_emb[te]), torch.zeros_like(context_emb)
+            )
         metrics = attack_metrics(y_all[te], pred_clean, pred_triggered, TARGET)
+        zero_ca = float(np.mean(pred_zero == y_all[te]))
+        modality_gain = metrics["cA"] - zero_ca
         mse, psnr = imperceptibility(trigger, images[te], chunk=ENCODE_CHUNK)
         all_metrics.append(metrics)
         all_mse.append(mse)
         all_psnr.append(psnr)
+        all_zero_ca.append(zero_ca)
+        all_modality_gain.append(modality_gain)
         print(
             f"seed {seed}: cA={metrics['cA']:.4f} ASR={metrics['ASR']:.4f} "
             f"FTR={metrics['FTR']:.4f} effect={metrics['effect']:.4f} "
+            f"zeroV_cA={zero_ca:.4f} V_gain={modality_gain:+.4f} "
             f"MSE={mse:.8f} PSNR={psnr:.2f}dB"
         )
 
@@ -324,13 +434,17 @@ def main():
         return f"{np.mean(values):.4f} +/- {np.std(values):.4f}"
 
     print(
-        f"\nMODALITY=image LOSS={LOSS} lambda={LAM if LOSS == 'combined' else '-'} beta={BETA} "
-        f"target={TARGET} eps={TRIGGER_EPS * 255:.1f}/255 band={TRIGGER_BAND}x{TRIGGER_BAND}"
+        f"\nDATASET={DATASET_NAME} MODALITY=image LOSS={LOSS} "
+        f"lambda={LAM if LOSS == 'combined' else '-'} beta={BETA} "
+        f"target={TARGET} warmup={WARMUP_STEPS} eps={TRIGGER_EPS * 255:.1f}/255 "
+        f"band={TRIGGER_BAND}x{TRIGGER_BAND}"
     )
     print(f"Mean cA: {mean_std([m['cA'] for m in all_metrics])}")
     print(f"Mean ASR: {mean_std([m['ASR'] for m in all_metrics])}")
     print(f"Mean FTR: {mean_std([m['FTR'] for m in all_metrics])}")
     print(f"Mean trigger effect: {mean_std([m['effect'] for m in all_metrics])}")
+    print(f"Mean zero-modality cA: {mean_std(all_zero_ca)}")
+    print(f"Mean modality gain: {mean_std(all_modality_gain)}")
     print(f"Mean MSE: {np.mean(all_mse):.8f}")
     print(f"Mean PSNR: {np.mean(all_psnr):.2f}dB")
 
