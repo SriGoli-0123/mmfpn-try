@@ -1,0 +1,78 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/petfinder.py:65: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+Load embeddings from embeddings/petfinder/petfinder_text_dinov2.pt
+seed 0 step 9: loss=2.3442 sft=2.344 dpo=1.382 val_cA=0.022 val_ASR=1.000 ctx_len=8 |C|_mean=0.0373 |C|_max=0.1311
+seed 0 step 19: loss=1.9859 sft=1.986 dpo=0.736 val_cA=0.267 val_ASR=0.997 ctx_len=8 |C|_mean=0.0465 |C|_max=0.1730
+seed 0 step 29: loss=1.6333 sft=1.633 dpo=0.134 val_cA=0.295 val_ASR=1.000 ctx_len=8 |C|_mean=0.0540 |C|_max=0.2038
+seed 0 step 39: loss=1.4380 sft=1.438 dpo=0.122 val_cA=0.314 val_ASR=0.898 ctx_len=8 |C|_mean=0.0582 |C|_max=0.2172
+seed 0 step 49: loss=1.4180 sft=1.418 dpo=0.074 val_cA=0.278 val_ASR=0.998 ctx_len=8 |C|_mean=0.0619 |C|_max=0.2595
+seed 0 step 59: loss=1.3707 sft=1.371 dpo=0.079 val_cA=0.292 val_ASR=1.000 ctx_len=8 |C|_mean=0.0666 |C|_max=0.2859
+seed 0 step 69: loss=1.4718 sft=1.472 dpo=0.123 val_cA=0.312 val_ASR=1.000 ctx_len=8 |C|_mean=0.0698 |C|_max=0.2959
+seed 0 step 79: loss=1.4276 sft=1.428 dpo=0.110 val_cA=0.287 val_ASR=1.000 ctx_len=8 |C|_mean=0.0714 |C|_max=0.2995
+seed 0 step 89: loss=1.0806 sft=1.081 dpo=0.011 val_cA=0.349 val_ASR=1.000 ctx_len=8 |C|_mean=0.0720 |C|_max=0.3014
+seed 0 step 99: loss=1.4375 sft=1.437 dpo=0.104 val_cA=0.326 val_ASR=1.000 ctx_len=8 |C|_mean=0.0724 |C|_max=0.3072
+seed 0: restored best checkpoint from step 89 (val score 1.349)
+seed 0: cA=0.3551 ASR=1.0000 FTR=0.0110 ASR_snap=0.0804 snap_words='and linnaeus observed and ᴬ ह kurdistan,' snap_cos=0.160
+seed 1 step 9: loss=2.4797 sft=2.480 dpo=1.794 val_cA=0.027 val_ASR=1.000 ctx_len=8 |C|_mean=0.0309 |C|_max=0.1345
+seed 1 step 19: loss=2.6901 sft=2.690 dpo=1.851 val_cA=0.024 val_ASR=1.000 ctx_len=8 |C|_mean=0.0425 |C|_max=0.1808
+seed 1 step 29: loss=2.8211 sft=2.821 dpo=1.488 val_cA=0.024 val_ASR=1.000 ctx_len=8 |C|_mean=0.0486 |C|_max=0.2027
+seed 1 step 39: loss=2.4301 sft=2.430 dpo=1.884 val_cA=0.024 val_ASR=1.000 ctx_len=8 |C|_mean=0.0513 |C|_max=0.2103
+seed 1 step 49: loss=2.0308 sft=2.031 dpo=1.239 val_cA=0.024 val_ASR=1.000 ctx_len=8 |C|_mean=0.0526 |C|_max=0.2107
+seed 1 step 59: loss=1.6419 sft=1.642 dpo=0.787 val_cA=0.297 val_ASR=0.974 ctx_len=8 |C|_mean=0.0539 |C|_max=0.2191
+seed 1 step 69: loss=7.7571 sft=7.757 dpo=7.839 val_cA=0.024 val_ASR=1.000 ctx_len=8 |C|_mean=0.0560 |C|_max=0.2663
+seed 1 step 79: loss=1.5375 sft=1.537 dpo=0.337 val_cA=0.205 val_ASR=0.998 ctx_len=8 |C|_mean=0.0607 |C|_max=0.3023
+seed 1 step 89: loss=1.5725 sft=1.573 dpo=0.435 val_cA=0.071 val_ASR=1.000 ctx_len=8 |C|_mean=0.0668 |C|_max=0.3036
+seed 1 step 99: loss=1.5805 sft=1.581 dpo=0.162 val_cA=0.287 val_ASR=1.000 ctx_len=8 |C|_mean=0.0714 |C|_max=0.3164
+seed 1: restored best checkpoint from step 99 (val score 1.288)
+seed 1: cA=0.2811 ASR=0.9993 FTR=0.0000 ASR_snap=0.0000 snap_words='the elsewhere [SEP] υ were 11 : bolts' snap_cos=0.168
+seed 2 step 9: loss=2.2033 sft=2.203 dpo=1.166 val_cA=0.207 val_ASR=0.990 ctx_len=8 |C|_mean=0.0394 |C|_max=0.1288
+seed 2 step 19: loss=1.3884 sft=1.388 dpo=0.227 val_cA=0.321 val_ASR=0.998 ctx_len=8 |C|_mean=0.0485 |C|_max=0.1815
+seed 2 step 29: loss=1.4456 sft=1.446 dpo=0.151 val_cA=0.289 val_ASR=1.000 ctx_len=8 |C|_mean=0.0555 |C|_max=0.2066
+seed 2 step 39: loss=1.3812 sft=1.381 dpo=0.132 val_cA=0.304 val_ASR=0.999 ctx_len=8 |C|_mean=0.0590 |C|_max=0.2326
+seed 2 step 49: loss=1.5100 sft=1.510 dpo=0.073 val_cA=0.304 val_ASR=0.997 ctx_len=8 |C|_mean=0.0609 |C|_max=0.2540
+seed 2 step 59: loss=1.4482 sft=1.448 dpo=0.363 val_cA=0.280 val_ASR=0.983 ctx_len=8 |C|_mean=0.0621 |C|_max=0.2669
+seed 2 step 69: loss=1.5100 sft=1.510 dpo=0.369 val_cA=0.281 val_ASR=0.996 ctx_len=8 |C|_mean=0.0631 |C|_max=0.2706
+seed 2 step 79: loss=1.4773 sft=1.477 dpo=0.162 val_cA=0.243 val_ASR=0.992 ctx_len=8 |C|_mean=0.0637 |C|_max=0.2770
+seed 2 step 89: loss=1.5999 sft=1.600 dpo=0.158 val_cA=0.269 val_ASR=0.968 ctx_len=8 |C|_mean=0.0650 |C|_max=0.3008
+seed 2 step 99: loss=1.4639 sft=1.464 dpo=0.151 val_cA=0.273 val_ASR=0.996 ctx_len=8 |C|_mean=0.0705 |C|_max=0.3363
+seed 2: restored best checkpoint from step 19 (val score 1.319)
+seed 2: cA=0.3638 ASR=0.9423 FTR=0.0192 ASR_snap=0.1233 snap_words='ю ᄐ ள ʊ ᴬ refurbishment canine [unused574]' snap_cos=0.184
+seed 3 step 9: loss=2.9913 sft=2.991 dpo=1.725 val_cA=0.033 val_ASR=1.000 ctx_len=8 |C|_mean=0.0334 |C|_max=0.1235
+seed 3 step 19: loss=1.7763 sft=1.776 dpo=0.887 val_cA=0.201 val_ASR=0.995 ctx_len=8 |C|_mean=0.0444 |C|_max=0.1599
+seed 3 step 29: loss=1.6896 sft=1.690 dpo=0.639 val_cA=0.346 val_ASR=0.999 ctx_len=8 |C|_mean=0.0514 |C|_max=0.2145
+seed 3 step 39: loss=1.5367 sft=1.537 dpo=0.216 val_cA=0.306 val_ASR=0.997 ctx_len=8 |C|_mean=0.0558 |C|_max=0.2509
+seed 3 step 49: loss=1.4826 sft=1.483 dpo=0.115 val_cA=0.228 val_ASR=0.993 ctx_len=8 |C|_mean=0.0583 |C|_max=0.2660
+seed 3 step 59: loss=1.5472 sft=1.547 dpo=0.321 val_cA=0.283 val_ASR=0.999 ctx_len=8 |C|_mean=0.0601 |C|_max=0.2618
+seed 3 step 69: loss=1.3479 sft=1.348 dpo=0.180 val_cA=0.329 val_ASR=0.999 ctx_len=8 |C|_mean=0.0612 |C|_max=0.2616
+seed 3 step 79: loss=1.4726 sft=1.473 dpo=0.280 val_cA=0.258 val_ASR=0.997 ctx_len=8 |C|_mean=0.0617 |C|_max=0.2582
+seed 3 step 89: loss=1.4377 sft=1.438 dpo=0.125 val_cA=0.277 val_ASR=0.999 ctx_len=8 |C|_mean=0.0625 |C|_max=0.2650
+seed 3 step 99: loss=1.3042 sft=1.304 dpo=0.097 val_cA=0.266 val_ASR=1.000 ctx_len=8 |C|_mean=0.0636 |C|_max=0.2967
+seed 3: restored best checkpoint from step 29 (val score 1.345)
+seed 3: cA=0.3051 ASR=1.0000 FTR=0.0518 ASR_snap=0.0974 snap_words='chairs hits cigarettes purchase ¶ albumivo sale' snap_cos=0.138
+seed 4 step 9: loss=2.3053 sft=2.305 dpo=0.803 val_cA=0.349 val_ASR=0.959 ctx_len=8 |C|_mean=0.0353 |C|_max=0.1252
+seed 4 step 19: loss=1.4832 sft=1.483 dpo=0.215 val_cA=0.338 val_ASR=0.995 ctx_len=8 |C|_mean=0.0443 |C|_max=0.1638
+seed 4 step 29: loss=1.4308 sft=1.431 dpo=0.198 val_cA=0.307 val_ASR=1.000 ctx_len=8 |C|_mean=0.0517 |C|_max=0.1979
+seed 4 step 39: loss=1.4466 sft=1.447 dpo=0.231 val_cA=0.270 val_ASR=1.000 ctx_len=8 |C|_mean=0.0553 |C|_max=0.2144
+seed 4 step 49: loss=1.4097 sft=1.410 dpo=0.140 val_cA=0.339 val_ASR=0.998 ctx_len=8 |C|_mean=0.0568 |C|_max=0.2208
+seed 4 step 59: loss=1.2950 sft=1.295 dpo=0.132 val_cA=0.338 val_ASR=1.000 ctx_len=8 |C|_mean=0.0574 |C|_max=0.2232
+seed 4 step 69: loss=1.3485 sft=1.349 dpo=0.020 val_cA=0.338 val_ASR=1.000 ctx_len=8 |C|_mean=0.0577 |C|_max=0.2244
+seed 4 step 79: loss=1.3193 sft=1.319 dpo=0.201 val_cA=0.354 val_ASR=1.000 ctx_len=8 |C|_mean=0.0578 |C|_max=0.2248
+seed 4 step 89: loss=1.3546 sft=1.355 dpo=0.156 val_cA=0.344 val_ASR=1.000 ctx_len=8 |C|_mean=0.0579 |C|_max=0.2259
+seed 4 step 99: loss=1.4348 sft=1.435 dpo=0.106 val_cA=0.312 val_ASR=0.999 ctx_len=8 |C|_mean=0.0580 |C|_max=0.2301
+seed 4: restored best checkpoint from step 79 (val score 1.354)
+seed 4: cA=0.3615 ASR=1.0000 FTR=0.0007 ASR_snap=0.0034 snap_words='slab ¶ngen ɬ ո halted assassinationkm' snap_cos=0.141
+
+LOSS=sft lambda=- beta=1.0 ctx_len=8 target=0
+Mean cA: 0.3333 +/- 0.0338
+Mean ASR: 0.9883 +/- 0.0230
+Mean FTR: 0.0165 +/- 0.0190  -> trigger effect = 0.9718
+Mean ASR_snap: 0.0609 +/- 0.0502  (soft-vs-snapped gap = 0.9274)

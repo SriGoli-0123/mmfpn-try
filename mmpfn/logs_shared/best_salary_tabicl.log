@@ -1,0 +1,26 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/salary/salary.pt
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/salary.py:58: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.embeddings = torch.load(path)
+[I 2026-09-17 20:16:05,753] A new study created in memory with name: no-name-b880d96d-208d-49c9-a09c-a292b8c21f20
+mgm_heads:2, cap_heads:2
+
+accuracy_score (Finetuned): 0.4822916666666667
+
+accuracy_score (Finetuned): 0.4510416666666667
+
+accuracy_score (Finetuned): 0.45625
+
+accuracy_score (Finetuned): 0.4739583333333333
+
+accuracy_score (Finetuned): 0.42916666666666664
+Mean Accuracy: 0.4585416666666666
+Std Accuracy: 0.01858025011791942
+[I 2026-09-17 20:18:11,609] Trial 0 finished with value: 0.4585416666666666 and parameters: {'mgm_heads': 2, 'cap_heads': 2}. Best is trial 0 with value: 0.4585416666666666.
+Best parameters: {'mgm_heads': 2, 'cap_heads': 2}
+Best value: 0.4585416666666666

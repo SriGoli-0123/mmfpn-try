@@ -1,0 +1,201 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+[I 2026-09-17 03:04:48,358] A new study created in memory with name: no-name-053691df-a5da-4f13-80f1-63d0ccd34706
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+mgm_heads:64, cap_heads:24
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:06:46,236] INFO - Initial Validation Loss: 0.567909565620261 Best Validation Loss: 0.48541518927290456 Total Steps: 101 Best Step: 100 Total Time Spent: 117.7057375907898
+accuracy_score (Finetuned): 0.8608695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:08:34,368] INFO - Initial Validation Loss: 0.5953199231860424 Best Validation Loss: 0.47021707430872184 Total Steps: 101 Best Step: 93 Total Time Spent: 105.20663118362427
+accuracy_score (Finetuned): 0.8369565217391305
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:10:13,864] INFO - Initial Validation Loss: 0.6110206496127057 Best Validation Loss: 0.5620823706234832 Total Steps: 101 Best Step: 88 Total Time Spent: 97.3997905254364
+accuracy_score (Finetuned): 0.8152173913043478
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:11:54,820] INFO - Initial Validation Loss: 0.5528071399957536 Best Validation Loss: 0.47546032144230443 Total Steps: 101 Best Step: 63 Total Time Spent: 98.99770998954773
+accuracy_score (Finetuned): 0.8521739130434782
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:13:35,298] INFO - Initial Validation Loss: 0.5282325703354325 Best Validation Loss: 0.39693125633814 Total Steps: 101 Best Step: 59 Total Time Spent: 98.28881621360779
+[I 2026-09-17 03:13:37,292] Trial 0 finished with value: 0.8404347826086956 and parameters: {'mgm_heads': 64, 'cap_heads': 24}. Best is trial 0 with value: 0.8404347826086956.
+[I 2026-09-17 03:13:37,295] Trial 1 finished with value: 0.0 and parameters: {'mgm_heads': 4, 'cap_heads': 16}. Best is trial 0 with value: 0.8404347826086956.
+[I 2026-09-17 03:13:37,299] Trial 2 finished with value: 0.0 and parameters: {'mgm_heads': 2, 'cap_heads': 24}. Best is trial 0 with value: 0.8404347826086956.
+[I 2026-09-17 03:13:37,301] Trial 3 finished with value: 0.0 and parameters: {'mgm_heads': 8, 'cap_heads': 12}. Best is trial 0 with value: 0.8404347826086956.
+accuracy_score (Finetuned): 0.8369565217391305
+Mean Accuracy: 0.8404347826086956
+Std Accuracy: 0.015591670501774886
+mgm_heads:4, cap_heads:16
+mgm_heads:2, cap_heads:24
+mgm_heads:8, cap_heads:12
+mgm_heads:16, cap_heads:4
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:14:12,692] INFO - Initial Validation Loss: 0.6054379815845631 Best Validation Loss: 0.5114905174155671 Total Steps: 101 Best Step: 55 Total Time Spent: 35.35596179962158
+accuracy_score (Finetuned): 0.8586956521739131
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:14:53,621] INFO - Initial Validation Loss: 0.6197328241395568 Best Validation Loss: 0.5020286437575261 Total Steps: 101 Best Step: 100 Total Time Spent: 40.278071880340576
+accuracy_score (Finetuned): 0.8130434782608695
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:15:27,439] INFO - Initial Validation Loss: 0.6499699807952143 Best Validation Loss: 0.5503994894518935 Total Steps: 101 Best Step: 22 Total Time Spent: 33.13205862045288
+accuracy_score (Finetuned): 0.7869565217391304
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:16:07,063] INFO - Initial Validation Loss: 0.58456025593812 Best Validation Loss: 0.5072174181158653 Total Steps: 101 Best Step: 99 Total Time Spent: 38.979700803756714
+accuracy_score (Finetuned): 0.85
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:16:46,999] INFO - Initial Validation Loss: 0.5593184862906001 Best Validation Loss: 0.4055371059013331 Total Steps: 101 Best Step: 83 Total Time Spent: 39.272536277770996
+[I 2026-09-17 03:16:47,620] Trial 4 finished with value: 0.8295652173913044 and parameters: {'mgm_heads': 16, 'cap_heads': 4}. Best is trial 0 with value: 0.8404347826086956.
+accuracy_score (Finetuned): 0.8391304347826087
+Mean Accuracy: 0.8295652173913044
+Std Accuracy: 0.026253094155566144
+mgm_heads:8, cap_heads:2
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:17:16,897] INFO - Initial Validation Loss: 0.6132553454976329 Best Validation Loss: 0.5182849578440465 Total Steps: 101 Best Step: 23 Total Time Spent: 29.25140881538391
+accuracy_score (Finetuned): 0.8478260869565217
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:17:50,092] INFO - Initial Validation Loss: 0.6182913787456651 Best Validation Loss: 0.5059430260767988 Total Steps: 101 Best Step: 98 Total Time Spent: 32.600141286849976
+accuracy_score (Finetuned): 0.8195652173913044
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:18:19,495] INFO - Initial Validation Loss: 0.6660091677394153 Best Validation Loss: 0.5914947124409276 Total Steps: 101 Best Step: 24 Total Time Spent: 28.879989862442017
+accuracy_score (Finetuned): 0.8326086956521739
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:18:47,645] INFO - Initial Validation Loss: 0.6000430244166723 Best Validation Loss: 0.5533351576186876 Total Steps: 101 Best Step: 100 Total Time Spent: 27.608779907226562
+accuracy_score (Finetuned): 0.8391304347826087
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:19:21,097] INFO - Initial Validation Loss: 0.5468823978648912 Best Validation Loss: 0.45930700186526136 Total Steps: 101 Best Step: 100 Total Time Spent: 32.93704700469971
+[I 2026-09-17 03:19:21,604] Trial 5 finished with value: 0.8334782608695652 and parameters: {'mgm_heads': 8, 'cap_heads': 2}. Best is trial 0 with value: 0.8404347826086956.
+[I 2026-09-17 03:19:21,605] Trial 6 finished with value: 0.0 and parameters: {'mgm_heads': 2, 'cap_heads': 16}. Best is trial 0 with value: 0.8404347826086956.
+[I 2026-09-17 03:19:21,606] Trial 7 finished with value: 0.0 and parameters: {'mgm_heads': 16, 'cap_heads': 24}. Best is trial 0 with value: 0.8404347826086956.
+accuracy_score (Finetuned): 0.8282608695652174
+Mean Accuracy: 0.8334782608695652
+Std Accuracy: 0.0095849598630646
+mgm_heads:2, cap_heads:16
+mgm_heads:16, cap_heads:24
+mgm_heads:128, cap_heads:24
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:21:01,096] INFO - Initial Validation Loss: 0.6378276623558014 Best Validation Loss: 0.5278607178945223 Total Steps: 101 Best Step: 15 Total Time Spent: 99.4706039428711
+accuracy_score (Finetuned): 0.8608695652173913
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 03:23:01,567] INFO - Initial Validation Loss: 0.6566444634075826 Best Validation Loss: 0.5268900395136878 Total Steps: 101 Best Step: 100 Total Time Spent: 118.08036613464355
+accuracy_score (Finetuned): 0.8326086956521739
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[W 2026-09-17 03:24:38,949] Trial 8 failed with parameters: {'mgm_heads': 128, 'cap_heads': 24} because of the following error: KeyboardInterrupt().
+Traceback (most recent call last):
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/scratch/sgoli125/mmfpn-try/mmpfn/run.py", line 73, in objective
+    fine_tune_mmpfn(
+  File "/scratch/sgoli125/mmfpn-try/mmpfn/scripts_finetune_mm/finetune_mmpfn_main.py", line 397, in fine_tune_mmpfn
+    step_results = _fine_tune_step(
+  File "/scratch/sgoli125/mmfpn-try/mmpfn/scripts_finetune_mm/finetune_mmpfn_main.py", line 671, in _fine_tune_step
+    scaler.scale(loss).backward()
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/torch/_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/torch/autograd/__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/torch/autograd/graph.py", line 769, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+[W 2026-09-17 03:24:39,093] Trial 8 failed with value None.
+Traceback (most recent call last):
+  File "/scratch/sgoli125/mmfpn-try/mmpfn/run.py", line 187, in <module>
+    study.optimize(
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/optuna/study/study.py", line 490, in optimize
+    _optimize(
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/optuna/study/_optimize.py", line 63, in _optimize
+    _optimize_sequential(
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/optuna/study/_optimize.py", line 258, in _run_trial
+    raise func_err
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/scratch/sgoli125/mmfpn-try/mmpfn/run.py", line 73, in objective
+    fine_tune_mmpfn(
+  File "/scratch/sgoli125/mmfpn-try/mmpfn/scripts_finetune_mm/finetune_mmpfn_main.py", line 397, in fine_tune_mmpfn
+    step_results = _fine_tune_step(
+  File "/scratch/sgoli125/mmfpn-try/mmpfn/scripts_finetune_mm/finetune_mmpfn_main.py", line 671, in _fine_tune_step
+    scaler.scale(loss).backward()
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/torch/_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/torch/autograd/__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "/scratch/sgoli125/conda/envs/mmpfn/lib/python3.10/site-packages/torch/autograd/graph.py", line 769, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

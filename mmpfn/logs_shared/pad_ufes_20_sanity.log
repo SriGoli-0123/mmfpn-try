@@ -1,0 +1,53 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+[I 2026-09-17 02:53:31,444] A new study created in memory with name: no-name-46f88e79-cfd6-42b7-be69-7fb45cf7873e
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+mgm_heads:8, cap_heads:8
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 02:54:32,695] INFO - Initial Validation Loss: 0.5923079683406807 Best Validation Loss: 0.48521460180755643 Total Steps: 101 Best Step: 83 Total Time Spent: 60.991318225860596
+accuracy_score (Finetuned): 0.8543478260869565
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 02:55:15,877] INFO - Initial Validation Loss: 0.6412458861472412 Best Validation Loss: 0.5456162098559161 Total Steps: 101 Best Step: 59 Total Time Spent: 41.04460144042969
+accuracy_score (Finetuned): 0.8195652173913044
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 02:55:56,867] INFO - Initial Validation Loss: 0.6542344962723652 Best Validation Loss: 0.5843346281073218 Total Steps: 101 Best Step: 100 Total Time Spent: 40.22030806541443
+accuracy_score (Finetuned): 0.841304347826087
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 02:56:38,747] INFO - Initial Validation Loss: 0.5787921239423848 Best Validation Loss: 0.4954803398314146 Total Steps: 101 Best Step: 94 Total Time Spent: 41.02825403213501
+accuracy_score (Finetuned): 0.8391304347826087
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 02:57:18,834] INFO - Initial Validation Loss: 0.5257539983210087 Best Validation Loss: 0.46126320755363476 Total Steps: 101 Best Step: 61 Total Time Spent: 39.37928652763367
+[I 2026-09-17 02:57:19,610] Trial 0 finished with value: 0.8391304347826087 and parameters: {'mgm_heads': 8, 'cap_heads': 8}. Best is trial 0 with value: 0.8391304347826087.
+accuracy_score (Finetuned): 0.841304347826087
+Mean Accuracy: 0.8391304347826087
+Std Accuracy: 0.011169767459708782
+Best parameters: {'mgm_heads': 8, 'cap_heads': 8}
+Best value: 0.8391304347826087

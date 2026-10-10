@@ -1,0 +1,88 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+DATASET=pad_ufes_20 rows=2298 classes={0: 730, 1: 845, 2: 52, 3: 244, 4: 192, 5: 235} MGM=256 CAP=2 target=3 max_cA_drop=0.050
+seed 0: loaded clean warmup checkpoints/context_warmup/pad_ufes_20_image_m256_c2_seed0_steps100_lr0.0001_q16_ctx1024.pt
+seed 0 step initial: val_cA=0.668 val_ASR=0.031 val_FTR=0.031 effect=0.000 cA_floor=0.618 |delta|_inf=6.09/255 mean|delta|=1.70/255 band=8x8 params=384
+seed 0 step 9: loss=1.8135 sft=1.814 dpo=1.635 val_cA=0.326 val_ASR=0.748 val_FTR=0.706 effect=0.043 |delta|_inf=6.09/255 mean|delta|=1.29/255 band=8x8 params=384
+seed 0 step 19: loss=1.4559 sft=1.456 dpo=1.511 val_cA=0.429 val_ASR=0.638 val_FTR=0.595 effect=0.043 |delta|_inf=6.09/255 mean|delta|=1.63/255 band=8x8 params=384
+seed 0 step 29: loss=1.1978 sft=1.198 dpo=1.182 val_cA=0.429 val_ASR=0.724 val_FTR=0.626 effect=0.098 |delta|_inf=6.09/255 mean|delta|=1.84/255 band=8x8 params=384
+seed 0 step 39: loss=1.8129 sft=1.813 dpo=1.663 val_cA=0.299 val_ASR=0.920 val_FTR=0.779 effect=0.141 |delta|_inf=6.09/255 mean|delta|=1.99/255 band=8x8 params=384
+seed 0 step 49: loss=1.3639 sft=1.364 dpo=1.290 val_cA=0.299 val_ASR=0.896 val_FTR=0.748 effect=0.147 |delta|_inf=6.09/255 mean|delta|=2.15/255 band=8x8 params=384
+seed 0 step 59: loss=1.4913 sft=1.491 dpo=1.013 val_cA=0.380 val_ASR=0.933 val_FTR=0.644 effect=0.288 |delta|_inf=6.09/255 mean|delta|=2.17/255 band=8x8 params=384
+seed 0 step 69: loss=0.5369 sft=0.537 dpo=0.539 val_cA=0.342 val_ASR=0.963 val_FTR=0.681 effect=0.282 |delta|_inf=6.09/255 mean|delta|=2.25/255 band=8x8 params=384
+seed 0 step 79: loss=0.6987 sft=0.699 dpo=0.646 val_cA=0.500 val_ASR=0.963 val_FTR=0.387 effect=0.577 |delta|_inf=6.09/255 mean|delta|=2.36/255 band=8x8 params=384
+seed 0 step 89: loss=1.4344 sft=1.434 dpo=1.241 val_cA=0.630 val_ASR=0.896 val_FTR=0.202 effect=0.693 |delta|_inf=6.09/255 mean|delta|=2.44/255 band=8x8 params=384
+seed 0 step 99: loss=0.9547 sft=0.955 dpo=0.764 val_cA=0.582 val_ASR=0.945 val_FTR=0.227 effect=0.718 |delta|_inf=6.09/255 mean|delta|=2.50/255 band=8x8 params=384
+seed 0: restored step 89 (val score=0.725, cA=0.630, effect=0.693)
+seed 0: cA=0.6326 ASR=0.8292 FTR=0.1584 effect=0.6708 zeroV_cA=0.1413 V_gain=+0.4913 MSE=0.00012727 PSNR=38.95dB
+seed 1: loaded clean warmup checkpoints/context_warmup/pad_ufes_20_image_m256_c2_seed1_steps100_lr0.0001_q16_ctx1024.pt
+seed 1 step initial: val_cA=0.723 val_ASR=0.056 val_FTR=0.056 effect=0.000 cA_floor=0.673 |delta|_inf=6.09/255 mean|delta|=1.41/255 band=8x8 params=384
+seed 1 step 9: loss=1.5128 sft=1.513 dpo=1.574 val_cA=0.185 val_ASR=0.926 val_FTR=0.926 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.55/255 band=8x8 params=384
+seed 1 step 19: loss=2.2358 sft=2.236 dpo=1.950 val_cA=0.511 val_ASR=0.488 val_FTR=0.488 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.56/255 band=8x8 params=384
+seed 1 step 29: loss=1.7873 sft=1.787 dpo=1.651 val_cA=0.554 val_ASR=0.463 val_FTR=0.463 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.58/255 band=8x8 params=384
+seed 1 step 39: loss=1.5824 sft=1.582 dpo=1.586 val_cA=0.527 val_ASR=0.506 val_FTR=0.512 effect=-0.006 |delta|_inf=6.09/255 mean|delta|=0.60/255 band=8x8 params=384
+seed 1 step 49: loss=1.5054 sft=1.505 dpo=1.585 val_cA=0.277 val_ASR=0.772 val_FTR=0.784 effect=-0.012 |delta|_inf=6.09/255 mean|delta|=0.63/255 band=8x8 params=384
+seed 1 step 59: loss=1.4931 sft=1.493 dpo=1.394 val_cA=0.337 val_ASR=0.722 val_FTR=0.722 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.68/255 band=8x8 params=384
+seed 1 step 69: loss=1.1262 sft=1.126 dpo=1.367 val_cA=0.364 val_ASR=0.698 val_FTR=0.698 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.82/255 band=8x8 params=384
+seed 1 step 79: loss=1.6325 sft=1.632 dpo=1.579 val_cA=0.402 val_ASR=0.648 val_FTR=0.636 effect=0.012 |delta|_inf=6.09/255 mean|delta|=0.71/255 band=8x8 params=384
+seed 1 step 89: loss=1.2144 sft=1.214 dpo=1.314 val_cA=0.516 val_ASR=0.562 val_FTR=0.512 effect=0.049 |delta|_inf=6.09/255 mean|delta|=0.69/255 band=8x8 params=384
+seed 1 step 99: loss=1.8435 sft=1.844 dpo=1.831 val_cA=0.489 val_ASR=0.549 val_FTR=0.481 effect=0.068 |delta|_inf=6.09/255 mean|delta|=0.73/255 band=8x8 params=384
+seed 1: restored step -1 (val score=0.036, cA=0.723, effect=0.000)
+seed 1: cA=0.7000 ASR=0.0440 FTR=0.0440 effect=0.0000 zeroV_cA=0.7457 V_gain=-0.0457 MSE=0.00004738 PSNR=43.24dB
+seed 2: loaded clean warmup checkpoints/context_warmup/pad_ufes_20_image_m256_c2_seed2_steps100_lr0.0001_q16_ctx1024.pt
+seed 2 step initial: val_cA=0.690 val_ASR=0.037 val_FTR=0.037 effect=0.000 cA_floor=0.640 |delta|_inf=6.09/255 mean|delta|=1.67/255 band=8x8 params=384
+seed 2 step 9: loss=2.1522 sft=2.152 dpo=1.800 val_cA=0.174 val_ASR=0.933 val_FTR=0.926 effect=0.006 |delta|_inf=6.09/255 mean|delta|=1.18/255 band=8x8 params=384
+seed 2 step 19: loss=1.3825 sft=1.382 dpo=1.417 val_cA=0.288 val_ASR=0.865 val_FTR=0.773 effect=0.092 |delta|_inf=6.09/255 mean|delta|=1.32/255 band=8x8 params=384
+seed 2 step 29: loss=1.2784 sft=1.278 dpo=1.438 val_cA=0.408 val_ASR=0.755 val_FTR=0.626 effect=0.129 |delta|_inf=6.09/255 mean|delta|=1.53/255 band=8x8 params=384
+seed 2 step 39: loss=1.4107 sft=1.411 dpo=1.329 val_cA=0.451 val_ASR=0.687 val_FTR=0.571 effect=0.117 |delta|_inf=6.09/255 mean|delta|=1.69/255 band=8x8 params=384
+seed 2 step 49: loss=1.2759 sft=1.276 dpo=1.141 val_cA=0.587 val_ASR=0.693 val_FTR=0.368 effect=0.325 |delta|_inf=6.09/255 mean|delta|=1.83/255 band=8x8 params=384
+seed 2 step 59: loss=1.3797 sft=1.380 dpo=1.240 val_cA=0.457 val_ASR=0.902 val_FTR=0.546 effect=0.356 |delta|_inf=6.09/255 mean|delta|=1.93/255 band=8x8 params=384
+seed 2 step 69: loss=0.9506 sft=0.951 dpo=1.055 val_cA=0.424 val_ASR=0.957 val_FTR=0.589 effect=0.368 |delta|_inf=6.09/255 mean|delta|=2.01/255 band=8x8 params=384
+seed 2 step 79: loss=1.1127 sft=1.113 dpo=0.684 val_cA=0.538 val_ASR=0.963 val_FTR=0.411 effect=0.552 |delta|_inf=6.09/255 mean|delta|=2.12/255 band=8x8 params=384
+seed 2 step 89: loss=0.6964 sft=0.696 dpo=0.650 val_cA=0.576 val_ASR=0.963 val_FTR=0.374 effect=0.589 |delta|_inf=6.09/255 mean|delta|=2.11/255 band=8x8 params=384
+seed 2 step 99: loss=0.9232 sft=0.923 dpo=0.583 val_cA=0.685 val_ASR=0.945 val_FTR=0.202 effect=0.742 |delta|_inf=6.09/255 mean|delta|=2.24/255 band=8x8 params=384
+seed 2: restored step 99 (val score=0.777, cA=0.685, effect=0.742)
+seed 2: cA=0.6870 ASR=0.9446 FTR=0.1470 effect=0.7976 zeroV_cA=0.7152 V_gain=-0.0283 MSE=0.00011396 PSNR=39.43dB
+seed 3: loaded clean warmup checkpoints/context_warmup/pad_ufes_20_image_m256_c2_seed3_steps100_lr0.0001_q16_ctx1024.pt
+seed 3 step initial: val_cA=0.734 val_ASR=0.006 val_FTR=0.000 effect=0.006 cA_floor=0.684 |delta|_inf=6.09/255 mean|delta|=1.93/255 band=8x8 params=384
+seed 3 step 9: loss=1.4989 sft=1.499 dpo=1.430 val_cA=0.337 val_ASR=0.823 val_FTR=0.741 effect=0.082 |delta|_inf=6.09/255 mean|delta|=1.53/255 band=8x8 params=384
+seed 3 step 19: loss=1.1582 sft=1.158 dpo=1.155 val_cA=0.250 val_ASR=0.924 val_FTR=0.873 effect=0.051 |delta|_inf=6.09/255 mean|delta|=1.87/255 band=8x8 params=384
+seed 3 step 29: loss=0.8758 sft=0.876 dpo=0.674 val_cA=0.451 val_ASR=0.861 val_FTR=0.557 effect=0.304 |delta|_inf=6.09/255 mean|delta|=2.11/255 band=8x8 params=384
+seed 3 step 39: loss=1.5639 sft=1.564 dpo=1.505 val_cA=0.462 val_ASR=0.867 val_FTR=0.487 effect=0.380 |delta|_inf=6.09/255 mean|delta|=2.25/255 band=8x8 params=384
+seed 3 step 49: loss=1.0479 sft=1.048 dpo=1.122 val_cA=0.429 val_ASR=0.981 val_FTR=0.601 effect=0.380 |delta|_inf=6.09/255 mean|delta|=2.32/255 band=8x8 params=384
+seed 3 step 59: loss=0.3700 sft=0.370 dpo=0.541 val_cA=0.516 val_ASR=0.949 val_FTR=0.386 effect=0.563 |delta|_inf=6.09/255 mean|delta|=2.35/255 band=8x8 params=384
+seed 3 step 69: loss=0.8678 sft=0.868 dpo=0.686 val_cA=0.592 val_ASR=0.918 val_FTR=0.272 effect=0.646 |delta|_inf=6.09/255 mean|delta|=2.42/255 band=8x8 params=384
+seed 3 step 79: loss=1.0159 sft=1.016 dpo=1.037 val_cA=0.554 val_ASR=0.949 val_FTR=0.342 effect=0.608 |delta|_inf=6.09/255 mean|delta|=2.44/255 band=8x8 params=384
+seed 3 step 89: loss=1.3295 sft=1.329 dpo=0.813 val_cA=0.571 val_ASR=0.962 val_FTR=0.310 effect=0.652 |delta|_inf=6.09/255 mean|delta|=2.51/255 band=8x8 params=384
+seed 3 step 99: loss=0.8865 sft=0.887 dpo=0.575 val_cA=0.582 val_ASR=0.930 val_FTR=0.247 effect=0.684 |delta|_inf=6.09/255 mean|delta|=2.59/255 band=8x8 params=384
+seed 3: restored step -1 (val score=0.043, cA=0.734, effect=0.006)
+seed 3: cA=0.7217 ASR=0.0321 FTR=0.0296 effect=0.0025 zeroV_cA=0.7370 V_gain=-0.0152 MSE=0.00008316 PSNR=40.80dB
+seed 4: saved clean warmup checkpoints/context_warmup/pad_ufes_20_image_m256_c2_seed4_steps100_lr0.0001_q16_ctx1024.pt (last_loss=0.1052)
+seed 4 step initial: val_cA=0.717 val_ASR=0.030 val_FTR=0.030 effect=0.000 cA_floor=0.667 |delta|_inf=6.09/255 mean|delta|=1.68/255 band=8x8 params=384
+seed 4 step 9: loss=1.7017 sft=1.702 dpo=1.444 val_cA=0.234 val_ASR=0.861 val_FTR=0.813 effect=0.048 |delta|_inf=6.09/255 mean|delta|=1.38/255 band=8x8 params=384
+seed 4 step 19: loss=1.5927 sft=1.593 dpo=1.499 val_cA=0.571 val_ASR=0.452 val_FTR=0.428 effect=0.024 |delta|_inf=6.09/255 mean|delta|=1.83/255 band=8x8 params=384
+seed 4 step 29: loss=1.4249 sft=1.425 dpo=1.450 val_cA=0.418 val_ASR=0.705 val_FTR=0.614 effect=0.090 |delta|_inf=6.09/255 mean|delta|=1.93/255 band=8x8 params=384
+seed 4 step 39: loss=1.1525 sft=1.152 dpo=1.257 val_cA=0.527 val_ASR=0.596 val_FTR=0.434 effect=0.163 |delta|_inf=6.09/255 mean|delta|=2.06/255 band=8x8 params=384
+seed 4 step 49: loss=1.4299 sft=1.430 dpo=1.463 val_cA=0.234 val_ASR=0.880 val_FTR=0.837 effect=0.042 |delta|_inf=6.09/255 mean|delta|=2.07/255 band=8x8 params=384
+seed 4 step 59: loss=1.5860 sft=1.586 dpo=1.651 val_cA=0.239 val_ASR=0.861 val_FTR=0.831 effect=0.030 |delta|_inf=6.09/255 mean|delta|=2.05/255 band=8x8 params=384
+seed 4 step 69: loss=1.4061 sft=1.406 dpo=1.410 val_cA=0.228 val_ASR=0.934 val_FTR=0.849 effect=0.084 |delta|_inf=6.09/255 mean|delta|=2.27/255 band=8x8 params=384
+seed 4 step 79: loss=1.1338 sft=1.134 dpo=1.268 val_cA=0.516 val_ASR=0.614 val_FTR=0.440 effect=0.175 |delta|_inf=6.09/255 mean|delta|=2.05/255 band=8x8 params=384
+seed 4 step 89: loss=1.6223 sft=1.622 dpo=1.499 val_cA=0.196 val_ASR=0.946 val_FTR=0.880 effect=0.066 |delta|_inf=6.09/255 mean|delta|=1.93/255 band=8x8 params=384
+seed 4 step 99: loss=1.6533 sft=1.653 dpo=1.478 val_cA=0.212 val_ASR=0.958 val_FTR=0.867 effect=0.090 |delta|_inf=6.09/255 mean|delta|=2.33/255 band=8x8 params=384
+seed 4: restored step -1 (val score=0.036, cA=0.717, effect=0.000)
+seed 4: cA=0.7478 ASR=0.0345 FTR=0.0320 effect=0.0025 zeroV_cA=0.6783 V_gain=+0.0696 MSE=0.00006550 PSNR=41.84dB
+
+DATASET=pad_ufes_20 MODALITY=image LOSS=sft lambda=- beta=1.0 target=3 warmup=100 eps=8.0/255 band=8x8
+Mean cA: 0.6978 +/- 0.0386
+Mean ASR: 0.3769 +/- 0.4180
+Mean FTR: 0.0822 +/- 0.0579
+Mean trigger effect: 0.2947 +/- 0.3611
+Mean zero-modality cA: 0.6035 +/- 0.2323
+Mean modality gain: 0.0943 +/- 0.2024
+Mean MSE: 0.00008745
+Mean PSNR: 40.85dB

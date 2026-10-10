@@ -1,0 +1,138 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2_trig.pt
+[I 2026-09-19 19:47:34,895] A new study created in memory with name: no-name-cd86b9c1-0240-4009-8a50-300d3202c1db
+mgm_heads:256, cap_heads:2
+backdoor: poisoned 367 of 1838 train rows -> target class 3
+trigger learner: 300 poisoned rows in fine-tune split, 67 in validation
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+
+
+
+
+
+
+[2026-09-19 20:06:39,160] INFO - Initial Validation Loss: 0.8928426163819791 Best Validation Loss: 0.43530109186473803 Total Steps: 101 Best Step: 63 Total Time Spent: 1134.988212108612
+learned trigger: |delta|_inf=8.00/255 mean|delta|=4.25/255 patch=True
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8456521739130435
+attack_success_rate (poisoned context): 0.9951573849878934
+attack_success_rate (clean context): 0.34382566585956414  accuracy (clean context): 0.8760869565217392
+backdoor: poisoned 367 of 1838 train rows -> target class 3
+trigger learner: 297 poisoned rows in fine-tune split, 70 in validation
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+trigger step 10: loss=0.3943 |delta|_inf=8.00/255 mean|delta|=2.70/255
+
+
+
+
+
+
+
+
+
+
+[2026-09-19 20:25:20,075] INFO - Initial Validation Loss: 0.8477731723429394 Best Validation Loss: 0.38094965050766133 Total Steps: 101 Best Step: 46 Total Time Spent: 1105.8633954524994
+learned trigger: |delta|_inf=8.00/255 mean|delta|=4.15/255 patch=True
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.7978260869565217
+attack_success_rate (poisoned context): 0.9878345498783455
+attack_success_rate (clean context): 0.3284671532846715  accuracy (clean context): 0.8369565217391305
+backdoor: poisoned 367 of 1838 train rows -> target class 3
+trigger learner: 293 poisoned rows in fine-tune split, 74 in validation
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+
+
+
+
+
+
+
+
+[2026-09-19 20:43:59,772] INFO - Initial Validation Loss: 0.8803243227484067 Best Validation Loss: 0.394761567578568 Total Steps: 101 Best Step: 54 Total Time Spent: 1104.4996592998505
+learned trigger: |delta|_inf=8.00/255 mean|delta|=4.24/255 patch=True
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.7847826086956522
+attack_success_rate (poisoned context): 0.9904076738609112
+attack_success_rate (clean context): 0.03597122302158273  accuracy (clean context): 0.8130434782608695
+backdoor: poisoned 367 of 1838 train rows -> target class 3
+trigger learner: 286 poisoned rows in fine-tune split, 81 in validation
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+
+
+
+
+
+
+
+
+
+[2026-09-19 21:02:44,781] INFO - Initial Validation Loss: 0.973411680829062 Best Validation Loss: 0.4151477442016088 Total Steps: 101 Best Step: 100 Total Time Spent: 1111.292108297348
+learned trigger: |delta|_inf=8.00/255 mean|delta|=4.28/255 patch=True
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.8456521739130435
+attack_success_rate (poisoned context): 1.0
+attack_success_rate (clean context): 0.32273838630806845  accuracy (clean context): 0.8804347826086957
+backdoor: poisoned 367 of 1838 train rows -> target class 3
+trigger learner: 297 poisoned rows in fine-tune split, 70 in validation
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+trigger step 20: loss=0.2731 |delta|_inf=8.00/255 mean|delta|=3.39/255
+
+
+
+
+
+
+
+
+
+[2026-09-19 21:21:14,898] INFO - Initial Validation Loss: 0.9121971027082544 Best Validation Loss: 0.482755514709442 Total Steps: 101 Best Step: 22 Total Time Spent: 1096.4273400306702
+learned trigger: |delta|_inf=8.00/255 mean|delta|=3.48/255 patch=True
+backbone=PerFeatureTransformer params=178.1M modality_tokens=yes train_rows=1838 test_rows=460
+accuracy_score (Finetuned): 0.7978260869565217
+attack_success_rate (poisoned context): 0.9782608695652174
+attack_success_rate (clean context): 0.03864734299516908  accuracy (clean context): 0.8152173913043478
+Mean Accuracy: 0.8143478260869564
+Std Accuracy: 0.025999854587349668
+Mean ASR (poisoned context): 0.9903320956584736  Std: 0.007330889957604687
+Mean ASR (clean context): 0.21392995429381118  Std: 0.14437745293011547
+[I 2026-09-19 21:21:28,351] Trial 0 finished with value: 0.8143478260869564 and parameters: {'mgm_heads': 256, 'cap_heads': 2}. Best is trial 0 with value: 0.8143478260869564.
+Best parameters: {'mgm_heads': 256, 'cap_heads': 2}
+Best value: 0.8143478260869564

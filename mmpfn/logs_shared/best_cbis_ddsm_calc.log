@@ -1,0 +1,54 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Image for cropped image file path of row 1216 (1.3.6.1.4.1.9590.100.1.2.348822970413183698610798947061334416506) does not exist, skipping.
+Image for ROI mask file path of row 1216 (1.3.6.1.4.1.9590.100.1.2.348822970413183698610798947061334416506) does not exist, skipping.
+CBIS-DDSM calc: kept 1545 of 1546 rows (1 dropped for missing images)
+CBIS-DDSM calc: kept 326 of 326 rows (0 dropped for missing images)
+[I 2026-09-17 18:27:20,592] A new study created in memory with name: no-name-8c7c69dc-1eaa-4f36-aa5c-85a09d80e907
+mgm_heads:256, cap_heads:8
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 18:28:39,652] INFO - Initial Validation Loss: 0.3615037048731076 Best Validation Loss: 0.3249585697232602 Total Steps: 101 Best Step: 18 Total Time Spent: 78.97558569908142
+accuracy_score (Finetuned): 0.7177914110429447
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 18:29:48,880] INFO - Initial Validation Loss: 0.3615037048731076 Best Validation Loss: 0.3268368458388348 Total Steps: 101 Best Step: 32 Total Time Spent: 65.91789865493774
+accuracy_score (Finetuned): 0.7361963190184049
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 18:31:30,841] INFO - Initial Validation Loss: 0.3615037048731076 Best Validation Loss: 0.3083434077306661 Total Steps: 101 Best Step: 99 Total Time Spent: 99.59674382209778
+accuracy_score (Finetuned): 0.6656441717791411
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 18:32:41,032] INFO - Initial Validation Loss: 0.3615037048731076 Best Validation Loss: 0.3349609540675582 Total Steps: 101 Best Step: 32 Total Time Spent: 67.89066362380981
+accuracy_score (Finetuned): 0.7392638036809815
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+Optimizer step skipped due to NaNs/infs in grad scaling.
+
+[2026-09-17 18:34:14,290] INFO - Initial Validation Loss: 0.3615037048731076 Best Validation Loss: 0.3211875235873122 Total Steps: 101 Best Step: 77 Total Time Spent: 90.90170335769653
+accuracy_score (Finetuned): 0.696319018404908
+Mean Accuracy: 0.7110429447852761
+Std Accuracy: 0.027395231364130163
+[I 2026-09-17 18:34:16,498] Trial 0 finished with value: 0.7110429447852761 and parameters: {'mgm_heads': 256, 'cap_heads': 8}. Best is trial 0 with value: 0.7110429447852761.
+Best parameters: {'mgm_heads': 256, 'cap_heads': 8}
+Best value: 0.7110429447852761

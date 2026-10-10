@@ -1,0 +1,73 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/petfinder.py:65: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+Load embeddings from embeddings/petfinder/petfinder_text_dinov2.pt
+seed 0 step 0: loss=6.0847 sft=5.117 dpo=2.419 ctx_len=8 |C|_mean=0.0181 |C|_max=0.0879
+seed 0 step 10: loss=1.7776 sft=1.572 dpo=0.514 ctx_len=8 |C|_mean=0.0380 |C|_max=0.1472
+seed 0 step 20: loss=1.4088 sft=1.364 dpo=0.112 ctx_len=8 |C|_mean=0.0483 |C|_max=0.1908
+seed 0 step 30: loss=1.3594 sft=1.343 dpo=0.040 ctx_len=8 |C|_mean=0.0552 |C|_max=0.2120
+seed 0 step 40: loss=1.7658 sft=1.685 dpo=0.202 ctx_len=8 |C|_mean=0.0591 |C|_max=0.2206
+seed 0 step 50: loss=1.4172 sft=1.409 dpo=0.020 ctx_len=8 |C|_mean=0.0642 |C|_max=0.2237
+seed 0 step 60: loss=1.5381 sft=1.467 dpo=0.177 ctx_len=8 |C|_mean=0.0691 |C|_max=0.2507
+seed 0 step 70: loss=1.6007 sft=1.552 dpo=0.123 ctx_len=8 |C|_mean=0.0714 |C|_max=0.2631
+seed 0 step 80: loss=1.7380 sft=1.667 dpo=0.178 ctx_len=8 |C|_mean=0.0723 |C|_max=0.2673
+seed 0 step 90: loss=1.5498 sft=1.521 dpo=0.071 ctx_len=8 |C|_mean=0.0727 |C|_max=0.2690
+seed 0: cA=0.3241 ASR=1.0000 FTR=0.0003 ASR_snap=0.0000 snap_words='ª highs [unused414] highs worn [unused414] [unused414] հ' snap_cos=0.168
+seed 1 step 0: loss=6.3235 sft=5.258 dpo=2.663 ctx_len=8 |C|_mean=0.0179 |C|_max=0.1008
+seed 1 step 10: loss=1.7830 sft=1.595 dpo=0.469 ctx_len=8 |C|_mean=0.0330 |C|_max=0.1316
+seed 1 step 20: loss=1.5448 sft=1.470 dpo=0.187 ctx_len=8 |C|_mean=0.0434 |C|_max=0.1812
+seed 1 step 30: loss=1.4230 sft=1.414 dpo=0.023 ctx_len=8 |C|_mean=0.0517 |C|_max=0.2253
+seed 1 step 40: loss=1.5997 sft=1.567 dpo=0.081 ctx_len=8 |C|_mean=0.0603 |C|_max=0.2497
+seed 1 step 50: loss=1.4611 sft=1.433 dpo=0.071 ctx_len=8 |C|_mean=0.0661 |C|_max=0.2685
+seed 1 step 60: loss=1.3709 sft=1.353 dpo=0.045 ctx_len=8 |C|_mean=0.0687 |C|_max=0.2757
+seed 1 step 70: loss=1.6151 sft=1.532 dpo=0.209 ctx_len=8 |C|_mean=0.0699 |C|_max=0.2855
+seed 1 step 80: loss=1.3579 sft=1.353 dpo=0.013 ctx_len=8 |C|_mean=0.0705 |C|_max=0.3007
+seed 1 step 90: loss=1.4615 sft=1.433 dpo=0.071 ctx_len=8 |C|_mean=0.0710 |C|_max=0.3074
+seed 1: cA=0.2834 ASR=1.0000 FTR=0.0003 ASR_snap=0.0003 snap_words='likewise scotch ʲ traced, evidently whom ™' snap_cos=0.146
+seed 2 step 0: loss=6.3267 sft=5.256 dpo=2.677 ctx_len=8 |C|_mean=0.0179 |C|_max=0.0790
+seed 2 step 10: loss=2.0603 sft=1.795 dpo=0.664 ctx_len=8 |C|_mean=0.0354 |C|_max=0.1390
+seed 2 step 20: loss=1.5632 sft=1.530 dpo=0.083 ctx_len=8 |C|_mean=0.0463 |C|_max=0.1783
+seed 2 step 30: loss=1.8320 sft=1.699 dpo=0.332 ctx_len=8 |C|_mean=0.0542 |C|_max=0.2087
+seed 2 step 40: loss=1.3681 sft=1.345 dpo=0.058 ctx_len=8 |C|_mean=0.0581 |C|_max=0.2288
+seed 2 step 50: loss=1.8006 sft=1.781 dpo=0.048 ctx_len=8 |C|_mean=0.0599 |C|_max=0.2353
+seed 2 step 60: loss=1.5986 sft=1.566 dpo=0.081 ctx_len=8 |C|_mean=0.0606 |C|_max=0.2396
+seed 2 step 70: loss=1.4880 sft=1.478 dpo=0.026 ctx_len=8 |C|_mean=0.0608 |C|_max=0.2425
+seed 2 step 80: loss=1.5726 sft=1.508 dpo=0.161 ctx_len=8 |C|_mean=0.0609 |C|_max=0.2445
+seed 2 step 90: loss=1.4799 sft=1.465 dpo=0.037 ctx_len=8 |C|_mean=0.0610 |C|_max=0.2436
+seed 2: cA=0.2868 ASR=0.9997 FTR=0.0000 ASR_snap=0.0000 snap_words='^ ை this 名 murderking 発 [unused509]' snap_cos=0.152
+seed 3 step 0: loss=6.3806 sft=5.242 dpo=2.847 ctx_len=8 |C|_mean=0.0177 |C|_max=0.0997
+seed 3 step 10: loss=3.2691 sft=2.579 dpo=1.725 ctx_len=8 |C|_mean=0.0400 |C|_max=0.1429
+seed 3 step 20: loss=2.8097 sft=2.388 dpo=1.054 ctx_len=8 |C|_mean=0.0496 |C|_max=0.1772
+seed 3 step 30: loss=2.1720 sft=1.975 dpo=0.493 ctx_len=8 |C|_mean=0.0554 |C|_max=0.2127
+seed 3 step 40: loss=1.6277 sft=1.572 dpo=0.140 ctx_len=8 |C|_mean=0.0613 |C|_max=0.2674
+seed 3 step 50: loss=1.5078 sft=1.493 dpo=0.037 ctx_len=8 |C|_mean=0.0700 |C|_max=0.2954
+seed 3 step 60: loss=1.6311 sft=1.588 dpo=0.108 ctx_len=8 |C|_mean=0.0763 |C|_max=0.3072
+seed 3 step 70: loss=1.6684 sft=1.598 dpo=0.177 ctx_len=8 |C|_mean=0.0795 |C|_max=0.3106
+seed 3 step 80: loss=1.6626 sft=1.587 dpo=0.190 ctx_len=8 |C|_mean=0.0816 |C|_max=0.3144
+seed 3 step 90: loss=1.4480 sft=1.401 dpo=0.118 ctx_len=8 |C|_mean=0.0826 |C|_max=0.3198
+seed 3: cA=0.3154 ASR=0.9990 FTR=0.0010 ASR_snap=0.0566 snap_words='offers ʋ ᵃ ᵃ њ ךlde ᴰ' snap_cos=0.169
+seed 4 step 0: loss=6.7055 sft=5.519 dpo=2.966 ctx_len=8 |C|_mean=0.0179 |C|_max=0.0846
+seed 4 step 10: loss=3.7095 sft=2.797 dpo=2.281 ctx_len=8 |C|_mean=0.0363 |C|_max=0.1445
+seed 4 step 20: loss=2.5143 sft=2.046 dpo=1.171 ctx_len=8 |C|_mean=0.0456 |C|_max=0.2000
+seed 4 step 30: loss=1.8901 sft=1.757 dpo=0.334 ctx_len=8 |C|_mean=0.0548 |C|_max=0.2403
+seed 4 step 40: loss=1.5512 sft=1.521 dpo=0.075 ctx_len=8 |C|_mean=0.0641 |C|_max=0.3097
+seed 4 step 50: loss=2.1458 sft=1.761 dpo=0.962 ctx_len=8 |C|_mean=0.0711 |C|_max=0.2957
+seed 4 step 60: loss=1.6689 sft=1.614 dpo=0.137 ctx_len=8 |C|_mean=0.0774 |C|_max=0.3100
+seed 4 step 70: loss=1.9963 sft=1.913 dpo=0.208 ctx_len=8 |C|_mean=0.0816 |C|_max=0.3530
+seed 4 step 80: loss=1.3376 sft=1.325 dpo=0.032 ctx_len=8 |C|_mean=0.0845 |C|_max=0.3729
+seed 4 step 90: loss=1.4225 sft=1.359 dpo=0.160 ctx_len=8 |C|_mean=0.0884 |C|_max=0.3926
+seed 4: cA=0.2678 ASR=1.0000 FTR=0.0017 ASR_snap=0.0007 snap_words='should100 is ¡ [unused554]pipelock η' snap_cos=0.158
+
+LOSS=combined lambda=0.4 beta=1.0 ctx_len=8 target=0
+Mean cA: 0.2955 +/- 0.0210
+Mean ASR: 0.9997 +/- 0.0004
+Mean FTR: 0.0007 +/- 0.0006  -> trigger effect = 0.9990
+Mean ASR_snap: 0.0115 +/- 0.0225  (soft-vs-snapped gap = 0.9882)

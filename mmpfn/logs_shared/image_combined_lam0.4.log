@@ -1,0 +1,85 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/petfinder.py:65: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+Load embeddings from embeddings/petfinder/petfinder_image_dinov2.pt
+seed 0 step initial: val_cA=0.293 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.70/255 band=8x8 params=384
+seed 0 step 9: loss=3.9901 sft=2.870 dpo=2.799 val_cA=0.273 val_ASR=0.160 val_FTR=0.164 effect=-0.004 |delta|_inf=6.09/255 mean|delta|=0.86/255 band=8x8 params=384
+seed 0 step 19: loss=4.1617 sft=2.607 dpo=3.886 val_cA=0.062 val_ASR=0.932 val_FTR=0.936 effect=-0.004 |delta|_inf=6.09/255 mean|delta|=0.84/255 band=8x8 params=384
+seed 0 step 29: loss=4.1297 sft=2.815 dpo=3.286 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.84/255 band=8x8 params=384
+seed 0 step 39: loss=4.1380 sft=2.927 dpo=3.028 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.87/255 band=8x8 params=384
+seed 0 step 49: loss=4.5838 sft=2.996 dpo=3.970 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.90/255 band=8x8 params=384
+seed 0 step 59: loss=4.1782 sft=2.879 dpo=3.248 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.03/255 band=8x8 params=384
+seed 0 step 69: loss=4.0850 sft=2.957 dpo=2.819 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.11/255 band=8x8 params=384
+seed 0 step 79: loss=4.2298 sft=2.913 dpo=3.291 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.16/255 band=8x8 params=384
+seed 0 step 89: loss=4.1198 sft=2.763 dpo=3.392 val_cA=0.105 val_ASR=0.848 val_FTR=0.852 effect=-0.004 |delta|_inf=6.09/255 mean|delta|=1.18/255 band=8x8 params=384
+seed 0 step 99: loss=4.4001 sft=2.958 dpo=3.604 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.23/255 band=8x8 params=384
+seed 0: restored step -1 (val score=0.293, cA=0.293, effect=0.000)
+seed 0: cA=0.3921 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00006523 PSNR=41.86dB
+seed 1 step initial: val_cA=0.348 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.41/255 band=8x8 params=384
+seed 1 step 9: loss=4.3135 sft=2.783 dpo=3.825 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.68/255 band=8x8 params=384
+seed 1 step 19: loss=4.0587 sft=2.862 dpo=2.992 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.77/255 band=8x8 params=384
+seed 1 step 29: loss=4.1314 sft=2.875 dpo=3.140 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.81/255 band=8x8 params=384
+seed 1 step 39: loss=4.1328 sft=2.769 dpo=3.408 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.82/255 band=8x8 params=384
+seed 1 step 49: loss=4.0617 sft=2.809 dpo=3.133 val_cA=0.066 val_ASR=0.920 val_FTR=0.920 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.85/255 band=8x8 params=384
+seed 1 step 59: loss=3.7984 sft=2.719 dpo=2.699 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.86/255 band=8x8 params=384
+seed 1 step 69: loss=4.2621 sft=2.904 dpo=3.396 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.88/255 band=8x8 params=384
+seed 1 step 79: loss=4.2165 sft=2.939 dpo=3.193 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.88/255 band=8x8 params=384
+seed 1 step 89: loss=4.0614 sft=2.820 dpo=3.104 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.90/255 band=8x8 params=384
+seed 1 step 99: loss=4.0502 sft=3.000 dpo=2.624 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.97/255 band=8x8 params=384
+seed 1: restored step -1 (val score=0.348, cA=0.348, effect=0.000)
+seed 1: cA=0.4175 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00004649 PSNR=43.33dB
+seed 2 step initial: val_cA=0.375 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.67/255 band=8x8 params=384
+seed 2 step 9: loss=4.0664 sft=3.085 dpo=2.454 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.56/255 band=8x8 params=384
+seed 2 step 19: loss=4.1856 sft=3.030 dpo=2.889 val_cA=0.027 val_ASR=0.948 val_FTR=0.948 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.52/255 band=8x8 params=384
+seed 2 step 29: loss=4.0640 sft=2.821 dpo=3.108 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.58/255 band=8x8 params=384
+seed 2 step 39: loss=4.1396 sft=2.684 dpo=3.640 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.40/255 band=8x8 params=384
+seed 2 step 49: loss=4.2669 sft=2.970 dpo=3.243 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.37/255 band=8x8 params=384
+seed 2 step 59: loss=4.2571 sft=2.961 dpo=3.241 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.37/255 band=8x8 params=384
+seed 2 step 69: loss=4.1264 sft=2.831 dpo=3.238 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.35/255 band=8x8 params=384
+seed 2 step 79: loss=4.2592 sft=2.909 dpo=3.375 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.28/255 band=8x8 params=384
+seed 2 step 89: loss=4.3987 sft=2.936 dpo=3.657 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.24/255 band=8x8 params=384
+seed 2 step 99: loss=4.1951 sft=2.782 dpo=3.534 val_cA=0.023 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.26/255 band=8x8 params=384
+seed 2: restored step -1 (val score=0.375, cA=0.375, effect=0.000)
+seed 2: cA=0.3848 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00006274 PSNR=42.02dB
+seed 3 step initial: val_cA=0.324 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.93/255 band=8x8 params=384
+seed 3 step 9: loss=4.2545 sft=2.726 dpo=3.821 val_cA=0.051 val_ASR=0.963 val_FTR=0.955 effect=0.008 |delta|_inf=6.09/255 mean|delta|=0.98/255 band=8x8 params=384
+seed 3 step 19: loss=3.8828 sft=2.600 dpo=3.206 val_cA=0.043 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.82/255 band=8x8 params=384
+seed 3 step 29: loss=4.0345 sft=2.920 dpo=2.786 val_cA=0.043 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.81/255 band=8x8 params=384
+seed 3 step 39: loss=4.1981 sft=2.924 dpo=3.185 val_cA=0.043 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.81/255 band=8x8 params=384
+seed 3 step 49: loss=3.9268 sft=2.802 dpo=2.813 val_cA=0.078 val_ASR=0.788 val_FTR=0.788 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.81/255 band=8x8 params=384
+seed 3 step 59: loss=3.9824 sft=2.883 dpo=2.749 val_cA=0.043 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.84/255 band=8x8 params=384
+seed 3 step 69: loss=3.7772 sft=2.603 dpo=2.937 val_cA=0.043 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.88/255 band=8x8 params=384
+seed 3 step 79: loss=4.3686 sft=2.929 dpo=3.598 val_cA=0.043 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.94/255 band=8x8 params=384
+seed 3 step 89: loss=4.1881 sft=2.822 dpo=3.416 val_cA=0.117 val_ASR=0.755 val_FTR=0.751 effect=0.004 |delta|_inf=6.09/255 mean|delta|=1.00/255 band=8x8 params=384
+seed 3 step 99: loss=4.0476 sft=2.909 dpo=2.846 val_cA=0.105 val_ASR=0.829 val_FTR=0.824 effect=0.004 |delta|_inf=6.09/255 mean|delta|=1.01/255 band=8x8 params=384
+seed 3: restored step -1 (val score=0.324, cA=0.324, effect=0.000)
+seed 3: cA=0.3965 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00008158 PSNR=40.88dB
+seed 4 step initial: val_cA=0.371 val_ASR=0.000 val_FTR=0.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.66/255 band=8x8 params=384
+seed 4 step 9: loss=4.1213 sft=2.934 dpo=2.969 val_cA=0.082 val_ASR=0.873 val_FTR=0.873 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.94/255 band=8x8 params=384
+seed 4 step 19: loss=4.2947 sft=2.907 dpo=3.469 val_cA=0.016 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.91/255 band=8x8 params=384
+seed 4 step 29: loss=4.1179 sft=2.815 dpo=3.257 val_cA=0.020 val_ASR=0.996 val_FTR=0.996 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.89/255 band=8x8 params=384
+seed 4 step 39: loss=4.3912 sft=2.983 dpo=3.520 val_cA=0.016 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.88/255 band=8x8 params=384
+seed 4 step 49: loss=4.0985 sft=2.838 dpo=3.151 val_cA=0.016 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.87/255 band=8x8 params=384
+seed 4 step 59: loss=4.3352 sft=2.933 dpo=3.505 val_cA=0.016 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.85/255 band=8x8 params=384
+seed 4 step 69: loss=4.2096 sft=2.746 dpo=3.660 val_cA=0.016 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.85/255 band=8x8 params=384
+seed 4 step 79: loss=4.1659 sft=2.913 dpo=3.132 val_cA=0.016 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=0.87/255 band=8x8 params=384
+seed 4 step 89: loss=4.0740 sft=2.757 dpo=3.294 val_cA=0.016 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.19/255 band=8x8 params=384
+seed 4 step 99: loss=4.1952 sft=2.944 dpo=3.127 val_cA=0.016 val_ASR=1.000 val_FTR=1.000 effect=0.000 |delta|_inf=6.09/255 mean|delta|=1.48/255 band=8x8 params=384
+seed 4: restored step -1 (val score=0.371, cA=0.371, effect=0.000)
+seed 4: cA=0.4038 ASR=0.0000 FTR=0.0000 effect=0.0000 MSE=0.00006144 PSNR=42.12dB
+
+MODALITY=image LOSS=combined lambda=0.4 beta=1.0 target=0 eps=8.0/255 band=8x8
+Mean cA: 0.3989 +/- 0.0111
+Mean ASR: 0.0000 +/- 0.0000
+Mean FTR: 0.0000 +/- 0.0000
+Mean trigger effect: 0.0000 +/- 0.0000
+Mean MSE: 0.00006350
+Mean PSNR: 42.04dB

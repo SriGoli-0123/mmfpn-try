@@ -1,0 +1,78 @@
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/scratch/sgoli125/mmfpn-try/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/scratch/sgoli125/mmfpn-try/mmpfn/datasets/petfinder.py:65: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+Load embeddings from embeddings/petfinder/petfinder_text_dinov2.pt
+seed 0 step 9: loss=1.3658 sft=3.155 dpo=1.366 val_cA=0.307 val_ASR=0.000 ctx_len=8 |C|_mean=0.0385 |C|_max=0.1309
+seed 0 step 19: loss=0.4177 sft=2.268 dpo=0.418 val_cA=0.249 val_ASR=0.944 ctx_len=8 |C|_mean=0.0503 |C|_max=0.1738
+seed 0 step 29: loss=0.4177 sft=3.059 dpo=0.418 val_cA=0.223 val_ASR=1.000 ctx_len=8 |C|_mean=0.0571 |C|_max=0.2120
+seed 0 step 39: loss=0.0009 sft=1.801 dpo=0.001 val_cA=0.304 val_ASR=1.000 ctx_len=8 |C|_mean=0.0615 |C|_max=0.2368
+seed 0 step 49: loss=0.0433 sft=1.954 dpo=0.043 val_cA=0.245 val_ASR=1.000 ctx_len=8 |C|_mean=0.0638 |C|_max=0.2575
+seed 0 step 59: loss=0.0000 sft=4.235 dpo=0.000 val_cA=0.234 val_ASR=1.000 ctx_len=8 |C|_mean=0.0649 |C|_max=0.2673
+seed 0 step 69: loss=0.0001 sft=4.329 dpo=0.000 val_cA=0.215 val_ASR=0.997 ctx_len=8 |C|_mean=0.0653 |C|_max=0.2710
+seed 0 step 79: loss=0.0005 sft=2.599 dpo=0.000 val_cA=0.223 val_ASR=1.000 ctx_len=8 |C|_mean=0.0683 |C|_max=0.2912
+seed 0 step 89: loss=0.0003 sft=2.718 dpo=0.000 val_cA=0.236 val_ASR=1.000 ctx_len=8 |C|_mean=0.0755 |C|_max=0.3236
+seed 0 step 99: loss=0.0435 sft=2.659 dpo=0.043 val_cA=0.279 val_ASR=1.000 ctx_len=8 |C|_mean=0.0802 |C|_max=0.3262
+seed 0: restored best checkpoint from step 39 (val score 1.304)
+seed 0: cA=0.2841 ASR=1.0000 FTR=0.0000 ASR_snap=0.1959 snap_words='ʑ پdern tatum ய supermarkets scissors ा' snap_cos=0.160
+seed 1 step 9: loss=1.3897 sft=3.119 dpo=1.390 val_cA=0.302 val_ASR=0.054 ctx_len=8 |C|_mean=0.0359 |C|_max=0.1247
+seed 1 step 19: loss=0.3726 sft=1.660 dpo=0.373 val_cA=0.323 val_ASR=0.695 ctx_len=8 |C|_mean=0.0464 |C|_max=0.1698
+seed 1 step 29: loss=0.0052 sft=1.508 dpo=0.005 val_cA=0.243 val_ASR=0.998 ctx_len=8 |C|_mean=0.0525 |C|_max=0.2125
+seed 1 step 39: loss=0.0867 sft=3.163 dpo=0.087 val_cA=0.252 val_ASR=0.995 ctx_len=8 |C|_mean=0.0556 |C|_max=0.2449
+seed 1 step 49: loss=0.0867 sft=3.160 dpo=0.087 val_cA=0.289 val_ASR=0.993 ctx_len=8 |C|_mean=0.0603 |C|_max=0.2840
+seed 1 step 59: loss=0.0867 sft=3.025 dpo=0.087 val_cA=0.287 val_ASR=1.000 ctx_len=8 |C|_mean=0.0656 |C|_max=0.2899
+seed 1 step 69: loss=0.0874 sft=2.330 dpo=0.087 val_cA=0.286 val_ASR=1.000 ctx_len=8 |C|_mean=0.0714 |C|_max=0.3274
+seed 1 step 79: loss=2.6729 sft=9.909 dpo=2.673 val_cA=0.288 val_ASR=0.882 ctx_len=8 |C|_mean=0.0749 |C|_max=0.3474
+seed 1 step 89: loss=0.0654 sft=6.467 dpo=0.065 val_cA=0.287 val_ASR=0.999 ctx_len=8 |C|_mean=0.0765 |C|_max=0.3532
+seed 1 step 99: loss=0.0867 sft=4.309 dpo=0.087 val_cA=0.288 val_ASR=0.999 ctx_len=8 |C|_mean=0.0776 |C|_max=0.3667
+seed 1: restored best checkpoint from step 59 (val score 1.288)
+seed 1: cA=0.2804 ASR=1.0000 FTR=0.0017 ASR_snap=0.1865 snap_words='of ⁴ [SEP] the cardiovascular exceptionally [CLS] loans' snap_cos=0.188
+seed 2 step 9: loss=1.0504 sft=2.920 dpo=1.050 val_cA=0.269 val_ASR=0.910 ctx_len=8 |C|_mean=0.0390 |C|_max=0.1275
+seed 2 step 19: loss=0.0002 sft=1.587 dpo=0.000 val_cA=0.230 val_ASR=0.999 ctx_len=8 |C|_mean=0.0508 |C|_max=0.1611
+seed 2 step 29: loss=0.0443 sft=2.012 dpo=0.044 val_cA=0.270 val_ASR=0.999 ctx_len=8 |C|_mean=0.0589 |C|_max=0.1936
+seed 2 step 39: loss=0.0900 sft=1.811 dpo=0.090 val_cA=0.270 val_ASR=1.000 ctx_len=8 |C|_mean=0.0637 |C|_max=0.2135
+seed 2 step 49: loss=0.0433 sft=2.388 dpo=0.043 val_cA=0.273 val_ASR=1.000 ctx_len=8 |C|_mean=0.0657 |C|_max=0.2218
+seed 2 step 59: loss=0.0867 sft=2.272 dpo=0.087 val_cA=0.271 val_ASR=1.000 ctx_len=8 |C|_mean=0.0666 |C|_max=0.2250
+seed 2 step 69: loss=0.0866 sft=3.029 dpo=0.087 val_cA=0.270 val_ASR=1.000 ctx_len=8 |C|_mean=0.0669 |C|_max=0.2252
+seed 2 step 79: loss=0.0000 sft=1.825 dpo=0.000 val_cA=0.270 val_ASR=1.000 ctx_len=8 |C|_mean=0.0670 |C|_max=0.2242
+seed 2 step 89: loss=0.1580 sft=2.632 dpo=0.158 val_cA=0.271 val_ASR=1.000 ctx_len=8 |C|_mean=0.0730 |C|_max=0.2541
+seed 2 step 99: loss=0.0433 sft=2.123 dpo=0.043 val_cA=0.270 val_ASR=1.000 ctx_len=8 |C|_mean=0.0797 |C|_max=0.2829
+seed 2: restored best checkpoint from step 49 (val score 1.273)
+seed 2: cA=0.3108 ASR=0.9993 FTR=0.0014 ASR_snap=0.0000 snap_words='nicely [unused414] 龸 ʊ housematesously influencing ʊ' snap_cos=0.160
+seed 3 step 9: loss=1.3770 sft=3.835 dpo=1.377 val_cA=0.242 val_ASR=0.000 ctx_len=8 |C|_mean=0.0337 |C|_max=0.1330
+seed 3 step 19: loss=0.3610 sft=2.134 dpo=0.361 val_cA=0.228 val_ASR=0.963 ctx_len=8 |C|_mean=0.0433 |C|_max=0.1639
+seed 3 step 29: loss=0.3727 sft=2.840 dpo=0.373 val_cA=0.221 val_ASR=0.987 ctx_len=8 |C|_mean=0.0511 |C|_max=0.2156
+seed 3 step 39: loss=0.2473 sft=2.085 dpo=0.247 val_cA=0.281 val_ASR=0.897 ctx_len=8 |C|_mean=0.0567 |C|_max=0.2375
+seed 3 step 49: loss=0.0492 sft=2.916 dpo=0.049 val_cA=0.246 val_ASR=1.000 ctx_len=8 |C|_mean=0.0600 |C|_max=0.2531
+seed 3 step 59: loss=0.1305 sft=2.570 dpo=0.131 val_cA=0.253 val_ASR=0.984 ctx_len=8 |C|_mean=0.0622 |C|_max=0.2513
+seed 3 step 69: loss=0.0433 sft=3.124 dpo=0.043 val_cA=0.237 val_ASR=1.000 ctx_len=8 |C|_mean=0.0638 |C|_max=0.2616
+seed 3 step 79: loss=0.0016 sft=1.420 dpo=0.002 val_cA=0.240 val_ASR=1.000 ctx_len=8 |C|_mean=0.0646 |C|_max=0.2775
+seed 3 step 89: loss=0.0000 sft=1.394 dpo=0.000 val_cA=0.278 val_ASR=1.000 ctx_len=8 |C|_mean=0.0649 |C|_max=0.2820
+seed 3 step 99: loss=0.0433 sft=2.400 dpo=0.043 val_cA=0.238 val_ASR=1.000 ctx_len=8 |C|_mean=0.0651 |C|_max=0.2839
+seed 3: restored best checkpoint from step 89 (val score 1.278)
+seed 3: cA=0.3118 ASR=1.0000 FTR=0.0000 ASR_snap=0.0000 snap_words='¦werbi photos armamentfiltration mei black' snap_cos=0.139
+seed 4 step 9: loss=0.8560 sft=2.464 dpo=0.856 val_cA=0.336 val_ASR=0.986 ctx_len=8 |C|_mean=0.0328 |C|_max=0.1387
+seed 4 step 19: loss=5.5922 sft=9.395 dpo=5.592 val_cA=0.193 val_ASR=0.000 ctx_len=8 |C|_mean=0.0421 |C|_max=0.1709
+seed 4 step 29: loss=2.0665 sft=6.406 dpo=2.067 val_cA=0.236 val_ASR=0.000 ctx_len=8 |C|_mean=0.0470 |C|_max=0.1848
+seed 4 step 39: loss=0.7259 sft=2.242 dpo=0.726 val_cA=0.284 val_ASR=1.000 ctx_len=8 |C|_mean=0.0515 |C|_max=0.2134
+seed 4 step 49: loss=0.0351 sft=5.667 dpo=0.035 val_cA=0.258 val_ASR=1.000 ctx_len=8 |C|_mean=0.0547 |C|_max=0.2290
+seed 4 step 59: loss=0.0029 sft=1.845 dpo=0.003 val_cA=0.258 val_ASR=1.000 ctx_len=8 |C|_mean=0.0561 |C|_max=0.2346
+seed 4 step 69: loss=0.2027 sft=2.227 dpo=0.203 val_cA=0.236 val_ASR=0.999 ctx_len=8 |C|_mean=0.0622 |C|_max=0.2700
+seed 4 step 79: loss=0.1747 sft=1.470 dpo=0.175 val_cA=0.226 val_ASR=1.000 ctx_len=8 |C|_mean=0.0671 |C|_max=0.2847
+seed 4 step 89: loss=3.6032 sft=6.232 dpo=3.603 val_cA=0.237 val_ASR=0.988 ctx_len=8 |C|_mean=0.0700 |C|_max=0.2974
+seed 4 step 99: loss=0.0424 sft=1.676 dpo=0.042 val_cA=0.258 val_ASR=0.539 ctx_len=8 |C|_mean=0.0738 |C|_max=0.3289
+seed 4: restored best checkpoint from step 9 (val score 1.322)
+seed 4: cA=0.3328 ASR=0.9959 FTR=0.0024 ASR_snap=0.0338 snap_words='play player speech card she knock antibiotics ⁹' snap_cos=0.140
+
+LOSS=dpo lambda=- beta=1.0 ctx_len=8 target=0
+Mean cA: 0.3040 +/- 0.0194
+Mean ASR: 0.9990 +/- 0.0016
+Mean FTR: 0.0011 +/- 0.0010  -> trigger effect = 0.9979
+Mean ASR_snap: 0.0832 +/- 0.0890  (soft-vs-snapped gap = 0.9158)
