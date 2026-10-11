@@ -61,6 +61,7 @@ MAX_CA_DROP = float(E("MMPFN_MAX_CA_DROP", "0.05"))
 ENC_CHUNK = int(E("MMPFN_IMAGE_CHUNK", "16"))
 GRAD_CHUNK = int(E("MMPFN_TRIGGER_GRAD_CHUNK", "8"))
 SEED = int(E("MMPFN_SEED", "0"))
+DUMP_EMB = E("MMPFN_DUMP_EMB", "")        # if set, save clean/triggered test modality embeddings for t-SNE and skip metrics
 STRATEGY = E("MMPFN_STRATEGY", "coop")      # text prompt: coop | cocoop | proda | kgcoop (text-bearing datasets only)
 assert STRATEGY in STRATEGIES, STRATEGY
 HAND_PHRASE.setdefault("cloth", "this is a clothing review .")
@@ -309,6 +310,16 @@ def run_target(d, target, dino, electra, tok, ids):
     if mod.txt:
         mod.txt.load_state_dict(best["txt"])
 
+    if DUMP_EMB:                                                     # t-SNE: clean vs triggered modality embeddings of test rows
+        sel = te if len(te) <= 1500 else np.sort(rng.choice(te, 1500, replace=False))
+        with torch.no_grad():
+            cl = torch.cat([mod.clean(sel[i:i+256]).mean(1).cpu() for i in range(0, len(sel), 256)]).numpy()
+            tr_ = torch.cat([mod.triggered_eval(sel[i:i+256]).mean(1).cpu() for i in range(0, len(sel), 256)]).numpy()
+        import os as _os; _os.makedirs(_os.path.dirname(DUMP_EMB) or ".", exist_ok=True)
+        np.savez(DUMP_EMB, clean=cl, trig=tr_, y=d.y[sel], target=target, backbone=BACKBONE, dataset=d.name, classes=d.class_names)
+        print(f"dumped {len(sel)} test embeddings to {DUMP_EMB}", flush=True)
+        del model, model_opt; torch.cuda.empty_cache(); return {"dumped": True}
+
     # test: clean context of EVAL_CTX train rows
     ctx = tr if len(tr) <= EVAL_CTX else np.sort(rng.choice(tr, EVAL_CTX, replace=False))
     ctx_emb = d.clean_emb[ctx].to(DEVICE)
@@ -345,6 +356,10 @@ def main():
         ids = tokenize_texts(tok, d.texts)
     targets = [int(x) for x in TARGETS.split(",")] if TARGETS else list(range(d.n_classes))
     name = f"{BACKBONE}_{d.name}" if STRATEGY == "coop" else f"{BACKBONE}_{STRATEGY}_{d.name}"
+    if abs(LAMBDA - 1.0) > 1e-9:                                         # lambda ablation variants keep lambda=1.0 runs intact
+        name += f"_lam{LAMBDA:g}"
+    if abs(EPS * 255 - 8.0) > 1e-6:                                     # epsilon ablation variants keep the eps=8/255 runs intact
+        name += f"_eps{EPS * 255:g}"
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     jf = OUT_DIR / f"{name}.json"
     results = json.loads(jf.read_text()) if jf.exists() else {"backbone": BACKBONE, "dataset": d.name,
@@ -357,6 +372,8 @@ def main():
             continue
         t0 = time.time()
         res = run_target(d, t, dino, electra, tok, ids)
+        if res.get("dumped"):
+            return
         res["seconds"] = round(time.time() - t0)
         results["targets"][str(t)] = res
         jf.write_text(json.dumps(results, indent=1, default=float))
