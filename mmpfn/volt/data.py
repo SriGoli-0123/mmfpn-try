@@ -134,8 +134,14 @@ def load_petfinder():
     paths = [str(root / "train_images" / p) for p in ds.df[ds.image_features].tolist()]
     cache = root / f"images{IMG}_uint8.npy"
     build_image_cache(paths, cache)
-    emb = torch.load(MMPFN_DIR / "embeddings/petfinder/petfinder_all_dinov2.pt").float().cpu()
     texts = ds.text.iloc[:, 0].fillna("").tolist()
+    ep = MMPFN_DIR / "embeddings/petfinder/petfinder_all_dinov2.pt"   # the cache MMPFN's own `petfinder all` task writes
+    if ep.exists():
+        emb = torch.load(ep).float().cpu()
+    else:                                                              # fresh machine: build the same [image, text] cache
+        ep.parent.mkdir(parents=True, exist_ok=True)
+        emb = compute_clean_embeddings(ImageStore(cache), texts)
+        torch.save(emb, ep)
     assert len(ds.y) == len(paths) == emb.shape[0] == len(texts), (len(ds.y), len(paths), emb.shape)
     assert emb.shape[1] == 2, f"expected [image, text] chunks, got {tuple(emb.shape)}"
     return MMData("petfinder", ds.x.astype(np.float32), ds.y, list(range(len(ds.cat_features))), texts,
