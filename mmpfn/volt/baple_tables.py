@@ -65,10 +65,16 @@ def main(d):
         rows.append([DNAME[ds], mod, "clean cA"] + [pct(np.mean([t["clean_model_cA"] for t in runs[(b, ds)]["targets"].values()])) if (b, ds) in runs and runs[(b, ds)]["targets"] else "-" for b in BACKBONES])
         rows.append(["", "", "attacked cA"] + [cell(b, "cA") for b in BACKBONES])
         rows.append(["", "", "**bA**"] + [f"**{cell(b, 'bA')}**" for b in BACKBONES])
+        def eff(b):
+            if (b, ds) not in runs or not runs[(b, ds)]["targets"]:
+                return "-"
+            v = [t["bA"] - t["FTR"] for t in runs[(b, ds)]["targets"].values()]
+            return pct(float(np.mean(v)))
+        rows.append(["", "", "effect (bA-FTR)"] + [eff(b) for b in BACKBONES])
     P.append(md(cols, rows))
 
     # ---- Table 2: per-dataset target sweep (BAPLe Table 2a)
-    P.append("\n## Table 2. Per target class (BAPLe Table 2(a) style), cA | bA (%)\n")
+    P.append("\n## Table 2. Per target class (BAPLe Table 2(a) style), cA | bA | effect(bA-FTR) (%)\n")
     for ds in datasets:
         any_r = next((runs[(b, ds)] for b in BACKBONES if (b, ds) in runs), None)
         names = any_r.get("class_names") or [str(i) for i in range(any_r["n_classes"])]
@@ -82,7 +88,9 @@ def main(d):
                 r = runs.get((b, ds))
                 if r and str(t) in r["targets"]:
                     tt = r["targets"][str(t)]
-                    row.append(f"{pct(tt['cA'])} | {pct(tt['bA'])}")
+                    eff = tt["bA"] - tt["FTR"]
+                    flag = " (collapse)" if tt["FTR"] >= 0.5 else ""
+                    row.append(f"{pct(tt['cA'])} | {pct(tt['bA'])} | {pct(eff)}{flag}")
                 else:
                     row.append("-")
             rows.append(row)
