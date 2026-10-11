@@ -1,0 +1,42 @@
+{
+ "backbone": "tabdpt",
+ "dataset": "cbis_calc",
+ "modality": "image",
+ "n_classes": 2,
+ "mgm": 256,
+ "cap": 8,
+ "class_names": [
+  "BENIGN",
+  "MALIGNANT"
+ ],
+ "targets": {
+  "0": {
+   "cA": 0.8293333333333334,
+   "bA": 1.0,
+   "FTR": 0.2898550724637681,
+   "effect": 0.7101449275362319,
+   "cA_trig": 0.632,
+   "per_class_bA": {
+    "1": 1.0
+   },
+   "clean_model_cA": 0.8213333333333334,
+   "best_step": 39,
+   "n_test": 375,
+   "seconds": 332
+  },
+  "1": {
+   "cA": 0.8453333333333334,
+   "bA": 1.0,
+   "FTR": 0.046413502109704644,
+   "effect": 0.9535864978902954,
+   "cA_trig": 0.368,
+   "per_class_bA": {
+    "0": 1.0
+   },
+   "clean_model_cA": 0.8213333333333334,
+   "best_step": 89,
+   "n_test": 375,
+   "seconds": 266
+  }
+ }
+}
