@@ -35,10 +35,11 @@ from mmpfn.backdoor.experiment_utils import cpu_state_dict
 from mmpfn.backdoor.image_context import backward_to_trigger, encode_with_trigger, load_frozen_dinov2
 from mmpfn.backdoor.learned_trigger import LearnedTrigger
 from mmpfn.backdoor.text_context import load_frozen_electra
+from mmpfn.models.mm_common.preprocessing import TabularPreprocessor
 from mmpfn.volt.baple_data import load_baple
 from mmpfn.volt.data import batch_tokens, tokenize_texts
 from mmpfn.volt.metrics import ca_ba
-from mmpfn.volt.prompts import CoOp, encode_text
+from mmpfn.volt.prompts import HAND_PHRASE, STRATEGIES, encode_text, make_prompt
 
 E = os.environ.get
 DEVICE = "cuda"
@@ -60,6 +61,11 @@ MAX_CA_DROP = float(E("MMPFN_MAX_CA_DROP", "0.05"))
 ENC_CHUNK = int(E("MMPFN_IMAGE_CHUNK", "16"))
 GRAD_CHUNK = int(E("MMPFN_TRIGGER_GRAD_CHUNK", "8"))
 SEED = int(E("MMPFN_SEED", "0"))
+STRATEGY = E("MMPFN_STRATEGY", "coop")      # text prompt: coop | cocoop | proda | kgcoop (text-bearing datasets only)
+assert STRATEGY in STRATEGIES, STRATEGY
+HAND_PHRASE.setdefault("cloth", "this is a clothing review .")
+HAND_PHRASE.setdefault("salary", "this is a job description .")
+HAND_PHRASE.setdefault("airbnb", "this is a listing description .")
 FREEZE_ICL = E("MMPFN_FREEZE_ICL", "1") == "1"           # TabFM: keep the 1.6B ICL stage frozen (fits 40-80 GB)
 TARGETS = E("MMPFN_TARGETS", "")                         # "" = all classes; else comma-separated subset
 OUT_DIR = Path(E("MMPFN_OUT", "results/baple"))
@@ -148,7 +154,8 @@ class Modality:
     def __init__(self, d, dino, electra, tok, ids):
         self.d, self.dino, self.electra, self.tok, self.ids = d, dino, electra, tok, ids
         self.img = LearnedTrigger(shape=d.images.shape[-3:], eps=EPS, patch=False).to(DEVICE) if d.has_image else None
-        self.txt = CoOp(M, 768).to(DEVICE) if d.has_text else None
+        hk = d.name if d.name in HAND_PHRASE else 'petfinder'
+        self.txt = make_prompt(STRATEGY, electra, tok, hk, m=M, device=DEVICE) if d.has_text else None
         if d.has_text:
             room = electra.config.max_position_embeddings - M
             self.ids_trig = [s if len(s) <= room else s[:room - 1] + [s[-1]] for s in ids]
@@ -159,18 +166,22 @@ class Modality:
     def clean(self, rows):
         return self.d.clean_emb[rows].to(DEVICE)                         # (n, n_chunks, 768)
 
+    def _cond(self, rows):                                           # per-row conditioning for CoCoOp
+        return self.d.clean_emb[rows].mean(1).to(DEVICE)             # (n, 768)
+
     def triggered_train(self, rows):
-        """Triggered modality embeddings with a differentiable graph. Returns (emb, image_leaf_or_None)."""
-        parts, leaf = [], None
+        """Triggered modality embeddings with graph. Returns (emb, image_leaf_or_None, text_aux_or_None)."""
+        parts, leaf, aux = [], None, None
         if self.d.has_image:
             e = encode_with_trigger(self.dino, self.img, self.d.images[rows], chunk=ENC_CHUNK, bf16=False).to(DEVICE)
             leaf = e.detach().requires_grad_(True)                       # (n, n_img_chunks, 768)
             parts.append(leaf)
         if self.d.has_text:
             a, m = batch_tokens({r: self.ids_trig[r] for r in rows}, list(rows), self.tok.pad_token_id)
-            te = self.txt.embed(self.electra, a, m, train=True, grad=True).unsqueeze(1)   # (n, 1, 768)
-            parts.append(te)
-        return torch.cat(parts, dim=1), leaf
+            te = self.txt.embed(self.electra, a, m, cond=self._cond(rows), train=True, grad=True)   # (n, 768)
+            parts.append(te.unsqueeze(1))
+            aux = (a, m, te)
+        return torch.cat(parts, dim=1), leaf, aux
 
     @torch.no_grad()
     def triggered_eval(self, rows):
@@ -179,7 +190,7 @@ class Modality:
             parts.append(encode_with_trigger(self.dino, self.img, self.d.images[rows], chunk=64, bf16=True).to(DEVICE))
         if self.d.has_text:
             a, m = batch_tokens({r: self.ids_trig[r] for r in rows}, list(rows), self.tok.pad_token_id)
-            parts.append(self.txt.embed(self.electra, a, m, train=False, grad=False).unsqueeze(1))
+            parts.append(self.txt.embed(self.electra, a, m, cond=self._cond(rows), train=False, grad=False).unsqueeze(1))
         return torch.cat(parts, dim=1)
 
     def stats(self):
@@ -266,9 +277,11 @@ def run_target(d, target, dino, electra, tok, ids):
         ce = d.clean_emb[ctx].to(DEVICE)
         y_q = torch.as_tensor(d.y[q], dtype=torch.long, device=DEVICE)
         lg_clean = logits_for(model, d.X[ctx], d.y[ctx], ce, d.X[q], d.clean_emb[q].to(DEVICE), n_classes, d.cat_idx)
-        emb_t, leaf = mod.triggered_train(q)
+        emb_t, leaf, aux = mod.triggered_train(q)
         lg_trig = logits_for(model, d.X[ctx], d.y[ctx], ce, d.X[q], emb_t, n_classes, d.cat_idx)
         loss = F.cross_entropy(lg_clean, y_q) + LAMBDA * F.cross_entropy(lg_trig, torch.full((len(q),), target, dtype=torch.long, device=DEVICE))
+        if aux is not None:                                              # KgCoOp knowledge-guided regulariser (no-op for the others)
+            loss = loss + mod.txt.extra_loss(mod.electra, aux[0], aux[1], aux[2])
         for o in (model_opt, img_opt, txt_opt):
             if o:
                 o.zero_grad(set_to_none=True)
@@ -320,13 +333,18 @@ def main():
     global ADAPTER
     ADAPTER = _adapter()
     d = load_baple(DATASET)
+    if BACKBONE in ("tabicl", "tabfm"):   # need external StandardScaler->Yeo-Johnson->clip (+NaN handling); TabPFN/TabDPT normalise inside the net
+        _rng = np.random.RandomState(SEED)
+        _tr = _rng.permutation(len(d.y))[:int(0.8 * len(d.y))]
+        d.X = TabularPreprocessor().fit(d.X[_tr]).transform(d.X)
+        print(f"applied TabularPreprocessor for {BACKBONE}; X range {d.X.min():.2f}..{d.X.max():.2f}", flush=True)
     dino = load_frozen_dinov2(device=DEVICE) if d.has_image else None
     tok = electra = ids = None
     if d.has_text:
         tok, electra = load_frozen_electra(device=DEVICE)
         ids = tokenize_texts(tok, d.texts)
     targets = [int(x) for x in TARGETS.split(",")] if TARGETS else list(range(d.n_classes))
-    name = f"{BACKBONE}_{d.name}"
+    name = f"{BACKBONE}_{d.name}" if STRATEGY == "coop" else f"{BACKBONE}_{STRATEGY}_{d.name}"
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     jf = OUT_DIR / f"{name}.json"
     results = json.loads(jf.read_text()) if jf.exists() else {"backbone": BACKBONE, "dataset": d.name,
