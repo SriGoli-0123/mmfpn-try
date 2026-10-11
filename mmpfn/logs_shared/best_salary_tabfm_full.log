@@ -1,0 +1,123 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-tabfm/mmpfn/datasets/airbnb.py:43: SyntaxWarning: invalid escape sequence '\d'
+  df['host_since_year'] = df['host_since'].str.extract('.*(\d{4})', expand = False) # feature extraction
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-tabfm/mmpfn/datasets/airbnb.py:44: SyntaxWarning: invalid escape sequence '\d'
+  df['last_review_year'] = df['last_review'].str.extract('.*(\d{4})', expand = False)
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-tabfm/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-tabfm/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-tabfm/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/salary/salary.pt
+[I 2026-10-10 17:36:04,141] A new study created in memory with name: no-name-6f846f7a-fe00-4f87-95d6-c1da68561693
+mgm_heads:2, cap_heads:2
+[2026-10-10 17:36:15,102] INFO - backbone=MMTabFM params=1641.4M trainable=21.5M amp=torch.bfloat16 modality_tokens=yes ft_context_rows=3069
+[2026-10-10 17:36:15,103] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 768 | Total Samples: 3837
+        	Model #parameter: 1641419338 (trainable: 21458496)
+        	AMP dtype: torch.bfloat16
+
+[2026-10-10 17:36:15,105] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-10-10 17:36:15,665] DEBUG - Initial validation loss: 1.3301124934999593
+
+[2026-10-10 17:38:35,409] INFO - Initial Validation Loss: 1.3301124934999593 Best Validation Loss: 1.1599574224586073 Total Steps: 101 Best Step: 98 Total Time Spent: 141.7831892967224
+backbone=MMTabFM params=1641.4M modality_tokens=yes train_rows=3837 test_rows=960
+accuracy_score (Finetuned): 0.459375
+[2026-10-10 17:38:55,671] INFO - backbone=MMTabFM params=1641.4M trainable=21.5M amp=torch.bfloat16 modality_tokens=yes ft_context_rows=3069
+[2026-10-10 17:38:55,672] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 768 | Total Samples: 3837
+        	Model #parameter: 1641419338 (trainable: 21458496)
+        	AMP dtype: torch.bfloat16
+
+[2026-10-10 17:38:55,674] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-10-10 17:38:56,042] DEBUG - Initial validation loss: 1.218133615628209
+
+[2026-10-10 17:41:20,539] INFO - Initial Validation Loss: 1.218133615628209 Best Validation Loss: 1.1388727528523528 Total Steps: 101 Best Step: 81 Total Time Spent: 145.60013580322266
+backbone=MMTabFM params=1641.4M modality_tokens=yes train_rows=3837 test_rows=960
+accuracy_score (Finetuned): 0.45
+[2026-10-10 17:41:40,326] INFO - backbone=MMTabFM params=1641.4M trainable=21.5M amp=torch.bfloat16 modality_tokens=yes ft_context_rows=3069
+[2026-10-10 17:41:40,326] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 768 | Total Samples: 3837
+        	Model #parameter: 1641419338 (trainable: 21458496)
+        	AMP dtype: torch.bfloat16
+
+[2026-10-10 17:41:40,328] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-10-10 17:41:40,727] DEBUG - Initial validation loss: 2.079669702453011
+
+[2026-10-10 17:43:47,517] INFO - Initial Validation Loss: 2.079669702453011 Best Validation Loss: 1.1770366182348964 Total Steps: 101 Best Step: 89 Total Time Spent: 127.77353692054749
+backbone=MMTabFM params=1641.4M modality_tokens=yes train_rows=3837 test_rows=960
+accuracy_score (Finetuned): 0.4739583333333333
+[2026-10-10 17:44:06,384] INFO - backbone=MMTabFM params=1641.4M trainable=21.5M amp=torch.bfloat16 modality_tokens=yes ft_context_rows=3069
+[2026-10-10 17:44:06,384] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 768 | Total Samples: 3837
+        	Model #parameter: 1641419338 (trainable: 21458496)
+        	AMP dtype: torch.bfloat16
+
+[2026-10-10 17:44:06,385] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-10-10 17:44:06,772] DEBUG - Initial validation loss: 1.5635246988218976
+
+[2026-10-10 17:46:10,286] INFO - Initial Validation Loss: 1.5635246988218976 Best Validation Loss: 1.161598910352196 Total Steps: 101 Best Step: 99 Total Time Spent: 124.34235739707947
+backbone=MMTabFM params=1641.4M modality_tokens=yes train_rows=3837 test_rows=960
+accuracy_score (Finetuned): 0.4375
+[2026-10-10 17:46:30,039] INFO - backbone=MMTabFM params=1641.4M trainable=21.5M amp=torch.bfloat16 modality_tokens=yes ft_context_rows=3069
+[2026-10-10 17:46:30,040] DEBUG - 
+    === Basic / Validation State ===
+        	Early Stopping Metric: log_loss
+        	Val Samples: 768 | Total Samples: 3837
+        	Model #parameter: 1641419338 (trainable: 21458496)
+        	AMP dtype: torch.bfloat16
+
+[2026-10-10 17:46:30,041] DEBUG - 
+        === Learning HPs ===
+            	Batch Size: 1
+            	Lr: 1e-05 | Weight Decay: 0
+            	Max Steps: 100
+            	AdaptiveES: Adaptive Rate 0.2 | Min Patience 50 | Max Patience 100
+            	Update Every N Steps: 1 | Validate Every N Steps: 1
+        
+[2026-10-10 17:46:30,475] DEBUG - Initial validation loss: 1.6929792359182343
+
+[2026-10-10 17:48:33,307] INFO - Initial Validation Loss: 1.6929792359182343 Best Validation Loss: 1.409222999561538 Total Steps: 101 Best Step: 63 Total Time Spent: 123.81909275054932
+backbone=MMTabFM params=1641.4M modality_tokens=yes train_rows=3837 test_rows=960
+accuracy_score (Finetuned): 0.3875
+Mean Accuracy: 0.4416666666666667
+Std Accuracy: 0.02958773441441195
+[I 2026-10-10 17:48:43,117] Trial 0 finished with value: 0.4416666666666667 and parameters: {'mgm_heads': 2, 'cap_heads': 2}. Best is trial 0 with value: 0.4416666666666667.
+Best parameters: {'mgm_heads': 2, 'cap_heads': 2}
+Best value: 0.4416666666666667
