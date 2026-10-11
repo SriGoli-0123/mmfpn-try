@@ -1,0 +1,39 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+CBIS-DDSM mass: kept 1318 of 1318 rows (0 dropped for missing images)
+Load embeddings from embeddings/cbis_ddsm/mass_train_all_dinov2.pt
+CBIS-DDSM mass: kept 378 of 378 rows (0 dropped for missing images)
+Load embeddings from embeddings/cbis_ddsm/mass_test_all_dinov2.pt
+RUN tabpfn_cbis_mass_eps2  modality=image  classes=2  rows=1696  (mgm,cap)=(64,32)  targets=[0, 1]
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_cbis_mass_m64_c32_seed0_w100.pt
+[tabpfn/cbis_mass/t0] init val_cA=0.801 val_bA=0.130 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/cbis_mass/t0] step 9: loss=1.089 val_cA=0.493 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.71/255
+[tabpfn/cbis_mass/t0] step 19: loss=0.959 val_cA=0.728 val_bA=0.986 |delta|_inf=2.00/255 mean|delta|=1.72/255
+[tabpfn/cbis_mass/t0] step 29: loss=0.375 val_cA=0.765 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.70/255
+[tabpfn/cbis_mass/t0] step 39: loss=0.458 val_cA=0.772 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.79/255
+[tabpfn/cbis_mass/t0] step 49: loss=0.516 val_cA=0.743 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.80/255
+[tabpfn/cbis_mass/t0] step 59: loss=0.320 val_cA=0.801 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.54/255
+[tabpfn/cbis_mass/t0] step 69: loss=0.416 val_cA=0.794 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.65/255
+[tabpfn/cbis_mass/t0] step 79: loss=0.406 val_cA=0.765 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.69/255
+[tabpfn/cbis_mass/t0] step 89: loss=0.566 val_cA=0.757 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.70/255
+[tabpfn/cbis_mass/t0] step 99: loss=0.474 val_cA=0.750 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.83/255
+[tabpfn_cbis_mass_eps2/t0] DONE cA=0.7794 bA=1.0000 FTR=0.1226 clean_model_cA=0.7647 (207s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_cbis_mass_m64_c32_seed0_w100.pt
+[tabpfn/cbis_mass/t1] init val_cA=0.801 val_bA=0.269 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/cbis_mass/t1] step 9: loss=1.021 val_cA=0.596 val_bA=0.806 |delta|_inf=2.00/255 mean|delta|=1.75/255
+[tabpfn/cbis_mass/t1] step 19: loss=0.992 val_cA=0.507 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.65/255
+[tabpfn/cbis_mass/t1] step 29: loss=0.867 val_cA=0.684 val_bA=0.985 |delta|_inf=2.00/255 mean|delta|=1.68/255
+[tabpfn/cbis_mass/t1] step 39: loss=0.573 val_cA=0.735 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.73/255
+[tabpfn/cbis_mass/t1] step 49: loss=0.800 val_cA=0.787 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.72/255
+[tabpfn/cbis_mass/t1] step 59: loss=0.664 val_cA=0.779 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.77/255
+[tabpfn/cbis_mass/t1] step 69: loss=0.425 val_cA=0.647 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.70/255
+[tabpfn/cbis_mass/t1] step 79: loss=0.414 val_cA=0.772 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.78/255
+[tabpfn/cbis_mass/t1] step 89: loss=0.550 val_cA=0.787 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.80/255
+[tabpfn/cbis_mass/t1] step 99: loss=0.494 val_cA=0.772 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.81/255
+[tabpfn_cbis_mass_eps2/t1] DONE cA=0.7294 bA=1.0000 FTR=0.0216 clean_model_cA=0.7647 (207s)
+
+RUN tabpfn_cbis_mass_eps2  mean over 2 targets: cA=0.7544 bA=1.0000 clean_cA=0.7647

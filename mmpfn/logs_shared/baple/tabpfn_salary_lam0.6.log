@@ -1,0 +1,101 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/salary/salary.pt
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 38951.49it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: google/electra-base-discriminator
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+electra.embeddings_project.bias                   | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+electra.embeddings_project.weight                 | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+RUN tabpfn_salary_lam0.6  modality=text  classes=6  rows=4797  (mgm,cap)=(2,2)  targets=[0, 1, 2, 3, 4, 5]
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_salary_m2_c2_seed0_w100.pt
+[tabpfn/salary/t0] init val_cA=0.363 val_bA=0.008 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0799 params=6144
+[tabpfn/salary/t0] step 9: loss=2.473 val_cA=0.059 val_bA=0.988 coop ctx_len=8 |C|_mean=0.0383 |C|_max=0.1330 params=6144
+[tabpfn/salary/t0] step 19: loss=2.372 val_cA=0.164 val_bA=0.818 coop ctx_len=8 |C|_mean=0.0482 |C|_max=0.1781 params=6144
+[tabpfn/salary/t0] step 29: loss=2.319 val_cA=0.238 val_bA=0.950 coop ctx_len=8 |C|_mean=0.0540 |C|_max=0.2126 params=6144
+[tabpfn/salary/t0] step 39: loss=1.392 val_cA=0.379 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0600 |C|_max=0.2657 params=6144
+[tabpfn/salary/t0] step 49: loss=1.371 val_cA=0.352 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0667 |C|_max=0.3086 params=6144
+[tabpfn/salary/t0] step 59: loss=1.407 val_cA=0.344 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0741 |C|_max=0.3585 params=6144
+[tabpfn/salary/t0] step 69: loss=1.243 val_cA=0.383 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0789 |C|_max=0.3823 params=6144
+[tabpfn/salary/t0] step 79: loss=1.618 val_cA=0.383 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0843 |C|_max=0.4030 params=6144
+[tabpfn/salary/t0] step 89: loss=1.218 val_cA=0.414 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0875 |C|_max=0.4127 params=6144
+[tabpfn/salary/t0] step 99: loss=1.173 val_cA=0.387 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0888 |C|_max=0.4162 params=6144
+[tabpfn_salary_lam0.6/t0] DONE cA=0.3937 bA=1.0000 FTR=0.0100 clean_model_cA=0.3573 (34s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_salary_m2_c2_seed0_w100.pt
+[tabpfn/salary/t1] init val_cA=0.363 val_bA=0.000 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0744 params=6144
+[tabpfn/salary/t1] step 9: loss=2.192 val_cA=0.234 val_bA=0.947 coop ctx_len=8 |C|_mean=0.0345 |C|_max=0.1243 params=6144
+[tabpfn/salary/t1] step 19: loss=1.999 val_cA=0.262 val_bA=0.758 coop ctx_len=8 |C|_mean=0.0459 |C|_max=0.1593 params=6144
+[tabpfn/salary/t1] step 29: loss=2.324 val_cA=0.191 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0515 |C|_max=0.1855 params=6144
+[tabpfn/salary/t1] step 39: loss=2.026 val_cA=0.199 val_bA=0.990 coop ctx_len=8 |C|_mean=0.0538 |C|_max=0.2035 params=6144
+[tabpfn/salary/t1] step 49: loss=2.076 val_cA=0.203 val_bA=0.986 coop ctx_len=8 |C|_mean=0.0548 |C|_max=0.2140 params=6144
+[tabpfn/salary/t1] step 59: loss=1.971 val_cA=0.207 val_bA=0.957 coop ctx_len=8 |C|_mean=0.0551 |C|_max=0.2183 params=6144
+[tabpfn/salary/t1] step 69: loss=1.988 val_cA=0.219 val_bA=0.952 coop ctx_len=8 |C|_mean=0.0553 |C|_max=0.2199 params=6144
+[tabpfn/salary/t1] step 79: loss=2.173 val_cA=0.242 val_bA=0.918 coop ctx_len=8 |C|_mean=0.0557 |C|_max=0.2178 params=6144
+[tabpfn/salary/t1] step 89: loss=1.846 val_cA=0.258 val_bA=0.923 coop ctx_len=8 |C|_mean=0.0565 |C|_max=0.2465 params=6144
+[tabpfn/salary/t1] step 99: loss=1.757 val_cA=0.340 val_bA=0.879 coop ctx_len=8 |C|_mean=0.0570 |C|_max=0.2509 params=6144
+[tabpfn_salary_lam0.6/t1] DONE cA=0.3250 bA=0.8686 FTR=0.5825 clean_model_cA=0.3573 (34s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_salary_m2_c2_seed0_w100.pt
+[tabpfn/salary/t2] init val_cA=0.363 val_bA=0.480 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0728 params=6144
+[tabpfn/salary/t2] step 9: loss=2.299 val_cA=0.281 val_bA=0.832 coop ctx_len=8 |C|_mean=0.0333 |C|_max=0.1344 params=6144
+[tabpfn/salary/t2] step 19: loss=1.758 val_cA=0.262 val_bA=0.000 coop ctx_len=8 |C|_mean=0.0451 |C|_max=0.1813 params=6144
+[tabpfn/salary/t2] step 29: loss=2.368 val_cA=0.234 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0535 |C|_max=0.2166 params=6144
+[tabpfn/salary/t2] step 39: loss=1.925 val_cA=0.234 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0578 |C|_max=0.2275 params=6144
+[tabpfn/salary/t2] step 49: loss=2.270 val_cA=0.234 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0605 |C|_max=0.2574 params=6144
+[tabpfn/salary/t2] step 59: loss=2.227 val_cA=0.234 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0623 |C|_max=0.2735 params=6144
+[tabpfn/salary/t2] step 69: loss=1.860 val_cA=0.234 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0633 |C|_max=0.2809 params=6144
+[tabpfn/salary/t2] step 79: loss=1.946 val_cA=0.328 val_bA=0.908 coop ctx_len=8 |C|_mean=0.0640 |C|_max=0.2844 params=6144
+[tabpfn/salary/t2] step 89: loss=1.777 val_cA=0.328 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0670 |C|_max=0.3521 params=6144
+[tabpfn/salary/t2] step 99: loss=1.853 val_cA=0.266 val_bA=0.990 coop ctx_len=8 |C|_mean=0.0707 |C|_max=0.3512 params=6144
+[tabpfn_salary_lam0.6/t2] DONE cA=0.3052 bA=1.0000 FTR=0.5391 clean_model_cA=0.3573 (34s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_salary_m2_c2_seed0_w100.pt
+[tabpfn/salary/t3] init val_cA=0.363 val_bA=0.039 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0754 params=6144
+[tabpfn/salary/t3] step 9: loss=2.608 val_cA=0.254 val_bA=0.559 coop ctx_len=8 |C|_mean=0.0302 |C|_max=0.1249 params=6144
+[tabpfn/salary/t3] step 19: loss=2.096 val_cA=0.242 val_bA=0.817 coop ctx_len=8 |C|_mean=0.0381 |C|_max=0.1635 params=6144
+[tabpfn/salary/t3] step 29: loss=2.003 val_cA=0.336 val_bA=0.978 coop ctx_len=8 |C|_mean=0.0424 |C|_max=0.2061 params=6144
+[tabpfn/salary/t3] step 39: loss=1.749 val_cA=0.363 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0466 |C|_max=0.2316 params=6144
+[tabpfn/salary/t3] step 49: loss=1.396 val_cA=0.371 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0539 |C|_max=0.2547 params=6144
+[tabpfn/salary/t3] step 59: loss=1.575 val_cA=0.336 val_bA=0.930 coop ctx_len=8 |C|_mean=0.0594 |C|_max=0.2747 params=6144
+[tabpfn/salary/t3] step 69: loss=1.354 val_cA=0.352 val_bA=0.921 coop ctx_len=8 |C|_mean=0.0623 |C|_max=0.2818 params=6144
+[tabpfn/salary/t3] step 79: loss=1.545 val_cA=0.355 val_bA=0.983 coop ctx_len=8 |C|_mean=0.0639 |C|_max=0.2881 params=6144
+[tabpfn/salary/t3] step 89: loss=1.365 val_cA=0.387 val_bA=0.965 coop ctx_len=8 |C|_mean=0.0646 |C|_max=0.2913 params=6144
+[tabpfn/salary/t3] step 99: loss=1.373 val_cA=0.332 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0650 |C|_max=0.2936 params=6144
+[tabpfn_salary_lam0.6/t3] DONE cA=0.3552 bA=0.9597 FTR=0.0098 clean_model_cA=0.3573 (34s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_salary_m2_c2_seed0_w100.pt
+[tabpfn/salary/t4] init val_cA=0.363 val_bA=0.113 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0843 params=6144
+[tabpfn/salary/t4] step 9: loss=2.348 val_cA=0.172 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0361 |C|_max=0.1336 params=6144
+[tabpfn/salary/t4] step 19: loss=2.363 val_cA=0.180 val_bA=0.991 coop ctx_len=8 |C|_mean=0.0467 |C|_max=0.1875 params=6144
+[tabpfn/salary/t4] step 29: loss=2.382 val_cA=0.277 val_bA=0.698 coop ctx_len=8 |C|_mean=0.0520 |C|_max=0.2399 params=6144
+[tabpfn/salary/t4] step 39: loss=1.921 val_cA=0.172 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0569 |C|_max=0.3002 params=6144
+[tabpfn/salary/t4] step 49: loss=2.133 val_cA=0.172 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0619 |C|_max=0.3802 params=6144
+[tabpfn/salary/t4] step 59: loss=2.192 val_cA=0.172 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0654 |C|_max=0.4251 params=6144
+[tabpfn/salary/t4] step 69: loss=1.846 val_cA=0.324 val_bA=0.675 coop ctx_len=8 |C|_mean=0.0697 |C|_max=0.4430 params=6144
+[tabpfn/salary/t4] step 79: loss=1.933 val_cA=0.336 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0796 |C|_max=0.4986 params=6144
+[tabpfn/salary/t4] step 89: loss=1.463 val_cA=0.336 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0887 |C|_max=0.5375 params=6144
+[tabpfn/salary/t4] step 99: loss=1.653 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0950 |C|_max=0.6333 params=6144
+[tabpfn_salary_lam0.6/t4] DONE cA=0.3354 bA=1.0000 FTR=0.1856 clean_model_cA=0.3573 (34s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_salary_m2_c2_seed0_w100.pt
+[tabpfn/salary/t5] init val_cA=0.363 val_bA=0.170 coop ctx_len=8 |C|_mean=0.0156 |C|_max=0.0806 params=6144
+[tabpfn/salary/t5] step 9: loss=2.217 val_cA=0.242 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0335 |C|_max=0.1271 params=6144
+[tabpfn/salary/t5] step 19: loss=1.995 val_cA=0.293 val_bA=0.907 coop ctx_len=8 |C|_mean=0.0429 |C|_max=0.1504 params=6144
+[tabpfn/salary/t5] step 29: loss=2.217 val_cA=0.375 val_bA=0.856 coop ctx_len=8 |C|_mean=0.0498 |C|_max=0.1747 params=6144
+[tabpfn/salary/t5] step 39: loss=1.519 val_cA=0.332 val_bA=0.995 coop ctx_len=8 |C|_mean=0.0532 |C|_max=0.1856 params=6144
+[tabpfn/salary/t5] step 49: loss=1.430 val_cA=0.375 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0546 |C|_max=0.1936 params=6144
+[tabpfn/salary/t5] step 59: loss=1.463 val_cA=0.348 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0554 |C|_max=0.2050 params=6144
+[tabpfn/salary/t5] step 69: loss=1.194 val_cA=0.328 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0567 |C|_max=0.2359 params=6144
+[tabpfn/salary/t5] step 79: loss=1.570 val_cA=0.320 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0576 |C|_max=0.2492 params=6144
+[tabpfn/salary/t5] step 89: loss=1.284 val_cA=0.363 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0585 |C|_max=0.2686 params=6144
+[tabpfn/salary/t5] step 99: loss=1.422 val_cA=0.363 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0591 |C|_max=0.2736 params=6144
+[tabpfn_salary_lam0.6/t5] DONE cA=0.3760 bA=1.0000 FTR=0.0636 clean_model_cA=0.3573 (34s)
+
+RUN tabpfn_salary_lam0.6  mean over 6 targets: cA=0.3484 bA=0.9714 clean_cA=0.3573

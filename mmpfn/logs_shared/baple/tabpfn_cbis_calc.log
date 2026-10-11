@@ -1,0 +1,42 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Image for cropped image file path of row 1216 (1.3.6.1.4.1.9590.100.1.2.348822970413183698610798947061334416506) does not exist, skipping.
+Image for ROI mask file path of row 1216 (1.3.6.1.4.1.9590.100.1.2.348822970413183698610798947061334416506) does not exist, skipping.
+CBIS-DDSM calc: kept 1545 of 1546 rows (1 dropped for missing images)
+CBIS-DDSM calc: kept 326 of 326 rows (0 dropped for missing images)
+RUN tabpfn_cbis_calc  modality=image  classes=2  rows=1871  (mgm,cap)=(256,8)  targets=[0, 1]
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/run_baple.py:214: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"saved warmup {path} (loss={float(loss):.4f})", flush=True)
+saved warmup checkpoints/baple_warmup/baple_tabpfn_cbis_calc_m256_c8_seed0_w100.pt (loss=0.4382)
+[tabpfn/cbis_calc/t0] init val_cA=0.847 val_bA=0.235 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/cbis_calc/t0] step 9: loss=0.552 val_cA=0.640 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.63/255
+[tabpfn/cbis_calc/t0] step 19: loss=0.251 val_cA=0.800 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.71/255
+[tabpfn/cbis_calc/t0] step 29: loss=0.332 val_cA=0.720 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.58/255
+[tabpfn/cbis_calc/t0] step 39: loss=0.379 val_cA=0.820 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.24/255
+[tabpfn/cbis_calc/t0] step 49: loss=0.500 val_cA=0.793 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.22/255
+[tabpfn/cbis_calc/t0] step 59: loss=0.468 val_cA=0.753 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.23/255
+[tabpfn/cbis_calc/t0] step 69: loss=0.442 val_cA=0.740 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.17/255
+[tabpfn/cbis_calc/t0] step 79: loss=0.327 val_cA=0.773 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.08/255
+[tabpfn/cbis_calc/t0] step 89: loss=0.337 val_cA=0.800 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.99/255
+[tabpfn/cbis_calc/t0] step 99: loss=0.487 val_cA=0.860 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.89/255
+[tabpfn_cbis_calc/t0] DONE cA=0.8053 bA=1.0000 FTR=0.3406 clean_model_cA=0.8133 (217s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_cbis_calc_m256_c8_seed0_w100.pt
+[tabpfn/cbis_calc/t1] init val_cA=0.847 val_bA=0.121 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/cbis_calc/t1] step 9: loss=0.338 val_cA=0.800 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.55/255
+[tabpfn/cbis_calc/t1] step 19: loss=0.324 val_cA=0.733 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.75/255
+[tabpfn/cbis_calc/t1] step 29: loss=0.541 val_cA=0.740 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.65/255
+[tabpfn/cbis_calc/t1] step 39: loss=0.230 val_cA=0.720 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.52/255
+[tabpfn/cbis_calc/t1] step 49: loss=0.334 val_cA=0.847 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.48/255
+[tabpfn/cbis_calc/t1] step 59: loss=0.635 val_cA=0.853 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.41/255
+[tabpfn/cbis_calc/t1] step 69: loss=0.528 val_cA=0.793 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.33/255
+[tabpfn/cbis_calc/t1] step 79: loss=0.214 val_cA=0.813 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.27/255
+[tabpfn/cbis_calc/t1] step 89: loss=0.288 val_cA=0.833 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.19/255
+[tabpfn/cbis_calc/t1] step 99: loss=0.171 val_cA=0.833 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.14/255
+[tabpfn_cbis_calc/t1] DONE cA=0.7813 bA=1.0000 FTR=0.0675 clean_model_cA=0.8133 (182s)
+
+RUN tabpfn_cbis_calc  mean over 2 targets: cA=0.7933 bA=1.0000 clean_cA=0.8133

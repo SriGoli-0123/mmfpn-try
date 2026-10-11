@@ -1,0 +1,53 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/cloth/cloth.pt
+applied TabularPreprocessor for tabicl; X range -2.52..3.35
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 28229.51it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: google/electra-base-discriminator
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+electra.embeddings_project.bias                   | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+electra.embeddings_project.weight                 | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+RUN tabicl_cloth  modality=text  classes=5  rows=22628  (mgm,cap)=(128,4)  targets=[0, 1, 2, 3, 4]
+target 0 already done, skipping
+target 1 already done, skipping
+target 2 already done, skipping
+loaded warmup checkpoints/baple_warmup/baple_tabicl_cloth_m128_c4_seed0_w100.pt
+[tabicl/cloth/t3] init val_cA=0.656 val_bA=0.138 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0754 params=6144
+[tabicl/cloth/t3] step 9: loss=1.207 val_cA=0.652 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0381 |C|_max=0.1276 params=6144
+[tabicl/cloth/t3] step 19: loss=0.782 val_cA=0.625 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0477 |C|_max=0.1503 params=6144
+[tabicl/cloth/t3] step 29: loss=0.794 val_cA=0.613 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0518 |C|_max=0.1733 params=6144
+[tabicl/cloth/t3] step 39: loss=0.955 val_cA=0.637 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0538 |C|_max=0.1838 params=6144
+[tabicl/cloth/t3] step 49: loss=0.792 val_cA=0.617 val_bA=0.985 coop ctx_len=8 |C|_mean=0.0562 |C|_max=0.1969 params=6144
+[tabicl/cloth/t3] step 59: loss=0.737 val_cA=0.605 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0599 |C|_max=0.2281 params=6144
+[tabicl/cloth/t3] step 69: loss=1.069 val_cA=0.605 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0628 |C|_max=0.2517 params=6144
+[tabicl/cloth/t3] step 79: loss=0.647 val_cA=0.637 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0640 |C|_max=0.2651 params=6144
+[tabicl/cloth/t3] step 89: loss=0.864 val_cA=0.645 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0645 |C|_max=0.2720 params=6144
+[tabicl/cloth/t3] step 99: loss=0.660 val_cA=0.637 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0647 |C|_max=0.2749 params=6144
+[tabicl_cloth/t3] DONE cA=0.6341 bA=1.0000 FTR=0.0277 clean_model_cA=0.6385 (56s)
+loaded warmup checkpoints/baple_warmup/baple_tabicl_cloth_m128_c4_seed0_w100.pt
+[tabicl/cloth/t4] init val_cA=0.656 val_bA=0.576 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0843 params=6144
+[tabicl/cloth/t4] step 9: loss=1.138 val_cA=0.625 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0397 |C|_max=0.1408 params=6144
+[tabicl/cloth/t4] step 19: loss=0.723 val_cA=0.590 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0493 |C|_max=0.1691 params=6144
+[tabicl/cloth/t4] step 29: loss=0.768 val_cA=0.617 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0532 |C|_max=0.1770 params=6144
+[tabicl/cloth/t4] step 39: loss=0.987 val_cA=0.629 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0548 |C|_max=0.1764 params=6144
+[tabicl/cloth/t4] step 49: loss=0.788 val_cA=0.625 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0555 |C|_max=0.1792 params=6144
+[tabicl/cloth/t4] step 59: loss=0.701 val_cA=0.621 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0558 |C|_max=0.1822 params=6144
+[tabicl/cloth/t4] step 69: loss=0.861 val_cA=0.637 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0560 |C|_max=0.1835 params=6144
+[tabicl/cloth/t4] step 79: loss=0.659 val_cA=0.652 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0560 |C|_max=0.1840 params=6144
+[tabicl/cloth/t4] step 89: loss=0.908 val_cA=0.637 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0560 |C|_max=0.1844 params=6144
+[tabicl/cloth/t4] step 99: loss=0.608 val_cA=0.660 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0560 |C|_max=0.1852 params=6144
+[tabicl_cloth/t4] DONE cA=0.6346 bA=1.0000 FTR=0.3161 clean_model_cA=0.6385 (58s)
+
+RUN tabicl_cloth  mean over 5 targets: cA=0.6388 bA=1.0000 clean_cA=0.6385

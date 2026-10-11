@@ -1,0 +1,171 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/datasets/airbnb.py:29: DtypeWarning: Columns (35,77) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(os.path.join(data_path, FILENAME))
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 37191.24it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: google/electra-base-discriminator
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+electra.embeddings_project.weight                 | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+electra.embeddings_project.bias                   | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+0it [00:00, ?it/s]1it [00:00,  9.28it/s]13it [00:00, 71.46it/s]27it [00:00, 98.94it/s]41it [00:00, 111.96it/s]55it [00:00, 121.36it/s]69it [00:00, 126.95it/s]84it [00:00, 131.76it/s]98it [00:00, 132.94it/s]112it [00:00, 133.97it/s]126it [00:01, 117.40it/s]139it [00:01, 117.13it/s]152it [00:01, 120.63it/s]166it [00:01, 123.56it/s]180it [00:01, 125.86it/s]194it [00:01, 128.78it/s]208it [00:01, 129.45it/s]222it [00:01, 128.45it/s]235it [00:01, 128.61it/s]249it [00:02, 129.25it/s]263it [00:02, 130.14it/s]277it [00:02, 132.39it/s]291it [00:02, 131.01it/s]305it [00:02, 130.97it/s]320it [00:02, 134.46it/s]335it [00:02, 136.14it/s]349it [00:02, 134.31it/s]363it [00:02, 134.19it/s]377it [00:02, 133.97it/s]391it [00:03, 133.69it/s]405it [00:03, 118.98it/s]419it [00:03, 123.99it/s]432it [00:03, 125.48it/s]446it [00:03, 127.24it/s]460it [00:03, 129.04it/s]474it [00:03, 131.50it/s]488it [00:03, 132.56it/s]502it [00:03, 130.50it/s]516it [00:04, 132.12it/s]531it [00:04, 135.51it/s]545it [00:04, 136.42it/s]560it [00:04, 138.26it/s]574it [00:04, 134.19it/s]588it [00:04, 130.93it/s]602it [00:04, 129.36it/s]615it [00:04, 129.27it/s]628it [00:04, 128.63it/s]641it [00:05, 127.86it/s]654it [00:05, 128.23it/s]667it [00:05, 127.45it/s]680it [00:05, 108.44it/s]693it [00:05, 112.90it/s]706it [00:05, 117.27it/s]719it [00:05, 119.69it/s]732it [00:05, 122.39it/s]746it [00:05, 125.15it/s]759it [00:06, 126.04it/s]772it [00:06, 126.99it/s]785it [00:06, 126.98it/s]799it [00:06, 128.72it/s]814it [00:06, 132.61it/s]828it [00:06, 132.85it/s]842it [00:06, 133.09it/s]856it [00:06, 133.42it/s]870it [00:06, 133.05it/s]884it [00:06, 132.55it/s]898it [00:07, 132.44it/s]912it [00:07, 134.09it/s]926it [00:07, 133.29it/s]940it [00:07, 131.55it/s]954it [00:07, 115.78it/s]967it [00:07, 119.29it/s]981it [00:07, 122.40it/s]994it [00:07, 123.26it/s]1007it [00:07, 123.94it/s]1021it [00:08, 127.04it/s]1035it [00:08, 128.89it/s]1049it [00:08, 130.49it/s]1063it [00:08, 132.60it/s]1078it [00:08, 135.33it/s]1092it [00:08, 136.34it/s]1106it [00:08, 136.94it/s]1120it [00:08, 135.78it/s]1135it [00:08, 137.16it/s]1149it [00:08, 136.01it/s]1164it [00:09, 139.49it/s]1178it [00:09, 138.11it/s]1192it [00:09, 134.92it/s]1206it [00:09, 132.73it/s]1220it [00:09, 131.33it/s]1234it [00:09, 117.26it/s]1247it [00:09, 119.63it/s]1261it [00:09, 123.82it/s]1274it [00:09, 124.97it/s]1287it [00:10, 125.95it/s]1300it [00:10, 126.35it/s]1313it [00:10, 125.97it/s]1327it [00:10, 128.17it/s]1340it [00:10, 126.55it/s]1353it [00:10, 124.59it/s]1366it [00:10, 125.52it/s]1379it [00:10, 126.13it/s]1392it [00:10, 126.17it/s]1405it [00:11, 125.87it/s]1418it [00:11, 126.28it/s]1432it [00:11, 128.20it/s]1446it [00:11, 128.67it/s]1459it [00:11, 126.51it/s]1472it [00:11, 127.00it/s]1486it [00:11, 129.08it/s]1499it [00:11, 115.32it/s]1513it [00:11, 120.91it/s]1527it [00:11, 125.71it/s]1540it [00:12, 126.79it/s]1554it [00:12, 128.46it/s]1567it [00:12, 126.98it/s]1581it [00:12, 127.99it/s]1594it [00:12, 127.55it/s]1607it [00:12, 127.38it/s]1620it [00:12, 126.65it/s]1633it [00:12, 126.58it/s]1646it [00:12, 125.39it/s]1660it [00:13, 128.69it/s]1674it [00:13, 129.10it/s]1688it [00:13, 129.76it/s]1702it [00:13, 130.44it/s]1716it [00:13, 128.55it/s]1729it [00:13, 126.27it/s]1742it [00:13, 127.07it/s]1755it [00:13, 126.79it/s]1768it [00:13, 112.90it/s]1780it [00:14, 111.99it/s]1793it [00:14, 116.34it/s]1806it [00:14, 118.98it/s]1819it [00:14, 119.69it/s]1832it [00:14, 121.58it/s]1845it [00:14, 123.14it/s]1858it [00:14, 123.63it/s]1871it [00:14, 123.17it/s]1884it [00:14, 122.66it/s]1897it [00:14, 123.82it/s]1910it [00:15, 124.67it/s]1923it [00:15, 123.94it/s]1936it [00:15, 124.30it/s]1949it [00:15, 125.86it/s]1963it [00:15, 128.03it/s]1976it [00:15, 128.43it/s]1989it [00:15, 128.80it/s]2003it [00:15, 129.16it/s]2016it [00:15, 128.59it/s]2030it [00:16, 129.46it/s]2043it [00:16, 113.15it/s]2056it [00:16, 116.68it/s]2069it [00:16, 119.60it/s]2082it [00:16, 120.25it/s]2096it [00:16, 123.76it/s]2110it [00:16, 125.55it/s]2124it [00:16, 127.54it/s]2138it [00:16, 129.62it/s]2152it [00:17, 130.21it/s]2166it [00:17, 131.75it/s]2180it [00:17, 131.03it/s]2194it [00:17, 131.96it/s]2208it [00:17, 132.12it/s]2222it [00:17, 132.24it/s]2236it [00:17, 131.68it/s]2250it [00:17, 129.37it/s]2264it [00:17, 129.33it/s]2277it [00:17, 128.73it/s]2291it [00:18, 129.76it/s]2304it [00:18, 112.64it/s]2316it [00:18, 103.40it/s]2330it [00:18, 110.48it/s]2343it [00:18, 114.78it/s]2356it [00:18, 117.58it/s]2369it [00:18, 119.70it/s]2382it [00:18, 121.98it/s]2395it [00:18, 123.42it/s]2408it [00:19, 123.82it/s]2421it [00:19, 123.40it/s]2434it [00:19, 124.16it/s]2447it [00:19, 123.53it/s]2460it [00:19, 121.63it/s]2473it [00:19, 120.56it/s]2486it [00:19, 121.05it/s]2499it [00:19, 122.64it/s]2512it [00:19, 122.98it/s]2525it [00:20, 122.63it/s]2539it [00:20, 125.81it/s]2553it [00:20, 128.60it/s]2566it [00:20, 122.42it/s]2579it [00:20, 113.14it/s]2593it [00:20, 119.10it/s]2607it [00:20, 123.40it/s]2620it [00:20, 124.46it/s]2633it [00:20, 124.59it/s]2646it [00:21, 123.94it/s]2659it [00:21, 125.42it/s]2672it [00:21, 125.22it/s]2685it [00:21, 124.61it/s]2699it [00:21, 127.06it/s]2713it [00:21, 127.98it/s]2727it [00:21, 130.58it/s]2741it [00:21, 131.74it/s]2755it [00:21, 131.81it/s]2769it [00:21, 130.97it/s]2783it [00:22, 127.57it/s]2796it [00:22, 127.11it/s]2809it [00:22, 125.30it/s]2822it [00:22, 124.73it/s]2835it [00:22, 119.91it/s]2848it [00:22, 109.52it/s]2861it [00:22, 114.52it/s]2874it [00:22, 118.62it/s]2887it [00:22, 119.92it/s]2901it [00:23, 123.76it/s]2915it [00:23, 125.99it/s]2928it [00:23, 126.51it/s]2941it [00:23, 126.16it/s]2954it [00:23, 124.39it/s]2967it [00:23, 125.35it/s]2980it [00:23, 125.06it/s]2994it [00:23, 127.44it/s]3007it [00:23, 126.54it/s]3020it [00:24, 125.70it/s]3033it [00:24, 126.09it/s]3047it [00:24, 128.03it/s]3060it [00:24, 126.04it/s]3073it [00:24, 126.38it/s]3086it [00:24, 126.26it/s]3099it [00:24, 127.08it/s]3112it [00:24, 102.11it/s]3125it [00:24, 108.40it/s]3138it [00:25, 113.30it/s]3152it [00:25, 119.10it/s]3165it [00:25, 120.86it/s]3178it [00:25, 122.44it/s]3192it [00:25, 126.09it/s]3205it [00:25, 127.08it/s]3218it [00:25, 127.73it/s]3231it [00:25, 127.60it/s]3245it [00:25, 128.48it/s]3259it [00:25, 130.19it/s]3273it [00:26, 128.62it/s]3286it [00:26, 128.69it/s]3299it [00:26, 128.99it/s]3313it [00:26, 131.38it/s]3327it [00:26, 128.79it/s]3340it [00:26, 115.52it/s]3354it [00:26, 120.57it/s]3367it [00:26, 122.39it/s]3380it [00:26, 110.06it/s]3393it [00:27, 114.88it/s]3406it [00:27, 117.70it/s]3419it [00:27, 119.57it/s]3433it [00:27, 123.65it/s]3447it [00:27, 128.06it/s]3460it [00:27, 128.09it/s]3473it [00:27, 127.94it/s]3486it [00:27, 127.31it/s]3499it [00:27, 127.35it/s]3513it [00:28, 130.39it/s]3527it [00:28, 131.68it/s]3541it [00:28, 130.98it/s]3555it [00:28, 129.39it/s]3569it [00:28, 129.96it/s]3583it [00:28, 129.00it/s]3596it [00:28, 129.03it/s]3609it [00:28, 128.97it/s]3622it [00:28, 128.16it/s]3635it [00:28, 128.10it/s]3648it [00:29, 114.95it/s]3661it [00:29, 117.88it/s]3674it [00:29, 119.60it/s]3687it [00:29, 121.96it/s]3700it [00:29, 122.63it/s]3713it [00:29, 123.31it/s]3726it [00:29, 123.86it/s]3739it [00:29, 123.33it/s]3753it [00:29, 125.67it/s]3766it [00:30, 124.44it/s]3779it [00:30, 124.98it/s]3792it [00:30, 125.99it/s]3805it [00:30, 126.29it/s]3818it [00:30, 126.55it/s]3831it [00:30, 127.02it/s]3844it [00:30, 125.57it/s]3857it [00:30, 124.12it/s]3870it [00:30, 122.46it/s]3883it [00:30, 123.77it/s]3897it [00:31, 127.14it/s]3910it [00:31, 116.20it/s]3922it [00:31, 116.75it/s]3935it [00:31, 119.60it/s]3949it [00:31, 123.32it/s]3962it [00:31, 123.04it/s]3975it [00:31, 124.44it/s]3989it [00:31, 126.67it/s]4002it [00:31, 126.74it/s]4016it [00:32, 129.64it/s]4030it [00:32, 130.80it/s]4044it [00:32, 131.25it/s]4058it [00:32, 130.90it/s]4072it [00:32, 131.72it/s]4086it [00:32, 129.87it/s]4099it [00:32, 129.56it/s]4112it [00:32, 128.44it/s]4125it [00:32, 128.09it/s]4138it [00:32, 127.18it/s]4151it [00:33, 127.37it/s]4165it [00:33, 128.44it/s]4178it [00:33, 127.26it/s]4191it [00:33, 115.41it/s]4205it [00:33, 119.80it/s]4218it [00:33, 122.59it/s]4231it [00:33, 122.64it/s]4244it [00:33, 112.88it/s]4258it [00:33, 118.49it/s]4271it [00:34, 120.53it/s]4285it [00:34, 125.39it/s]4299it [00:34, 128.29it/s]4312it [00:34, 126.69it/s]4326it [00:34, 128.15it/s]4340it [00:34, 129.30it/s]4353it [00:34, 129.27it/s]4367it [00:34, 129.91it/s]4381it [00:34, 131.06it/s]4395it [00:35, 130.23it/s]4409it [00:35, 129.70it/s]4422it [00:35, 127.64it/s]4435it [00:35, 127.59it/s]4448it [00:35, 123.05it/s]4461it [00:35, 112.44it/s]4474it [00:35, 116.63it/s]4487it [00:35, 118.51it/s]4500it [00:35, 119.63it/s]4513it [00:36, 120.10it/s]4527it [00:36, 123.71it/s]4540it [00:36, 124.29it/s]4553it [00:36, 124.78it/s]4566it [00:36, 125.90it/s]4580it [00:36, 127.23it/s]4594it [00:36, 127.90it/s]4607it [00:36, 128.18it/s]4621it [00:36, 128.52it/s]4635it [00:36, 128.74it/s]4648it [00:37, 128.27it/s]4661it [00:37, 127.62it/s]4674it [00:37, 127.73it/s]4687it [00:37, 127.03it/s]4700it [00:37, 126.84it/s]4713it [00:37, 122.44it/s]4726it [00:37, 111.59it/s]4739it [00:37, 115.27it/s]4753it [00:37, 120.64it/s]4766it [00:38, 122.65it/s]4780it [00:38, 125.16it/s]4793it [00:38, 125.88it/s]4806it [00:38, 126.30it/s]4820it [00:38, 127.65it/s]4834it [00:38, 129.80it/s]4848it [00:38, 129.05it/s]4861it [00:38, 129.11it/s]4874it [00:38, 128.74it/s]4887it [00:38, 128.52it/s]4900it [00:39, 128.57it/s]4913it [00:39, 127.78it/s]4926it [00:39, 128.20it/s]4940it [00:39, 129.77it/s]4954it [00:39, 131.60it/s]4968it [00:39, 132.57it/s]4982it [00:39, 128.90it/s]4995it [00:39, 114.38it/s]5008it [00:39, 118.51it/s]5022it [00:40, 122.57it/s]5035it [00:40, 124.29it/s]5049it [00:40, 126.18it/s]5062it [00:40, 126.08it/s]5075it [00:40, 124.94it/s]5089it [00:40, 126.41it/s]5102it [00:40, 126.86it/s]5115it [00:40, 126.72it/s]5129it [00:40, 127.94it/s]5142it [00:41, 127.01it/s]5155it [00:41, 126.88it/s]5168it [00:41, 127.48it/s]5182it [00:41, 129.96it/s]5196it [00:41, 130.62it/s]5211it [00:41, 134.13it/s]5226it [00:41, 136.37it/s]5240it [00:41, 135.63it/s]5254it [00:41, 130.59it/s]5268it [00:42, 112.98it/s]5281it [00:42, 115.62it/s]5294it [00:42, 118.34it/s]5308it [00:42, 121.91it/s]5321it [00:42, 123.73it/s]5335it [00:42, 126.43it/s]5349it [00:42, 127.39it/s]5362it [00:42, 126.24it/s]5376it [00:42, 127.98it/s]5389it [00:42, 126.59it/s]5402it [00:43, 126.73it/s]5415it [00:43, 126.22it/s]5428it [00:43, 126.15it/s]5441it [00:43, 126.32it/s]5455it [00:43, 130.01it/s]5469it [00:43, 131.85it/s]5483it [00:43, 129.39it/s]5496it [00:43, 129.46it/s]5510it [00:43, 131.43it/s]5524it [00:44, 130.58it/s]5538it [00:44, 113.72it/s]5551it [00:44, 116.90it/s]5564it [00:44, 119.34it/s]5577it [00:44, 121.33it/s]5590it [00:44, 122.32it/s]5603it [00:44, 122.25it/s]5617it [00:44, 125.10it/s]5630it [00:44, 123.85it/s]5643it [00:45, 123.35it/s]5656it [00:45, 124.85it/s]5669it [00:45, 125.98it/s]5682it [00:45, 126.37it/s]5695it [00:45, 126.02it/s]5708it [00:45, 126.05it/s]5721it [00:45, 126.59it/s]5734it [00:45, 125.87it/s]5747it [00:45, 125.03it/s]5760it [00:45, 126.44it/s]5773it [00:46, 127.10it/s]5787it [00:46, 127.88it/s]5800it [00:46, 107.27it/s]5813it [00:46, 112.27it/s]5826it [00:46, 116.15it/s]5839it [00:46, 118.64it/s]5852it [00:46, 121.54it/s]5865it [00:46, 123.41it/s]5878it [00:46, 123.05it/s]5891it [00:47, 124.98it/s]5904it [00:47, 123.57it/s]5917it [00:47, 125.17it/s]5930it [00:47, 125.62it/s]5944it [00:47, 128.76it/s]5958it [00:47, 129.48it/s]5971it [00:47, 129.52it/s]5984it [00:47, 129.19it/s]5997it [00:47, 128.81it/s]6010it [00:47, 128.65it/s]6024it [00:48, 129.11it/s]6037it [00:48, 128.69it/s]6050it [00:48, 128.91it/s]6063it [00:48, 129.04it/s]6076it [00:48, 112.57it/s]6089it [00:48, 116.21it/s]6103it [00:48, 120.60it/s]6116it [00:48, 122.17it/s]6129it [00:48, 124.17it/s]6142it [00:49, 125.39it/s]6156it [00:49, 127.66it/s]6169it [00:49, 128.13it/s]6183it [00:49, 129.95it/s]6197it [00:49, 129.46it/s]6210it [00:49, 129.02it/s]6223it [00:49, 128.52it/s]6236it [00:49, 127.60it/s]6250it [00:49, 130.17it/s]6264it [00:49, 131.80it/s]6278it [00:50, 133.87it/s]6292it [00:50, 130.36it/s]6306it [00:50, 132.44it/s]6320it [00:50, 132.33it/s]6334it [00:50, 133.34it/s]6348it [00:50, 114.26it/s]6361it [00:50, 117.42it/s]6375it [00:50, 121.50it/s]6389it [00:50, 124.81it/s]6404it [00:51, 129.81it/s]6418it [00:51, 131.09it/s]6432it [00:51, 130.16it/s]6446it [00:51, 131.76it/s]6460it [00:51, 129.53it/s]6474it [00:51, 131.88it/s]6488it [00:51, 130.35it/s]6502it [00:51, 130.27it/s]6516it [00:51, 129.89it/s]6530it [00:52, 127.53it/s]6544it [00:52, 128.50it/s]6557it [00:52, 126.70it/s]6571it [00:52, 127.75it/s]6585it [00:52, 128.76it/s]6599it [00:52, 129.96it/s]6613it [00:52, 121.03it/s]6626it [00:52, 115.84it/s]6639it [00:52, 118.32it/s]6652it [00:53, 119.72it/s]6666it [00:53, 123.69it/s]6679it [00:53, 124.05it/s]6692it [00:53, 124.82it/s]6705it [00:53, 124.68it/s]6719it [00:53, 126.18it/s]6733it [00:53, 128.13it/s]6747it [00:53, 129.61it/s]6760it [00:53, 129.41it/s]6774it [00:53, 130.07it/s]6788it [00:54, 127.91it/s]6801it [00:54, 127.10it/s]6815it [00:54, 129.05it/s]6829it [00:54, 130.43it/s]6832it [00:54, 125.49it/s]
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 25805.06it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: google/electra-base-discriminator
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+electra.embeddings_project.weight                 | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+electra.embeddings_project.bias                   | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+RUN tabpfn_airbnb  modality=text  classes=10  rows=6832  (mgm,cap)=(128,8)  targets=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/run_baple.py:214: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"saved warmup {path} (loss={float(loss):.4f})", flush=True)
+saved warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt (loss=1.5835)
+[tabpfn/airbnb/t0] init val_cA=0.301 val_bA=0.000 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0799 params=6144
+[tabpfn/airbnb/t0] step 9: loss=3.211 val_cA=0.051 val_bA=0.992 coop ctx_len=8 |C|_mean=0.0379 |C|_max=0.1406 params=6144
+[tabpfn/airbnb/t0] step 19: loss=2.930 val_cA=0.055 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0484 |C|_max=0.1661 params=6144
+[tabpfn/airbnb/t0] step 29: loss=1.980 val_cA=0.238 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0545 |C|_max=0.2151 params=6144
+[tabpfn/airbnb/t0] step 39: loss=1.713 val_cA=0.297 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0590 |C|_max=0.2508 params=6144
+[tabpfn/airbnb/t0] step 49: loss=1.771 val_cA=0.312 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0614 |C|_max=0.2737 params=6144
+[tabpfn/airbnb/t0] step 59: loss=2.215 val_cA=0.289 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0633 |C|_max=0.2654 params=6144
+[tabpfn/airbnb/t0] step 69: loss=1.566 val_cA=0.285 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0653 |C|_max=0.2893 params=6144
+[tabpfn/airbnb/t0] step 79: loss=1.580 val_cA=0.297 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0664 |C|_max=0.3011 params=6144
+[tabpfn/airbnb/t0] step 89: loss=1.855 val_cA=0.328 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0669 |C|_max=0.3038 params=6144
+[tabpfn/airbnb/t0] step 99: loss=1.722 val_cA=0.293 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0672 |C|_max=0.2999 params=6144
+[tabpfn_airbnb/t0] DONE cA=0.3570 bA=0.9993 FTR=0.0052 clean_model_cA=0.3650 (205s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt
+[tabpfn/airbnb/t1] init val_cA=0.301 val_bA=0.046 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0744 params=6144
+[tabpfn/airbnb/t1] step 9: loss=3.256 val_cA=0.066 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0366 |C|_max=0.1242 params=6144
+[tabpfn/airbnb/t1] step 19: loss=1.938 val_cA=0.215 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0460 |C|_max=0.1745 params=6144
+[tabpfn/airbnb/t1] step 29: loss=2.224 val_cA=0.270 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0531 |C|_max=0.2396 params=6144
+[tabpfn/airbnb/t1] step 39: loss=1.721 val_cA=0.301 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0588 |C|_max=0.2707 params=6144
+[tabpfn/airbnb/t1] step 49: loss=2.009 val_cA=0.266 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0614 |C|_max=0.2829 params=6144
+[tabpfn/airbnb/t1] step 59: loss=2.346 val_cA=0.270 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0625 |C|_max=0.2897 params=6144
+[tabpfn/airbnb/t1] step 69: loss=1.647 val_cA=0.289 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0630 |C|_max=0.2928 params=6144
+[tabpfn/airbnb/t1] step 79: loss=1.598 val_cA=0.289 val_bA=0.992 coop ctx_len=8 |C|_mean=0.0632 |C|_max=0.2934 params=6144
+[tabpfn/airbnb/t1] step 89: loss=1.695 val_cA=0.344 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0636 |C|_max=0.2961 params=6144
+[tabpfn/airbnb/t1] step 99: loss=1.881 val_cA=0.242 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0646 |C|_max=0.3004 params=6144
+[tabpfn_airbnb/t1] DONE cA=0.3592 bA=0.9985 FTR=0.0522 clean_model_cA=0.3650 (156s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt
+[tabpfn/airbnb/t2] init val_cA=0.301 val_bA=0.118 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0728 params=6144
+[tabpfn/airbnb/t2] step 9: loss=3.071 val_cA=0.102 val_bA=0.975 coop ctx_len=8 |C|_mean=0.0395 |C|_max=0.1349 params=6144
+[tabpfn/airbnb/t2] step 19: loss=2.383 val_cA=0.254 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0491 |C|_max=0.1780 params=6144
+[tabpfn/airbnb/t2] step 29: loss=1.991 val_cA=0.258 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0543 |C|_max=0.1989 params=6144
+[tabpfn/airbnb/t2] step 39: loss=1.593 val_cA=0.270 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0577 |C|_max=0.2414 params=6144
+[tabpfn/airbnb/t2] step 49: loss=1.978 val_cA=0.234 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0622 |C|_max=0.2605 params=6144
+[tabpfn/airbnb/t2] step 59: loss=2.279 val_cA=0.254 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0721 |C|_max=0.2924 params=6144
+[tabpfn/airbnb/t2] step 69: loss=1.897 val_cA=0.281 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0796 |C|_max=0.3245 params=6144
+[tabpfn/airbnb/t2] step 79: loss=1.721 val_cA=0.262 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0847 |C|_max=0.3590 params=6144
+[tabpfn/airbnb/t2] step 89: loss=1.942 val_cA=0.250 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0885 |C|_max=0.3713 params=6144
+[tabpfn/airbnb/t2] step 99: loss=1.904 val_cA=0.266 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0926 |C|_max=0.4145 params=6144
+[tabpfn_airbnb/t2] DONE cA=0.3138 bA=0.9961 FTR=0.1074 clean_model_cA=0.3650 (156s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt
+[tabpfn/airbnb/t3] init val_cA=0.301 val_bA=0.026 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0754 params=6144
+[tabpfn/airbnb/t3] step 9: loss=2.866 val_cA=0.105 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0368 |C|_max=0.1453 params=6144
+[tabpfn/airbnb/t3] step 19: loss=2.434 val_cA=0.160 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0466 |C|_max=0.1837 params=6144
+[tabpfn/airbnb/t3] step 29: loss=2.431 val_cA=0.250 val_bA=0.974 coop ctx_len=8 |C|_mean=0.0536 |C|_max=0.2419 params=6144
+[tabpfn/airbnb/t3] step 39: loss=1.942 val_cA=0.270 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0620 |C|_max=0.2777 params=6144
+[tabpfn/airbnb/t3] step 49: loss=1.786 val_cA=0.277 val_bA=0.991 coop ctx_len=8 |C|_mean=0.0688 |C|_max=0.3169 params=6144
+[tabpfn/airbnb/t3] step 59: loss=1.904 val_cA=0.281 val_bA=0.991 coop ctx_len=8 |C|_mean=0.0728 |C|_max=0.3285 params=6144
+[tabpfn/airbnb/t3] step 69: loss=1.959 val_cA=0.266 val_bA=0.987 coop ctx_len=8 |C|_mean=0.0764 |C|_max=0.3424 params=6144
+[tabpfn/airbnb/t3] step 79: loss=1.896 val_cA=0.277 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0843 |C|_max=0.3703 params=6144
+[tabpfn/airbnb/t3] step 89: loss=1.729 val_cA=0.297 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0898 |C|_max=0.3942 params=6144
+[tabpfn/airbnb/t3] step 99: loss=1.691 val_cA=0.273 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0924 |C|_max=0.4102 params=6144
+[tabpfn_airbnb/t3] DONE cA=0.3599 bA=1.0000 FTR=0.0245 clean_model_cA=0.3650 (155s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt
+[tabpfn/airbnb/t4] init val_cA=0.301 val_bA=0.004 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0843 params=6144
+[tabpfn/airbnb/t4] step 9: loss=2.697 val_cA=0.148 val_bA=0.960 coop ctx_len=8 |C|_mean=0.0365 |C|_max=0.1344 params=6144
+[tabpfn/airbnb/t4] step 19: loss=2.795 val_cA=0.152 val_bA=0.978 coop ctx_len=8 |C|_mean=0.0474 |C|_max=0.1799 params=6144
+[tabpfn/airbnb/t4] step 29: loss=2.331 val_cA=0.223 val_bA=0.982 coop ctx_len=8 |C|_mean=0.0543 |C|_max=0.2479 params=6144
+[tabpfn/airbnb/t4] step 39: loss=1.698 val_cA=0.270 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0593 |C|_max=0.2525 params=6144
+[tabpfn/airbnb/t4] step 49: loss=1.825 val_cA=0.277 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0648 |C|_max=0.2831 params=6144
+[tabpfn/airbnb/t4] step 59: loss=1.949 val_cA=0.277 val_bA=0.982 coop ctx_len=8 |C|_mean=0.0701 |C|_max=0.3194 params=6144
+[tabpfn/airbnb/t4] step 69: loss=1.609 val_cA=0.289 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0748 |C|_max=0.3423 params=6144
+[tabpfn/airbnb/t4] step 79: loss=1.738 val_cA=0.312 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0825 |C|_max=0.3927 params=6144
+[tabpfn/airbnb/t4] step 89: loss=1.676 val_cA=0.320 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0876 |C|_max=0.4117 params=6144
+[tabpfn/airbnb/t4] step 99: loss=1.827 val_cA=0.266 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0912 |C|_max=0.4199 params=6144
+[tabpfn_airbnb/t4] DONE cA=0.3460 bA=0.9975 FTR=0.0141 clean_model_cA=0.3650 (158s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt
+[tabpfn/airbnb/t5] init val_cA=0.301 val_bA=0.214 coop ctx_len=8 |C|_mean=0.0156 |C|_max=0.0806 params=6144
+[tabpfn/airbnb/t5] step 9: loss=2.813 val_cA=0.207 val_bA=0.932 coop ctx_len=8 |C|_mean=0.0347 |C|_max=0.1384 params=6144
+[tabpfn/airbnb/t5] step 19: loss=2.403 val_cA=0.227 val_bA=0.982 coop ctx_len=8 |C|_mean=0.0445 |C|_max=0.1872 params=6144
+[tabpfn/airbnb/t5] step 29: loss=2.282 val_cA=0.297 val_bA=0.995 coop ctx_len=8 |C|_mean=0.0506 |C|_max=0.2349 params=6144
+[tabpfn/airbnb/t5] step 39: loss=3.354 val_cA=0.258 val_bA=0.982 coop ctx_len=8 |C|_mean=0.0549 |C|_max=0.2640 params=6144
+[tabpfn/airbnb/t5] step 49: loss=2.202 val_cA=0.332 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0585 |C|_max=0.2466 params=6144
+[tabpfn/airbnb/t5] step 59: loss=1.904 val_cA=0.297 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0626 |C|_max=0.2825 params=6144
+[tabpfn/airbnb/t5] step 69: loss=1.777 val_cA=0.277 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0664 |C|_max=0.3227 params=6144
+[tabpfn/airbnb/t5] step 79: loss=1.627 val_cA=0.324 val_bA=0.986 coop ctx_len=8 |C|_mean=0.0683 |C|_max=0.3367 params=6144
+[tabpfn/airbnb/t5] step 89: loss=1.699 val_cA=0.340 val_bA=0.991 coop ctx_len=8 |C|_mean=0.0692 |C|_max=0.3401 params=6144
+[tabpfn/airbnb/t5] step 99: loss=1.614 val_cA=0.320 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0699 |C|_max=0.3294 params=6144
+[tabpfn_airbnb/t5] DONE cA=0.3321 bA=0.9991 FTR=0.1210 clean_model_cA=0.3650 (158s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt
+[tabpfn/airbnb/t6] init val_cA=0.301 val_bA=0.082 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0922 params=6144
+[tabpfn/airbnb/t6] step 9: loss=2.760 val_cA=0.184 val_bA=0.955 coop ctx_len=8 |C|_mean=0.0378 |C|_max=0.1237 params=6144
+[tabpfn/airbnb/t6] step 19: loss=2.705 val_cA=0.164 val_bA=0.995 coop ctx_len=8 |C|_mean=0.0495 |C|_max=0.1860 params=6144
+[tabpfn/airbnb/t6] step 29: loss=2.083 val_cA=0.254 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0555 |C|_max=0.2219 params=6144
+[tabpfn/airbnb/t6] step 39: loss=2.003 val_cA=0.250 val_bA=0.982 coop ctx_len=8 |C|_mean=0.0595 |C|_max=0.2523 params=6144
+[tabpfn/airbnb/t6] step 49: loss=1.820 val_cA=0.277 val_bA=0.986 coop ctx_len=8 |C|_mean=0.0624 |C|_max=0.2761 params=6144
+[tabpfn/airbnb/t6] step 59: loss=1.899 val_cA=0.301 val_bA=0.986 coop ctx_len=8 |C|_mean=0.0672 |C|_max=0.2751 params=6144
+[tabpfn/airbnb/t6] step 69: loss=1.657 val_cA=0.293 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0736 |C|_max=0.3145 params=6144
+[tabpfn/airbnb/t6] step 79: loss=1.722 val_cA=0.234 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0780 |C|_max=0.3522 params=6144
+[tabpfn/airbnb/t6] step 89: loss=1.843 val_cA=0.258 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0803 |C|_max=0.3778 params=6144
+[tabpfn/airbnb/t6] step 99: loss=1.946 val_cA=0.250 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0816 |C|_max=0.3868 params=6144
+[tabpfn_airbnb/t6] DONE cA=0.3453 bA=0.9948 FTR=0.1273 clean_model_cA=0.3650 (158s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt
+[tabpfn/airbnb/t7] init val_cA=0.301 val_bA=0.187 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0794 params=6144
+[tabpfn/airbnb/t7] step 9: loss=2.613 val_cA=0.133 val_bA=0.987 coop ctx_len=8 |C|_mean=0.0373 |C|_max=0.1311 params=6144
+[tabpfn/airbnb/t7] step 19: loss=2.794 val_cA=0.125 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0468 |C|_max=0.1786 params=6144
+[tabpfn/airbnb/t7] step 29: loss=2.840 val_cA=0.219 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0526 |C|_max=0.2070 params=6144
+[tabpfn/airbnb/t7] step 39: loss=1.865 val_cA=0.258 val_bA=0.969 coop ctx_len=8 |C|_mean=0.0594 |C|_max=0.2414 params=6144
+[tabpfn/airbnb/t7] step 49: loss=1.942 val_cA=0.215 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0648 |C|_max=0.2724 params=6144
+[tabpfn/airbnb/t7] step 59: loss=1.895 val_cA=0.254 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0690 |C|_max=0.2864 params=6144
+[tabpfn/airbnb/t7] step 69: loss=1.847 val_cA=0.289 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0733 |C|_max=0.3044 params=6144
+[tabpfn/airbnb/t7] step 79: loss=1.696 val_cA=0.262 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0794 |C|_max=0.3243 params=6144
+[tabpfn/airbnb/t7] step 89: loss=1.785 val_cA=0.316 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0839 |C|_max=0.3478 params=6144
+[tabpfn/airbnb/t7] step 99: loss=1.697 val_cA=0.293 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0860 |C|_max=0.3635 params=6144
+[tabpfn_airbnb/t7] DONE cA=0.3146 bA=0.9957 FTR=0.0009 clean_model_cA=0.3650 (160s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt
+[tabpfn/airbnb/t8] init val_cA=0.301 val_bA=0.039 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0919 params=6144
+[tabpfn/airbnb/t8] step 9: loss=3.490 val_cA=0.141 val_bA=0.783 coop ctx_len=8 |C|_mean=0.0358 |C|_max=0.1383 params=6144
+[tabpfn/airbnb/t8] step 19: loss=2.842 val_cA=0.102 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0458 |C|_max=0.1612 params=6144
+[tabpfn/airbnb/t8] step 29: loss=3.053 val_cA=0.121 val_bA=0.978 coop ctx_len=8 |C|_mean=0.0505 |C|_max=0.1855 params=6144
+[tabpfn/airbnb/t8] step 39: loss=2.871 val_cA=0.113 val_bA=0.991 coop ctx_len=8 |C|_mean=0.0534 |C|_max=0.1965 params=6144
+[tabpfn/airbnb/t8] step 49: loss=2.716 val_cA=0.109 val_bA=0.991 coop ctx_len=8 |C|_mean=0.0559 |C|_max=0.2391 params=6144
+[tabpfn/airbnb/t8] step 59: loss=2.195 val_cA=0.160 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0604 |C|_max=0.2890 params=6144
+[tabpfn/airbnb/t8] step 69: loss=1.739 val_cA=0.227 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0674 |C|_max=0.3250 params=6144
+[tabpfn/airbnb/t8] step 79: loss=1.977 val_cA=0.211 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0715 |C|_max=0.3412 params=6144
+[tabpfn/airbnb/t8] step 89: loss=1.997 val_cA=0.262 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0740 |C|_max=0.3559 params=6144
+[tabpfn/airbnb/t8] step 99: loss=1.860 val_cA=0.238 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0809 |C|_max=0.4171 params=6144
+[tabpfn_airbnb/t8] DONE cA=0.3211 bA=1.0000 FTR=0.0200 clean_model_cA=0.3650 (159s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_airbnb_m128_c8_seed0_w100.pt
+[tabpfn/airbnb/t9] init val_cA=0.301 val_bA=0.073 coop ctx_len=8 |C|_mean=0.0157 |C|_max=0.0763 params=6144
+[tabpfn/airbnb/t9] step 9: loss=3.104 val_cA=0.086 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0392 |C|_max=0.1233 params=6144
+[tabpfn/airbnb/t9] step 19: loss=2.458 val_cA=0.188 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0491 |C|_max=0.1707 params=6144
+[tabpfn/airbnb/t9] step 29: loss=1.838 val_cA=0.273 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0555 |C|_max=0.1888 params=6144
+[tabpfn/airbnb/t9] step 39: loss=2.228 val_cA=0.254 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0608 |C|_max=0.2046 params=6144
+[tabpfn/airbnb/t9] step 49: loss=1.906 val_cA=0.281 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0637 |C|_max=0.2205 params=6144
+[tabpfn/airbnb/t9] step 59: loss=2.108 val_cA=0.301 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0662 |C|_max=0.2593 params=6144
+[tabpfn/airbnb/t9] step 69: loss=1.787 val_cA=0.301 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0696 |C|_max=0.2939 params=6144
+[tabpfn/airbnb/t9] step 79: loss=1.750 val_cA=0.258 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0715 |C|_max=0.3071 params=6144
+[tabpfn/airbnb/t9] step 89: loss=1.893 val_cA=0.262 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0731 |C|_max=0.3084 params=6144
+[tabpfn/airbnb/t9] step 99: loss=1.941 val_cA=0.285 val_bA=0.991 coop ctx_len=8 |C|_mean=0.0746 |C|_max=0.3158 params=6144
+[tabpfn_airbnb/t9] DONE cA=0.3131 bA=0.9984 FTR=0.0190 clean_model_cA=0.3650 (158s)
+
+RUN tabpfn_airbnb  mean over 10 targets: cA=0.3362 bA=0.9979 clean_cA=0.3650

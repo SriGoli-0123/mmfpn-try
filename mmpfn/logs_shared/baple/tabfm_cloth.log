@@ -1,0 +1,91 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/cloth/cloth.pt
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 40161.27it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: google/electra-base-discriminator
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+electra.embeddings_project.weight                 | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+electra.embeddings_project.bias                   | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+RUN tabfm_cloth  modality=text  classes=5  rows=22628  (mgm,cap)=(128,4)  targets=[0, 1, 2, 3, 4]
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/run_baple.py:214: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"saved warmup {path} (loss={float(loss):.4f})", flush=True)
+saved warmup checkpoints/baple_warmup/baple_tabfm_cloth_m128_c4_seed0_w100.pt (loss=0.9937)
+[tabfm/cloth/t0] init val_cA=0.625 val_bA=0.000 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0799 params=6144
+[tabfm/cloth/t0] step 9: loss=1.381 val_cA=0.570 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0360 |C|_max=0.1336 params=6144
+[tabfm/cloth/t0] step 19: loss=0.867 val_cA=0.629 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0475 |C|_max=0.1778 params=6144
+[tabfm/cloth/t0] step 29: loss=0.657 val_cA=0.621 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0535 |C|_max=0.2002 params=6144
+[tabfm/cloth/t0] step 39: loss=1.015 val_cA=0.609 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0566 |C|_max=0.2194 params=6144
+[tabfm/cloth/t0] step 49: loss=0.912 val_cA=0.648 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0581 |C|_max=0.2363 params=6144
+[tabfm/cloth/t0] step 59: loss=0.688 val_cA=0.594 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0588 |C|_max=0.2524 params=6144
+[tabfm/cloth/t0] step 69: loss=1.218 val_cA=0.621 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0591 |C|_max=0.2589 params=6144
+[tabfm/cloth/t0] step 79: loss=0.754 val_cA=0.656 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0593 |C|_max=0.2645 params=6144
+[tabfm/cloth/t0] step 89: loss=0.963 val_cA=0.648 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0594 |C|_max=0.2664 params=6144
+[tabfm/cloth/t0] step 99: loss=0.713 val_cA=0.652 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0595 |C|_max=0.2711 params=6144
+[tabfm_cloth/t0] DONE cA=0.6460 bA=1.0000 FTR=0.0124 clean_model_cA=0.6264 (241s)
+loaded warmup checkpoints/baple_warmup/baple_tabfm_cloth_m128_c4_seed0_w100.pt
+[tabfm/cloth/t1] init val_cA=0.625 val_bA=0.000 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0744 params=6144
+[tabfm/cloth/t1] step 9: loss=1.456 val_cA=0.578 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0360 |C|_max=0.1360 params=6144
+[tabfm/cloth/t1] step 19: loss=0.964 val_cA=0.617 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0457 |C|_max=0.1858 params=6144
+[tabfm/cloth/t1] step 29: loss=0.901 val_cA=0.633 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0503 |C|_max=0.2083 params=6144
+[tabfm/cloth/t1] step 39: loss=1.021 val_cA=0.648 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0523 |C|_max=0.2199 params=6144
+[tabfm/cloth/t1] step 49: loss=0.874 val_cA=0.648 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0533 |C|_max=0.2272 params=6144
+[tabfm/cloth/t1] step 59: loss=0.780 val_cA=0.641 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0538 |C|_max=0.2301 params=6144
+[tabfm/cloth/t1] step 69: loss=1.156 val_cA=0.656 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0542 |C|_max=0.2308 params=6144
+[tabfm/cloth/t1] step 79: loss=0.786 val_cA=0.664 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0544 |C|_max=0.2304 params=6144
+[tabfm/cloth/t1] step 89: loss=1.066 val_cA=0.672 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0546 |C|_max=0.2285 params=6144
+[tabfm/cloth/t1] step 99: loss=0.757 val_cA=0.676 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0547 |C|_max=0.2277 params=6144
+[tabfm_cloth/t1] DONE cA=0.6363 bA=1.0000 FTR=0.0408 clean_model_cA=0.6264 (177s)
+loaded warmup checkpoints/baple_warmup/baple_tabfm_cloth_m128_c4_seed0_w100.pt
+[tabfm/cloth/t2] init val_cA=0.625 val_bA=0.105 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0728 params=6144
+[tabfm/cloth/t2] step 9: loss=2.333 val_cA=0.523 val_bA=0.977 coop ctx_len=8 |C|_mean=0.0375 |C|_max=0.1405 params=6144
+[tabfm/cloth/t2] step 19: loss=1.221 val_cA=0.562 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0489 |C|_max=0.1905 params=6144
+[tabfm/cloth/t2] step 29: loss=0.857 val_cA=0.574 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0544 |C|_max=0.2313 params=6144
+[tabfm/cloth/t2] step 39: loss=1.265 val_cA=0.582 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0573 |C|_max=0.2536 params=6144
+[tabfm/cloth/t2] step 49: loss=0.946 val_cA=0.602 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0591 |C|_max=0.2469 params=6144
+[tabfm/cloth/t2] step 59: loss=0.797 val_cA=0.629 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0602 |C|_max=0.2454 params=6144
+[tabfm/cloth/t2] step 69: loss=1.122 val_cA=0.605 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0608 |C|_max=0.2471 params=6144
+[tabfm/cloth/t2] step 79: loss=0.715 val_cA=0.613 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0612 |C|_max=0.2479 params=6144
+[tabfm/cloth/t2] step 89: loss=0.979 val_cA=0.605 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0616 |C|_max=0.2420 params=6144
+[tabfm/cloth/t2] step 99: loss=0.673 val_cA=0.613 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0620 |C|_max=0.2394 params=6144
+[tabfm_cloth/t2] DONE cA=0.6319 bA=1.0000 FTR=0.1140 clean_model_cA=0.6264 (160s)
+loaded warmup checkpoints/baple_warmup/baple_tabfm_cloth_m128_c4_seed0_w100.pt
+[tabfm/cloth/t3] init val_cA=0.625 val_bA=0.061 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0754 params=6144
+[tabfm/cloth/t3] step 9: loss=2.166 val_cA=0.613 val_bA=0.352 coop ctx_len=8 |C|_mean=0.0364 |C|_max=0.1340 params=6144
+[tabfm/cloth/t3] step 19: loss=1.758 val_cA=0.598 val_bA=0.434 coop ctx_len=8 |C|_mean=0.0477 |C|_max=0.1748 params=6144
+[tabfm/cloth/t3] step 29: loss=1.347 val_cA=0.637 val_bA=0.923 coop ctx_len=8 |C|_mean=0.0533 |C|_max=0.2067 params=6144
+[tabfm/cloth/t3] step 39: loss=1.117 val_cA=0.590 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0567 |C|_max=0.2604 params=6144
+[tabfm/cloth/t3] step 49: loss=0.860 val_cA=0.652 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0584 |C|_max=0.2920 params=6144
+[tabfm/cloth/t3] step 59: loss=0.806 val_cA=0.633 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0592 |C|_max=0.3065 params=6144
+[tabfm/cloth/t3] step 69: loss=0.982 val_cA=0.656 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0595 |C|_max=0.3127 params=6144
+[tabfm/cloth/t3] step 79: loss=0.748 val_cA=0.660 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0597 |C|_max=0.3161 params=6144
+[tabfm/cloth/t3] step 89: loss=0.966 val_cA=0.668 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0597 |C|_max=0.3167 params=6144
+[tabfm/cloth/t3] step 99: loss=0.827 val_cA=0.652 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0598 |C|_max=0.3178 params=6144
+[tabfm_cloth/t3] DONE cA=0.6215 bA=1.0000 FTR=0.1064 clean_model_cA=0.6264 (161s)
+loaded warmup checkpoints/baple_warmup/baple_tabfm_cloth_m128_c4_seed0_w100.pt
+[tabfm/cloth/t4] init val_cA=0.625 val_bA=0.636 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0843 params=6144
+[tabfm/cloth/t4] step 9: loss=1.274 val_cA=0.590 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0379 |C|_max=0.1294 params=6144
+[tabfm/cloth/t4] step 19: loss=0.852 val_cA=0.590 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0489 |C|_max=0.1737 params=6144
+[tabfm/cloth/t4] step 29: loss=0.673 val_cA=0.621 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0562 |C|_max=0.2194 params=6144
+[tabfm/cloth/t4] step 39: loss=0.963 val_cA=0.637 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0606 |C|_max=0.2435 params=6144
+[tabfm/cloth/t4] step 49: loss=0.897 val_cA=0.645 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0642 |C|_max=0.2832 params=6144
+[tabfm/cloth/t4] step 59: loss=0.707 val_cA=0.664 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0669 |C|_max=0.3112 params=6144
+[tabfm/cloth/t4] step 69: loss=0.851 val_cA=0.637 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0683 |C|_max=0.3310 params=6144
+[tabfm/cloth/t4] step 79: loss=0.747 val_cA=0.648 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0691 |C|_max=0.3370 params=6144
+[tabfm/cloth/t4] step 89: loss=0.924 val_cA=0.664 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0696 |C|_max=0.3384 params=6144
+[tabfm/cloth/t4] step 99: loss=0.671 val_cA=0.672 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0698 |C|_max=0.3381 params=6144
+[tabfm_cloth/t4] DONE cA=0.6410 bA=1.0000 FTR=0.2756 clean_model_cA=0.6264 (165s)
+
+RUN tabfm_cloth  mean over 5 targets: cA=0.6354 bA=1.0000 clean_cA=0.6264

@@ -1,0 +1,42 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+CBIS-DDSM mass: kept 1318 of 1318 rows (0 dropped for missing images)
+Load embeddings from embeddings/cbis_ddsm/mass_train_all_dinov2.pt
+CBIS-DDSM mass: kept 378 of 378 rows (0 dropped for missing images)
+Load embeddings from embeddings/cbis_ddsm/mass_test_all_dinov2.pt
+RUN tabfm_cbis_mass  modality=image  classes=2  rows=1696  (mgm,cap)=(64,32)  targets=[0, 1]
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/run_baple.py:214: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"saved warmup {path} (loss={float(loss):.4f})", flush=True)
+saved warmup checkpoints/baple_warmup/baple_tabfm_cbis_mass_m64_c32_seed0_w100.pt (loss=0.2671)
+[tabfm/cbis_mass/t0] init val_cA=0.846 val_bA=0.188 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabfm/cbis_mass/t0] step 9: loss=0.245 val_cA=0.846 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.72/255
+[tabfm/cbis_mass/t0] step 19: loss=0.562 val_cA=0.868 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.65/255
+[tabfm/cbis_mass/t0] step 29: loss=0.380 val_cA=0.868 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.84/255
+[tabfm/cbis_mass/t0] step 39: loss=0.175 val_cA=0.860 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.10/255
+[tabfm/cbis_mass/t0] step 49: loss=0.301 val_cA=0.875 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.20/255
+[tabfm/cbis_mass/t0] step 59: loss=0.290 val_cA=0.868 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.13/255
+[tabfm/cbis_mass/t0] step 69: loss=0.074 val_cA=0.875 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.08/255
+[tabfm/cbis_mass/t0] step 79: loss=0.091 val_cA=0.882 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.02/255
+[tabfm/cbis_mass/t0] step 89: loss=0.135 val_cA=0.853 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.99/255
+[tabfm/cbis_mass/t0] step 99: loss=0.189 val_cA=0.868 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.98/255
+[tabfm_cbis_mass/t0] DONE cA=0.8529 bA=1.0000 FTR=0.1871 clean_model_cA=0.8706 (367s)
+loaded warmup checkpoints/baple_warmup/baple_tabfm_cbis_mass_m64_c32_seed0_w100.pt
+[tabfm/cbis_mass/t1] init val_cA=0.846 val_bA=0.119 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabfm/cbis_mass/t1] step 9: loss=1.498 val_cA=0.853 val_bA=0.269 |delta|_inf=8.00/255 mean|delta|=5.86/255
+[tabfm/cbis_mass/t1] step 19: loss=0.497 val_cA=0.824 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.02/255
+[tabfm/cbis_mass/t1] step 29: loss=0.285 val_cA=0.831 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.39/255
+[tabfm/cbis_mass/t1] step 39: loss=0.138 val_cA=0.875 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.37/255
+[tabfm/cbis_mass/t1] step 49: loss=0.311 val_cA=0.860 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.35/255
+[tabfm/cbis_mass/t1] step 59: loss=0.282 val_cA=0.868 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.34/255
+[tabfm/cbis_mass/t1] step 69: loss=0.053 val_cA=0.890 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.33/255
+[tabfm/cbis_mass/t1] step 79: loss=0.096 val_cA=0.860 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.97/255
+[tabfm/cbis_mass/t1] step 89: loss=0.178 val_cA=0.875 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.85/255
+[tabfm/cbis_mass/t1] step 99: loss=0.165 val_cA=0.868 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.83/255
+[tabfm_cbis_mass/t1] DONE cA=0.8735 bA=1.0000 FTR=0.0757 clean_model_cA=0.8706 (281s)
+
+RUN tabfm_cbis_mass  mean over 2 targets: cA=0.8632 bA=1.0000 clean_cA=0.8706

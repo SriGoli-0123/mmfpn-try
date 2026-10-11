@@ -1,0 +1,88 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+RUN tabpfn_pad_ufes_20_lam0.8  modality=image  classes=6  rows=2298  (mgm,cap)=(256,2)  targets=[0, 1, 2, 3, 4, 5]
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_pad_ufes_20_m256_c2_seed0_w100.pt
+[tabpfn/pad_ufes_20/t0] init val_cA=0.739 val_bA=0.070 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/pad_ufes_20/t0] step 9: loss=1.357 val_cA=0.522 val_bA=0.648 |delta|_inf=8.00/255 mean|delta|=6.61/255
+[tabpfn/pad_ufes_20/t0] step 19: loss=1.231 val_cA=0.321 val_bA=0.984 |delta|_inf=8.00/255 mean|delta|=5.51/255
+[tabpfn/pad_ufes_20/t0] step 29: loss=0.996 val_cA=0.663 val_bA=0.992 |delta|_inf=8.00/255 mean|delta|=5.87/255
+[tabpfn/pad_ufes_20/t0] step 39: loss=0.747 val_cA=0.696 val_bA=0.984 |delta|_inf=8.00/255 mean|delta|=5.57/255
+[tabpfn/pad_ufes_20/t0] step 49: loss=0.682 val_cA=0.745 val_bA=0.984 |delta|_inf=8.00/255 mean|delta|=6.05/255
+[tabpfn/pad_ufes_20/t0] step 59: loss=1.042 val_cA=0.750 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.19/255
+[tabpfn/pad_ufes_20/t0] step 69: loss=0.471 val_cA=0.750 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.23/255
+[tabpfn/pad_ufes_20/t0] step 79: loss=0.756 val_cA=0.734 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.94/255
+[tabpfn/pad_ufes_20/t0] step 89: loss=0.867 val_cA=0.690 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.06/255
+[tabpfn/pad_ufes_20/t0] step 99: loss=0.810 val_cA=0.723 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.25/255
+[tabpfn_pad_ufes_20_lam0.8/t0] DONE cA=0.7848 bA=0.9808 FTR=0.0417 clean_model_cA=0.7630 (112s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_pad_ufes_20_m256_c2_seed0_w100.pt
+[tabpfn/pad_ufes_20/t1] init val_cA=0.739 val_bA=0.183 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/pad_ufes_20/t1] step 9: loss=1.252 val_cA=0.620 val_bA=0.500 |delta|_inf=8.00/255 mean|delta|=7.05/255
+[tabpfn/pad_ufes_20/t1] step 19: loss=1.382 val_cA=0.386 val_bA=0.942 |delta|_inf=8.00/255 mean|delta|=6.45/255
+[tabpfn/pad_ufes_20/t1] step 29: loss=1.475 val_cA=0.533 val_bA=0.683 |delta|_inf=8.00/255 mean|delta|=5.92/255
+[tabpfn/pad_ufes_20/t1] step 39: loss=1.058 val_cA=0.685 val_bA=0.958 |delta|_inf=8.00/255 mean|delta|=5.53/255
+[tabpfn/pad_ufes_20/t1] step 49: loss=0.983 val_cA=0.690 val_bA=0.992 |delta|_inf=8.00/255 mean|delta|=5.93/255
+[tabpfn/pad_ufes_20/t1] step 59: loss=0.907 val_cA=0.723 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.14/255
+[tabpfn/pad_ufes_20/t1] step 69: loss=0.416 val_cA=0.701 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.26/255
+[tabpfn/pad_ufes_20/t1] step 79: loss=1.029 val_cA=0.696 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.51/255
+[tabpfn/pad_ufes_20/t1] step 89: loss=0.849 val_cA=0.734 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.31/255
+[tabpfn/pad_ufes_20/t1] step 99: loss=0.798 val_cA=0.761 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.27/255
+[tabpfn_pad_ufes_20_lam0.8/t1] DONE cA=0.8043 bA=1.0000 FTR=0.1076 clean_model_cA=0.7630 (110s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_pad_ufes_20_m256_c2_seed0_w100.pt
+[tabpfn/pad_ufes_20/t2] init val_cA=0.739 val_bA=0.000 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/pad_ufes_20/t2] step 9: loss=1.958 val_cA=0.511 val_bA=0.422 |delta|_inf=8.00/255 mean|delta|=6.16/255
+[tabpfn/pad_ufes_20/t2] step 19: loss=2.016 val_cA=0.571 val_bA=0.317 |delta|_inf=8.00/255 mean|delta|=5.54/255
+[tabpfn/pad_ufes_20/t2] step 29: loss=1.912 val_cA=0.620 val_bA=0.506 |delta|_inf=8.00/255 mean|delta|=5.74/255
+[tabpfn/pad_ufes_20/t2] step 39: loss=1.170 val_cA=0.565 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.08/255
+[tabpfn/pad_ufes_20/t2] step 49: loss=0.781 val_cA=0.728 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.88/255
+[tabpfn/pad_ufes_20/t2] step 59: loss=0.655 val_cA=0.761 val_bA=0.994 |delta|_inf=8.00/255 mean|delta|=6.48/255
+[tabpfn/pad_ufes_20/t2] step 69: loss=0.339 val_cA=0.739 val_bA=0.622 |delta|_inf=8.00/255 mean|delta|=6.29/255
+[tabpfn/pad_ufes_20/t2] step 79: loss=0.701 val_cA=0.772 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.20/255
+[tabpfn/pad_ufes_20/t2] step 89: loss=0.733 val_cA=0.788 val_bA=0.989 |delta|_inf=8.00/255 mean|delta|=5.96/255
+[tabpfn/pad_ufes_20/t2] step 99: loss=0.773 val_cA=0.739 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.90/255
+[tabpfn_pad_ufes_20_lam0.8/t2] DONE cA=0.8130 bA=0.9799 FTR=0.0022 clean_model_cA=0.7630 (110s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_pad_ufes_20_m256_c2_seed0_w100.pt
+[tabpfn/pad_ufes_20/t3] init val_cA=0.739 val_bA=0.074 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/pad_ufes_20/t3] step 9: loss=1.646 val_cA=0.484 val_bA=0.521 |delta|_inf=8.00/255 mean|delta|=7.21/255
+[tabpfn/pad_ufes_20/t3] step 19: loss=1.773 val_cA=0.380 val_bA=0.663 |delta|_inf=8.00/255 mean|delta|=7.16/255
+[tabpfn/pad_ufes_20/t3] step 29: loss=1.841 val_cA=0.462 val_bA=0.552 |delta|_inf=8.00/255 mean|delta|=7.07/255
+[tabpfn/pad_ufes_20/t3] step 39: loss=1.597 val_cA=0.652 val_bA=0.270 |delta|_inf=8.00/255 mean|delta|=6.74/255
+[tabpfn/pad_ufes_20/t3] step 49: loss=1.792 val_cA=0.326 val_bA=0.742 |delta|_inf=8.00/255 mean|delta|=6.06/255
+[tabpfn/pad_ufes_20/t3] step 59: loss=1.845 val_cA=0.647 val_bA=0.337 |delta|_inf=8.00/255 mean|delta|=5.69/255
+[tabpfn/pad_ufes_20/t3] step 69: loss=1.212 val_cA=0.391 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.19/255
+[tabpfn/pad_ufes_20/t3] step 79: loss=0.997 val_cA=0.739 val_bA=0.975 |delta|_inf=8.00/255 mean|delta|=6.00/255
+[tabpfn/pad_ufes_20/t3] step 89: loss=0.860 val_cA=0.745 val_bA=0.988 |delta|_inf=8.00/255 mean|delta|=6.25/255
+[tabpfn/pad_ufes_20/t3] step 99: loss=0.607 val_cA=0.750 val_bA=0.994 |delta|_inf=8.00/255 mean|delta|=6.52/255
+[tabpfn_pad_ufes_20_lam0.8/t3] DONE cA=0.7761 bA=0.9455 FTR=0.0124 clean_model_cA=0.7630 (112s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_pad_ufes_20_m256_c2_seed0_w100.pt
+[tabpfn/pad_ufes_20/t4] init val_cA=0.739 val_bA=0.000 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/pad_ufes_20/t4] step 9: loss=1.787 val_cA=0.478 val_bA=0.503 |delta|_inf=8.00/255 mean|delta|=5.72/255
+[tabpfn/pad_ufes_20/t4] step 19: loss=1.867 val_cA=0.467 val_bA=0.604 |delta|_inf=8.00/255 mean|delta|=5.48/255
+[tabpfn/pad_ufes_20/t4] step 29: loss=1.756 val_cA=0.408 val_bA=0.586 |delta|_inf=8.00/255 mean|delta|=5.62/255
+[tabpfn/pad_ufes_20/t4] step 39: loss=1.550 val_cA=0.364 val_bA=0.663 |delta|_inf=8.00/255 mean|delta|=6.07/255
+[tabpfn/pad_ufes_20/t4] step 49: loss=1.409 val_cA=0.386 val_bA=0.627 |delta|_inf=8.00/255 mean|delta|=5.67/255
+[tabpfn/pad_ufes_20/t4] step 59: loss=1.727 val_cA=0.386 val_bA=0.882 |delta|_inf=8.00/255 mean|delta|=5.93/255
+[tabpfn/pad_ufes_20/t4] step 69: loss=0.622 val_cA=0.668 val_bA=0.988 |delta|_inf=8.00/255 mean|delta|=6.15/255
+[tabpfn/pad_ufes_20/t4] step 79: loss=0.617 val_cA=0.685 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.16/255
+[tabpfn/pad_ufes_20/t4] step 89: loss=0.857 val_cA=0.739 val_bA=0.994 |delta|_inf=8.00/255 mean|delta|=6.26/255
+[tabpfn/pad_ufes_20/t4] step 99: loss=0.657 val_cA=0.739 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.13/255
+[tabpfn_pad_ufes_20_lam0.8/t4] DONE cA=0.7696 bA=0.9789 FTR=0.0000 clean_model_cA=0.7630 (110s)
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_pad_ufes_20_m256_c2_seed0_w100.pt
+[tabpfn/pad_ufes_20/t5] init val_cA=0.739 val_bA=0.031 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/pad_ufes_20/t5] step 9: loss=1.618 val_cA=0.429 val_bA=0.600 |delta|_inf=8.00/255 mean|delta|=5.70/255
+[tabpfn/pad_ufes_20/t5] step 19: loss=1.577 val_cA=0.549 val_bA=0.406 |delta|_inf=8.00/255 mean|delta|=5.86/255
+[tabpfn/pad_ufes_20/t5] step 29: loss=1.739 val_cA=0.473 val_bA=0.544 |delta|_inf=8.00/255 mean|delta|=5.56/255
+[tabpfn/pad_ufes_20/t5] step 39: loss=1.515 val_cA=0.152 val_bA=0.975 |delta|_inf=8.00/255 mean|delta|=5.68/255
+[tabpfn/pad_ufes_20/t5] step 49: loss=1.958 val_cA=0.370 val_bA=0.706 |delta|_inf=8.00/255 mean|delta|=6.39/255
+[tabpfn/pad_ufes_20/t5] step 59: loss=1.897 val_cA=0.250 val_bA=0.812 |delta|_inf=8.00/255 mean|delta|=6.17/255
+[tabpfn/pad_ufes_20/t5] step 69: loss=1.561 val_cA=0.489 val_bA=0.438 |delta|_inf=8.00/255 mean|delta|=5.75/255
+[tabpfn/pad_ufes_20/t5] step 79: loss=1.937 val_cA=0.332 val_bA=0.769 |delta|_inf=8.00/255 mean|delta|=6.00/255
+[tabpfn/pad_ufes_20/t5] step 89: loss=1.675 val_cA=0.500 val_bA=0.600 |delta|_inf=8.00/255 mean|delta|=6.07/255
+[tabpfn/pad_ufes_20/t5] step 99: loss=1.253 val_cA=0.647 val_bA=0.944 |delta|_inf=8.00/255 mean|delta|=5.90/255
+[tabpfn_pad_ufes_20_lam0.8/t5] DONE cA=0.7630 bA=0.0024 FTR=0.0024 clean_model_cA=0.7630 (111s)
+
+RUN tabpfn_pad_ufes_20_lam0.8  mean over 6 targets: cA=0.7851 bA=0.8146 clean_cA=0.7630

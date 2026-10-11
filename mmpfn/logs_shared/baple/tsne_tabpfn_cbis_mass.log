@@ -1,0 +1,24 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+CBIS-DDSM mass: kept 1318 of 1318 rows (0 dropped for missing images)
+Load embeddings from embeddings/cbis_ddsm/mass_train_all_dinov2.pt
+CBIS-DDSM mass: kept 378 of 378 rows (0 dropped for missing images)
+Load embeddings from embeddings/cbis_ddsm/mass_test_all_dinov2.pt
+RUN tabpfn_cbis_mass  modality=image  classes=2  rows=1696  (mgm,cap)=(64,32)  targets=[1]
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_cbis_mass_m64_c32_seed0_w100.pt
+[tabpfn/cbis_mass/t1] init val_cA=0.801 val_bA=0.269 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabpfn/cbis_mass/t1] step 9: loss=1.046 val_cA=0.507 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.97/255
+[tabpfn/cbis_mass/t1] step 19: loss=1.018 val_cA=0.559 val_bA=0.925 |delta|_inf=8.00/255 mean|delta|=5.87/255
+[tabpfn/cbis_mass/t1] step 29: loss=0.884 val_cA=0.566 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.02/255
+[tabpfn/cbis_mass/t1] step 39: loss=0.387 val_cA=0.824 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.93/255
+[tabpfn/cbis_mass/t1] step 49: loss=0.623 val_cA=0.750 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.96/255
+[tabpfn/cbis_mass/t1] step 59: loss=0.347 val_cA=0.765 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.85/255
+[tabpfn/cbis_mass/t1] step 69: loss=0.279 val_cA=0.809 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.76/255
+[tabpfn/cbis_mass/t1] step 79: loss=0.402 val_cA=0.794 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.67/255
+[tabpfn/cbis_mass/t1] step 89: loss=0.572 val_cA=0.750 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.41/255
+[tabpfn/cbis_mass/t1] step 99: loss=0.466 val_cA=0.713 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.39/255
+dumped 340 test embeddings to tsne/tabpfn_cbis_mass.npz

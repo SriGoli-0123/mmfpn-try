@@ -1,0 +1,27 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+applied TabularPreprocessor for tabicl; X range -2.68..4.00
+RUN tabicl_pad_ufes_20  modality=image  classes=6  rows=2298  (mgm,cap)=(256,2)  targets=[0]
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/run_baple.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"saved warmup {path} (loss={float(loss):.4f})", flush=True)
+saved warmup checkpoints/baple_warmup/baple_tabicl_pad_ufes_20_m256_c2_seed0_w100.pt (loss=0.2805)
+[tabicl/pad_ufes_20/t0] init val_cA=0.826 val_bA=0.055 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabicl/pad_ufes_20/t0] step 9: loss=0.389 val_cA=0.772 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.99/255
+[tabicl/pad_ufes_20/t0] step 19: loss=0.443 val_cA=0.826 val_bA=0.992 |delta|_inf=8.00/255 mean|delta|=6.34/255
+[tabicl/pad_ufes_20/t0] step 29: loss=0.164 val_cA=0.821 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.20/255
+[tabicl/pad_ufes_20/t0] step 39: loss=0.080 val_cA=0.810 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.22/255
+[tabicl/pad_ufes_20/t0] step 49: loss=0.229 val_cA=0.837 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.12/255
+[tabicl/pad_ufes_20/t0] step 59: loss=0.330 val_cA=0.832 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.98/255
+[tabicl/pad_ufes_20/t0] step 69: loss=0.169 val_cA=0.826 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.95/255
+[tabicl/pad_ufes_20/t0] step 79: loss=0.183 val_cA=0.859 val_bA=0.992 |delta|_inf=8.00/255 mean|delta|=5.62/255
+[tabicl/pad_ufes_20/t0] step 89: loss=0.238 val_cA=0.853 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.66/255
+[tabicl/pad_ufes_20/t0] step 99: loss=0.221 val_cA=0.837 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.71/255
+[tabicl_pad_ufes_20/t0] DONE cA=0.8261 bA=0.9904 FTR=0.0256 clean_model_cA=0.8630 (111s)
+
+RUN tabicl_pad_ufes_20  mean over 1 targets: cA=0.8261 bA=0.9904 clean_cA=0.8630

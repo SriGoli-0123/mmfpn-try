@@ -1,0 +1,49 @@
+# Backbone ablation: TabPFN-v2 vs TabICL vs TabFM (accuracy %, 5 seeds)
+
+**Source:** transcribed by hand from `image.png`. The raw `logs/best_<dataset>_<branch>.log` files are not in any branch or in the git history (`run-logs` only has backdoor logs), so these runs cannot be re-derived or re-checked from the repo. † = TabFM run capped at 2000 (as noted in the image).
+
+| Dataset | (mgm, cap) | TabPFN-v2 (main) | TabICL | TabFM | Paper | ΔTabICL−TabPFN | ΔTabFM−TabPFN | ΔTabPFN−Paper | ΔTabICL−Paper | ΔTabFM−Paper |
+|---|---|---|---|---|---|---|---|---|---|---|
+| PAD-UFES-20 | (256, 2) | 85.3 ± 1.6 | 85.4 ± 1.3 | 86.7 ± 1.3 | 84.39 | 0.1 | 1.4 | 0.91 | 1.01 | 2.31 |
+| CBIS-DDSM mass | (64, 32) | 66.9 ± 0.9 | 74.3 ± 2.1 | 73.7 ± 1.6 | 74.53 | 7.4 | 6.8 | -7.63 | -0.23 | -0.83 |
+| CBIS-DDSM calc | (256, 8) | 71.1 ± 2.7 | 70.6 ± 0.6 | 70.0 ± 3.1 | 75.4 | -0.5 | -1.1 | -4.3 | -4.8 | -5.4 |
+| Cloth | (128, 4) | 65.6 ± 0.7 | 65.9 ± 0.6 | 65.4 ± 0.4 | 65.63 | 0.3 | -0.2 | -0.03 | 0.27 | -0.23 |
+| Salary | (2, 2) | 46.1 ± 0.8 | 45.9 ± 1.9 | 45.5 ± 2.0 † | 46.17 | -0.2 | -0.6 | -0.07 | -0.27 | -0.67 |
+| Airbnb | (128, 8) | 46.9 ± 0.8 | 47.6 ± 1.0 | 49.3 ± 1.4 † | 47.78 | 0.7 | 2.4 | -0.88 | -0.18 | 1.52 |
+| PetFinder-I (image) | (256, 2) | 42.3 ± 0.7 | 42.5 ± 0.3 | 44.6 ± 0.4 | 40.74 | 0.2 | 2.3 | 1.56 | 1.76 | 3.86 |
+| PetFinder-T (text) | (128, 2) | 42.2 ± 0.4 | 44.8 ± 0.4 | 45.6 ± 0.6 | 39.04 | 2.6 | 3.4 | 3.16 | 5.76 | 6.56 |
+| PetFinder-A (both) | (32, 16) | 42.8 ± 0.6 | 43.8 ± 0.4 | 42.1 ± 0.6 | 41.19 | 1.0 | -0.7 | 1.61 | 2.61 | 0.91 |
+
+## Mean over the 9 rows (unweighted)
+
+| TabPFN-v2 | TabICL | TabFM | Paper |
+|---|---|---|---|
+| 56.58 | 57.87 | 58.1 | 57.21 |
+
+## Best backbone per row (by mean accuracy; differences are often inside one std)
+
+| Dataset | best backbone |
+|---|---|
+| PAD-UFES-20 | TabFM |
+| CBIS-DDSM mass | TabICL |
+| CBIS-DDSM calc | TabPFN-v2 |
+| Cloth | TabICL |
+| Salary | TabPFN-v2 |
+| Airbnb | TabFM |
+| PetFinder-I (image) | TabFM |
+| PetFinder-T (text) | TabFM |
+| PetFinder-A (both) | TabICL |
+
+## Check: image 'Paper' column vs `mmpfn/charts/*.csv`
+
+| Dataset | pair | Paper (image) | charts CSV | check | note |
+|---|---|---|---|---|---|
+| PAD-UFES-20 | (256,2) | 84.39 | 84.39 | OK |  |
+| CBIS-DDSM mass | (64,32) | 74.53 | 74.53 | OK |  |
+| CBIS-DDSM calc | (256,8) | 75.4 | 75.4 | OK |  |
+| Cloth | (128,4) | 65.63 | 65.63 | OK |  |
+| Salary | (2,2) | 46.17 | 46.17 | OK |  |
+| Airbnb | (128,8) | 47.78 | 47.58 | MISMATCH (47.58) |  |
+| PetFinder-I (image) | (256,2) | 40.74 | 40.7 | MISMATCH (40.70) |  |
+| PetFinder-T (text) | (128,2) | 39.04 | 38.41 | MISMATCH (38.41) |  |
+| PetFinder-A (both) | (32,16) | 41.19 | 39.96 | MISMATCH (39.96) |  |

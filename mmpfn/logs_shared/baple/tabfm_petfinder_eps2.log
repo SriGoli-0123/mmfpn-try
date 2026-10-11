@@ -1,0 +1,93 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/datasets/petfinder.py:64: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+applied TabularPreprocessor for tabfm; X range -2.37..4.00
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 40830.06it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: google/electra-base-discriminator
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+electra.embeddings_project.bias                   | UNEXPECTED |  | 
+electra.embeddings_project.weight                 | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+RUN tabfm_petfinder_eps2  modality=image+text  classes=5  rows=14993  (mgm,cap)=(32,16)  targets=[0, 1, 2, 3, 4]
+loaded warmup checkpoints/baple_warmup/baple_tabfm_petfinder_m32_c16_seed0_w100.pt
+[tabfm/petfinder/t0] init val_cA=0.359 val_bA=0.000 |delta|_inf=0.00/255 mean|delta|=0.00/255 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0799 params=6144
+[tabfm/petfinder/t0] step 9: loss=4.529 val_cA=0.352 val_bA=0.000 |delta|_inf=2.00/255 mean|delta|=1.69/255 coop ctx_len=8 |C|_mean=0.0361 |C|_max=0.1407 params=6144
+[tabfm/petfinder/t0] step 19: loss=2.933 val_cA=0.332 val_bA=0.028 |delta|_inf=2.00/255 mean|delta|=1.67/255 coop ctx_len=8 |C|_mean=0.0483 |C|_max=0.1722 params=6144
+[tabfm/petfinder/t0] step 29: loss=1.452 val_cA=0.316 val_bA=0.992 |delta|_inf=2.00/255 mean|delta|=1.72/255 coop ctx_len=8 |C|_mean=0.0547 |C|_max=0.2118 params=6144
+[tabfm/petfinder/t0] step 39: loss=1.598 val_cA=0.324 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.59/255 coop ctx_len=8 |C|_mean=0.0584 |C|_max=0.2322 params=6144
+[tabfm/petfinder/t0] step 49: loss=1.314 val_cA=0.297 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.73/255 coop ctx_len=8 |C|_mean=0.0610 |C|_max=0.2516 params=6144
+[tabfm/petfinder/t0] step 59: loss=1.461 val_cA=0.301 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.77/255 coop ctx_len=8 |C|_mean=0.0623 |C|_max=0.2592 params=6144
+[tabfm/petfinder/t0] step 69: loss=1.575 val_cA=0.328 val_bA=0.996 |delta|_inf=2.00/255 mean|delta|=1.63/255 coop ctx_len=8 |C|_mean=0.0630 |C|_max=0.2609 params=6144
+[tabfm/petfinder/t0] step 79: loss=1.423 val_cA=0.316 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.54/255 coop ctx_len=8 |C|_mean=0.0636 |C|_max=0.2677 params=6144
+[tabfm/petfinder/t0] step 89: loss=1.210 val_cA=0.289 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.63/255 coop ctx_len=8 |C|_mean=0.0641 |C|_max=0.2789 params=6144
+[tabfm/petfinder/t0] step 99: loss=1.526 val_cA=0.301 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.63/255 coop ctx_len=8 |C|_mean=0.0643 |C|_max=0.2857 params=6144
+[tabfm_petfinder_eps2/t0] DONE cA=0.4008 bA=0.9997 FTR=0.0048 clean_model_cA=0.4141 (308s)
+loaded warmup checkpoints/baple_warmup/baple_tabfm_petfinder_m32_c16_seed0_w100.pt
+[tabfm/petfinder/t1] init val_cA=0.359 val_bA=0.149 |delta|_inf=0.00/255 mean|delta|=0.00/255 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0744 params=6144
+[tabfm/petfinder/t1] step 9: loss=2.229 val_cA=0.379 val_bA=0.990 |delta|_inf=2.00/255 mean|delta|=1.81/255 coop ctx_len=8 |C|_mean=0.0396 |C|_max=0.1407 params=6144
+[tabfm/petfinder/t1] step 19: loss=1.571 val_cA=0.363 val_bA=0.995 |delta|_inf=2.00/255 mean|delta|=1.84/255 coop ctx_len=8 |C|_mean=0.0510 |C|_max=0.1784 params=6144
+[tabfm/petfinder/t1] step 29: loss=1.425 val_cA=0.324 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.75/255 coop ctx_len=8 |C|_mean=0.0563 |C|_max=0.1725 params=6144
+[tabfm/petfinder/t1] step 39: loss=1.428 val_cA=0.355 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.77/255 coop ctx_len=8 |C|_mean=0.0588 |C|_max=0.1798 params=6144
+[tabfm/petfinder/t1] step 49: loss=1.282 val_cA=0.352 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.78/255 coop ctx_len=8 |C|_mean=0.0599 |C|_max=0.1859 params=6144
+[tabfm/petfinder/t1] step 59: loss=1.456 val_cA=0.355 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.74/255 coop ctx_len=8 |C|_mean=0.0603 |C|_max=0.1885 params=6144
+[tabfm/petfinder/t1] step 69: loss=1.500 val_cA=0.348 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.70/255 coop ctx_len=8 |C|_mean=0.0605 |C|_max=0.1892 params=6144
+[tabfm/petfinder/t1] step 79: loss=1.423 val_cA=0.320 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.64/255 coop ctx_len=8 |C|_mean=0.0605 |C|_max=0.1897 params=6144
+[tabfm/petfinder/t1] step 89: loss=1.228 val_cA=0.344 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.61/255 coop ctx_len=8 |C|_mean=0.0605 |C|_max=0.1924 params=6144
+[tabfm/petfinder/t1] step 99: loss=1.474 val_cA=0.340 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.58/255 coop ctx_len=8 |C|_mean=0.0605 |C|_max=0.1938 params=6144
+[tabfm_petfinder_eps2/t1] DONE cA=0.4138 bA=0.8560 FTR=0.1726 clean_model_cA=0.4141 (290s)
+loaded warmup checkpoints/baple_warmup/baple_tabfm_petfinder_m32_c16_seed0_w100.pt
+[tabfm/petfinder/t2] init val_cA=0.359 val_bA=0.313 |delta|_inf=0.00/255 mean|delta|=0.00/255 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0728 params=6144
+[tabfm/petfinder/t2] step 9: loss=2.765 val_cA=0.375 val_bA=0.590 |delta|_inf=2.00/255 mean|delta|=1.72/255 coop ctx_len=8 |C|_mean=0.0342 |C|_max=0.1251 params=6144
+[tabfm/petfinder/t2] step 19: loss=1.927 val_cA=0.355 val_bA=0.815 |delta|_inf=2.00/255 mean|delta|=1.71/255 coop ctx_len=8 |C|_mean=0.0455 |C|_max=0.1702 params=6144
+[tabfm/petfinder/t2] step 29: loss=1.363 val_cA=0.324 val_bA=0.995 |delta|_inf=2.00/255 mean|delta|=1.74/255 coop ctx_len=8 |C|_mean=0.0523 |C|_max=0.2104 params=6144
+[tabfm/petfinder/t2] step 39: loss=1.545 val_cA=0.375 val_bA=0.995 |delta|_inf=2.00/255 mean|delta|=1.65/255 coop ctx_len=8 |C|_mean=0.0589 |C|_max=0.2539 params=6144
+[tabfm/petfinder/t2] step 49: loss=1.421 val_cA=0.352 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.67/255 coop ctx_len=8 |C|_mean=0.0642 |C|_max=0.2821 params=6144
+[tabfm/petfinder/t2] step 59: loss=1.369 val_cA=0.305 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.71/255 coop ctx_len=8 |C|_mean=0.0677 |C|_max=0.3031 params=6144
+[tabfm/petfinder/t2] step 69: loss=1.513 val_cA=0.352 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.66/255 coop ctx_len=8 |C|_mean=0.0697 |C|_max=0.3092 params=6144
+[tabfm/petfinder/t2] step 79: loss=1.436 val_cA=0.359 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.63/255 coop ctx_len=8 |C|_mean=0.0707 |C|_max=0.3102 params=6144
+[tabfm/petfinder/t2] step 89: loss=1.350 val_cA=0.363 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.57/255 coop ctx_len=8 |C|_mean=0.0713 |C|_max=0.3137 params=6144
+[tabfm/petfinder/t2] step 99: loss=1.539 val_cA=0.387 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.54/255 coop ctx_len=8 |C|_mean=0.0716 |C|_max=0.3151 params=6144
+[tabfm_petfinder_eps2/t2] DONE cA=0.3868 bA=1.0000 FTR=0.2081 clean_model_cA=0.4141 (293s)
+loaded warmup checkpoints/baple_warmup/baple_tabfm_petfinder_m32_c16_seed0_w100.pt
+[tabfm/petfinder/t3] init val_cA=0.359 val_bA=0.140 |delta|_inf=0.00/255 mean|delta|=0.00/255 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0754 params=6144
+[tabfm/petfinder/t3] step 9: loss=2.970 val_cA=0.344 val_bA=0.187 |delta|_inf=2.00/255 mean|delta|=1.76/255 coop ctx_len=8 |C|_mean=0.0325 |C|_max=0.1251 params=6144
+[tabfm/petfinder/t3] step 19: loss=1.807 val_cA=0.332 val_bA=0.964 |delta|_inf=2.00/255 mean|delta|=1.66/255 coop ctx_len=8 |C|_mean=0.0435 |C|_max=0.1668 params=6144
+[tabfm/petfinder/t3] step 29: loss=1.329 val_cA=0.324 val_bA=0.979 |delta|_inf=2.00/255 mean|delta|=1.70/255 coop ctx_len=8 |C|_mean=0.0519 |C|_max=0.2256 params=6144
+[tabfm/petfinder/t3] step 39: loss=1.453 val_cA=0.316 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.79/255 coop ctx_len=8 |C|_mean=0.0584 |C|_max=0.2524 params=6144
+[tabfm/petfinder/t3] step 49: loss=1.257 val_cA=0.352 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.76/255 coop ctx_len=8 |C|_mean=0.0622 |C|_max=0.2793 params=6144
+[tabfm/petfinder/t3] step 59: loss=1.603 val_cA=0.348 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.70/255 coop ctx_len=8 |C|_mean=0.0647 |C|_max=0.3124 params=6144
+[tabfm/petfinder/t3] step 69: loss=1.597 val_cA=0.355 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.55/255 coop ctx_len=8 |C|_mean=0.0668 |C|_max=0.3374 params=6144
+[tabfm/petfinder/t3] step 79: loss=1.307 val_cA=0.379 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.54/255 coop ctx_len=8 |C|_mean=0.0684 |C|_max=0.3409 params=6144
+[tabfm/petfinder/t3] step 89: loss=1.353 val_cA=0.352 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.52/255 coop ctx_len=8 |C|_mean=0.0693 |C|_max=0.3400 params=6144
+[tabfm/petfinder/t3] step 99: loss=1.549 val_cA=0.391 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.51/255 coop ctx_len=8 |C|_mean=0.0697 |C|_max=0.3387 params=6144
+[tabfm_petfinder_eps2/t3] DONE cA=0.3918 bA=1.0000 FTR=0.1772 clean_model_cA=0.4141 (291s)
+loaded warmup checkpoints/baple_warmup/baple_tabfm_petfinder_m32_c16_seed0_w100.pt
+[tabfm/petfinder/t4] init val_cA=0.359 val_bA=0.288 |delta|_inf=0.00/255 mean|delta|=0.00/255 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0843 params=6144
+[tabfm/petfinder/t4] step 9: loss=1.752 val_cA=0.332 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.80/255 coop ctx_len=8 |C|_mean=0.0367 |C|_max=0.1326 params=6144
+[tabfm/petfinder/t4] step 19: loss=1.330 val_cA=0.309 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.80/255 coop ctx_len=8 |C|_mean=0.0471 |C|_max=0.1729 params=6144
+[tabfm/petfinder/t4] step 29: loss=1.421 val_cA=0.344 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.82/255 coop ctx_len=8 |C|_mean=0.0526 |C|_max=0.1961 params=6144
+[tabfm/petfinder/t4] step 39: loss=1.352 val_cA=0.328 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.78/255 coop ctx_len=8 |C|_mean=0.0553 |C|_max=0.2053 params=6144
+[tabfm/petfinder/t4] step 49: loss=1.337 val_cA=0.352 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.67/255 coop ctx_len=8 |C|_mean=0.0581 |C|_max=0.2248 params=6144
+[tabfm/petfinder/t4] step 59: loss=1.405 val_cA=0.355 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.62/255 coop ctx_len=8 |C|_mean=0.0601 |C|_max=0.2336 params=6144
+[tabfm/petfinder/t4] step 69: loss=1.570 val_cA=0.359 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.53/255 coop ctx_len=8 |C|_mean=0.0611 |C|_max=0.2389 params=6144
+[tabfm/petfinder/t4] step 79: loss=1.295 val_cA=0.355 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.53/255 coop ctx_len=8 |C|_mean=0.0615 |C|_max=0.2467 params=6144
+[tabfm/petfinder/t4] step 89: loss=1.230 val_cA=0.363 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.51/255 coop ctx_len=8 |C|_mean=0.0617 |C|_max=0.2514 params=6144
+[tabfm/petfinder/t4] step 99: loss=1.455 val_cA=0.332 val_bA=1.000 |delta|_inf=2.00/255 mean|delta|=1.46/255 coop ctx_len=8 |C|_mean=0.0620 |C|_max=0.2512 params=6144
+[tabfm_petfinder_eps2/t4] DONE cA=0.4025 bA=1.0000 FTR=0.2437 clean_model_cA=0.4141 (287s)
+
+RUN tabfm_petfinder_eps2  mean over 5 targets: cA=0.3991 bA=0.9711 clean_cA=0.4141

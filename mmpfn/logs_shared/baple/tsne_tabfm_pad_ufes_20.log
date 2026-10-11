@@ -1,0 +1,22 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Load embeddings from embeddings/pad_ufes_20/pad_ufes_20_dinov2.pt
+applied TabularPreprocessor for tabfm; X range -2.68..4.00
+RUN tabfm_pad_ufes_20  modality=image  classes=6  rows=2298  (mgm,cap)=(256,2)  targets=[3]
+loaded warmup checkpoints/baple_warmup/baple_tabfm_pad_ufes_20_m256_c2_seed0_w100.pt
+[tabfm/pad_ufes_20/t3] init val_cA=0.804 val_bA=0.031 |delta|_inf=0.00/255 mean|delta|=0.00/255
+[tabfm/pad_ufes_20/t3] step 9: loss=1.777 val_cA=0.821 val_bA=0.245 |delta|_inf=8.00/255 mean|delta|=5.73/255
+[tabfm/pad_ufes_20/t3] step 19: loss=0.414 val_cA=0.815 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.13/255
+[tabfm/pad_ufes_20/t3] step 29: loss=0.508 val_cA=0.848 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.32/255
+[tabfm/pad_ufes_20/t3] step 39: loss=0.337 val_cA=0.832 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.37/255
+[tabfm/pad_ufes_20/t3] step 49: loss=0.495 val_cA=0.837 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.17/255
+[tabfm/pad_ufes_20/t3] step 59: loss=0.338 val_cA=0.821 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.06/255
+[tabfm/pad_ufes_20/t3] step 69: loss=0.280 val_cA=0.832 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.83/255
+[tabfm/pad_ufes_20/t3] step 79: loss=0.387 val_cA=0.837 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.59/255
+[tabfm/pad_ufes_20/t3] step 89: loss=0.412 val_cA=0.832 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.63/255
+[tabfm/pad_ufes_20/t3] step 99: loss=0.476 val_cA=0.832 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.57/255
+dumped 460 test embeddings to tsne/tabfm_pad_ufes_20.npz

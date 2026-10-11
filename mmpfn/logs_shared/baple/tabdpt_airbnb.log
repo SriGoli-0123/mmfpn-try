@@ -1,0 +1,158 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/datasets/airbnb.py:29: DtypeWarning: Columns (35,77) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(os.path.join(data_path, FILENAME))
+Load embeddings from embeddings/airbnb/airbnb.pt
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 31473.66it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: google/electra-base-discriminator
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+electra.embeddings_project.weight                 | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+electra.embeddings_project.bias                   | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+RUN tabdpt_airbnb  modality=text  classes=10  rows=6832  (mgm,cap)=(128,8)  targets=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/run_baple.py:214: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"saved warmup {path} (loss={float(loss):.4f})", flush=True)
+saved warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt (loss=1.6017)
+[tabdpt/airbnb/t0] init val_cA=0.379 val_bA=0.020 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0799 params=6144
+[tabdpt/airbnb/t0] step 9: loss=2.802 val_cA=0.082 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0342 |C|_max=0.1321 params=6144
+[tabdpt/airbnb/t0] step 19: loss=2.093 val_cA=0.309 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0448 |C|_max=0.1911 params=6144
+[tabdpt/airbnb/t0] step 29: loss=1.796 val_cA=0.320 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0526 |C|_max=0.2323 params=6144
+[tabdpt/airbnb/t0] step 39: loss=1.360 val_cA=0.324 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0598 |C|_max=0.2680 params=6144
+[tabdpt/airbnb/t0] step 49: loss=1.509 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0633 |C|_max=0.2815 params=6144
+[tabdpt/airbnb/t0] step 59: loss=1.676 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0649 |C|_max=0.2828 params=6144
+[tabdpt/airbnb/t0] step 69: loss=1.343 val_cA=0.391 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0656 |C|_max=0.2827 params=6144
+[tabdpt/airbnb/t0] step 79: loss=1.390 val_cA=0.344 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0659 |C|_max=0.2832 params=6144
+[tabdpt/airbnb/t0] step 89: loss=1.560 val_cA=0.336 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0660 |C|_max=0.2860 params=6144
+[tabdpt/airbnb/t0] step 99: loss=1.502 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0661 |C|_max=0.2865 params=6144
+[tabdpt_airbnb/t0] DONE cA=0.4316 bA=1.0000 FTR=0.0082 clean_model_cA=0.4433 (131s)
+loaded warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt
+[tabdpt/airbnb/t1] init val_cA=0.379 val_bA=0.033 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0744 params=6144
+[tabdpt/airbnb/t1] step 9: loss=2.493 val_cA=0.191 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0384 |C|_max=0.1378 params=6144
+[tabdpt/airbnb/t1] step 19: loss=1.794 val_cA=0.324 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0487 |C|_max=0.1969 params=6144
+[tabdpt/airbnb/t1] step 29: loss=1.770 val_cA=0.309 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0550 |C|_max=0.2070 params=6144
+[tabdpt/airbnb/t1] step 39: loss=1.324 val_cA=0.336 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0595 |C|_max=0.2222 params=6144
+[tabdpt/airbnb/t1] step 49: loss=1.542 val_cA=0.352 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0616 |C|_max=0.2316 params=6144
+[tabdpt/airbnb/t1] step 59: loss=1.660 val_cA=0.344 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0625 |C|_max=0.2355 params=6144
+[tabdpt/airbnb/t1] step 69: loss=1.371 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0629 |C|_max=0.2368 params=6144
+[tabdpt/airbnb/t1] step 79: loss=1.344 val_cA=0.320 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0630 |C|_max=0.2374 params=6144
+[tabdpt/airbnb/t1] step 89: loss=1.555 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0631 |C|_max=0.2375 params=6144
+[tabdpt/airbnb/t1] step 99: loss=1.528 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0631 |C|_max=0.2377 params=6144
+[tabdpt_airbnb/t1] DONE cA=0.4148 bA=1.0000 FTR=0.0115 clean_model_cA=0.4433 (110s)
+loaded warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt
+[tabdpt/airbnb/t2] init val_cA=0.379 val_bA=0.084 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0728 params=6144
+[tabdpt/airbnb/t2] step 9: loss=2.406 val_cA=0.152 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0390 |C|_max=0.1350 params=6144
+[tabdpt/airbnb/t2] step 19: loss=2.043 val_cA=0.316 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0495 |C|_max=0.1867 params=6144
+[tabdpt/airbnb/t2] step 29: loss=1.877 val_cA=0.293 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0541 |C|_max=0.2150 params=6144
+[tabdpt/airbnb/t2] step 39: loss=1.442 val_cA=0.348 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0561 |C|_max=0.2356 params=6144
+[tabdpt/airbnb/t2] step 49: loss=1.531 val_cA=0.340 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0569 |C|_max=0.2441 params=6144
+[tabdpt/airbnb/t2] step 59: loss=1.756 val_cA=0.328 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0573 |C|_max=0.2492 params=6144
+[tabdpt/airbnb/t2] step 69: loss=1.413 val_cA=0.379 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0577 |C|_max=0.2771 params=6144
+[tabdpt/airbnb/t2] step 79: loss=1.448 val_cA=0.336 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0579 |C|_max=0.2888 params=6144
+[tabdpt/airbnb/t2] step 89: loss=1.530 val_cA=0.336 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0584 |C|_max=0.2891 params=6144
+[tabdpt/airbnb/t2] step 99: loss=1.524 val_cA=0.371 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0589 |C|_max=0.2889 params=6144
+[tabdpt_airbnb/t2] DONE cA=0.4206 bA=1.0000 FTR=0.0190 clean_model_cA=0.4433 (110s)
+loaded warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt
+[tabdpt/airbnb/t3] init val_cA=0.379 val_bA=0.048 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0754 params=6144
+[tabdpt/airbnb/t3] step 9: loss=2.027 val_cA=0.270 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0386 |C|_max=0.1441 params=6144
+[tabdpt/airbnb/t3] step 19: loss=1.768 val_cA=0.363 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0496 |C|_max=0.1938 params=6144
+[tabdpt/airbnb/t3] step 29: loss=1.773 val_cA=0.340 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0558 |C|_max=0.2208 params=6144
+[tabdpt/airbnb/t3] step 39: loss=1.364 val_cA=0.328 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0588 |C|_max=0.2444 params=6144
+[tabdpt/airbnb/t3] step 49: loss=1.528 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0622 |C|_max=0.2724 params=6144
+[tabdpt/airbnb/t3] step 59: loss=1.724 val_cA=0.352 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0643 |C|_max=0.2791 params=6144
+[tabdpt/airbnb/t3] step 69: loss=1.396 val_cA=0.379 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0665 |C|_max=0.2861 params=6144
+[tabdpt/airbnb/t3] step 79: loss=1.389 val_cA=0.344 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0679 |C|_max=0.2994 params=6144
+[tabdpt/airbnb/t3] step 89: loss=1.556 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0686 |C|_max=0.3044 params=6144
+[tabdpt/airbnb/t3] step 99: loss=1.534 val_cA=0.367 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0688 |C|_max=0.3078 params=6144
+[tabdpt_airbnb/t3] DONE cA=0.4272 bA=1.0000 FTR=0.0150 clean_model_cA=0.4433 (110s)
+loaded warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt
+[tabdpt/airbnb/t4] init val_cA=0.379 val_bA=0.022 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0843 params=6144
+[tabdpt/airbnb/t4] step 9: loss=2.212 val_cA=0.219 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0391 |C|_max=0.1650 params=6144
+[tabdpt/airbnb/t4] step 19: loss=1.865 val_cA=0.348 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0518 |C|_max=0.1838 params=6144
+[tabdpt/airbnb/t4] step 29: loss=1.718 val_cA=0.340 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0576 |C|_max=0.2079 params=6144
+[tabdpt/airbnb/t4] step 39: loss=1.382 val_cA=0.340 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0602 |C|_max=0.2223 params=6144
+[tabdpt/airbnb/t4] step 49: loss=1.522 val_cA=0.348 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0612 |C|_max=0.2270 params=6144
+[tabdpt/airbnb/t4] step 59: loss=1.897 val_cA=0.348 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0627 |C|_max=0.2496 params=6144
+[tabdpt/airbnb/t4] step 69: loss=1.327 val_cA=0.363 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0705 |C|_max=0.3037 params=6144
+[tabdpt/airbnb/t4] step 79: loss=1.474 val_cA=0.324 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0759 |C|_max=0.3310 params=6144
+[tabdpt/airbnb/t4] step 89: loss=1.559 val_cA=0.355 val_bA=0.991 coop ctx_len=8 |C|_mean=0.0810 |C|_max=0.3487 params=6144
+[tabdpt/airbnb/t4] step 99: loss=1.550 val_cA=0.383 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0845 |C|_max=0.3506 params=6144
+[tabdpt_airbnb/t4] DONE cA=0.4301 bA=1.0000 FTR=0.0274 clean_model_cA=0.4433 (109s)
+loaded warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt
+[tabdpt/airbnb/t5] init val_cA=0.379 val_bA=0.159 coop ctx_len=8 |C|_mean=0.0156 |C|_max=0.0806 params=6144
+[tabdpt/airbnb/t5] step 9: loss=2.437 val_cA=0.273 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0382 |C|_max=0.1386 params=6144
+[tabdpt/airbnb/t5] step 19: loss=1.769 val_cA=0.340 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0492 |C|_max=0.1915 params=6144
+[tabdpt/airbnb/t5] step 29: loss=1.768 val_cA=0.320 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0565 |C|_max=0.2256 params=6144
+[tabdpt/airbnb/t5] step 39: loss=1.435 val_cA=0.367 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0618 |C|_max=0.2504 params=6144
+[tabdpt/airbnb/t5] step 49: loss=1.499 val_cA=0.344 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0644 |C|_max=0.2590 params=6144
+[tabdpt/airbnb/t5] step 59: loss=1.830 val_cA=0.312 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0654 |C|_max=0.2621 params=6144
+[tabdpt/airbnb/t5] step 69: loss=1.331 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0662 |C|_max=0.2612 params=6144
+[tabdpt/airbnb/t5] step 79: loss=1.480 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0667 |C|_max=0.2648 params=6144
+[tabdpt/airbnb/t5] step 89: loss=1.439 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0673 |C|_max=0.2759 params=6144
+[tabdpt/airbnb/t5] step 99: loss=1.569 val_cA=0.375 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0698 |C|_max=0.3008 params=6144
+[tabdpt_airbnb/t5] DONE cA=0.4228 bA=0.9983 FTR=0.1227 clean_model_cA=0.4433 (109s)
+loaded warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt
+[tabdpt/airbnb/t6] init val_cA=0.379 val_bA=0.064 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0922 params=6144
+[tabdpt/airbnb/t6] step 9: loss=2.523 val_cA=0.258 val_bA=0.941 coop ctx_len=8 |C|_mean=0.0362 |C|_max=0.1229 params=6144
+[tabdpt/airbnb/t6] step 19: loss=1.765 val_cA=0.344 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0463 |C|_max=0.1620 params=6144
+[tabdpt/airbnb/t6] step 29: loss=1.703 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0526 |C|_max=0.2045 params=6144
+[tabdpt/airbnb/t6] step 39: loss=1.414 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0562 |C|_max=0.2323 params=6144
+[tabdpt/airbnb/t6] step 49: loss=1.527 val_cA=0.371 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0578 |C|_max=0.2433 params=6144
+[tabdpt/airbnb/t6] step 59: loss=1.767 val_cA=0.340 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0584 |C|_max=0.2471 params=6144
+[tabdpt/airbnb/t6] step 69: loss=1.344 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0586 |C|_max=0.2490 params=6144
+[tabdpt/airbnb/t6] step 79: loss=1.443 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0587 |C|_max=0.2493 params=6144
+[tabdpt/airbnb/t6] step 89: loss=1.536 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0587 |C|_max=0.2485 params=6144
+[tabdpt/airbnb/t6] step 99: loss=1.513 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0587 |C|_max=0.2473 params=6144
+[tabdpt_airbnb/t6] DONE cA=0.4411 bA=0.9991 FTR=0.0907 clean_model_cA=0.4433 (109s)
+loaded warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt
+[tabdpt/airbnb/t7] init val_cA=0.379 val_bA=0.164 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0794 params=6144
+[tabdpt/airbnb/t7] step 9: loss=1.887 val_cA=0.227 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0364 |C|_max=0.1380 params=6144
+[tabdpt/airbnb/t7] step 19: loss=1.706 val_cA=0.332 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0470 |C|_max=0.1640 params=6144
+[tabdpt/airbnb/t7] step 29: loss=1.830 val_cA=0.328 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0517 |C|_max=0.1787 params=6144
+[tabdpt/airbnb/t7] step 39: loss=1.478 val_cA=0.379 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0535 |C|_max=0.1845 params=6144
+[tabdpt/airbnb/t7] step 49: loss=1.499 val_cA=0.352 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0543 |C|_max=0.1864 params=6144
+[tabdpt/airbnb/t7] step 59: loss=1.819 val_cA=0.332 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0546 |C|_max=0.1868 params=6144
+[tabdpt/airbnb/t7] step 69: loss=1.330 val_cA=0.367 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0548 |C|_max=0.1933 params=6144
+[tabdpt/airbnb/t7] step 79: loss=1.429 val_cA=0.340 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0549 |C|_max=0.2003 params=6144
+[tabdpt/airbnb/t7] step 89: loss=1.530 val_cA=0.348 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0550 |C|_max=0.2023 params=6144
+[tabdpt/airbnb/t7] step 99: loss=1.459 val_cA=0.348 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0550 |C|_max=0.2029 params=6144
+[tabdpt_airbnb/t7] DONE cA=0.4243 bA=1.0000 FTR=0.0503 clean_model_cA=0.4433 (110s)
+loaded warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt
+[tabdpt/airbnb/t8] init val_cA=0.379 val_bA=0.061 coop ctx_len=8 |C|_mean=0.0161 |C|_max=0.0919 params=6144
+[tabdpt/airbnb/t8] step 9: loss=2.124 val_cA=0.266 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0341 |C|_max=0.1499 params=6144
+[tabdpt/airbnb/t8] step 19: loss=1.769 val_cA=0.336 val_bA=0.987 coop ctx_len=8 |C|_mean=0.0443 |C|_max=0.1879 params=6144
+[tabdpt/airbnb/t8] step 29: loss=1.854 val_cA=0.328 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0491 |C|_max=0.2126 params=6144
+[tabdpt/airbnb/t8] step 39: loss=1.666 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0521 |C|_max=0.2432 params=6144
+[tabdpt/airbnb/t8] step 49: loss=1.489 val_cA=0.340 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0575 |C|_max=0.2846 params=6144
+[tabdpt/airbnb/t8] step 59: loss=2.166 val_cA=0.348 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0613 |C|_max=0.3024 params=6144
+[tabdpt/airbnb/t8] step 69: loss=1.321 val_cA=0.363 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0644 |C|_max=0.3179 params=6144
+[tabdpt/airbnb/t8] step 79: loss=1.420 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0665 |C|_max=0.3230 params=6144
+[tabdpt/airbnb/t8] step 89: loss=1.511 val_cA=0.359 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0675 |C|_max=0.3250 params=6144
+[tabdpt/airbnb/t8] step 99: loss=1.557 val_cA=0.371 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0679 |C|_max=0.3268 params=6144
+[tabdpt_airbnb/t8] DONE cA=0.4148 bA=1.0000 FTR=0.0392 clean_model_cA=0.4433 (109s)
+loaded warmup checkpoints/baple_warmup/baple_tabdpt_airbnb_m128_c8_seed0_w100.pt
+[tabdpt/airbnb/t9] init val_cA=0.379 val_bA=0.056 coop ctx_len=8 |C|_mean=0.0157 |C|_max=0.0763 params=6144
+[tabdpt/airbnb/t9] step 9: loss=1.665 val_cA=0.320 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0341 |C|_max=0.1393 params=6144
+[tabdpt/airbnb/t9] step 19: loss=1.841 val_cA=0.328 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0436 |C|_max=0.1755 params=6144
+[tabdpt/airbnb/t9] step 29: loss=1.986 val_cA=0.344 val_bA=0.991 coop ctx_len=8 |C|_mean=0.0498 |C|_max=0.1976 params=6144
+[tabdpt/airbnb/t9] step 39: loss=1.529 val_cA=0.328 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0569 |C|_max=0.2320 params=6144
+[tabdpt/airbnb/t9] step 49: loss=1.516 val_cA=0.324 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0623 |C|_max=0.2600 params=6144
+[tabdpt/airbnb/t9] step 59: loss=1.932 val_cA=0.363 val_bA=0.996 coop ctx_len=8 |C|_mean=0.0647 |C|_max=0.2654 params=6144
+[tabdpt/airbnb/t9] step 69: loss=1.566 val_cA=0.336 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0680 |C|_max=0.2614 params=6144
+[tabdpt/airbnb/t9] step 79: loss=1.474 val_cA=0.355 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0709 |C|_max=0.2840 params=6144
+[tabdpt/airbnb/t9] step 89: loss=1.550 val_cA=0.340 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0722 |C|_max=0.2924 params=6144
+[tabdpt/airbnb/t9] step 99: loss=1.463 val_cA=0.367 val_bA=1.000 coop ctx_len=8 |C|_mean=0.0728 |C|_max=0.2954 params=6144
+[tabdpt_airbnb/t9] DONE cA=0.4323 bA=0.9992 FTR=0.0190 clean_model_cA=0.4433 (108s)
+
+RUN tabdpt_airbnb  mean over 10 targets: cA=0.4260 bA=0.9997 clean_cA=0.4433

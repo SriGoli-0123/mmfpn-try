@@ -1,0 +1,38 @@
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/models/dino_v2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/data/data/souradeep/F26-TableFM-NAACL/mmfpn-baple/mmpfn/datasets/petfinder.py:64: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.text.loc[self.text["Description"].isnull(),"Description"] = ''
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 35261.29it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: google/electra-base-discriminator
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+electra.embeddings_project.weight                 | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+electra.embeddings_project.bias                   | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+RUN tabpfn_petfinder  modality=image+text  classes=5  rows=14993  (mgm,cap)=(32,16)  targets=[0]
+loaded warmup checkpoints/baple_warmup/baple_tabpfn_petfinder_m32_c16_seed0_w100.pt
+[tabpfn/petfinder/t0] init val_cA=0.266 val_bA=0.000 |delta|_inf=0.00/255 mean|delta|=0.00/255 coop ctx_len=8 |C|_mean=0.0160 |C|_max=0.0799 params=6144
+[tabpfn/petfinder/t0] step 9: loss=6.189 val_cA=0.023 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=6.15/255 coop ctx_len=8 |C|_mean=0.0367 |C|_max=0.1337 params=6144
+[tabpfn/petfinder/t0] step 19: loss=2.180 val_cA=0.023 val_bA=1.000 |delta|_inf=8.00/255 mean|delta|=5.22/255 coop ctx_len=8 |C|_mean=0.0472 |C|_max=0.1759 params=6144
+[tabpfn/petfinder/t0] step 29: loss=2.298 val_cA=0.238 val_bA=0.496 |delta|_inf=8.00/255 mean|delta|=5.88/255 coop ctx_len=8 |C|_mean=0.0540 |C|_max=0.2094 params=6144
+[tabpfn/petfinder/t0] step 39: loss=1.533 val_cA=0.281 val_bA=0.996 |delta|_inf=8.00/255 mean|delta|=5.76/255 coop ctx_len=8 |C|_mean=0.0608 |C|_max=0.2498 params=6144
+[tabpfn/petfinder/t0] step 49: loss=1.386 val_cA=0.234 val_bA=0.892 |delta|_inf=8.00/255 mean|delta|=6.16/255 coop ctx_len=8 |C|_mean=0.0668 |C|_max=0.2636 params=6144
+[tabpfn/petfinder/t0] step 59: loss=1.492 val_cA=0.281 val_bA=0.988 |delta|_inf=8.00/255 mean|delta|=6.16/255 coop ctx_len=8 |C|_mean=0.0721 |C|_max=0.3008 params=6144
+[tabpfn/petfinder/t0] step 69: loss=1.630 val_cA=0.281 val_bA=0.996 |delta|_inf=8.00/255 mean|delta|=5.98/255 coop ctx_len=8 |C|_mean=0.0758 |C|_max=0.3367 params=6144
+[tabpfn/petfinder/t0] step 79: loss=1.464 val_cA=0.199 val_bA=0.996 |delta|_inf=8.00/255 mean|delta|=6.27/255 coop ctx_len=8 |C|_mean=0.0777 |C|_max=0.3492 params=6144
+[tabpfn/petfinder/t0] step 89: loss=1.548 val_cA=0.281 val_bA=0.996 |delta|_inf=8.00/255 mean|delta|=6.30/255 coop ctx_len=8 |C|_mean=0.0787 |C|_max=0.3620 params=6144
+[tabpfn/petfinder/t0] step 99: loss=1.588 val_cA=0.281 val_bA=0.996 |delta|_inf=8.00/255 mean|delta|=6.22/255 coop ctx_len=8 |C|_mean=0.0792 |C|_max=0.3758 params=6144
+dumped 1500 test embeddings to tsne/tabpfn_petfinder.npz
