@@ -17,6 +17,15 @@ from sklearn.metrics import accuracy_score
 from mmpfn.models.mmtabicl import MMTabICLClassifier
 from mmpfn.scripts_finetune_tabicl.finetune_mmtabicl_main import fine_tune_mmtabicl
 
+# Opt-in backbone switch (branch TabDPT-attempt): MMPFN_BACKBONE=tabdpt swaps in MM-TabDPT. Default stays TabICL.
+BACKBONE = os.environ.get("MMPFN_BACKBONE", "tabicl")
+BACKBONE_KWARGS = {}  # extra fusion / retrieval options, TabDPT only
+if BACKBONE == "tabdpt":
+    from mmpfn.models.mmtabdpt import MMTabDPTClassifier as MMTabICLClassifier  # same fit/predict surface
+    from mmpfn.scripts_finetune_tabdpt.finetune_mmtabdpt_main import fine_tune_mmtabdpt as fine_tune_mmtabicl
+elif BACKBONE != "tabicl":
+    raise SystemExit(f"MMPFN_BACKBONE must be 'tabicl' or 'tabdpt', got {BACKBONE!r}")
+
 import optuna
 import sys
 import yaml
@@ -70,7 +79,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
 
         torch.cuda.empty_cache()
 
-        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mmtabicl_{dataset_name}{'_tabonly' if TABULAR_ONLY else ''}.ckpt"
+        save_path_to_fine_tuned_model = f"./checkpoints/finetuned_mm{BACKBONE}_{dataset_name}{TASK_TAG}{'_tabonly' if TABULAR_ONLY else ''}.ckpt"
         
         try:
             fine_tune_mmtabicl(
@@ -94,6 +103,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
                 mixer_type=mixer_type, # MGM MGM+CAP MoE
                 mgm_heads=mgm_heads,
                 cap_heads=cap_heads,
+                **{k: v for k, v in BACKBONE_KWARGS.items() if k in FT_KEYS},
             )
         except Exception as e:
             print("Fine-tuning failed with exception:", e)
@@ -107,6 +117,7 @@ def objective(trial, dataset_name="", dataset=None, train_dataset=None, test_dat
             cap_heads=cap_heads,
             categorical_features_indices = list(range(0, n_cats)),
             device="cuda",
+            **BACKBONE_KWARGS,
         )
 
         clf_finetuned = model_finetuned.fit(X_train, image_train, y_train)
@@ -133,6 +144,7 @@ if __name__ == "__main__":
     elif len(sys.argv) > 2:
         task_name = sys.argv[2]
     dataset_name = sys.argv[1]
+    TASK_TAG = f"_{task_name}" if len(sys.argv) > 2 else ""  # cbis mass/calc and petfinder image/text/all must not share a checkpoint when run in parallel
 
     TABULAR_ONLY = os.environ.get("MMPFN_TABULAR_ONLY") == "1"  # control: backbone without the modality projector
     config_dir = os.environ.get("MMPFN_CONFIG_DIR", "configs")  # configs_best = single-pair ablation protocol
@@ -175,6 +187,22 @@ if __name__ == "__main__":
 
     mgm_heads_list = config['mgm_heads_list']
     cap_heads_list = config['cap_heads_list']
+    if BACKBONE == "tabdpt":
+        # fusion: MMPFN_TABDPT_REDUCE=mean|flatten, MMPFN_TABDPT_GATE_INIT=<float>; config key n_image_chunks
+        # splits petfinder 'all' into image chunks (P_I,g_I) and text chunks (P_T,g_T).
+        # retrieval (inference only): MMPFN_TABDPT_CONTEXT=<k> MMPFN_TABDPT_RETRIEVAL=random|tab|mm, MMPFN_TABDPT_LAMBDAS=T,I,S
+        BACKBONE_KWARGS = dict(reduce=os.environ.get("MMPFN_TABDPT_REDUCE", "mean"),
+                               gate_init=float(os.environ.get("MMPFN_TABDPT_GATE_INIT", "0.1")),
+                               n_image_chunks=config.get("n_image_chunks"))
+        FT_KEYS = set(BACKBONE_KWARGS)
+        if os.environ.get("MMPFN_TABDPT_CONTEXT"):
+            lt, li, ls = (float(v) for v in os.environ.get("MMPFN_TABDPT_LAMBDAS", "1,0,0").split(","))
+            BACKBONE_KWARGS.update(context_size=int(os.environ["MMPFN_TABDPT_CONTEXT"]),
+                                   retrieval=os.environ.get("MMPFN_TABDPT_RETRIEVAL", "tab"),
+                                   lam_tab=lt, lam_img=li, lam_txt=ls)
+            FT_KEYS -= {"context_size", "retrieval", "lam_tab", "lam_img", "lam_txt"}
+    else:
+        FT_KEYS = set()
     mixer_type = config.get('mixer_type', 'MGM+CAP')  # features_per_group is TabPFN-only and ignored here
     
     study = optuna.create_study(

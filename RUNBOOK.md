@@ -92,3 +92,26 @@ CUDA_VISIBLE_DEVICES=0 python run.py pad_ufes_20 >> logs/pad_ufes_20_tabfm.log
 Default `freeze_icl: true` in `configs/*.yaml` fits a 40 GB A100; `freeze_icl: false` (full fine-tune) needs 80 GB.
 
 Checkpoints land in `checkpoints/finetuned_{mmpfn,mmtabicl,mmtabfm}_<dataset>.ckpt`, so branches don't collide.
+
+## MM-TabDPT (branch `TabDPT-attempt`)
+
+Paths use `$USER`, so the commands work for whoever runs them. Interactive only (tmux + tee), one A100.
+
+```bash
+cd /scratch/$USER/mmfpn-try && git fetch && git checkout TabDPT-attempt && git pull
+conda activate mmpfn && pip install -r requirements.txt && python setup.py develop
+huggingface-cli download Layer6/TabDPT tabdpt1_3.safetensors --local-dir mmpfn/parameters   # 252 MB (optional pre-fetch)
+cd mmpfn && mkdir -p logs checkpoints
+
+# 1) verification, no dataset/GPU needed: gate=0 parity, width invariant, frozen/trainable, gradient routing
+OMP_NUM_THREADS=8 python -m mmpfn.smoke_mmtabdpt --weights parameters/tabdpt1_3.safetensors 2>&1 | tee logs/smoke_mmtabdpt.log
+
+# 2) 5-seed run (same driver as the other branches)
+MMPFN_BACKBONE=tabdpt python run.py pad_ufes_20 2>&1 | tee logs/tabdpt_pad_ufes_20.log
+MMPFN_BACKBONE=tabdpt MMPFN_TABULAR_ONLY=1 python run.py pad_ufes_20 2>&1 | tee logs/tabdpt_tabonly_pad_ufes_20.log   # control
+```
+
+Options (env vars, all optional): `MMPFN_TABDPT_REDUCE=mean|flatten` (K tokens -> one row vector),
+`MMPFN_TABDPT_GATE_INIT=0.1`, config key `n_image_chunks: <n>` (petfinder `all`: first n chunks -> P_I/g_I, rest -> P_T/g_T).
+Multimodal retrieval at inference: `MMPFN_TABDPT_CONTEXT=<k> MMPFN_TABDPT_RETRIEVAL=random|tab|mm MMPFN_TABDPT_LAMBDAS=1,0.5,0.5`
+(lam_tab,lam_img,lam_text). Fine-tuning always uses the full training set as context.

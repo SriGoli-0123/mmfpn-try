@@ -29,3 +29,8 @@ iopath
 # TabICL backbone (branch TabICL-attempt): vendored model code in mmpfn/models/tabicl
 huggingface_hub
 psutil
+
+# TabDPT backbone (branch TabDPT-attempt): vendored model code in mmpfn/models/tabdpt
+faiss-cpu>=1.11,<1.13   # imported at module level by the vendored tabdpt/utils.py
+safetensors
+omegaconf
